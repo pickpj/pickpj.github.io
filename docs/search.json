@@ -1,0 +1,80 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "",
+    "section": "",
+    "text": "A website to showcase some stuff ¯\\_(ツ)_/¯"
+  },
+  {
+    "objectID": "fastai.html",
+    "href": "fastai.html",
+    "title": "A quick application of DL for image Classification",
+    "section": "",
+    "text": "Before creating an Image classifier it is necessary to gather a dataset of images representing the different categories you wish to classify. For my example I used a browser extension to download images as I browsed real-estate websites (zillow, immowelt, suumo, etc.). Next I used an ipynb I made to sort the dataset https://github.com/pickpj/img-labeler-nb/blob/main/sep.ipynb .\nNext we: import libraries, check folder for images that can’t be opened, and load the images into a DataBlock. The DataBlock handles train/test split (splitter), and transformations (item_tfms). However, we will still need to have a separate test dataset, which can be done at a later time. The command du --inodes -d 2 counts the number of files (490 images), from this we can see the data is balanced between the two categories (57.8:42.2%).\n\n\nCode\nfrom fastai.data.all import *\nfrom fastai.vision.all import *\n\nfp = Path(\"./Data\")\n\nfailed = verify_images(get_image_files(fp))\nfailed.map(fp.unlink)\n\ndblock = DataBlock(\n    blocks=(ImageBlock, CategoryBlock), \n    get_items=get_image_files, \n    get_y=parent_label,\n    splitter=RandomSplitter(valid_pct=0.25),\n    item_tfms=[Resize(192, method=\"squish\")]\n).dataloaders(fp)\n\nos.system(\"(cd Data && du --inodes -d 2)\")\ndblock.show_batch(max_n=9)\n\n\n283 ./Interior\n207 ./Exterior\n491 .",
+    "crumbs": [
+      "Data",
+      "Image",
+      "Image Classification"
+    ]
+  },
+  {
+    "objectID": "fastai.html#data-prep-loading",
+    "href": "fastai.html#data-prep-loading",
+    "title": "A quick application of DL for image Classification",
+    "section": "",
+    "text": "Before creating an Image classifier it is necessary to gather a dataset of images representing the different categories you wish to classify. For my example I used a browser extension to download images as I browsed real-estate websites (zillow, immowelt, suumo, etc.). Next I used an ipynb I made to sort the dataset https://github.com/pickpj/img-labeler-nb/blob/main/sep.ipynb .\nNext we: import libraries, check folder for images that can’t be opened, and load the images into a DataBlock. The DataBlock handles train/test split (splitter), and transformations (item_tfms). However, we will still need to have a separate test dataset, which can be done at a later time. The command du --inodes -d 2 counts the number of files (490 images), from this we can see the data is balanced between the two categories (57.8:42.2%).\n\n\nCode\nfrom fastai.data.all import *\nfrom fastai.vision.all import *\n\nfp = Path(\"./Data\")\n\nfailed = verify_images(get_image_files(fp))\nfailed.map(fp.unlink)\n\ndblock = DataBlock(\n    blocks=(ImageBlock, CategoryBlock), \n    get_items=get_image_files, \n    get_y=parent_label,\n    splitter=RandomSplitter(valid_pct=0.25),\n    item_tfms=[Resize(192, method=\"squish\")]\n).dataloaders(fp)\n\nos.system(\"(cd Data && du --inodes -d 2)\")\ndblock.show_batch(max_n=9)\n\n\n283 ./Interior\n207 ./Exterior\n491 .",
+    "crumbs": [
+      "Data",
+      "Image",
+      "Image Classification"
+    ]
+  },
+  {
+    "objectID": "fastai.html#training-fine-tuning",
+    "href": "fastai.html#training-fine-tuning",
+    "title": "A quick application of DL for image Classification",
+    "section": "Training / Fine-tuning",
+    "text": "Training / Fine-tuning\nWe then use an existing image model/pre-trained weights (arch) of weights and fine tune it to our dataset. Resnet18 is a small model the can be trained quickly with great performance. There are better models like swin_t, but the gains are marginal and training is longer. More SotA models can be found on the pytorch site https://pytorch.org/vision/stable/models.html#classification .\n\n\nCode\nvismodel = vision_learner(dblock, resnet18, metrics=error_rate)\nvismodel.fine_tune(3)\n\n\n\n\n\n\nepoch\ntrain_loss\nvalid_loss\nerror_rate\ntime\n\n\n\n\n0\n0.967755\n0.671967\n0.196721\n00:37\n\n\n\n\n\n\n\n\n\n\nepoch\ntrain_loss\nvalid_loss\nerror_rate\ntime\n\n\n\n\n0\n0.145528\n0.043196\n0.016393\n00:44\n\n\n1\n0.086152\n0.024560\n0.008197\n00:43\n\n\n2\n0.059480\n0.024998\n0.008197\n00:43",
+    "crumbs": [
+      "Data",
+      "Image",
+      "Image Classification"
+    ]
+  },
+  {
+    "objectID": "fastai.html#results",
+    "href": "fastai.html#results",
+    "title": "A quick application of DL for image Classification",
+    "section": "Results",
+    "text": "Results\nFrom there the model can be exported/saved. To use the saved model there is the load_learner and .predict() functions.\n\nvismodel.export(\"model.pkl\")\nvm = load_learner(\"model.pkl\")\n\nThe predict function outputs the result and a tensor containing the probabilities of each category.\n\nprint(vm.predict(\"interior.webp\"))\nprint(vm.predict(\"difficult-interior.webp\"))\n\n\n\n\n('Interior', tensor(1), tensor([5.3082e-05, 9.9995e-01]))\n('Interior', tensor(1), tensor([0.0440, 0.9560]))\n\n\n\n\n\nAs can be seen from the output the model is able to identify both images of interior with high confidence. The “difficult-interior” image still performed well with ~95% confidence.",
+    "crumbs": [
+      "Data",
+      "Image",
+      "Image Classification"
+    ]
+  },
+  {
+    "objectID": "tools.html",
+    "href": "tools.html",
+    "title": "A collection of some tools I find useful",
+    "section": "",
+    "text": "I will find a dataset to show each example, but for now it’s just the code.\nSeaborn is imported as sns.\nThe pandas dataframe is stored as d\n\npplot = sns.pairplot(d.sample(400)[cols], plot_kws={\"marker\":\"+\", \"linewidth\":1})\npplot.map_lower(sns.kdeplot, levels=4, color=\".2\")\n\nThe pairplot function is useful to quickly create scatterplots for all of the variables in a table (in the list variable “cols”). With the scatterplots it is easy to identify trends in the data. Additionally with the kdeplot (kernel density estimation) highlights where datapoints are clustered in each scatterplot. Sampling is used to prevent datapoints from overcrowding in large datasets.\n\nsns.kdeplot(data=d, x=\"xcolname\", \\\n            y=\"ycolname\", fill=True, hue=\"left\")\n\nAfter noticing something in the pairplot kdeplot would be used to get a closer look.\n\ncol = [\"a\",\"b\"]\nfor i in col:\n    up = d[i].quantile(.75)\n    low = d[i].quantile(.25)\n    iqr = up-low\n    d_range = iqr*1.5\n    d = d[(d[i]&lt;(d_range+up))&(d[i]&gt;(low-d_range))]\n\nJust a loop to get rid of outliers\n\nd = pd.get_dummies(d, columns=[\"categoricalcol\", \"categoricalcol\"], drop_first=False)\nX = d.drop(\"ycol\", axis=1)\ny = d.ycol\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25)\n\nxgb = XGBClassifier(objective=\"binary:logistic\")\n\ncv_params={'max_depth': [8],\n           'learning_rate':[0.01,0.1],\n           'min_child_weight':[4],\n           'n_estimators': [300]}\nscoring = {\"f1\",\"recall\",\"accuracy\",\"precision\"}\nxgbm = GridSearchCV(xgb, cv_params, scoring=scoring, cv=3, refit=\"f1\")\n\nxgbm.fit(X_train, y_train)\nplot_importance(xgbm.best_estimator_)\n\nA boilerplate of sorts for xgboost. As for what parameters to use ¯\\_(ツ)_/¯ (More scoring methods: https://scikit-learn.org/stable/modules/model_evaluation.html )",
+    "crumbs": [
+      "Data",
+      "Tables",
+      "Tools"
+    ]
+  },
+  {
+    "objectID": "evmorse.html",
+    "href": "evmorse.html",
+    "title": "Ev-morse",
+    "section": "",
+    "text": "Still figuring out what to do here.",
+    "crumbs": [
+      "Keyboard",
+      "ev-morse"
+    ]
+  }
+]

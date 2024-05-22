@@ -1,0 +1,49 @@
+---
+title: "A collection of some tools I find useful"
+execute: 
+    eval: false
+    freeze: auto
+jupyter: python3
+---
+I will find a dataset to show each example, but for now it's just the code.  
+Seaborn is imported as `sns`.  
+The pandas dataframe is stored as `d`
+```{python}
+pplot = sns.pairplot(d.sample(400)[cols], plot_kws={"marker":"+", "linewidth":1})
+pplot.map_lower(sns.kdeplot, levels=4, color=".2")
+```
+The pairplot function is useful to quickly create scatterplots for all of the variables in a table (in the list variable "cols"). With the scatterplots it is easy to identify trends in the data. Additionally with the kdeplot (kernel density estimation) highlights where datapoints are clustered in each scatterplot. Sampling is used to prevent datapoints from overcrowding in large datasets.
+```{python}
+sns.kdeplot(data=d, x="xcolname", \
+            y="ycolname", fill=True, hue="left")
+```
+After noticing something in the pairplot kdeplot would be used to get a closer look. 
+```{python}
+col = ["a","b"]
+for i in col:
+    up = d[i].quantile(.75)
+    low = d[i].quantile(.25)
+    iqr = up-low
+    d_range = iqr*1.5
+    d = d[(d[i]<(d_range+up))&(d[i]>(low-d_range))]
+```
+Just a loop to get rid of outliers
+```{python}
+d = pd.get_dummies(d, columns=["categoricalcol", "categoricalcol"], drop_first=False)
+X = d.drop("ycol", axis=1)
+y = d.ycol
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25)
+
+xgb = XGBClassifier(objective="binary:logistic")
+
+cv_params={'max_depth': [8],
+           'learning_rate':[0.01,0.1],
+           'min_child_weight':[4],
+           'n_estimators': [300]}
+scoring = {"f1","recall","accuracy","precision"}
+xgbm = GridSearchCV(xgb, cv_params, scoring=scoring, cv=3, refit="f1")
+
+xgbm.fit(X_train, y_train)
+plot_importance(xgbm.best_estimator_)
+```
+A boilerplate of sorts for xgboost. As for what parameters to use ¯\\\_(ツ)\_/¯ (More scoring methods: <https://scikit-learn.org/stable/modules/model_evaluation.html> )

@@ -1,0 +1,27 @@
+project:
+    type: website
+    output-dir: docs
+website:
+    navbar:
+        title: "pickpj"
+    sidebar:
+        style: "docked"
+        contents:
+          - section: "Data"
+            contents:
+              - section: "Image"
+                contents:
+                  - href: fastai.qmd
+                    text: Image Classification
+              - section: "Tables"
+                contents:
+                  - href: tools.qmd
+                    text: Tools
+          - section: "Keyboard"
+            contents:
+              - href: evmorse.qmd
+                text: ev-morse 
+format:
+    html:
+        theme: superhero
+        toc: true

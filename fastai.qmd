@@ -1,0 +1,67 @@
+---
+title: "A quick application of DL for image Classification"
+format:
+    html:
+        code-fold: true
+execute: 
+    freeze: true
+jupyter: python3
+---
+## Data Prep / loading
+Before creating an Image classifier it is necessary to gather a dataset of images representing the different categories you wish to classify. 
+For my example I used a browser extension to download images as I browsed real-estate websites (zillow, immowelt, suumo, etc.). 
+Next I used an ipynb I made to sort the dataset <https://github.com/pickpj/img-labeler-nb/blob/main/sep.ipynb> .
+
+Next we: import libraries, check folder for images that can't be opened, and load the images into a DataBlock. The DataBlock handles train/test split (splitter), and transformations (item_tfms). However, we will still need to have a separate test dataset, which can be done at a later time.
+The command `du --inodes -d 2` counts the number of files (490 images), from this we can see the data is balanced between the two categories (57.8:42.2%). 
+```{python}
+#| warning: false
+from fastai.data.all import *
+from fastai.vision.all import *
+
+fp = Path("./Data")
+
+failed = verify_images(get_image_files(fp))
+failed.map(fp.unlink)
+
+dblock = DataBlock(
+    blocks=(ImageBlock, CategoryBlock), 
+    get_items=get_image_files, 
+    get_y=parent_label,
+    splitter=RandomSplitter(valid_pct=0.25),
+    item_tfms=[Resize(192, method="squish")]
+).dataloaders(fp)
+
+os.system("(cd Data && du --inodes -d 2)")
+dblock.show_batch(max_n=9)
+```
+
+## Training / Fine-tuning
+We then use an existing image model/pre-trained weights (arch) of weights and fine tune it to our dataset. Resnet18 is a small model the can be trained quickly with great performance. There are better models like swin_t, but the gains are marginal and training is longer. More SotA models can be found on the pytorch site <https://pytorch.org/vision/stable/models.html#classification> .
+
+```{python}
+#| warning: false
+vismodel = vision_learner(dblock, resnet18, metrics=error_rate)
+vismodel.fine_tune(3)
+```
+## Results
+From there the model can be exported/saved. To use the saved model there is the `load_learner` and `.predict()` functions. 
+```{python}
+#| code-fold: false
+#| eval: false
+vismodel.export("model.pkl")
+vm = load_learner("model.pkl")
+```
+```{python}
+#| output: false
+#| eval: true
+#| echo: false
+vm = load_learner("model.pkl")
+```
+The predict function outputs the result and a tensor containing the probabilities of each category. 
+```{python}
+#| code-fold: false
+print(vm.predict("interior.webp"))
+print(vm.predict("difficult-interior.webp"))
+```
+As can be seen from the output the model is able to identify both images of interior with high confidence. The "difficult-interior" image still performed well with ~95% confidence.
