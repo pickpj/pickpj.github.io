@@ -1,0 +1,12 @@
+{
+  "hash": "b5f7679e5108a101cc3e2d00430b8d66",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "---\ntitle: A collection of some code I find useful\nexecute:\n  eval: false\n  freeze: auto\n---\n\nI will find a dataset to show each example, but for now it's just the code.  \nSeaborn is imported as `sns`.  \nThe pandas dataframe is stored as `d`\n\n::: {#3c388e9d .cell execution_count=1}\n``` {.python .cell-code}\npplot = sns.pairplot(d.sample(400)[cols], plot_kws={\"marker\":\"+\", \"linewidth\":1})\npplot.map_lower(sns.kdeplot, levels=4, color=\".2\")\n```\n:::\n\n\nThe pairplot function is useful to quickly create scatterplots for all of the variables in a table (in the list variable \"cols\"). With the scatterplots it is easy to identify trends in the data. Additionally with the kdeplot (kernel density estimation) highlights where datapoints are clustered in each scatterplot. Sampling is used to prevent datapoints from overcrowding in large datasets.\n\n::: {#9250932f .cell execution_count=2}\n``` {.python .cell-code}\nsns.kdeplot(data=d, x=\"xcolname\", \\\n            y=\"ycolname\", fill=True, hue=\"left\")\n```\n:::\n\n\nAfter noticing something in the pairplot kdeplot would be used to get a closer look. \n\n::: {#b7bb8b16 .cell execution_count=3}\n``` {.python .cell-code}\ncol = [\"a\",\"b\"]\nfor i in col:\n    up = d[i].quantile(.75)\n    low = d[i].quantile(.25)\n    iqr = up-low\n    d_range = iqr*1.5\n    d = d[(d[i]<(d_range+up))&(d[i]>(low-d_range))]\n```\n:::\n\n\nJust a loop to get rid of outliers\n\n::: {#55b748d5 .cell execution_count=4}\n``` {.python .cell-code}\nd = pd.get_dummies(d, columns=[\"categoricalcol\", \"categoricalcol\"], drop_first=False)\nX = d.drop(\"ycol\", axis=1)\ny = d.ycol\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25)\n\nxgb = XGBClassifier(objective=\"binary:logistic\")\n\ncv_params={'max_depth': [8],\n           'learning_rate':[0.01,0.1],\n           'min_child_weight':[4],\n           'n_estimators': [300]}\nscoring = {\"f1\",\"recall\",\"accuracy\",\"precision\"}\nxgbm = GridSearchCV(xgb, cv_params, scoring=scoring, cv=3, refit=\"f1\")\n\nxgbm.fit(X_train, y_train)\nplot_importance(xgbm.best_estimator_)\n```\n:::\n\n\nA boilerplate of sorts for xgboost. As for what parameters to use ¯\\\\\\_(ツ)\\_/¯ (More scoring methods: <https://scikit-learn.org/stable/modules/model_evaluation.html> )\n\n",
+    "supporting": [
+      "tools_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}

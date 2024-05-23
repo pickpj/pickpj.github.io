@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Macros independent of the windowing system</title>
+<title>A collection of some code I find useful</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,25 +20,59 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -77,7 +111,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">pickpj</span>
     </a>
   </div>
@@ -92,7 +126,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./evmorse.html">Keyboard</a></li><li class="breadcrumb-item"><a href="./evmorse.html">ev-morse</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">ML/DL</li><li class="breadcrumb-item"><a href="../MLDL/tabtools.html">Tabular</a></li><li class="breadcrumb-item"><a href="../MLDL/tabtools.html">Tools</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -124,13 +158,13 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./MLDL/fastai.html" class="sidebar-item-text sidebar-link">
+  <a href="../MLDL/fastai.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Image Classification</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./MLDL/imtools.html" class="sidebar-item-text sidebar-link">
+  <a href="../MLDL/imtools.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Tools</span></a>
   </div>
 </li>
@@ -138,16 +172,16 @@ ul.task-list li input[type="checkbox"] {
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
  <span class="menu-text">Tabular</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./MLDL/tabtools.html" class="sidebar-item-text sidebar-link">
+  <a href="../MLDL/tabtools.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Tools</span></a>
   </div>
 </li>
@@ -166,7 +200,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./evmorse.html" class="sidebar-item-text sidebar-link active">
+  <a href="../evmorse.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">ev-morse</span></a>
   </div>
 </li>
@@ -178,22 +212,14 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#ev-morse" id="toc-ev-morse" class="nav-link active" data-scroll-target="#ev-morse">ev-morse</a></li>
-  <li><a href="#suppressing-keys" id="toc-suppressing-keys" class="nav-link" data-scroll-target="#suppressing-keys">suppressing keys</a></li>
-  <li><a href="#symlink" id="toc-symlink" class="nav-link" data-scroll-target="#symlink">symlink</a></li>
-  </ul>
-</nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./evmorse.html">Keyboard</a></li><li class="breadcrumb-item"><a href="./evmorse.html">ev-morse</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">ML/DL</li><li class="breadcrumb-item"><a href="../MLDL/tabtools.html">Tabular</a></li><li class="breadcrumb-item"><a href="../MLDL/tabtools.html">Tools</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Macros independent of the windowing system</h1>
+<h1 class="title">A collection of some code I find useful</h1>
 </div>
 
 
@@ -210,31 +236,50 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>When it comes to macros and key bindings in Wayland, the situation is pretty bad. People may point to X11 applications being able to see keystrokes as being insecure, but when it comes to usability… I couldn’t care less. Additionally, Wayland’s lack of window managing tools like <code>wmctrl</code> and <code>xdotool</code> makes a transition to Wayland seem impossible. However, the first part is solvable! <em>*kinda*</em> . With the drawback of needing elevated permissions to: read device event files, create udev rules, and altering the hardware database. You too can have proper device specific macro/keybinding’s on any linux system.</p>
-<section id="ev-morse" class="level2">
-<h2 class="anchored" data-anchor-id="ev-morse"><a href="https://github.com/pickpj/ev-morse">ev-morse</a></h2>
-<p>Ev-morse is a tool I made with the specific use case of binding macros to double key presses or long key presses. I use it with keyboards, headphones, and a dial. But it could be adapted to be used with any device that outputs to /dev/input (Ex: laptop lid switch). This program handles reading the event file to know when to execute macros. It’s usage is explained in the wiki page of the repo.</p>
-</section>
-<section id="suppressing-keys" class="level2">
-<h2 class="anchored" data-anchor-id="suppressing-keys">suppressing keys</h2>
-<p>The above, however, is not enough. The keys are still being sent to the windowing system. To deal with this it is necessary to remap the scancode in the hardware database (hwdb) to a keycode that is unused. Luckily, there is a list of keycodes to be found in (/usr/include/linux/input-event-codes.h). Conveniently, there are keys MACRO1-MACRO30 which are perfect for our use case. Armed with <code>evtest</code> and this <a href="https://wiki.archlinux.org/title/Map_scancodes_to_keycodes">arch wiki article</a>, the results should be a file (/etc/udev/hwdb.d/50-filename.hwdb) that looks something like:</p>
-<pre><code>evdev:atkbd:dmi:bvn*:bvr*:bd*:svn*:pn*:pvr*
- KEYBOARD_KEY_3b=macro1
- KEYBOARD_KEY_3c=macro2
- KEYBOARD_KEY_3d=macro3
- KEYBOARD_KEY_3e=macro4
- KEYBOARD_KEY_3f=macro5
- KEYBOARD_KEY_40=macro6</code></pre>
-</section>
-<section id="symlink" class="level2">
-<h2 class="anchored" data-anchor-id="symlink">symlink</h2>
-<p>ev-morse needs a device file to be ran, but what about devices that do not connect predictably on boot. A laptop keyboard would have a consistent event file, but the same can’t be said for headphones or other peripheral devices. For these devices it is necessary to create a symbolic link with a udev rule. First we need get some unique identifying information on the device with <code>udevadm info -a /dev/input/~~~~</code>. With this information we create a udev rule to establish the symbolic link. The result should be a file (/etc/udev/rules.d/50-filename.rules) that looks something like:</p>
-<pre><code>SUBSYSTEMS=="input", ATTRS{name}=="headphone name (AVRCP)", ATTRS{id/product}=="000a", SYMLINK+="headphones"</code></pre>
-<p>Source for making udev symlink <a href="https://unix.stackexchange.com/questions/704759/finding-the-dev-input-event-path-of-a-device-from-its-name">here</a>. Additionally, multiple rules can be put in one file, separating by new lines.</p>
-<p>The end.</p>
+<p>I will find a dataset to show each example, but for now it’s just the code.<br>
+Seaborn is imported as <code>sns</code>.<br>
+The pandas dataframe is stored as <code>d</code></p>
+<div id="2025b5c7" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pplot <span class="op">=</span> sns.pairplot(d.sample(<span class="dv">400</span>)[cols], plot_kws<span class="op">=</span>{<span class="st">"marker"</span>:<span class="st">"+"</span>, <span class="st">"linewidth"</span>:<span class="dv">1</span>})</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>pplot.map_lower(sns.kdeplot, levels<span class="op">=</span><span class="dv">4</span>, color<span class="op">=</span><span class="st">".2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The pairplot function is useful to quickly create scatterplots for all of the variables in a table (in the list variable “cols”). With the scatterplots it is easy to identify trends in the data. Additionally with the kdeplot (kernel density estimation) highlights where datapoints are clustered in each scatterplot. Sampling is used to prevent datapoints from overcrowding in large datasets.</p>
+<div id="76242dde" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>sns.kdeplot(data<span class="op">=</span>d, x<span class="op">=</span><span class="st">"xcolname"</span>, <span class="op">\</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>            y<span class="op">=</span><span class="st">"ycolname"</span>, fill<span class="op">=</span><span class="va">True</span>, hue<span class="op">=</span><span class="st">"left"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>After noticing something in the pairplot kdeplot would be used to get a closer look.</p>
+<div id="71bff1b2" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>col <span class="op">=</span> [<span class="st">"a"</span>,<span class="st">"b"</span>]</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> col:</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    up <span class="op">=</span> d[i].quantile(<span class="fl">.75</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    low <span class="op">=</span> d[i].quantile(<span class="fl">.25</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    iqr <span class="op">=</span> up<span class="op">-</span>low</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    d_range <span class="op">=</span> iqr<span class="op">*</span><span class="fl">1.5</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    d <span class="op">=</span> d[(d[i]<span class="op">&lt;</span>(d_range<span class="op">+</span>up))<span class="op">&amp;</span>(d[i]<span class="op">&gt;</span>(low<span class="op">-</span>d_range))]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Just a loop to get rid of outliers</p>
+<div id="81824d7e" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> pd.get_dummies(d, columns<span class="op">=</span>[<span class="st">"categoricalcol"</span>, <span class="st">"categoricalcol"</span>], drop_first<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> d.drop(<span class="st">"ycol"</span>, axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> d.ycol</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(X, y, test_size<span class="op">=</span><span class="fl">0.25</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>xgb <span class="op">=</span> XGBClassifier(objective<span class="op">=</span><span class="st">"binary:logistic"</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>cv_params<span class="op">=</span>{<span class="st">'max_depth'</span>: [<span class="dv">8</span>],</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>           <span class="st">'learning_rate'</span>:[<span class="fl">0.01</span>,<span class="fl">0.1</span>],</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>           <span class="st">'min_child_weight'</span>:[<span class="dv">4</span>],</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>           <span class="st">'n_estimators'</span>: [<span class="dv">300</span>]}</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>scoring <span class="op">=</span> {<span class="st">"f1"</span>,<span class="st">"recall"</span>,<span class="st">"accuracy"</span>,<span class="st">"precision"</span>}</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>xgbm <span class="op">=</span> GridSearchCV(xgb, cv_params, scoring<span class="op">=</span>scoring, cv<span class="op">=</span><span class="dv">3</span>, refit<span class="op">=</span><span class="st">"f1"</span>)</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>xgbm.fit(X_train, y_train)</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>plot_importance(xgbm.best_estimator_)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>A boilerplate of sorts for xgboost. As for what parameters to use ¯\_(ツ)_/¯ (More scoring methods: <a href="https://scikit-learn.org/stable/modules/model_evaluation.html" class="uri">https://scikit-learn.org/stable/modules/model_evaluation.html</a> )</p>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

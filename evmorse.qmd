@@ -1,4 +1,29 @@
 ---
-title: "[Ev-morse](https://github.com/pickpj/ev-morse)"
+title: "Macros independent of the windowing system"
 ---
-Still figuring out what to do here.
+When it comes to macros and key bindings in Wayland, the situation is pretty bad. People may point to X11 applications being able to see keystrokes as being insecure, but when it comes to usability... I couldn't care less. Additionally, Wayland's lack of window managing tools like `wmctrl` and `xdotool` makes a transition to Wayland seem impossible. However, the first part is solvable! *\*kinda\** . With the drawback of needing elevated permissions to: read device event files, create udev rules, and altering the hardware database. You too can have proper device specific macro/keybinding's on any linux system.
+
+## [ev-morse](https://github.com/pickpj/ev-morse)
+Ev-morse is a tool I made with the specific use case of binding macros to double key presses or long key presses. I use it with keyboards, headphones, and a dial. But it could be adapted to be used with any device that outputs to /dev/input (Ex: laptop lid switch). This program handles reading the event file to know when to execute macros. It's usage is explained in the wiki page of the repo.
+
+## suppressing keys
+
+The above, however, is not enough. The keys are still being sent to the windowing system. To deal with this it is necessary to remap the scancode in the hardware database (hwdb) to a keycode that is unused. Luckily, there is a list of keycodes to be found in (/usr/include/linux/input-event-codes.h). Conveniently, there are keys MACRO1-MACRO30 which are perfect for our use case. Armed with `evtest` and this [arch wiki article](https://wiki.archlinux.org/title/Map_scancodes_to_keycodes), the results should be a file (/etc/udev/hwdb.d/50-filename.hwdb) that looks something like:
+```
+evdev:atkbd:dmi:bvn*:bvr*:bd*:svn*:pn*:pvr*
+ KEYBOARD_KEY_3b=macro1
+ KEYBOARD_KEY_3c=macro2
+ KEYBOARD_KEY_3d=macro3
+ KEYBOARD_KEY_3e=macro4
+ KEYBOARD_KEY_3f=macro5
+ KEYBOARD_KEY_40=macro6
+```
+
+## symlink
+ev-morse needs a device file to be ran, but what about devices that do not connect predictably on boot. A laptop keyboard would have a consistent event file, but the same can't be said for headphones or other peripheral devices. For these devices it is necessary to create a symbolic link with a udev rule. First we need get some unique identifying information on the device with `udevadm info -a /dev/input/~~~~`. With this information we create a udev rule to establish the symbolic link. The result should be a file (/etc/udev/rules.d/50-filename.rules) that looks something like:
+```
+SUBSYSTEMS=="input", ATTRS{name}=="headphone name (AVRCP)", ATTRS{id/product}=="000a", SYMLINK+="headphones"
+```
+Source for making udev symlink [here](https://unix.stackexchange.com/questions/704759/finding-the-dev-input-event-path-of-a-device-from-its-name). Additionally, multiple rules can be put in one file, separating by new lines.
+
+The end.

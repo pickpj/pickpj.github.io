@@ -1,5 +1,5 @@
 ---
-title: "A collection of some tools I find useful"
+title: "A collection of some code I find useful"
 execute: 
     eval: false
     freeze: auto

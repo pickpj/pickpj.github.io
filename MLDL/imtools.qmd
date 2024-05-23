@@ -1,0 +1,26 @@
+---
+title: "A collection of some code I find useful"
+execute: 
+    eval: false
+    freeze: auto
+jupyter: python3
+---
+```{python}
+fp = Path("./Data")
+
+failed = verify_images(get_image_files(fp))
+failed.map(fp.unlink)
+
+dblock = DataBlock(
+    blocks=(ImageBlock, CategoryBlock), 
+    get_items=get_image_files, 
+    get_y=parent_label,
+    splitter=RandomSplitter(valid_pct=0.25),
+    item_tfms=[Resize(192, method="squish")]
+).dataloaders(fp)
+```
+After processing a set of unsorted images with [this ipynb](https://github.com/pickpj/img-labeler-nb/blob/main/sep.ipynb). This block of code will load the output into a datablock in fastai, handling train/valid split and formatting the images with item_tfms.
+
+```{python}
+
+```

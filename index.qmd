@@ -1,5 +1,4 @@
 ---
 title: ""
 ---
-
 A website to showcase some stuff ¯\\\_(ツ)\_/¯

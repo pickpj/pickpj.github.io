@@ -2,7 +2,7 @@
 title: "A quick application of DL for image Classification"
 format:
     html:
-        code-fold: true
+        code-fold: false
 execute: 
     freeze: true
 jupyter: python3
@@ -64,4 +64,9 @@ The predict function outputs the result and a tensor containing the probabilitie
 print(vm.predict("interior.webp"))
 print(vm.predict("difficult-interior.webp"))
 ```
+::: {layout-ncol=2}
+![interior](interior.webp)
+
+![difficult-interior](difficult-interior.webp)
+:::
 As can be seen from the output the model is able to identify both images of interior with high confidence. The "difficult-interior" image still performed well with ~95% confidence.

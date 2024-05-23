@@ -1,0 +1,12 @@
+{
+  "hash": "07433d88700d8368c76fae338b869e06",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "---\ntitle: A collection of some code I find useful\nexecute:\n  eval: false\n  freeze: auto\n---\n\n::: {#221ada3f .cell execution_count=1}\n``` {.python .cell-code}\nfp = Path(\"./Data\")\n\nfailed = verify_images(get_image_files(fp))\nfailed.map(fp.unlink)\n\ndblock = DataBlock(\n    blocks=(ImageBlock, CategoryBlock), \n    get_items=get_image_files, \n    get_y=parent_label,\n    splitter=RandomSplitter(valid_pct=0.25),\n    item_tfms=[Resize(192, method=\"squish\")]\n).dataloaders(fp)\n```\n:::\n\n\nAfter processing a set of unsorted images with [this ipynb](https://github.com/pickpj/img-labeler-nb/blob/main/sep.ipynb). This block of code will load the output into a datablock in fastai, handling train/valid split and formatting the images with item_tfms.\n\n",
+    "supporting": [
+      "imtools_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}

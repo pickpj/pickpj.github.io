@@ -4,18 +4,23 @@ project:
 website:
     navbar:
         title: "pickpj"
+        tools:
+          - icon: github
+            href: https://www.github.com/pickpj
     sidebar:
         style: "docked"
         contents:
-          - section: "Data"
+          - section: "ML/DL"
             contents:
               - section: "Image"
                 contents:
-                  - href: fastai.qmd
+                  - href: MLDL/fastai.qmd
                     text: Image Classification
-              - section: "Tables"
+                  - href: MLDL/imtools.qmd
+                    text: Tools
+              - section: "Tabular"
                 contents:
-                  - href: tools.qmd
+                  - href: MLDL/tabtools.qmd
                     text: Tools
           - section: "Keyboard"
             contents:
