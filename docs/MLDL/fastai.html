@@ -251,7 +251,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="data-prep-loading">Data Prep / loading</h2>
 <p>Before creating an Image classifier it is necessary to gather a dataset of images representing the different categories you wish to classify. For my example I used a browser extension to download images as I browsed real-estate websites (zillow, immowelt, suumo, etc.). Next I used an ipynb I made to sort the dataset <a href="https://github.com/pickpj/img-labeler-nb/blob/main/sep.ipynb" class="uri">https://github.com/pickpj/img-labeler-nb/blob/main/sep.ipynb</a> .</p>
 <p>Next we: import libraries, check folder for images that can’t be opened, and load the images into a DataBlock. The DataBlock handles train/test split (splitter), and transformations (item_tfms). However, we will still need to have a separate test dataset, which can be done at a later time. The command <code>du --inodes -d 2</code> counts the number of files (490 images), from this we can see the data is balanced between the two categories (57.8:42.2%).</p>
-<div id="eae45002" class="cell" data-execution_count="1">
+<div id="332b10d5" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> fastai.data.<span class="bu">all</span> <span class="im">import</span> <span class="op">*</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> fastai.vision.<span class="bu">all</span> <span class="im">import</span> <span class="op">*</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -287,7 +287,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="training-fine-tuning" class="level2">
 <h2 class="anchored" data-anchor-id="training-fine-tuning">Training / Fine-tuning</h2>
 <p>We then use an existing image model/pre-trained weights (arch) of weights and fine tune it to our dataset. Resnet18 is a small model the can be trained quickly with great performance. There are better models like swin_t, but the gains are marginal and training is longer. More SotA models can be found on the pytorch site <a href="https://pytorch.org/vision/stable/models.html#classification" class="uri">https://pytorch.org/vision/stable/models.html#classification</a> .</p>
-<div id="9c1808f7" class="cell" data-execution_count="2">
+<div id="5450f833" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>vismodel <span class="op">=</span> vision_learner(dblock, resnet18, metrics<span class="op">=</span>error_rate)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>vismodel.fine_tune(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
@@ -305,10 +305,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tbody>
 <tr class="odd">
 <td>0</td>
-<td>0.926669</td>
-<td>0.226859</td>
-<td>0.065574</td>
-<td>00:30</td>
+<td>0.893850</td>
+<td>0.085667</td>
+<td>0.032787</td>
+<td>00:26</td>
 </tr>
 </tbody>
 </table>
@@ -329,23 +329,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tbody>
 <tr class="odd">
 <td>0</td>
-<td>0.072545</td>
-<td>0.030340</td>
+<td>0.096202</td>
+<td>0.013392</td>
 <td>0.008197</td>
-<td>00:37</td>
+<td>00:36</td>
 </tr>
 <tr class="even">
 <td>1</td>
-<td>0.060466</td>
-<td>0.024998</td>
-<td>0.008197</td>
-<td>00:38</td>
+<td>0.058436</td>
+<td>0.004852</td>
+<td>0.000000</td>
+<td>00:35</td>
 </tr>
 <tr class="odd">
 <td>2</td>
-<td>0.040806</td>
-<td>0.028396</td>
-<td>0.008197</td>
+<td>0.043074</td>
+<td>0.006278</td>
+<td>0.000000</td>
 <td>00:38</td>
 </tr>
 </tbody>
@@ -357,12 +357,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="results" class="level2">
 <h2 class="anchored" data-anchor-id="results">Results</h2>
 <p>From there the model can be exported/saved. To use the saved model there is the <code>load_learner</code> and <code>.predict()</code> functions.</p>
-<div id="05eb7f88" class="cell" data-execution_count="3">
+<div id="2dfd9f38" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>vismodel.export(<span class="st">"model.pkl"</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>vm <span class="op">=</span> load_learner(<span class="st">"model.pkl"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The predict function outputs the result and a tensor containing the probabilities of each category.</p>
-<div id="da8abd82" class="cell" data-execution_count="5">
+<div id="4babc42f" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(vm.predict(<span class="st">"interior.webp"</span>))</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(vm.predict(<span class="st">"difficult-interior.webp"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
@@ -384,7 +384,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="interior.webp" class="img-fluid figure-img"></p>
+<p><img src="extra-fastai/interior.webp" class="img-fluid figure-img"></p>
 <figcaption>interior</figcaption>
 </figure>
 </div>
@@ -392,7 +392,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="difficult-interior.webp" class="img-fluid figure-img"></p>
+<p><img src="extra-fastai/difficult-interior.webp" class="img-fluid figure-img"></p>
 <figcaption>difficult-interior</figcaption>
 </figure>
 </div>
