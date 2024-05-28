@@ -1,0 +1,104 @@
+---
+title: "img-labeler-nb preview"
+navbar: false
+sidebar: false
+eval: false 
+---
+## Dataset Labeler Tool 
+A simple interface for categorizing images into labeled folders in ipynb. Useful for quickly prepping categorical image data for deep learning / ML.  
+Be sure to run each cell.  
+
+**1️⃣. First create a list of the Categories to separate into.**  
+<span style="font-size:0.8em;">It may be helpful to include a "Trash" grouping for images that are outside of scope.  
+The key variable takes a string of keys. This sets key bindings for the keys to categories respectively.</span>  
+
+```{python}
+categories = ["Interior", "Exterior", "Trash"]
+key = "123"
+# key = "asd" 
+```
+
+**2️⃣. Select the input and output folders**
+
+```{python}
+import ipywidgets as widgets
+import os
+input = widgets.Dropdown(options=[x for x in os.listdir() if "." not in x], # folders with "." are excluded
+                        description="Input folder:",)
+output = widgets.Dropdown(options=[x for x in os.listdir() if "." not in x], # folders with "." are excluded
+                        description="Out Folder:",)
+display(widgets.VBox([input, output]))
+```
+![](extra-imglabelernb/folder-sel.png)
+
+**3️⃣. Prepare output folders (creates folders for categories that are not present)**
+
+```{python}
+for fold in [x for x in categories if x not in [x for x in os.listdir(output.value) if "." not in x]]:
+    os.mkdir(output.value + "/" + fold)
+```
+
+**4️⃣. Sort**
+
+```{python}
+def nextpic():
+    global imgpos
+    imgpos+=1
+    imgframe.value = open(input.value + "/" + piclist[imgpos],"rb").read()
+
+def send2folder(fold):
+    global foldlist
+    foldlist.append(fold)
+    os.rename(input.value + "/" + piclist[imgpos], output.value + "/" + fold + "/" + piclist[imgpos])
+    nextpic()
+
+def txtev(s):
+    if len(s.new) > len(s.old):
+        if x:= keydict.get(s.new[-1]):
+            send2folder(x)
+
+def oopsgoback1(_a):
+    global imgpos, foldlist
+    imgpos-=1
+    os.rename(output.value + "/" + foldlist.pop() + "/" + piclist[imgpos], input.value + "/" + piclist[imgpos])
+    imgframe.value = open(input.value + "/" + piclist[imgpos],"rb").read()
+
+piclist = [x for x in os.listdir(input.value) if "." in x]
+foldlist = []
+imgpos=0
+keydict = {k: cat for k, cat in zip(list(key), categories)}
+
+image0 = open(input.value + "/" + piclist[0],"rb").read()
+imgframe = widgets.Image(value=image0
+                        , width=300 
+                        # , height=300
+                        )
+
+butlist = [widgets.Button(description=cat, button_style="danger") for cat in categories]
+[button.on_click(lambda x, imgpos=cat: send2folder(imgpos)) for button, cat in zip(butlist, categories)]
+
+txtkey = widgets.Text(placeholder="type here for key bindings")
+txtkey.observe(txtev, "value")
+
+oopsbutton = widgets.Button(description="Take me back", button_style="warning")
+oopsbutton.on_click(oopsgoback1)
+
+display(widgets.HBox(butlist), txtkey, imgframe, oopsbutton)
+```
+![](extra-imglabelernb/labeler.png)
+
+**📂Example of loading in the now sorted data (fastai datablock)**
+
+```{python}
+from fastai.data.all import *
+from fastai.vision.all import *
+fp = Path("./categories")
+DataBlock(blocks=(ImageBlock, CategoryBlock), 
+        get_items=get_image_files, 
+        get_y=parent_label,
+        # splitter=RandomSplitter(valid_pct=0.25),
+        item_tfms=[Resize(256, method="squish")]
+).dataloaders(fp).show_batch(max_n=9)
+```
+![](extra-imglabelernb/fast-batch.png)
+

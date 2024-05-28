@@ -1,5 +1,17 @@
 [
   {
+    "objectID": "MLDL/tabtools.html",
+    "href": "MLDL/tabtools.html",
+    "title": "A collection of some code I find useful",
+    "section": "",
+    "text": "I will find a dataset to show each example, but for now it’s just the code.\nSeaborn is imported as sns.\nThe pandas dataframe is stored as d\n\npplot = sns.pairplot(d.sample(400)[cols], plot_kws={\"marker\":\"+\", \"linewidth\":1})\npplot.map_lower(sns.kdeplot, levels=4, color=\".2\")\n\nThe pairplot function is useful to quickly create scatterplots for all of the variables in a table (in the list variable “cols”). With the scatterplots it is easy to identify trends in the data. Additionally with the kdeplot (kernel density estimation) highlights where datapoints are clustered in each scatterplot. Sampling is used to prevent datapoints from overcrowding in large datasets.\n\nsns.kdeplot(data=d, x=\"xcolname\", \\\n            y=\"ycolname\", fill=True, hue=\"left\")\n\nAfter noticing something in the pairplot kdeplot would be used to get a closer look.\n\ncol = [\"a\",\"b\"]\nfor i in col:\n    up = d[i].quantile(.75)\n    low = d[i].quantile(.25)\n    iqr = up-low\n    d_range = iqr*1.5\n    d = d[(d[i]&lt;(d_range+up))&(d[i]&gt;(low-d_range))]\n\nJust a loop to get rid of outliers\n\nd = pd.get_dummies(d, columns=[\"categoricalcol\", \"categoricalcol\"], drop_first=False)\nX = d.drop(\"ycol\", axis=1)\ny = d.ycol\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25)\n\nxgb = XGBClassifier(objective=\"binary:logistic\")\n\ncv_params={'max_depth': [8],\n           'learning_rate':[0.01,0.1],\n           'min_child_weight':[4],\n           'n_estimators': [300]}\nscoring = {\"f1\",\"recall\",\"accuracy\",\"precision\"}\nxgbm = GridSearchCV(xgb, cv_params, scoring=scoring, cv=3, refit=\"f1\")\n\nxgbm.fit(X_train, y_train)\nplot_importance(xgbm.best_estimator_)\n\nA boilerplate of sorts for xgboost. As for what parameters to use ¯\\_(ツ)_/¯ (More scoring methods: https://scikit-learn.org/stable/modules/model_evaluation.html )",
+    "crumbs": [
+      "ML/DL",
+      "Tabular",
+      "Tools"
+    ]
+  },
+  {
     "objectID": "MLDL/fastai.html",
     "href": "MLDL/fastai.html",
     "title": "A quick application of DL for image Classification",
@@ -66,15 +78,25 @@
     ]
   },
   {
-    "objectID": "MLDL/tools.html",
-    "href": "MLDL/tools.html",
-    "title": "A collection of some code I find useful",
-    "section": "",
-    "text": "I will find a dataset to show each example, but for now it’s just the code.\nSeaborn is imported as sns.\nThe pandas dataframe is stored as d\n\npplot = sns.pairplot(d.sample(400)[cols], plot_kws={\"marker\":\"+\", \"linewidth\":1})\npplot.map_lower(sns.kdeplot, levels=4, color=\".2\")\n\nThe pairplot function is useful to quickly create scatterplots for all of the variables in a table (in the list variable “cols”). With the scatterplots it is easy to identify trends in the data. Additionally with the kdeplot (kernel density estimation) highlights where datapoints are clustered in each scatterplot. Sampling is used to prevent datapoints from overcrowding in large datasets.\n\nsns.kdeplot(data=d, x=\"xcolname\", \\\n            y=\"ycolname\", fill=True, hue=\"left\")\n\nAfter noticing something in the pairplot kdeplot would be used to get a closer look.\n\ncol = [\"a\",\"b\"]\nfor i in col:\n    up = d[i].quantile(.75)\n    low = d[i].quantile(.25)\n    iqr = up-low\n    d_range = iqr*1.5\n    d = d[(d[i]&lt;(d_range+up))&(d[i]&gt;(low-d_range))]\n\nJust a loop to get rid of outliers\n\nd = pd.get_dummies(d, columns=[\"categoricalcol\", \"categoricalcol\"], drop_first=False)\nX = d.drop(\"ycol\", axis=1)\ny = d.ycol\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25)\n\nxgb = XGBClassifier(objective=\"binary:logistic\")\n\ncv_params={'max_depth': [8],\n           'learning_rate':[0.01,0.1],\n           'min_child_weight':[4],\n           'n_estimators': [300]}\nscoring = {\"f1\",\"recall\",\"accuracy\",\"precision\"}\nxgbm = GridSearchCV(xgb, cv_params, scoring=scoring, cv=3, refit=\"f1\")\n\nxgbm.fit(X_train, y_train)\nplot_importance(xgbm.best_estimator_)\n\nA boilerplate of sorts for xgboost. As for what parameters to use ¯\\_(ツ)_/¯ (More scoring methods: https://scikit-learn.org/stable/modules/model_evaluation.html )",
+    "objectID": "evmorse.html#ev-morse",
+    "href": "evmorse.html#ev-morse",
+    "title": "Macros independent of the windowing system",
+    "section": "ev-morse",
+    "text": "ev-morse\nEv-morse is a tool I made with the specific use case of binding macros to double key presses or long key presses. I use it with keyboards, headphones, and a dial. But it could be adapted to be used with any device that outputs to /dev/input (Ex: laptop lid switch). This program handles reading the event file to know when to execute macros. It’s usage is explained in the wiki page of the repo.",
     "crumbs": [
-      "ML/DL",
-      "Tables",
-      "Tools"
+      "Keyboard",
+      "ev-morse"
+    ]
+  },
+  {
+    "objectID": "evmorse.html#suppressing-keys",
+    "href": "evmorse.html#suppressing-keys",
+    "title": "Macros independent of the windowing system",
+    "section": "suppressing keys",
+    "text": "suppressing keys\nThe above, however, is not enough. The keys are still being sent to the windowing system. To deal with this it is necessary to remap the scancode in the hardware database (hwdb) to a keycode that is unused. Luckily, there is a list of keycodes to be found in (/usr/include/linux/input-event-codes.h). Conveniently, there are keys MACRO1-MACRO30 which are perfect for our use case. Armed with evtest and this arch wiki article, the results should be a file (/etc/udev/hwdb.d/50-filename.hwdb) that looks something like:\nevdev:atkbd:dmi:bvn*:bvr*:bd*:svn*:pn*:pvr*\n KEYBOARD_KEY_3b=macro1\n KEYBOARD_KEY_3c=macro2\n KEYBOARD_KEY_3d=macro3\n KEYBOARD_KEY_3e=macro4\n KEYBOARD_KEY_3f=macro5\n KEYBOARD_KEY_40=macro6",
+    "crumbs": [
+      "Keyboard",
+      "ev-morse"
     ]
   },
   {
@@ -101,37 +123,17 @@
     ]
   },
   {
-    "objectID": "evmorse.html#ev-morse",
-    "href": "evmorse.html#ev-morse",
-    "title": "Macros independent of the windowing system",
-    "section": "ev-morse",
-    "text": "ev-morse\nEv-morse is a tool I made with the specific use case of binding macros to double key presses or long key presses. I use it with keyboards, headphones, and a dial. But it could be adapted to be used with any device that outputs to /dev/input (Ex: laptop lid switch). This program handles reading the event file to know when to execute macros. It’s usage is explained in the wiki page of the repo.",
-    "crumbs": [
-      "Keyboard",
-      "ev-morse"
-    ]
-  },
-  {
-    "objectID": "evmorse.html#suppressing-keys",
-    "href": "evmorse.html#suppressing-keys",
-    "title": "Macros independent of the windowing system",
-    "section": "suppressing keys",
-    "text": "suppressing keys\nThe above, however, is not enough. The keys are still being sent to the windowing system. To deal with this it is necessary to remap the scancode in the hardware database (hwdb) to a keycode that is unused. Luckily, there is a list of keycodes to be found in (/usr/include/linux/input-event-codes.h). Conveniently, there are keys MACRO1-MACRO30 which are perfect for our use case. Armed with evtest and this arch wiki article, the results should be a file (/etc/udev/hwdb.d/50-filename.hwdb) that looks something like:\nevdev:atkbd:dmi:bvn*:bvr*:bd*:svn*:pn*:pvr*\n KEYBOARD_KEY_3b=macro1\n KEYBOARD_KEY_3c=macro2\n KEYBOARD_KEY_3d=macro3\n KEYBOARD_KEY_3e=macro4\n KEYBOARD_KEY_3f=macro5\n KEYBOARD_KEY_40=macro6",
-    "crumbs": [
-      "Keyboard",
-      "ev-morse"
-    ]
-  },
-  {
-    "objectID": "MLDL/tabtools.html",
-    "href": "MLDL/tabtools.html",
-    "title": "A collection of some code I find useful",
+    "objectID": "MLDL/imglabelernb.html",
+    "href": "MLDL/imglabelernb.html",
+    "title": "img-labeler-nb preview",
     "section": "",
-    "text": "I will find a dataset to show each example, but for now it’s just the code.\nSeaborn is imported as sns.\nThe pandas dataframe is stored as d\n\npplot = sns.pairplot(d.sample(400)[cols], plot_kws={\"marker\":\"+\", \"linewidth\":1})\npplot.map_lower(sns.kdeplot, levels=4, color=\".2\")\n\nThe pairplot function is useful to quickly create scatterplots for all of the variables in a table (in the list variable “cols”). With the scatterplots it is easy to identify trends in the data. Additionally with the kdeplot (kernel density estimation) highlights where datapoints are clustered in each scatterplot. Sampling is used to prevent datapoints from overcrowding in large datasets.\n\nsns.kdeplot(data=d, x=\"xcolname\", \\\n            y=\"ycolname\", fill=True, hue=\"left\")\n\nAfter noticing something in the pairplot kdeplot would be used to get a closer look.\n\ncol = [\"a\",\"b\"]\nfor i in col:\n    up = d[i].quantile(.75)\n    low = d[i].quantile(.25)\n    iqr = up-low\n    d_range = iqr*1.5\n    d = d[(d[i]&lt;(d_range+up))&(d[i]&gt;(low-d_range))]\n\nJust a loop to get rid of outliers\n\nd = pd.get_dummies(d, columns=[\"categoricalcol\", \"categoricalcol\"], drop_first=False)\nX = d.drop(\"ycol\", axis=1)\ny = d.ycol\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25)\n\nxgb = XGBClassifier(objective=\"binary:logistic\")\n\ncv_params={'max_depth': [8],\n           'learning_rate':[0.01,0.1],\n           'min_child_weight':[4],\n           'n_estimators': [300]}\nscoring = {\"f1\",\"recall\",\"accuracy\",\"precision\"}\nxgbm = GridSearchCV(xgb, cv_params, scoring=scoring, cv=3, refit=\"f1\")\n\nxgbm.fit(X_train, y_train)\nplot_importance(xgbm.best_estimator_)\n\nA boilerplate of sorts for xgboost. As for what parameters to use ¯\\_(ツ)_/¯ (More scoring methods: https://scikit-learn.org/stable/modules/model_evaluation.html )",
-    "crumbs": [
-      "ML/DL",
-      "Tabular",
-      "Tools"
-    ]
+    "text": "A simple interface for categorizing images into labeled folders in ipynb. Useful for quickly prepping categorical image data for deep learning / ML.\nBe sure to run each cell.\n1️⃣. First create a list of the Categories to separate into.\nIt may be helpful to include a “Trash” grouping for images that are outside of scope.\nThe key variable takes a string of keys. This sets key bindings for the keys to categories respectively.\n\ncategories = [\"Interior\", \"Exterior\", \"Trash\"]\nkey = \"123\"\n# key = \"asd\" \n\n2️⃣. Select the input and output folders\n\nimport ipywidgets as widgets\nimport os\ninput = widgets.Dropdown(options=[x for x in os.listdir() if \".\" not in x], # folders with \".\" are excluded\n                        description=\"Input folder:\",)\noutput = widgets.Dropdown(options=[x for x in os.listdir() if \".\" not in x], # folders with \".\" are excluded\n                        description=\"Out Folder:\",)\ndisplay(widgets.VBox([input, output]))\n\n\n3️⃣. Prepare output folders (creates folders for categories that are not present)\n\nfor fold in [x for x in categories if x not in [x for x in os.listdir(output.value) if \".\" not in x]]:\n    os.mkdir(output.value + \"/\" + fold)\n\n4️⃣. Sort\n\ndef nextpic():\n    global imgpos\n    imgpos+=1\n    imgframe.value = open(input.value + \"/\" + piclist[imgpos],\"rb\").read()\n\ndef send2folder(fold):\n    global foldlist\n    foldlist.append(fold)\n    os.rename(input.value + \"/\" + piclist[imgpos], output.value + \"/\" + fold + \"/\" + piclist[imgpos])\n    nextpic()\n\ndef txtev(s):\n    if len(s.new) &gt; len(s.old):\n        if x:= keydict.get(s.new[-1]):\n            send2folder(x)\n\ndef oopsgoback1(_a):\n    global imgpos, foldlist\n    imgpos-=1\n    os.rename(output.value + \"/\" + foldlist.pop() + \"/\" + piclist[imgpos], input.value + \"/\" + piclist[imgpos])\n    imgframe.value = open(input.value + \"/\" + piclist[imgpos],\"rb\").read()\n\npiclist = [x for x in os.listdir(input.value) if \".\" in x]\nfoldlist = []\nimgpos=0\nkeydict = {k: cat for k, cat in zip(list(key), categories)}\n\nimage0 = open(input.value + \"/\" + piclist[0],\"rb\").read()\nimgframe = widgets.Image(value=image0\n                        , width=300 \n                        # , height=300\n                        )\n\nbutlist = [widgets.Button(description=cat, button_style=\"danger\") for cat in categories]\n[button.on_click(lambda x, imgpos=cat: send2folder(imgpos)) for button, cat in zip(butlist, categories)]\n\ntxtkey = widgets.Text(placeholder=\"type here for key bindings\")\ntxtkey.observe(txtev, \"value\")\n\noopsbutton = widgets.Button(description=\"Take me back\", button_style=\"warning\")\noopsbutton.on_click(oopsgoback1)\n\ndisplay(widgets.HBox(butlist), txtkey, imgframe, oopsbutton)\n\n\n📂Example of loading in the now sorted data (fastai datablock)\n\nfrom fastai.data.all import *\nfrom fastai.vision.all import *\nfp = Path(\"./categories\")\nDataBlock(blocks=(ImageBlock, CategoryBlock), \n        get_items=get_image_files, \n        get_y=parent_label,\n        # splitter=RandomSplitter(valid_pct=0.25),\n        item_tfms=[Resize(256, method=\"squish\")]\n).dataloaders(fp).show_batch(max_n=9)"
+  },
+  {
+    "objectID": "MLDL/imglabelernb.html#dataset-labeler-tool",
+    "href": "MLDL/imglabelernb.html#dataset-labeler-tool",
+    "title": "img-labeler-nb preview",
+    "section": "",
+    "text": "A simple interface for categorizing images into labeled folders in ipynb. Useful for quickly prepping categorical image data for deep learning / ML.\nBe sure to run each cell.\n1️⃣. First create a list of the Categories to separate into.\nIt may be helpful to include a “Trash” grouping for images that are outside of scope.\nThe key variable takes a string of keys. This sets key bindings for the keys to categories respectively.\n\ncategories = [\"Interior\", \"Exterior\", \"Trash\"]\nkey = \"123\"\n# key = \"asd\" \n\n2️⃣. Select the input and output folders\n\nimport ipywidgets as widgets\nimport os\ninput = widgets.Dropdown(options=[x for x in os.listdir() if \".\" not in x], # folders with \".\" are excluded\n                        description=\"Input folder:\",)\noutput = widgets.Dropdown(options=[x for x in os.listdir() if \".\" not in x], # folders with \".\" are excluded\n                        description=\"Out Folder:\",)\ndisplay(widgets.VBox([input, output]))\n\n\n3️⃣. Prepare output folders (creates folders for categories that are not present)\n\nfor fold in [x for x in categories if x not in [x for x in os.listdir(output.value) if \".\" not in x]]:\n    os.mkdir(output.value + \"/\" + fold)\n\n4️⃣. Sort\n\ndef nextpic():\n    global imgpos\n    imgpos+=1\n    imgframe.value = open(input.value + \"/\" + piclist[imgpos],\"rb\").read()\n\ndef send2folder(fold):\n    global foldlist\n    foldlist.append(fold)\n    os.rename(input.value + \"/\" + piclist[imgpos], output.value + \"/\" + fold + \"/\" + piclist[imgpos])\n    nextpic()\n\ndef txtev(s):\n    if len(s.new) &gt; len(s.old):\n        if x:= keydict.get(s.new[-1]):\n            send2folder(x)\n\ndef oopsgoback1(_a):\n    global imgpos, foldlist\n    imgpos-=1\n    os.rename(output.value + \"/\" + foldlist.pop() + \"/\" + piclist[imgpos], input.value + \"/\" + piclist[imgpos])\n    imgframe.value = open(input.value + \"/\" + piclist[imgpos],\"rb\").read()\n\npiclist = [x for x in os.listdir(input.value) if \".\" in x]\nfoldlist = []\nimgpos=0\nkeydict = {k: cat for k, cat in zip(list(key), categories)}\n\nimage0 = open(input.value + \"/\" + piclist[0],\"rb\").read()\nimgframe = widgets.Image(value=image0\n                        , width=300 \n                        # , height=300\n                        )\n\nbutlist = [widgets.Button(description=cat, button_style=\"danger\") for cat in categories]\n[button.on_click(lambda x, imgpos=cat: send2folder(imgpos)) for button, cat in zip(butlist, categories)]\n\ntxtkey = widgets.Text(placeholder=\"type here for key bindings\")\ntxtkey.observe(txtev, \"value\")\n\noopsbutton = widgets.Button(description=\"Take me back\", button_style=\"warning\")\noopsbutton.on_click(oopsgoback1)\n\ndisplay(widgets.HBox(butlist), txtkey, imgframe, oopsbutton)\n\n\n📂Example of loading in the now sorted data (fastai datablock)\n\nfrom fastai.data.all import *\nfrom fastai.vision.all import *\nfp = Path(\"./categories\")\nDataBlock(blocks=(ImageBlock, CategoryBlock), \n        get_items=get_image_files, \n        get_y=parent_label,\n        # splitter=RandomSplitter(valid_pct=0.25),\n        item_tfms=[Resize(256, method=\"squish\")]\n).dataloaders(fp).show_batch(max_n=9)"
   }
 ]
