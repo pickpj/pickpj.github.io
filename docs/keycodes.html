@@ -1,0 +1,3528 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.550">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>linux input event codes</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">pickpj</span>
+    </a>
+  </div>
+        <div class="quarto-navbar-tools">
+    <a href="https://www.github.com/pickpj" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+</div>
+          <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./evmorse.html">Keyboard</a></li><li class="breadcrumb-item"><a href="./keycodes.html">keycode list</a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">ML/DL</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+ <span class="menu-text">Image</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./MLDL/fastai.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Image Classification</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./MLDL/imtools.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tools</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+ <span class="menu-text">Tabular</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./MLDL/tabtools.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tools</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">Keyboard</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./evmorse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ev-morse</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./keycodes.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">keycode list</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text">Other</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./reusing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">old electronics uses</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./evmorse.html">Keyboard</a></li><li class="breadcrumb-item"><a href="./keycodes.html">keycode list</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">linux input event codes</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>/usr/include/linux/input-event-code.h<br>
+with comments removed and formatted into a table.</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">key</th>
+<th style="text-align: left;">event codes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">KEY_RESERVED</td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_ESC</td>
+<td style="text-align: left;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_1</td>
+<td style="text-align: left;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_2</td>
+<td style="text-align: left;">3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_3</td>
+<td style="text-align: left;">4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_4</td>
+<td style="text-align: left;">5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_5</td>
+<td style="text-align: left;">6</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_6</td>
+<td style="text-align: left;">7</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_7</td>
+<td style="text-align: left;">8</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_8</td>
+<td style="text-align: left;">9</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_9</td>
+<td style="text-align: left;">10</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_0</td>
+<td style="text-align: left;">11</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_MINUS</td>
+<td style="text-align: left;">12</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_EQUAL</td>
+<td style="text-align: left;">13</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_BACKSPACE</td>
+<td style="text-align: left;">14</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_TAB</td>
+<td style="text-align: left;">15</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_Q</td>
+<td style="text-align: left;">16</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_W</td>
+<td style="text-align: left;">17</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_E</td>
+<td style="text-align: left;">18</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_R</td>
+<td style="text-align: left;">19</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_T</td>
+<td style="text-align: left;">20</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_Y</td>
+<td style="text-align: left;">21</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_U</td>
+<td style="text-align: left;">22</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_I</td>
+<td style="text-align: left;">23</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_O</td>
+<td style="text-align: left;">24</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_P</td>
+<td style="text-align: left;">25</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_LEFTBRACE</td>
+<td style="text-align: left;">26</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_RIGHTBRACE</td>
+<td style="text-align: left;">27</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_ENTER</td>
+<td style="text-align: left;">28</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_LEFTCTRL</td>
+<td style="text-align: left;">29</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_A</td>
+<td style="text-align: left;">30</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_S</td>
+<td style="text-align: left;">31</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_D</td>
+<td style="text-align: left;">32</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_F</td>
+<td style="text-align: left;">33</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_G</td>
+<td style="text-align: left;">34</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_H</td>
+<td style="text-align: left;">35</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_J</td>
+<td style="text-align: left;">36</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_K</td>
+<td style="text-align: left;">37</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_L</td>
+<td style="text-align: left;">38</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_SEMICOLON</td>
+<td style="text-align: left;">39</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_APOSTROPHE</td>
+<td style="text-align: left;">40</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_GRAVE</td>
+<td style="text-align: left;">41</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_LEFTSHIFT</td>
+<td style="text-align: left;">42</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_BACKSLASH</td>
+<td style="text-align: left;">43</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_Z</td>
+<td style="text-align: left;">44</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_X</td>
+<td style="text-align: left;">45</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_C</td>
+<td style="text-align: left;">46</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_V</td>
+<td style="text-align: left;">47</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_B</td>
+<td style="text-align: left;">48</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_N</td>
+<td style="text-align: left;">49</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_M</td>
+<td style="text-align: left;">50</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_COMMA</td>
+<td style="text-align: left;">51</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_DOT</td>
+<td style="text-align: left;">52</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_SLASH</td>
+<td style="text-align: left;">53</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_RIGHTSHIFT</td>
+<td style="text-align: left;">54</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_KPASTERISK</td>
+<td style="text-align: left;">55</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_LEFTALT</td>
+<td style="text-align: left;">56</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_SPACE</td>
+<td style="text-align: left;">57</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_CAPSLOCK</td>
+<td style="text-align: left;">58</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_F1</td>
+<td style="text-align: left;">59</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_F2</td>
+<td style="text-align: left;">60</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_F3</td>
+<td style="text-align: left;">61</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_F4</td>
+<td style="text-align: left;">62</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_F5</td>
+<td style="text-align: left;">63</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_F6</td>
+<td style="text-align: left;">64</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_F7</td>
+<td style="text-align: left;">65</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_F8</td>
+<td style="text-align: left;">66</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_F9</td>
+<td style="text-align: left;">67</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_F10</td>
+<td style="text-align: left;">68</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_NUMLOCK</td>
+<td style="text-align: left;">69</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_SCROLLLOCK</td>
+<td style="text-align: left;">70</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_KP7</td>
+<td style="text-align: left;">71</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_KP8</td>
+<td style="text-align: left;">72</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_KP9</td>
+<td style="text-align: left;">73</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_KPMINUS</td>
+<td style="text-align: left;">74</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_KP4</td>
+<td style="text-align: left;">75</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_KP5</td>
+<td style="text-align: left;">76</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_KP6</td>
+<td style="text-align: left;">77</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_KPPLUS</td>
+<td style="text-align: left;">78</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_KP1</td>
+<td style="text-align: left;">79</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_KP2</td>
+<td style="text-align: left;">80</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_KP3</td>
+<td style="text-align: left;">81</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_KP0</td>
+<td style="text-align: left;">82</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_KPDOT</td>
+<td style="text-align: left;">83</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_ZENKAKUHANKAKU</td>
+<td style="text-align: left;">85</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_102ND</td>
+<td style="text-align: left;">86</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_F11</td>
+<td style="text-align: left;">87</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_F12</td>
+<td style="text-align: left;">88</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_RO</td>
+<td style="text-align: left;">89</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_KATAKANA</td>
+<td style="text-align: left;">90</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_HIRAGANA</td>
+<td style="text-align: left;">91</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_HENKAN</td>
+<td style="text-align: left;">92</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_KATAKANAHIRAGANA</td>
+<td style="text-align: left;">93</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_MUHENKAN</td>
+<td style="text-align: left;">94</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_KPJPCOMMA</td>
+<td style="text-align: left;">95</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_KPENTER</td>
+<td style="text-align: left;">96</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_RIGHTCTRL</td>
+<td style="text-align: left;">97</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_KPSLASH</td>
+<td style="text-align: left;">98</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_SYSRQ</td>
+<td style="text-align: left;">99</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_RIGHTALT</td>
+<td style="text-align: left;">100</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_LINEFEED</td>
+<td style="text-align: left;">101</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_HOME</td>
+<td style="text-align: left;">102</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_UP</td>
+<td style="text-align: left;">103</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_PAGEUP</td>
+<td style="text-align: left;">104</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_LEFT</td>
+<td style="text-align: left;">105</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_RIGHT</td>
+<td style="text-align: left;">106</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_END</td>
+<td style="text-align: left;">107</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_DOWN</td>
+<td style="text-align: left;">108</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_PAGEDOWN</td>
+<td style="text-align: left;">109</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_INSERT</td>
+<td style="text-align: left;">110</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_DELETE</td>
+<td style="text-align: left;">111</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_MACRO</td>
+<td style="text-align: left;">112</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_MUTE</td>
+<td style="text-align: left;">113</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_VOLUMEDOWN</td>
+<td style="text-align: left;">114</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_VOLUMEUP</td>
+<td style="text-align: left;">115</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_POWER</td>
+<td style="text-align: left;">116</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_KPEQUAL</td>
+<td style="text-align: left;">117</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_KPPLUSMINUS</td>
+<td style="text-align: left;">118</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_PAUSE</td>
+<td style="text-align: left;">119</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_SCALE</td>
+<td style="text-align: left;">120</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_KPCOMMA</td>
+<td style="text-align: left;">121</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_HANGEUL</td>
+<td style="text-align: left;">122</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_HANJA</td>
+<td style="text-align: left;">123</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_YEN</td>
+<td style="text-align: left;">124</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_LEFTMETA</td>
+<td style="text-align: left;">125</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_RIGHTMETA</td>
+<td style="text-align: left;">126</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_COMPOSE</td>
+<td style="text-align: left;">127</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_STOP</td>
+<td style="text-align: left;">128</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_AGAIN</td>
+<td style="text-align: left;">129</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_PROPS</td>
+<td style="text-align: left;">130</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_UNDO</td>
+<td style="text-align: left;">131</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_FRONT</td>
+<td style="text-align: left;">132</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_COPY</td>
+<td style="text-align: left;">133</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_OPEN</td>
+<td style="text-align: left;">134</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_PASTE</td>
+<td style="text-align: left;">135</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_FIND</td>
+<td style="text-align: left;">136</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_CUT</td>
+<td style="text-align: left;">137</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_HELP</td>
+<td style="text-align: left;">138</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_MENU</td>
+<td style="text-align: left;">139</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_CALC</td>
+<td style="text-align: left;">140</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_SETUP</td>
+<td style="text-align: left;">141</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_SLEEP</td>
+<td style="text-align: left;">142</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_WAKEUP</td>
+<td style="text-align: left;">143</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_FILE</td>
+<td style="text-align: left;">144</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_SENDFILE</td>
+<td style="text-align: left;">145</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_DELETEFILE</td>
+<td style="text-align: left;">146</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_XFER</td>
+<td style="text-align: left;">147</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_PROG1</td>
+<td style="text-align: left;">148</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_PROG2</td>
+<td style="text-align: left;">149</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_WWW</td>
+<td style="text-align: left;">150</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_MSDOS</td>
+<td style="text-align: left;">151</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_COFFEE</td>
+<td style="text-align: left;">152</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_ROTATE_DISPLAY</td>
+<td style="text-align: left;">153</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_CYCLEWINDOWS</td>
+<td style="text-align: left;">154</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_MAIL</td>
+<td style="text-align: left;">155</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_BOOKMARKS</td>
+<td style="text-align: left;">156</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_COMPUTER</td>
+<td style="text-align: left;">157</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_BACK</td>
+<td style="text-align: left;">158</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_FORWARD</td>
+<td style="text-align: left;">159</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_CLOSECD</td>
+<td style="text-align: left;">160</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_EJECTCD</td>
+<td style="text-align: left;">161</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_EJECTCLOSECD</td>
+<td style="text-align: left;">162</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_NEXTSONG</td>
+<td style="text-align: left;">163</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_PLAYPAUSE</td>
+<td style="text-align: left;">164</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_PREVIOUSSONG</td>
+<td style="text-align: left;">165</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_STOPCD</td>
+<td style="text-align: left;">166</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_RECORD</td>
+<td style="text-align: left;">167</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_REWIND</td>
+<td style="text-align: left;">168</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_PHONE</td>
+<td style="text-align: left;">169</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_ISO</td>
+<td style="text-align: left;">170</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_CONFIG</td>
+<td style="text-align: left;">171</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_HOMEPAGE</td>
+<td style="text-align: left;">172</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_REFRESH</td>
+<td style="text-align: left;">173</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_EXIT</td>
+<td style="text-align: left;">174</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_MOVE</td>
+<td style="text-align: left;">175</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_EDIT</td>
+<td style="text-align: left;">176</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_SCROLLUP</td>
+<td style="text-align: left;">177</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_SCROLLDOWN</td>
+<td style="text-align: left;">178</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_KPLEFTPAREN</td>
+<td style="text-align: left;">179</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_KPRIGHTPAREN</td>
+<td style="text-align: left;">180</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_NEW</td>
+<td style="text-align: left;">181</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_REDO</td>
+<td style="text-align: left;">182</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_F13</td>
+<td style="text-align: left;">183</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_F14</td>
+<td style="text-align: left;">184</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_F15</td>
+<td style="text-align: left;">185</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_F16</td>
+<td style="text-align: left;">186</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_F17</td>
+<td style="text-align: left;">187</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_F18</td>
+<td style="text-align: left;">188</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_F19</td>
+<td style="text-align: left;">189</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_F20</td>
+<td style="text-align: left;">190</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_F21</td>
+<td style="text-align: left;">191</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_F22</td>
+<td style="text-align: left;">192</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_F23</td>
+<td style="text-align: left;">193</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_F24</td>
+<td style="text-align: left;">194</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_PLAYCD</td>
+<td style="text-align: left;">200</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_PAUSECD</td>
+<td style="text-align: left;">201</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_PROG3</td>
+<td style="text-align: left;">202</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_PROG4</td>
+<td style="text-align: left;">203</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_ALL_APPLICATIONS</td>
+<td style="text-align: left;">204</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_SUSPEND</td>
+<td style="text-align: left;">205</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_CLOSE</td>
+<td style="text-align: left;">206</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_PLAY</td>
+<td style="text-align: left;">207</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_FASTFORWARD</td>
+<td style="text-align: left;">208</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_BASSBOOST</td>
+<td style="text-align: left;">209</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_PRINT</td>
+<td style="text-align: left;">210</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_HP</td>
+<td style="text-align: left;">211</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_CAMERA</td>
+<td style="text-align: left;">212</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_SOUND</td>
+<td style="text-align: left;">213</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_QUESTION</td>
+<td style="text-align: left;">214</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_EMAIL</td>
+<td style="text-align: left;">215</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_CHAT</td>
+<td style="text-align: left;">216</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_SEARCH</td>
+<td style="text-align: left;">217</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_CONNECT</td>
+<td style="text-align: left;">218</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_FINANCE</td>
+<td style="text-align: left;">219</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_SPORT</td>
+<td style="text-align: left;">220</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_SHOP</td>
+<td style="text-align: left;">221</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_ALTERASE</td>
+<td style="text-align: left;">222</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_CANCEL</td>
+<td style="text-align: left;">223</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_BRIGHTNESSDOWN</td>
+<td style="text-align: left;">224</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_BRIGHTNESSUP</td>
+<td style="text-align: left;">225</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_MEDIA</td>
+<td style="text-align: left;">226</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_SWITCHVIDEOMODE</td>
+<td style="text-align: left;">227</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_KBDILLUMTOGGLE</td>
+<td style="text-align: left;">228</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_KBDILLUMDOWN</td>
+<td style="text-align: left;">229</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_KBDILLUMUP</td>
+<td style="text-align: left;">230</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_SEND</td>
+<td style="text-align: left;">231</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_REPLY</td>
+<td style="text-align: left;">232</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_FORWARDMAIL</td>
+<td style="text-align: left;">233</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_SAVE</td>
+<td style="text-align: left;">234</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_DOCUMENTS</td>
+<td style="text-align: left;">235</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_BATTERY</td>
+<td style="text-align: left;">236</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_BLUETOOTH</td>
+<td style="text-align: left;">237</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_WLAN</td>
+<td style="text-align: left;">238</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_UWB</td>
+<td style="text-align: left;">239</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_UNKNOWN</td>
+<td style="text-align: left;">240</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_VIDEO_NEXT</td>
+<td style="text-align: left;">241</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_VIDEO_PREV</td>
+<td style="text-align: left;">242</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_BRIGHTNESS_CYCLE</td>
+<td style="text-align: left;">243</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_BRIGHTNESS_AUTO</td>
+<td style="text-align: left;">244</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_DISPLAY_OFF</td>
+<td style="text-align: left;">245</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_WWAN</td>
+<td style="text-align: left;">246</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_RFKILL</td>
+<td style="text-align: left;">247</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_MICMUTE</td>
+<td style="text-align: left;">248</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BTN_MISC</td>
+<td style="text-align: left;">0x100</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BTN_0</td>
+<td style="text-align: left;">0x100</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BTN_1</td>
+<td style="text-align: left;">0x101</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BTN_2</td>
+<td style="text-align: left;">0x102</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BTN_3</td>
+<td style="text-align: left;">0x103</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BTN_4</td>
+<td style="text-align: left;">0x104</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BTN_5</td>
+<td style="text-align: left;">0x105</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BTN_6</td>
+<td style="text-align: left;">0x106</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BTN_7</td>
+<td style="text-align: left;">0x107</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BTN_8</td>
+<td style="text-align: left;">0x108</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BTN_9</td>
+<td style="text-align: left;">0x109</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BTN_MOUSE</td>
+<td style="text-align: left;">0x110</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BTN_LEFT</td>
+<td style="text-align: left;">0x110</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BTN_RIGHT</td>
+<td style="text-align: left;">0x111</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BTN_MIDDLE</td>
+<td style="text-align: left;">0x112</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BTN_SIDE</td>
+<td style="text-align: left;">0x113</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BTN_EXTRA</td>
+<td style="text-align: left;">0x114</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BTN_FORWARD</td>
+<td style="text-align: left;">0x115</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BTN_BACK</td>
+<td style="text-align: left;">0x116</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BTN_TASK</td>
+<td style="text-align: left;">0x117</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BTN_JOYSTICK</td>
+<td style="text-align: left;">0x120</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BTN_TRIGGER</td>
+<td style="text-align: left;">0x120</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BTN_THUMB</td>
+<td style="text-align: left;">0x121</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BTN_THUMB2</td>
+<td style="text-align: left;">0x122</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BTN_TOP</td>
+<td style="text-align: left;">0x123</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BTN_TOP2</td>
+<td style="text-align: left;">0x124</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BTN_PINKIE</td>
+<td style="text-align: left;">0x125</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BTN_BASE</td>
+<td style="text-align: left;">0x126</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BTN_BASE2</td>
+<td style="text-align: left;">0x127</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BTN_BASE3</td>
+<td style="text-align: left;">0x128</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BTN_BASE4</td>
+<td style="text-align: left;">0x129</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BTN_BASE5</td>
+<td style="text-align: left;">0x12a</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BTN_BASE6</td>
+<td style="text-align: left;">0x12b</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BTN_DEAD</td>
+<td style="text-align: left;">0x12f</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BTN_GAMEPAD</td>
+<td style="text-align: left;">0x130</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BTN_SOUTH</td>
+<td style="text-align: left;">0x130</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BTN_EAST</td>
+<td style="text-align: left;">0x131</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BTN_C</td>
+<td style="text-align: left;">0x132</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BTN_NORTH</td>
+<td style="text-align: left;">0x133</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BTN_WEST</td>
+<td style="text-align: left;">0x134</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BTN_Z</td>
+<td style="text-align: left;">0x135</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BTN_TL</td>
+<td style="text-align: left;">0x136</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BTN_TR</td>
+<td style="text-align: left;">0x137</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BTN_TL2</td>
+<td style="text-align: left;">0x138</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BTN_TR2</td>
+<td style="text-align: left;">0x139</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BTN_SELECT</td>
+<td style="text-align: left;">0x13a</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BTN_START</td>
+<td style="text-align: left;">0x13b</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BTN_MODE</td>
+<td style="text-align: left;">0x13c</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BTN_THUMBL</td>
+<td style="text-align: left;">0x13d</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BTN_THUMBR</td>
+<td style="text-align: left;">0x13e</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BTN_DIGI</td>
+<td style="text-align: left;">0x140</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BTN_TOOL_PEN</td>
+<td style="text-align: left;">0x140</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BTN_TOOL_RUBBER</td>
+<td style="text-align: left;">0x141</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BTN_TOOL_BRUSH</td>
+<td style="text-align: left;">0x142</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BTN_TOOL_PENCIL</td>
+<td style="text-align: left;">0x143</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BTN_TOOL_AIRBRUSH</td>
+<td style="text-align: left;">0x144</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BTN_TOOL_FINGER</td>
+<td style="text-align: left;">0x145</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BTN_TOOL_MOUSE</td>
+<td style="text-align: left;">0x146</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BTN_TOOL_LENS</td>
+<td style="text-align: left;">0x147</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BTN_TOOL_QUINTTAP</td>
+<td style="text-align: left;">0x148</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BTN_STYLUS3</td>
+<td style="text-align: left;">0x149</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BTN_TOUCH</td>
+<td style="text-align: left;">0x14a</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BTN_STYLUS</td>
+<td style="text-align: left;">0x14b</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BTN_STYLUS2</td>
+<td style="text-align: left;">0x14c</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BTN_TOOL_DOUBLETAP</td>
+<td style="text-align: left;">0x14d</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BTN_TOOL_TRIPLETAP</td>
+<td style="text-align: left;">0x14e</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BTN_TOOL_QUADTAP</td>
+<td style="text-align: left;">0x14f</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BTN_WHEEL</td>
+<td style="text-align: left;">0x150</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BTN_GEAR_DOWN</td>
+<td style="text-align: left;">0x150</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BTN_GEAR_UP</td>
+<td style="text-align: left;">0x151</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_OK</td>
+<td style="text-align: left;">0x160</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_SELECT</td>
+<td style="text-align: left;">0x161</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_GOTO</td>
+<td style="text-align: left;">0x162</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_CLEAR</td>
+<td style="text-align: left;">0x163</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_POWER2</td>
+<td style="text-align: left;">0x164</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_OPTION</td>
+<td style="text-align: left;">0x165</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_INFO</td>
+<td style="text-align: left;">0x166</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_TIME</td>
+<td style="text-align: left;">0x167</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_VENDOR</td>
+<td style="text-align: left;">0x168</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_ARCHIVE</td>
+<td style="text-align: left;">0x169</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_PROGRAM</td>
+<td style="text-align: left;">0x16a</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_CHANNEL</td>
+<td style="text-align: left;">0x16b</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_FAVORITES</td>
+<td style="text-align: left;">0x16c</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_EPG</td>
+<td style="text-align: left;">0x16d</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_PVR</td>
+<td style="text-align: left;">0x16e</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_MHP</td>
+<td style="text-align: left;">0x16f</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_LANGUAGE</td>
+<td style="text-align: left;">0x170</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_TITLE</td>
+<td style="text-align: left;">0x171</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_SUBTITLE</td>
+<td style="text-align: left;">0x172</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_ANGLE</td>
+<td style="text-align: left;">0x173</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_FULL_SCREEN</td>
+<td style="text-align: left;">0x174</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_MODE</td>
+<td style="text-align: left;">0x175</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_KEYBOARD</td>
+<td style="text-align: left;">0x176</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_ASPECT_RATIO</td>
+<td style="text-align: left;">0x177</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_PC</td>
+<td style="text-align: left;">0x178</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_TV</td>
+<td style="text-align: left;">0x179</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_TV2</td>
+<td style="text-align: left;">0x17a</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_VCR</td>
+<td style="text-align: left;">0x17b</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_VCR2</td>
+<td style="text-align: left;">0x17c</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_SAT</td>
+<td style="text-align: left;">0x17d</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_SAT2</td>
+<td style="text-align: left;">0x17e</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_CD</td>
+<td style="text-align: left;">0x17f</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_TAPE</td>
+<td style="text-align: left;">0x180</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_RADIO</td>
+<td style="text-align: left;">0x181</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_TUNER</td>
+<td style="text-align: left;">0x182</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_PLAYER</td>
+<td style="text-align: left;">0x183</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_TEXT</td>
+<td style="text-align: left;">0x184</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_DVD</td>
+<td style="text-align: left;">0x185</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_AUX</td>
+<td style="text-align: left;">0x186</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_MP3</td>
+<td style="text-align: left;">0x187</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_AUDIO</td>
+<td style="text-align: left;">0x188</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_VIDEO</td>
+<td style="text-align: left;">0x189</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_DIRECTORY</td>
+<td style="text-align: left;">0x18a</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_LIST</td>
+<td style="text-align: left;">0x18b</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_MEMO</td>
+<td style="text-align: left;">0x18c</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_CALENDAR</td>
+<td style="text-align: left;">0x18d</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_RED</td>
+<td style="text-align: left;">0x18e</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_GREEN</td>
+<td style="text-align: left;">0x18f</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_YELLOW</td>
+<td style="text-align: left;">0x190</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_BLUE</td>
+<td style="text-align: left;">0x191</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_CHANNELUP</td>
+<td style="text-align: left;">0x192</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_CHANNELDOWN</td>
+<td style="text-align: left;">0x193</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_FIRST</td>
+<td style="text-align: left;">0x194</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_LAST</td>
+<td style="text-align: left;">0x195</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_AB</td>
+<td style="text-align: left;">0x196</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_NEXT</td>
+<td style="text-align: left;">0x197</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_RESTART</td>
+<td style="text-align: left;">0x198</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_SLOW</td>
+<td style="text-align: left;">0x199</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_SHUFFLE</td>
+<td style="text-align: left;">0x19a</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_BREAK</td>
+<td style="text-align: left;">0x19b</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_PREVIOUS</td>
+<td style="text-align: left;">0x19c</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_DIGITS</td>
+<td style="text-align: left;">0x19d</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_TEEN</td>
+<td style="text-align: left;">0x19e</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_TWEN</td>
+<td style="text-align: left;">0x19f</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_VIDEOPHONE</td>
+<td style="text-align: left;">0x1a0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_GAMES</td>
+<td style="text-align: left;">0x1a1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_ZOOMIN</td>
+<td style="text-align: left;">0x1a2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_ZOOMOUT</td>
+<td style="text-align: left;">0x1a3</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_ZOOMRESET</td>
+<td style="text-align: left;">0x1a4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_WORDPROCESSOR</td>
+<td style="text-align: left;">0x1a5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_EDITOR</td>
+<td style="text-align: left;">0x1a6</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_SPREADSHEET</td>
+<td style="text-align: left;">0x1a7</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_GRAPHICSEDITOR</td>
+<td style="text-align: left;">0x1a8</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_PRESENTATION</td>
+<td style="text-align: left;">0x1a9</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_DATABASE</td>
+<td style="text-align: left;">0x1aa</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_NEWS</td>
+<td style="text-align: left;">0x1ab</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_VOICEMAIL</td>
+<td style="text-align: left;">0x1ac</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_ADDRESSBOOK</td>
+<td style="text-align: left;">0x1ad</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_MESSENGER</td>
+<td style="text-align: left;">0x1ae</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_DISPLAYTOGGLE</td>
+<td style="text-align: left;">0x1af</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_SPELLCHECK</td>
+<td style="text-align: left;">0x1b0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_LOGOFF</td>
+<td style="text-align: left;">0x1b1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_DOLLAR</td>
+<td style="text-align: left;">0x1b2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_EURO</td>
+<td style="text-align: left;">0x1b3</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_FRAMEBACK</td>
+<td style="text-align: left;">0x1b4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_FRAMEFORWARD</td>
+<td style="text-align: left;">0x1b5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_CONTEXT_MENU</td>
+<td style="text-align: left;">0x1b6</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_MEDIA_REPEAT</td>
+<td style="text-align: left;">0x1b7</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_10CHANNELSUP</td>
+<td style="text-align: left;">0x1b8</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_10CHANNELSDOWN</td>
+<td style="text-align: left;">0x1b9</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_IMAGES</td>
+<td style="text-align: left;">0x1ba</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_NOTIFICATION_CENTER</td>
+<td style="text-align: left;">0x1bc</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_PICKUP_PHONE</td>
+<td style="text-align: left;">0x1bd</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_HANGUP_PHONE</td>
+<td style="text-align: left;">0x1be</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_DEL_EOL</td>
+<td style="text-align: left;">0x1c0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_DEL_EOS</td>
+<td style="text-align: left;">0x1c1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_INS_LINE</td>
+<td style="text-align: left;">0x1c2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_DEL_LINE</td>
+<td style="text-align: left;">0x1c3</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_FN</td>
+<td style="text-align: left;">0x1d0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_FN_ESC</td>
+<td style="text-align: left;">0x1d1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_FN_F1</td>
+<td style="text-align: left;">0x1d2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_FN_F2</td>
+<td style="text-align: left;">0x1d3</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_FN_F3</td>
+<td style="text-align: left;">0x1d4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_FN_F4</td>
+<td style="text-align: left;">0x1d5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_FN_F5</td>
+<td style="text-align: left;">0x1d6</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_FN_F6</td>
+<td style="text-align: left;">0x1d7</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_FN_F7</td>
+<td style="text-align: left;">0x1d8</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_FN_F8</td>
+<td style="text-align: left;">0x1d9</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_FN_F9</td>
+<td style="text-align: left;">0x1da</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_FN_F10</td>
+<td style="text-align: left;">0x1db</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_FN_F11</td>
+<td style="text-align: left;">0x1dc</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_FN_F12</td>
+<td style="text-align: left;">0x1dd</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_FN_1</td>
+<td style="text-align: left;">0x1de</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_FN_2</td>
+<td style="text-align: left;">0x1df</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_FN_D</td>
+<td style="text-align: left;">0x1e0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_FN_E</td>
+<td style="text-align: left;">0x1e1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_FN_F</td>
+<td style="text-align: left;">0x1e2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_FN_S</td>
+<td style="text-align: left;">0x1e3</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_FN_B</td>
+<td style="text-align: left;">0x1e4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_FN_RIGHT_SHIFT</td>
+<td style="text-align: left;">0x1e5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_BRL_DOT1</td>
+<td style="text-align: left;">0x1f1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_BRL_DOT2</td>
+<td style="text-align: left;">0x1f2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_BRL_DOT3</td>
+<td style="text-align: left;">0x1f3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_BRL_DOT4</td>
+<td style="text-align: left;">0x1f4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_BRL_DOT5</td>
+<td style="text-align: left;">0x1f5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_BRL_DOT6</td>
+<td style="text-align: left;">0x1f6</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_BRL_DOT7</td>
+<td style="text-align: left;">0x1f7</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_BRL_DOT8</td>
+<td style="text-align: left;">0x1f8</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_BRL_DOT9</td>
+<td style="text-align: left;">0x1f9</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_BRL_DOT10</td>
+<td style="text-align: left;">0x1fa</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_NUMERIC_0</td>
+<td style="text-align: left;">0x200</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_NUMERIC_1</td>
+<td style="text-align: left;">0x201</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_NUMERIC_2</td>
+<td style="text-align: left;">0x202</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_NUMERIC_3</td>
+<td style="text-align: left;">0x203</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_NUMERIC_4</td>
+<td style="text-align: left;">0x204</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_NUMERIC_5</td>
+<td style="text-align: left;">0x205</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_NUMERIC_6</td>
+<td style="text-align: left;">0x206</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_NUMERIC_7</td>
+<td style="text-align: left;">0x207</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_NUMERIC_8</td>
+<td style="text-align: left;">0x208</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_NUMERIC_9</td>
+<td style="text-align: left;">0x209</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_NUMERIC_STAR</td>
+<td style="text-align: left;">0x20a</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_NUMERIC_POUND</td>
+<td style="text-align: left;">0x20b</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_NUMERIC_A</td>
+<td style="text-align: left;">0x20c</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_NUMERIC_B</td>
+<td style="text-align: left;">0x20d</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_NUMERIC_C</td>
+<td style="text-align: left;">0x20e</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_NUMERIC_D</td>
+<td style="text-align: left;">0x20f</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_CAMERA_FOCUS</td>
+<td style="text-align: left;">0x210</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_WPS_BUTTON</td>
+<td style="text-align: left;">0x211</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_TOUCHPAD_TOGGLE</td>
+<td style="text-align: left;">0x212</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_TOUCHPAD_ON</td>
+<td style="text-align: left;">0x213</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_TOUCHPAD_OFF</td>
+<td style="text-align: left;">0x214</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_CAMERA_ZOOMIN</td>
+<td style="text-align: left;">0x215</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_CAMERA_ZOOMOUT</td>
+<td style="text-align: left;">0x216</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_CAMERA_UP</td>
+<td style="text-align: left;">0x217</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_CAMERA_DOWN</td>
+<td style="text-align: left;">0x218</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_CAMERA_LEFT</td>
+<td style="text-align: left;">0x219</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_CAMERA_RIGHT</td>
+<td style="text-align: left;">0x21a</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_ATTENDANT_ON</td>
+<td style="text-align: left;">0x21b</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_ATTENDANT_OFF</td>
+<td style="text-align: left;">0x21c</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_ATTENDANT_TOGGLE</td>
+<td style="text-align: left;">0x21d</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_LIGHTS_TOGGLE</td>
+<td style="text-align: left;">0x21e</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BTN_DPAD_UP</td>
+<td style="text-align: left;">0x220</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BTN_DPAD_DOWN</td>
+<td style="text-align: left;">0x221</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BTN_DPAD_LEFT</td>
+<td style="text-align: left;">0x222</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BTN_DPAD_RIGHT</td>
+<td style="text-align: left;">0x223</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_ALS_TOGGLE</td>
+<td style="text-align: left;">0x230</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_ROTATE_LOCK_TOGGLE</td>
+<td style="text-align: left;">0x231</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_BUTTONCONFIG</td>
+<td style="text-align: left;">0x240</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_TASKMANAGER</td>
+<td style="text-align: left;">0x241</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_JOURNAL</td>
+<td style="text-align: left;">0x242</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_CONTROLPANEL</td>
+<td style="text-align: left;">0x243</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_APPSELECT</td>
+<td style="text-align: left;">0x244</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_SCREENSAVER</td>
+<td style="text-align: left;">0x245</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_VOICECOMMAND</td>
+<td style="text-align: left;">0x246</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_ASSISTANT</td>
+<td style="text-align: left;">0x247</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_KBD_LAYOUT_NEXT</td>
+<td style="text-align: left;">0x248</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_EMOJI_PICKER</td>
+<td style="text-align: left;">0x249</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_DICTATE</td>
+<td style="text-align: left;">0x24a</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_CAMERA_ACCESS_ENABLE</td>
+<td style="text-align: left;">0x24b</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_CAMERA_ACCESS_DISABLE</td>
+<td style="text-align: left;">0x24c</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_CAMERA_ACCESS_TOGGLE</td>
+<td style="text-align: left;">0x24d</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_BRIGHTNESS_MIN</td>
+<td style="text-align: left;">0x250</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_BRIGHTNESS_MAX</td>
+<td style="text-align: left;">0x251</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_KBDINPUTASSIST_PREV</td>
+<td style="text-align: left;">0x260</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_KBDINPUTASSIST_NEXT</td>
+<td style="text-align: left;">0x261</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_KBDINPUTASSIST_PREVGROUP</td>
+<td style="text-align: left;">0x262</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_KBDINPUTASSIST_NEXTGROUP</td>
+<td style="text-align: left;">0x263</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_KBDINPUTASSIST_ACCEPT</td>
+<td style="text-align: left;">0x264</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_KBDINPUTASSIST_CANCEL</td>
+<td style="text-align: left;">0x265</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_RIGHT_UP</td>
+<td style="text-align: left;">0x266</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_RIGHT_DOWN</td>
+<td style="text-align: left;">0x267</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_LEFT_UP</td>
+<td style="text-align: left;">0x268</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_LEFT_DOWN</td>
+<td style="text-align: left;">0x269</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_ROOT_MENU</td>
+<td style="text-align: left;">0x26a</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_MEDIA_TOP_MENU</td>
+<td style="text-align: left;">0x26b</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_NUMERIC_11</td>
+<td style="text-align: left;">0x26c</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_NUMERIC_12</td>
+<td style="text-align: left;">0x26d</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_AUDIO_DESC</td>
+<td style="text-align: left;">0x26e</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_3D_MODE</td>
+<td style="text-align: left;">0x26f</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_NEXT_FAVORITE</td>
+<td style="text-align: left;">0x270</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_STOP_RECORD</td>
+<td style="text-align: left;">0x271</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_PAUSE_RECORD</td>
+<td style="text-align: left;">0x272</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_VOD</td>
+<td style="text-align: left;">0x273</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_UNMUTE</td>
+<td style="text-align: left;">0x274</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_FASTREVERSE</td>
+<td style="text-align: left;">0x275</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_SLOWREVERSE</td>
+<td style="text-align: left;">0x276</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_DATA</td>
+<td style="text-align: left;">0x277</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_ONSCREEN_KEYBOARD</td>
+<td style="text-align: left;">0x278</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_PRIVACY_SCREEN_TOGGLE</td>
+<td style="text-align: left;">0x279</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_SELECTIVE_SCREENSHOT</td>
+<td style="text-align: left;">0x27a</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_NEXT_ELEMENT</td>
+<td style="text-align: left;">0x27b</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_PREVIOUS_ELEMENT</td>
+<td style="text-align: left;">0x27c</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_AUTOPILOT_ENGAGE_TOGGLE</td>
+<td style="text-align: left;">0x27d</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_MARK_WAYPOINT</td>
+<td style="text-align: left;">0x27e</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_SOS</td>
+<td style="text-align: left;">0x27f</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_NAV_CHART</td>
+<td style="text-align: left;">0x280</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_FISHING_CHART</td>
+<td style="text-align: left;">0x281</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_SINGLE_RANGE_RADAR</td>
+<td style="text-align: left;">0x282</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_DUAL_RANGE_RADAR</td>
+<td style="text-align: left;">0x283</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_RADAR_OVERLAY</td>
+<td style="text-align: left;">0x284</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_TRADITIONAL_SONAR</td>
+<td style="text-align: left;">0x285</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_CLEARVU_SONAR</td>
+<td style="text-align: left;">0x286</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_SIDEVU_SONAR</td>
+<td style="text-align: left;">0x287</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_NAV_INFO</td>
+<td style="text-align: left;">0x288</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_BRIGHTNESS_MENU</td>
+<td style="text-align: left;">0x289</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_MACRO1</td>
+<td style="text-align: left;">0x290</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_MACRO2</td>
+<td style="text-align: left;">0x291</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_MACRO3</td>
+<td style="text-align: left;">0x292</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_MACRO4</td>
+<td style="text-align: left;">0x293</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_MACRO5</td>
+<td style="text-align: left;">0x294</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_MACRO6</td>
+<td style="text-align: left;">0x295</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_MACRO7</td>
+<td style="text-align: left;">0x296</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_MACRO8</td>
+<td style="text-align: left;">0x297</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_MACRO9</td>
+<td style="text-align: left;">0x298</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_MACRO10</td>
+<td style="text-align: left;">0x299</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_MACRO11</td>
+<td style="text-align: left;">0x29a</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_MACRO12</td>
+<td style="text-align: left;">0x29b</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_MACRO13</td>
+<td style="text-align: left;">0x29c</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_MACRO14</td>
+<td style="text-align: left;">0x29d</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_MACRO15</td>
+<td style="text-align: left;">0x29e</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_MACRO16</td>
+<td style="text-align: left;">0x29f</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_MACRO17</td>
+<td style="text-align: left;">0x2a0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_MACRO18</td>
+<td style="text-align: left;">0x2a1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_MACRO19</td>
+<td style="text-align: left;">0x2a2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_MACRO20</td>
+<td style="text-align: left;">0x2a3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_MACRO21</td>
+<td style="text-align: left;">0x2a4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_MACRO22</td>
+<td style="text-align: left;">0x2a5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_MACRO23</td>
+<td style="text-align: left;">0x2a6</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_MACRO24</td>
+<td style="text-align: left;">0x2a7</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_MACRO25</td>
+<td style="text-align: left;">0x2a8</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_MACRO26</td>
+<td style="text-align: left;">0x2a9</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_MACRO27</td>
+<td style="text-align: left;">0x2aa</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_MACRO28</td>
+<td style="text-align: left;">0x2ab</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_MACRO29</td>
+<td style="text-align: left;">0x2ac</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_MACRO30</td>
+<td style="text-align: left;">0x2ad</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_MACRO_RECORD_START</td>
+<td style="text-align: left;">0x2b0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_MACRO_RECORD_STOP</td>
+<td style="text-align: left;">0x2b1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_MACRO_PRESET_CYCLE</td>
+<td style="text-align: left;">0x2b2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_MACRO_PRESET1</td>
+<td style="text-align: left;">0x2b3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_MACRO_PRESET2</td>
+<td style="text-align: left;">0x2b4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_MACRO_PRESET3</td>
+<td style="text-align: left;">0x2b5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_KBD_LCD_MENU1</td>
+<td style="text-align: left;">0x2b8</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_KBD_LCD_MENU2</td>
+<td style="text-align: left;">0x2b9</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_KBD_LCD_MENU3</td>
+<td style="text-align: left;">0x2ba</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">KEY_KBD_LCD_MENU4</td>
+<td style="text-align: left;">0x2bb</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_KBD_LCD_MENU5</td>
+<td style="text-align: left;">0x2bc</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BTN_TRIGGER_HAPPY</td>
+<td style="text-align: left;">0x2c0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BTN_TRIGGER_HAPPY1</td>
+<td style="text-align: left;">0x2c0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BTN_TRIGGER_HAPPY2</td>
+<td style="text-align: left;">0x2c1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BTN_TRIGGER_HAPPY3</td>
+<td style="text-align: left;">0x2c2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BTN_TRIGGER_HAPPY4</td>
+<td style="text-align: left;">0x2c3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BTN_TRIGGER_HAPPY5</td>
+<td style="text-align: left;">0x2c4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BTN_TRIGGER_HAPPY6</td>
+<td style="text-align: left;">0x2c5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BTN_TRIGGER_HAPPY7</td>
+<td style="text-align: left;">0x2c6</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BTN_TRIGGER_HAPPY8</td>
+<td style="text-align: left;">0x2c7</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BTN_TRIGGER_HAPPY9</td>
+<td style="text-align: left;">0x2c8</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BTN_TRIGGER_HAPPY10</td>
+<td style="text-align: left;">0x2c9</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BTN_TRIGGER_HAPPY11</td>
+<td style="text-align: left;">0x2ca</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BTN_TRIGGER_HAPPY12</td>
+<td style="text-align: left;">0x2cb</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BTN_TRIGGER_HAPPY13</td>
+<td style="text-align: left;">0x2cc</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BTN_TRIGGER_HAPPY14</td>
+<td style="text-align: left;">0x2cd</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BTN_TRIGGER_HAPPY15</td>
+<td style="text-align: left;">0x2ce</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BTN_TRIGGER_HAPPY16</td>
+<td style="text-align: left;">0x2cf</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BTN_TRIGGER_HAPPY17</td>
+<td style="text-align: left;">0x2d0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BTN_TRIGGER_HAPPY18</td>
+<td style="text-align: left;">0x2d1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BTN_TRIGGER_HAPPY19</td>
+<td style="text-align: left;">0x2d2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BTN_TRIGGER_HAPPY20</td>
+<td style="text-align: left;">0x2d3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BTN_TRIGGER_HAPPY21</td>
+<td style="text-align: left;">0x2d4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BTN_TRIGGER_HAPPY22</td>
+<td style="text-align: left;">0x2d5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BTN_TRIGGER_HAPPY23</td>
+<td style="text-align: left;">0x2d6</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BTN_TRIGGER_HAPPY24</td>
+<td style="text-align: left;">0x2d7</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BTN_TRIGGER_HAPPY25</td>
+<td style="text-align: left;">0x2d8</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BTN_TRIGGER_HAPPY26</td>
+<td style="text-align: left;">0x2d9</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BTN_TRIGGER_HAPPY27</td>
+<td style="text-align: left;">0x2da</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BTN_TRIGGER_HAPPY28</td>
+<td style="text-align: left;">0x2db</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BTN_TRIGGER_HAPPY29</td>
+<td style="text-align: left;">0x2dc</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BTN_TRIGGER_HAPPY30</td>
+<td style="text-align: left;">0x2dd</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BTN_TRIGGER_HAPPY31</td>
+<td style="text-align: left;">0x2de</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BTN_TRIGGER_HAPPY32</td>
+<td style="text-align: left;">0x2df</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BTN_TRIGGER_HAPPY33</td>
+<td style="text-align: left;">0x2e0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BTN_TRIGGER_HAPPY34</td>
+<td style="text-align: left;">0x2e1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BTN_TRIGGER_HAPPY35</td>
+<td style="text-align: left;">0x2e2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BTN_TRIGGER_HAPPY36</td>
+<td style="text-align: left;">0x2e3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BTN_TRIGGER_HAPPY37</td>
+<td style="text-align: left;">0x2e4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BTN_TRIGGER_HAPPY38</td>
+<td style="text-align: left;">0x2e5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BTN_TRIGGER_HAPPY39</td>
+<td style="text-align: left;">0x2e6</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BTN_TRIGGER_HAPPY40</td>
+<td style="text-align: left;">0x2e7</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KEY_MAX</td>
+<td style="text-align: left;">0x2ff</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">REL_X</td>
+<td style="text-align: left;">0x00</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">REL_Y</td>
+<td style="text-align: left;">0x01</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">REL_Z</td>
+<td style="text-align: left;">0x02</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">REL_RX</td>
+<td style="text-align: left;">0x03</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">REL_RY</td>
+<td style="text-align: left;">0x04</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">REL_RZ</td>
+<td style="text-align: left;">0x05</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">REL_HWHEEL</td>
+<td style="text-align: left;">0x06</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">REL_DIAL</td>
+<td style="text-align: left;">0x07</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">REL_WHEEL</td>
+<td style="text-align: left;">0x08</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">REL_MISC</td>
+<td style="text-align: left;">0x09</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">REL_RESERVED</td>
+<td style="text-align: left;">0x0a</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">REL_WHEEL_HI_RES</td>
+<td style="text-align: left;">0x0b</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">REL_HWHEEL_HI_RES</td>
+<td style="text-align: left;">0x0c</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">REL_MAX</td>
+<td style="text-align: left;">0x0f</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ABS_X</td>
+<td style="text-align: left;">0x00</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ABS_Y</td>
+<td style="text-align: left;">0x01</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ABS_Z</td>
+<td style="text-align: left;">0x02</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ABS_RX</td>
+<td style="text-align: left;">0x03</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ABS_RY</td>
+<td style="text-align: left;">0x04</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ABS_RZ</td>
+<td style="text-align: left;">0x05</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ABS_THROTTLE</td>
+<td style="text-align: left;">0x06</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ABS_RUDDER</td>
+<td style="text-align: left;">0x07</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ABS_WHEEL</td>
+<td style="text-align: left;">0x08</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ABS_GAS</td>
+<td style="text-align: left;">0x09</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ABS_BRAKE</td>
+<td style="text-align: left;">0x0a</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ABS_HAT0X</td>
+<td style="text-align: left;">0x10</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ABS_HAT0Y</td>
+<td style="text-align: left;">0x11</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ABS_HAT1X</td>
+<td style="text-align: left;">0x12</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ABS_HAT1Y</td>
+<td style="text-align: left;">0x13</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ABS_HAT2X</td>
+<td style="text-align: left;">0x14</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ABS_HAT2Y</td>
+<td style="text-align: left;">0x15</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ABS_HAT3X</td>
+<td style="text-align: left;">0x16</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ABS_HAT3Y</td>
+<td style="text-align: left;">0x17</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ABS_PRESSURE</td>
+<td style="text-align: left;">0x18</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ABS_DISTANCE</td>
+<td style="text-align: left;">0x19</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ABS_TILT_X</td>
+<td style="text-align: left;">0x1a</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ABS_TILT_Y</td>
+<td style="text-align: left;">0x1b</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ABS_TOOL_WIDTH</td>
+<td style="text-align: left;">0x1c</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ABS_VOLUME</td>
+<td style="text-align: left;">0x20</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ABS_PROFILE</td>
+<td style="text-align: left;">0x21</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ABS_MISC</td>
+<td style="text-align: left;">0x28</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ABS_RESERVED</td>
+<td style="text-align: left;">0x2e</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ABS_MT_SLOT</td>
+<td style="text-align: left;">0x2f</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ABS_MT_TOUCH_MAJOR</td>
+<td style="text-align: left;">0x30</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ABS_MT_TOUCH_MINOR</td>
+<td style="text-align: left;">0x31</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ABS_MT_WIDTH_MAJOR</td>
+<td style="text-align: left;">0x32</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ABS_MT_WIDTH_MINOR</td>
+<td style="text-align: left;">0x33</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ABS_MT_ORIENTATION</td>
+<td style="text-align: left;">0x34</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ABS_MT_POSITION_X</td>
+<td style="text-align: left;">0x35</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ABS_MT_POSITION_Y</td>
+<td style="text-align: left;">0x36</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ABS_MT_TOOL_TYPE</td>
+<td style="text-align: left;">0x37</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ABS_MT_BLOB_ID</td>
+<td style="text-align: left;">0x38</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ABS_MT_TRACKING_ID</td>
+<td style="text-align: left;">0x39</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ABS_MT_PRESSURE</td>
+<td style="text-align: left;">0x3a</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ABS_MT_DISTANCE</td>
+<td style="text-align: left;">0x3b</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ABS_MT_TOOL_X</td>
+<td style="text-align: left;">0x3c</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ABS_MT_TOOL_Y</td>
+<td style="text-align: left;">0x3d</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ABS_MAX</td>
+<td style="text-align: left;">0x3f</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SW_LID</td>
+<td style="text-align: left;">0x00</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SW_TABLET_MODE</td>
+<td style="text-align: left;">0x01</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SW_HEADPHONE_INSERT</td>
+<td style="text-align: left;">0x02</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SW_RFKILL_ALL</td>
+<td style="text-align: left;">0x03</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SW_MICROPHONE_INSERT</td>
+<td style="text-align: left;">0x04</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SW_DOCK</td>
+<td style="text-align: left;">0x05</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SW_LINEOUT_INSERT</td>
+<td style="text-align: left;">0x06</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SW_JACK_PHYSICAL_INSERT</td>
+<td style="text-align: left;">0x07</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SW_VIDEOOUT_INSERT</td>
+<td style="text-align: left;">0x08</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SW_CAMERA_LENS_COVER</td>
+<td style="text-align: left;">0x09</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SW_KEYPAD_SLIDE</td>
+<td style="text-align: left;">0x0a</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SW_FRONT_PROXIMITY</td>
+<td style="text-align: left;">0x0b</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SW_ROTATE_LOCK</td>
+<td style="text-align: left;">0x0c</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SW_LINEIN_INSERT</td>
+<td style="text-align: left;">0x0d</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SW_MUTE_DEVICE</td>
+<td style="text-align: left;">0x0e</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SW_PEN_INSERTED</td>
+<td style="text-align: left;">0x0f</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SW_MACHINE_COVER</td>
+<td style="text-align: left;">0x10</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SW_MAX</td>
+<td style="text-align: left;">0x10</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">MSC_SERIAL</td>
+<td style="text-align: left;">0x00</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">MSC_PULSELED</td>
+<td style="text-align: left;">0x01</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">MSC_GESTURE</td>
+<td style="text-align: left;">0x02</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">MSC_RAW</td>
+<td style="text-align: left;">0x03</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">MSC_SCAN</td>
+<td style="text-align: left;">0x04</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">MSC_TIMESTAMP</td>
+<td style="text-align: left;">0x05</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">MSC_MAX</td>
+<td style="text-align: left;">0x07</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">LED_NUML</td>
+<td style="text-align: left;">0x00</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">LED_CAPSL</td>
+<td style="text-align: left;">0x01</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">LED_SCROLLL</td>
+<td style="text-align: left;">0x02</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">LED_COMPOSE</td>
+<td style="text-align: left;">0x03</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">LED_KANA</td>
+<td style="text-align: left;">0x04</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">LED_SLEEP</td>
+<td style="text-align: left;">0x05</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">LED_SUSPEND</td>
+<td style="text-align: left;">0x06</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">LED_MUTE</td>
+<td style="text-align: left;">0x07</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">LED_MISC</td>
+<td style="text-align: left;">0x08</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">LED_MAIL</td>
+<td style="text-align: left;">0x09</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">LED_CHARGING</td>
+<td style="text-align: left;">0x0a</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">LED_MAX</td>
+<td style="text-align: left;">0x0f</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">REP_DELAY</td>
+<td style="text-align: left;">0x00</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">REP_PERIOD</td>
+<td style="text-align: left;">0x01</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">REP_MAX</td>
+<td style="text-align: left;">0x01</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SND_CLICK</td>
+<td style="text-align: left;">0x00</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SND_BELL</td>
+<td style="text-align: left;">0x01</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SND_TONE</td>
+<td style="text-align: left;">0x02</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SND_MAX</td>
+<td style="text-align: left;">0x07</td>
+</tr>
+</tbody>
+</table>
+
+
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

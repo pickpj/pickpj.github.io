@@ -1,0 +1,81 @@
+---
+title: "♻️ A 2nd life for electronics"
+format:
+  html:
+    include-in-header:
+      - text: |
+          <style>
+          h1 {
+            background-color: #3498db;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+          }
+          h2 {
+            background-color: #2ecc71;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+          }
+          </style>
+---
+
+
+## VPN Router
+**Ingredients:**  
+
+* A phone
+
+The [VPN Hotspot](https://github.com/Mygod/VPNHotspot) app is basically* the whole of it.  
+*Buuuuuut, this app requires the phone to be rooted which can be a headache (but also educational). For information on how to root a device I would recommend searching with the phrase "site:xdaforums.com". Additionally, lineageos' installation guide was quite helpful as well.  
+
+In my case, I had to use software from the manufacturer to wipe and install a pre-12 version of android before I could unlock the bootloader. Also, to get the phone to be recognized in EDL (Emergency Download Mode), for the manufacturer software, it was necessary to install some qualcomm drivers and boot without driver signature to get around "code 52".  
+
+Although a struggle (may be easier with your device), the result is a very handy portable, battery powered router/VPN network.
+
+## Security Camera(s)
+**Ingredients:**  
+
+* Any phone
+
+Installing an IP camera app and using it in tandem with the router option allows for a secure local area network of cameras. 
+
+### Software
+This is the more interesting part. With a not too complicated software setup we can get a fully fledged security camera setup running locally that even has remote access!  
+**Features** include:  
+
+* Text alerts for motion detection (Telegram)
+* Remote access through any browser (Zerotier*)
+* Multiple camera management (Agent DVR)
+* All the other features in Agent DVR
+
+*Notably, with zerotier the networking setup is very simple, no need to understand static ip, port forwarding, or any other router configurations (may need to make slight adjustment to firewall).
+
+| **Ingredients**      | **Software ingredients** |
+|:---------------------|:-------------------------|
+| A computer/server    | Zerotier Account         |
+| IP camera(s)         | Telegram Account/bot     |
+|                      | Agent DVR                |
+
+
+1. First have the IP cameras and computer be on the same network (The [VPN router](#vpn-router) could come in handy!)
+
+2. Install and run Agent DVR on the computer and set up the IP camera.  
+
+3. Then create an account and connect the computer to a zerotier network. Additionally, download the app and connect devices that you would like to use for remote access. 
+
+4. May need to adjust some firewall settings to enable accessing Agent DVR through Zerotier. After such adjustments connecting to Agent DVR should be as simple as typing in the IP (in Zerotier) of the computer and the port that Agent DVR is running on (while connected through Zerotier).  
+
+5. Now you will want to create a telegram account and set up a bot with the "botfather".  
+
+6. Next we will want to set the "execute command" to run in the "action" setting of a camera in Agent DVR.  While I don't provide the code for sending a telegram message here, it isn't too complicated and you can prompt a chat bot for a script as simple or as complicated as your use case (I would recommend starting simple) (You'll probably need to get your telegram user id by messaging "userinfobot"). 
+
+7. We will need to then create a batch file pointing to the created script, it would look something like the following:
+```
+@echo off
+"C:\Path\to\python.exe" "/Path/to/script.py"  
+pause  
+```
+8. Move that batch file to the correct folder and it should show up as an option.  
+
+All together we have a remotely accessible security setup without any costs! (excluding electricity)

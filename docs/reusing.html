@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Macros independent of the windowing system</title>
+<title>♻️ A 2nd life for electronics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -66,6 +66,20 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<style>
+h1 {
+  background-color: #3498db;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+}
+h2 {
+  background-color: #2ecc71;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+}
+</style>
 
 
 </head>
@@ -92,7 +106,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./evmorse.html">Keyboard</a></li><li class="breadcrumb-item"><a href="./evmorse.html">ev-morse</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./reusing.html">Other</a></li><li class="breadcrumb-item"><a href="./reusing.html">♻️ Reusing Electronics</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -166,7 +180,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./evmorse.html" class="sidebar-item-text sidebar-link active">
+  <a href="./evmorse.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">ev-morse</span></a>
   </div>
 </li>
@@ -189,8 +203,8 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./reusing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">old electronics uses</span></a>
+  <a href="./reusing.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">♻️ Reusing Electronics</span></a>
   </div>
 </li>
       </ul>
@@ -205,18 +219,20 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#ev-morse" id="toc-ev-morse" class="nav-link active" data-scroll-target="#ev-morse">ev-morse</a></li>
-  <li><a href="#suppressing-keys" id="toc-suppressing-keys" class="nav-link" data-scroll-target="#suppressing-keys">suppressing keys</a></li>
-  <li><a href="#symlink" id="toc-symlink" class="nav-link" data-scroll-target="#symlink">symlink</a></li>
+  <li><a href="#vpn-router" id="toc-vpn-router" class="nav-link active" data-scroll-target="#vpn-router">VPN Router</a></li>
+  <li><a href="#security-cameras" id="toc-security-cameras" class="nav-link" data-scroll-target="#security-cameras">Security Camera(s)</a>
+  <ul class="collapse">
+  <li><a href="#software" id="toc-software" class="nav-link" data-scroll-target="#software">Software</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./evmorse.html">Keyboard</a></li><li class="breadcrumb-item"><a href="./evmorse.html">ev-morse</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./reusing.html">Other</a></li><li class="breadcrumb-item"><a href="./reusing.html">♻️ Reusing Electronics</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Macros independent of the windowing system</h1>
+<h1 class="title">♻️ A 2nd life for electronics</h1>
 </div>
 
 
@@ -233,30 +249,76 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>When it comes to macros and key bindings in Wayland, the situation is pretty bad. People may point to X11 applications being able to see keystrokes as being insecure, but when it comes to usability… I couldn’t care less. Additionally, Wayland’s lack of window managing tools like <code>wmctrl</code> and <code>xdotool</code> makes a transition to Wayland seem impossible. However, the first part is solvable! <em>*kinda*</em> . With the drawback of needing elevated permissions to: read device event files, create udev rules, and altering the hardware database. You too can have proper device specific macro/keybinding’s on any linux system.</p>
-<section id="ev-morse" class="level2">
-<h2 class="anchored" data-anchor-id="ev-morse"><a href="https://github.com/pickpj/ev-morse">ev-morse</a></h2>
-<p>Ev-morse is a tool I made with the specific use case of binding macros to double key presses or long key presses. I use it with keyboards, headphones, and a dial. But it could be adapted to be used with any device that outputs to /dev/input (Ex: laptop lid switch). This program handles reading the event file to know when to execute macros. It’s usage is explained in the wiki page of the repo.</p>
+<section id="vpn-router" class="level2">
+<h2 class="anchored" data-anchor-id="vpn-router">VPN Router</h2>
+<p><strong>Ingredients:</strong></p>
+<ul>
+<li>A phone</li>
+</ul>
+<p>The <a href="https://github.com/Mygod/VPNHotspot">VPN Hotspot</a> app is basically* the whole of it.<br>
+*Buuuuuut, this app requires the phone to be rooted which can be a headache (but also educational). For information on how to root a device I would recommend searching with the phrase “site:xdaforums.com”. Additionally, lineageos’ installation guide was quite helpful as well.</p>
+<p>In my case, I had to use software from the manufacturer to wipe and install a pre-12 version of android before I could unlock the bootloader. Also, to get the phone to be recognized in EDL (Emergency Download Mode), for the manufacturer software, it was necessary to install some qualcomm drivers and boot without driver signature to get around “code 52”.</p>
+<p>Although a struggle (may be easier with your device), the result is a very handy portable, battery powered router/VPN network.</p>
 </section>
-<section id="suppressing-keys" class="level2">
-<h2 class="anchored" data-anchor-id="suppressing-keys">suppressing keys</h2>
-<p>The above, however, is not enough. The keys are still being sent to the windowing system. To deal with this it is necessary to remap the scancode in the hardware database (hwdb) to a keycode that is unused. Luckily, there is a list of keycodes to be found in (/usr/include/linux/input-event-codes.h). Conveniently, there are keys MACRO1-MACRO30 which are perfect for our use case. Armed with <code>evtest</code> and this <a href="https://wiki.archlinux.org/title/Map_scancodes_to_keycodes">arch wiki article</a>, the results should be a file (/etc/udev/hwdb.d/50-filename.hwdb) that looks something like:</p>
-<pre><code>evdev:atkbd:dmi:bvn*:bvr*:bd*:svn*:pn*:pvr*
- KEYBOARD_KEY_3b=macro1
- KEYBOARD_KEY_3c=macro2
- KEYBOARD_KEY_3d=macro3
- KEYBOARD_KEY_3e=macro4
- KEYBOARD_KEY_3f=macro5
- KEYBOARD_KEY_40=macro6</code></pre>
-</section>
-<section id="symlink" class="level2">
-<h2 class="anchored" data-anchor-id="symlink">symlink</h2>
-<p>ev-morse needs a device file to be ran, but what about devices that do not connect predictably on boot. A laptop keyboard would have a consistent event file, but the same can’t be said for headphones or other peripheral devices. For these devices it is necessary to create a symbolic link with a udev rule. First we need get some unique identifying information on the device with <code>udevadm info -a /dev/input/~~~~</code>. With this information we create a udev rule to establish the symbolic link. The result should be a file (/etc/udev/rules.d/50-filename.rules) that looks something like:</p>
-<pre><code>SUBSYSTEMS=="input", ATTRS{name}=="headphone name (AVRCP)", ATTRS{id/product}=="000a", SYMLINK+="headphones"</code></pre>
-<p>Source for making udev symlink <a href="https://unix.stackexchange.com/questions/704759/finding-the-dev-input-event-path-of-a-device-from-its-name">here</a>. Additionally, multiple rules can be put in one file, separating by new lines.</p>
-<p>The end.</p>
+<section id="security-cameras" class="level2">
+<h2 class="anchored" data-anchor-id="security-cameras">Security Camera(s)</h2>
+<p><strong>Ingredients:</strong></p>
+<ul>
+<li>Any phone</li>
+</ul>
+<p>Installing an IP camera app and using it in tandem with the router option allows for a secure local area network of cameras.</p>
+<section id="software" class="level3">
+<h3 class="anchored" data-anchor-id="software">Software</h3>
+<p>This is the more interesting part. With a not too complicated software setup we can get a fully fledged security camera setup running locally that even has remote access!<br>
+<strong>Features</strong> include:</p>
+<ul>
+<li>Text alerts for motion detection (Telegram)</li>
+<li>Remote access through any browser (Zerotier*)</li>
+<li>Multiple camera management (Agent DVR)</li>
+<li>All the other features in Agent DVR</li>
+</ul>
+<p>*Notably, with zerotier the networking setup is very simple, no need to understand static ip, port forwarding, or any other router configurations (may need to make slight adjustment to firewall).</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: left;"><strong>Ingredients</strong></th>
+<th style="text-align: left;"><strong>Software ingredients</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">A computer/server</td>
+<td style="text-align: left;">Zerotier Account</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">IP camera(s)</td>
+<td style="text-align: left;">Telegram Account/bot</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Agent DVR</td>
+</tr>
+</tbody>
+</table>
+<ol type="1">
+<li><p>First have the IP cameras and computer be on the same network (The <a href="#vpn-router">VPN router</a> could come in handy!)</p></li>
+<li><p>Install and run Agent DVR on the computer and set up the IP camera.</p></li>
+<li><p>Then create an account and connect the computer to a zerotier network. Additionally, download the app and connect devices that you would like to use for remote access.</p></li>
+<li><p>May need to adjust some firewall settings to enable accessing Agent DVR through Zerotier. After such adjustments connecting to Agent DVR should be as simple as typing in the IP (in Zerotier) of the computer and the port that Agent DVR is running on (while connected through Zerotier).</p></li>
+<li><p>Now you will want to create a telegram account and set up a bot with the “botfather”.</p></li>
+<li><p>Next we will want to set the “execute command” to run in the “action” setting of a camera in Agent DVR. While I don’t provide the code for sending a telegram message here, it isn’t too complicated and you can prompt a chat bot for a script as simple or as complicated as your use case (I would recommend starting simple) (You’ll probably need to get your telegram user id by messaging “userinfobot”).</p></li>
+<li><p>We will need to then create a batch file pointing to the created script, it would look something like the following:</p></li>
+</ol>
+<pre><code>@echo off
+"C:\Path\to\python.exe" "/Path/to/script.py"  
+pause  </code></pre>
+<ol start="8" type="1">
+<li>Move that batch file to the correct folder and it should show up as an option.</li>
+</ol>
+<p>All together we have a remotely accessible security setup without any costs! (excluding electricity)</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

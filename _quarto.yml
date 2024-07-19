@@ -26,6 +26,12 @@ website:
             contents:
               - href: evmorse.qmd
                 text: ev-morse 
+              - href: keycodes.qmd
+                text: keycode list
+          - section: "Other"
+            contents:
+              - href: reusing.qmd
+                text: ♻️ Reusing Electronics
 format:
     html:
         theme: superhero
