@@ -10,29 +10,49 @@ website:
     sidebar:
         style: "docked"
         contents:
+          - section: "Mapping"
+            contents:
+            - section: "FIock"
+              contents:
+              - href: Mapping/FIock/bridges.qmd
+                text: Bridges
+              - href: Mapping/FIock/diff.qmd
+                text: BC - No Road Overlap
+              - href: Mapping/FIock/directionless.qmd
+                text: BC - No Direction Tag
+              # - href: Mapping/FIock/.qmd
+              #   text: ALPR Stats
+              - href: Mapping/FIock/alpr-tools.qmd
+                text: ALPR Tools
+            - section: "Working w/ big maps"
+              contents:
+              - href: Mapping/big-pbf/pbf-splitter.qmd
+                text: Chunking a large pbf (incorrectly)
+              - href: Mapping/big-pbf/tags-filter.qmd
+                text: Tags-filtering a large pbf
+            - section: "Japan"
+              contents:
+              - href: Mapping/JPN/tokyochizu.qmd
+                text: Various maps
           - section: "ML/DL"
             contents:
               - section: "Image"
                 contents:
                   - href: MLDL/fastai.qmd
                     text: Image Classification
-                  - href: MLDL/imtools.qmd
-                    text: Tools
-              - section: "Tabular"
-                contents:
-                  - href: MLDL/tabtools.qmd
-                    text: Tools
+                  # - href: MLDL/.qmd
+                  #   text: 
           - section: "Keyboard"
             contents:
-              - href: evmorse.qmd
+              - href: Other/evmorse.qmd
                 text: ev-morse 
-              - href: keycodes.qmd
+              - href: Other/keycodes.qmd
                 text: keycode list
           - section: "Other"
             contents:
-              - href: reusing.qmd
+              - href: Other/reusing.qmd
                 text: ♻️ Reusing Electronics
 format:
     html:
-        theme: superhero
+        theme: darkly
         toc: true

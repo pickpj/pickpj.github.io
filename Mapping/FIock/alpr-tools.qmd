@@ -1,0 +1,252 @@
+---
+title: ALPR tools
+format: 
+  html:
+    theme: darkly
+    include-in-header:
+      - text: |
+          <style>
+          @font-face {
+            font-family: "OCR A Std";
+            src: url("./extra-alpr-tools/OCRAStd.otf") format("opentype"),
+          }
+          @font-face {
+            font-family: "freecamv2";
+            src: url("./extra-alpr-tools/freecamv2.ttf") format("truetype"),
+          }
+          .redacted {
+            background: #111;
+            color: transparent;
+            border-radius: 2px;
+            cursor: pointer;
+            transition: background 0.6s, color 0.1s;
+            padding: 0 2px;
+            text-align: justify !important;
+            font-family: freecamv2, monospace;
+          }
+          .redacted:hover, .redacted.revealed {
+            background: #ebebeb;
+            color: #ebebeb;
+          }
+          .wrapper{
+            width: 45%;
+            font-size:35px;
+            text-align: center;
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: space-between;
+            }
+          .justify {
+            text-align: justify !important
+          }
+          .fake-span{
+            width:100%;
+            display:inline-block;
+            margin:-10px;
+            font-size:1px;
+          }
+          .glitch {
+            font-size: 2rem;
+            font-family: "OCR A Std", monospace;
+            animation: flicker 2.4s infinite;
+          }
+          @keyframes flicker {
+            0%, 65% { opacity: 1; }
+            66%, 100% { opacity: 0.15; }
+          }
+          .container .HAL {
+            position: relative;
+            width: 44px;
+            height: 44px;
+            display: block;
+            background-color: #000;
+            margin: 0 20px;
+            border-radius: 50%;
+            top:377px;
+            left:211px;
+          }
+          .container .HAL::before {
+            position: absolute;
+            content: "";
+            top: 50%;
+            left: 17px;
+            transform: translate(-50%, -50%);
+            width: 17px;
+            height: 17px;
+            border-radius: 50%;
+            background-image: radial-gradient(#b97700 5%, #bb1300 15%, #bb1300 30%, #8a0000 40%, black 90%);
+            box-sizing: border-box;
+          }
+          .container .eyes {
+            position: relative;
+            width: 58px;
+            height: 58px;
+            display: block;
+            background-color: #bebebe;
+            margin: 0 20px;
+            border-radius: 50%;
+            left:50px;
+          }
+          .container .eyes::before {
+            position: absolute;
+            content: "";
+            top: 50%;
+            left: 17px;
+            transform: translate(-50%, -50%);
+            width: 17px;
+            height: 17px;
+            border-radius: 50%;
+            background-color: #000;
+            box-sizing: border-box;
+          }
+          .oval {
+            position: relative;
+            width: 60px;
+            height: 70px;
+            background: #fa9a4a;
+            border-radius: 50%;
+          }
+          </style>
+    include-after-body:
+      - text: |
+          <script>
+            const el = document.getElementById("swaptext");
+            const values = ["PROTECTION", "PROTECTION", "SURVEILLANCE", "SAFETY", "SAFETY", "MONITORING", "SECURITY", "SECURITY", "COMPLIANCE", "SAFETY", "SAFETY", "CONFORMITY"];
+            let i = 0;
+            setInterval(() => {
+              i = (i + 1) % values.length;
+              el.textContent = values[i];
+            }, 796);
+          </script>
+          <script>
+            document.querySelector("body").addEventListener("mousemove", whatareyoudoing);
+            function whatareyoudoing() {
+              const eye = document.querySelectorAll(".HAL, .eyes");
+              eye.forEach(function (eye) {
+                let x = eye.getBoundingClientRect().left + eye.clientWidth / 2;
+                let y = eye.getBoundingClientRect().top + eye.clientHeight / 2;
+                let radian = Math.atan2(event.clientX - x, event.clientY - y);
+                let rotate = radian * (180 / Math.PI) * -1 + 270;
+                eye.style.transform = "rotate(" + rotate + "deg)";
+                });
+            }
+          </script>
+---
+
+![](./extra-alpr-tools/doorstep2.png)  
+
+::: {.column-margin}
+::: {.justify}
+```{=html}
+<div style="font-size:35px;color:#bebebe;margin:0 !important">
+  DO NOT WORRY CITIZEN THIS IS FOR YOUR<span class="fake-span"></span><div style="position: relative; font-size: 2rem; font-family: monospace; text-align:center; background-color:#000000"><span id="swaptext" class="glitch"></span></div>
+</div>
+```
+:::
+:::
+
+<!-- <p style="font-size:35px;transform:scaleX(1.5);">THIS IS <span class="redacted">NOT</span> NORMAL</p> -->
+```{=html}
+<div style="width:70%;" class="wrapper">
+  <div>T</div>
+  <div>H</div>
+  <div>I</div>
+  <div>S</div>
+  <div>&nbsp;&ensp;</div>
+  <div>I</div>
+  <div>S</div>
+  <div>&ensp;</div>
+<div style="font-size:35px;display:flex;" class="redacted">NOT</div> <br>
+</div>
+<div class="wrapper">
+  <div>N</div>
+  <div>O</div>
+  <div>R</div>
+  <div>M</div>
+  <div>A</div>
+  <div>L</div>
+</div>
+```  
+
+::: {.column-margin}
+![](./extra-alpr-tools/flockbirb.png)  
+:::
+
+----------  
+
+::: {.justify}
+```{=html}
+<p style="font-size:35px">THE <span class="redacted">GOVERNMENT BIRDS</span>
+REQUIRE A PLACE TO RECHARGE
+<span class="fake-span"></span>  
+</p>  
+```  
+:::
+  
+
+----------
+
+    
+::: {.column-margin}
+```{=html}
+<div class="container">
+  <div class="HAL"></div>
+  <img src="./extra-alpr-tools/eyecanseeyou.png"></div>
+```
+:::
+
+Jokes aside.  
+I made some tools you might find useful to counter the surveillance state.  
+
+★'s demarcate usefulness (my opinion ; scale of 5)  
+
+
+### [★★★★★ Big B-router](https://github.com/pickpj/Big-B-Router)  
+
+Maybe you don't love Big Brother, but maybe you can love Big B-router. Follow the jupyter notebook to edit a pbf file to remove/edit road geometries that are in the sightline of ALPR's. Then with OsmAndMapCreator we convert the pbf file into an obf file. Upload the OBF file into OsmAnd (on a phone) for an offline map that can navigate around the ALPR's found in OpenStreetMap data. (Works with AndroidAuto/Carplay in the paid version)  
+This has been really helpful not only to avoid ALPRs, but is the main way I use to identify ALPRs that aren't recorded in OSM data. (It's also interesting to go off the beaten path sometimes)  
+
+----------  
+
+### ★★★ [osmiumupdate.py]()  WiP
+  
+I didn't see many options for automating map updates (didn't really look hard). So this is a simple python script to download and apply change files. Downloads from geofabrik, uses wget & osmium, and sends notifications on linux through `echo text > /dev/pts/0`.   
+  
+----------  
+
+### [★★ PBF-Prep](https://github.com/pickpj/Big-B-Router/blob/main/pbf-prep.ipynb)  
+  
+Select a bounding box on the map and other stuff to prep data for use in the Big B-router ipynb. Useful as a starting point for other data projects using osm data.   
+
+----------  
+
+::: {.column-margin}
+![](./extra-alpr-tools/donotwatchthisdrive.png)  
+:::
+
+::: {.column-margin}
+<!-- ```{=html}
+<div  class="container">
+  <div style="top:48px;" class="eyes"></div>
+  <div style="top:-10px;left:100px;" class="eyes"></div>
+  <div style="top:-25px;left:94px;" class="oval"></div>
+</div>
+``` -->
+:::
+### ★★ Map-Marker  
+  
+An interactive map tool to create/edit geodataframes. The shapes are paired with editable metadata. The intention was so one can systematically go through streetview imagery and not end up redoing areas. Or for collecting/identifying areas with out-dated imagery to review/survey later. Fairly niche. Running iD editor locally might be a better option.  
+
+----------  
+
+
+
+
+### Other ways to help
+* Share the OBF file (from Big B-Router) w/ the less technically inclined  
+    * These files also need to be updated/redistributed as mapdata improves  
+* Identify and contribute more ALPRs  
+* Correct inaccuracies in OSM data (bad direction/position/tags, sometimes duplication)  
+    * Look at the BC (Bad Cams) articles covering/listing the inaccuracies I identified programmatically.  
+* Support the tooling/data that made this possible  
+

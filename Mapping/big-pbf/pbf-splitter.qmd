@@ -1,0 +1,138 @@
+---
+title: "Large PBF Trial and Error w/ pyrosm"
+format:
+    html:
+        code-fold: false
+execute: 
+    eval: false
+jupyter: python3
+---
+The following code is what I initially used to work with a large pbf file (3.7GB). 3.7GB on the surface is small, but when opened with pyrosm would likely balloon to ~350+GB in RAM. *A user on github reported the California driving network took over 100GB of RAM, with the size of the California file being 1.2GB on the Geofabrik site ,[gh-issue](https://github.com/pyrosm/pyrosm/issues/111#issuecomment-1080850205), [geofabrik-cali](https://download.geofabrik.de/north-america/us/california.html). Thus, I set a limit of 105MB (~10GB) for the file size to work within the constraints of my available RAM. Then recursively slice the data until it is an acceptable size. Then run code over all the slices.. really slowly..  
+  
+With all that said, I would recommend exhausting some other avenues before doing what I did.  
+Mainly, if you're working on a subset like this example (bridges and waterways):  
+[Use **osmium tags-filter**]{.underline}, it's 2 orders of magnitude faster (and a lot easier), covered more in part 2.  
+
+If data is still too large after tags-filtering (ie buildings or roads) consider trying the option below:  
+- ~~Using osmnx~~  
+~~Seemed promising reading through the documentation~~ Uses more RAM than pyrosm.  
+- Download more RAM  
+Plugging in an external drive and creating enough swap storage to store the full model. mkswap + swapon + vm.swappiness -> profit?  
+
+Prereq files:  
+- osm.pbf file:  
+I used geofabrik: https://download.geofabrik.de/north-america/us-south.html  
+- region boundaries:  
+In this case I used US state boundaries from the census bureau: https://www.census.gov/geographies/mapping-files/time-series/geo/cartographic-boundary.html  
+
+Prereq file stucture (`tree -d`)  
+.  
+├── processed-slices  
+├── processed-states  
+├── slices  
+└── states  
+./slices/ contains the result of cutting the pbf file into chunks that can fit into ram  
+./states/ contains the shp file for the state boundaries  
+./processed-slices/ contains the data we wanted to extract from the slice  
+./processed-states/ contains the dataset, by the regional boundaries  
+
+
+```{python}
+import folium
+import geopandas as gpd
+import pandas as pd
+import numpy as np
+import pyrosm
+import os
+import warnings
+from folium import plugins
+from pyrosm import OSM, get_data
+
+pd.set_option('display.max_columns', None)
+
+states = gpd.read_file("./states/cb_2024_us_state_5m.shp")
+southstates = ["MD","DE","WV","VA","KY","NC","TN","SC","GA","FL","AL","MS","LA","AR","OK","TX","DC"]
+southshp = states[states.STUSPS.isin(southstates)]
+west, south, east, north = southshp.total_bounds
+slicename = "south-s"
+unwantedfeatures = [
+"motorway_link", "trunk_link", "primary_link", "secondary_link", "tertiary_link", #Link Roads
+"pedestrian", "track", "bus_guideway", "escape", "raceway", "busway", #Special Road Types
+"footway", "bridleway", "steps", "corridor", "path", "via_ferrata", #Paths
+"cycleway", #Cycle
+"sidewalk", "crossing", "traffic_island", #Footway (shouldn't show up in highway, but ocassionally tagged incorrectly)
+"proposed", #Lifecycle
+"platform", "rest_area", "services" #Other highway features ("services" differs a lot from "service")
+]
+
+mainpbf = "./us-south-251221.osm.pbf"
+```
+The above is the imported libraries and parameters. The region boundaries file is used to find the bounds of the pbf file, in this case the US-South region from geofabrik.  
+"unwantedfeatures" is specific to the data I am extracting.  
+```{python}
+sizelimit = 105000000 #105MB
+
+def splitter(filenum, start, end) -> int:
+    _window = [start]
+    for i in [0,1]:
+        _window.append((start+(abs((start-end+180)%360-180)/2*(i+1))+180)%360-180)
+        os.system(f"osmium extract -b {round(_window[-2],6)},{south},{round(_window[-1],6)},{north} {mainpbf} -o ./slices/{slicename}{filenum+i}.osm.pbf")
+        if os.path.getsize(f"./slices/{slicename}{filenum+i}.osm.pbf") > sizelimit:
+            os.remove(f"./slices/{slicename}{filenum+i}.osm.pbf")
+            filenum = splitter(filenum+i, _window[-2], _window[-1])
+        print(_window)
+    return filenum+1
+
+splitter(1, west, east)
+```
+The above code slices the map into the chunks smaller than the defined sizelimit. It took 94 min to process the map into 53 slices that are below ~100MB. The code recursively slices the data along longitudinal coordinates. There is probably a better way to do this, but ¯\\\_(ツ)\_/¯.  
+
+A 100~110x multiplier is about right for estimating the memory usage for the driving network  
+real world:  
+100MB -> ~11.5GB    
+
+```{python}
+warnings.filterwarnings('ignore')
+
+wd = os.fsencode("./slices/")
+waterbridges = gpd.GeoDataFrame()
+# waterbridges.to_crs("EPSG:4326", inplace=True)
+filec = len(os.listdir(wd))
+i=1
+for file in os.listdir(wd):
+    filename = os.fsdecode(file)
+    print(str(i)+"/"+str(filec), filename)
+    i+=1
+    tmpmap = OSM("./slices/"+filename)
+    # tmpbridge = tmpmap.get_data_by_custom_criteria(osm_keys_to_keep="bridge", custom_filter={"bridge":["yes"], 
+    #                                     "highway":["trunk", "primary", "secondary", "tertiary", "unclassified", "residential", "service"]}, filter_type="keep")
+    tmpbridge = tmpmap.get_network("driving")
+    tmpbridge = tmpbridge[~tmpbridge.highway.isnull()]
+    tmpbridge = tmpbridge[tmpbridge.bridge=="yes"]
+    tmpbridge = tmpbridge[tmpbridge.osm_type!="node"]
+    tmpbridge = tmpbridge[~tmpbridge.highway.isin(unwantedfeatures)]
+    tmpbridge["geometry"] = tmpbridge["geometry"].apply(lambda x: x.exterior if x.geom_type=="Polygon" else x)
+    tmpbridge.to_crs("EPSG:4326", inplace=True)
+
+    tmpwater = tmpmap.get_data_by_custom_criteria(osm_keys_to_keep="waterway",custom_filter={"waterway":["river"]} , filter_type="keep")
+    tmpwater = tmpwater[tmpwater.osm_type!="node"]
+    
+    tmpwaterbridge = tmpbridge[tmpbridge["id"].isin(gpd.overlay(tmpbridge, tmpwater, keep_geom_type=False).id_1)]
+    tmpwaterbridge.to_file(f"./processed-slices/{filename.split()[0]}.gpkg", driver="GPKG")
+    waterbridges = pd.concat([waterbridges, tmpwaterbridge], ignore_index=True)
+    
+```
+The above cycles through the data loading in the sections and extracting the data. It is application specific, and also painfully slow.  
+Had to switch from "get_data_from_custom_criteria" to "get_network" for the bridge data due to an error preventing the data from being loaded into memory (No such error with waterways). Using "get_network" it is loading in more data and is noticeably slower (something like 2x slower), but it worked so ¯\\\_(ツ)\_/¯ . Total run time of 197 min to process the 53 slices of the original 3.7 GB file.  
+All thats left is to save the finished gdf, or combine the processed slices if there were errors during processing. The data can also be easily split into respective region boundaries.   
+```{python}
+waterbridges.drop_duplicates(inplace=True, ignore_index=True)
+waterbridges.to_file("./waterbridges.gpkg", driver="GPKG")
+```
+
+```{python}
+for st in southstates:
+    gpd.overlay(waterbridges,southshp[southshp.STUSPS==st]).drop("NAME", axis=1).to_file(f"./processed-states/{st}.gpkg", driver="GPKG")
+    
+```
+

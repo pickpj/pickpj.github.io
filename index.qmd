@@ -1,4 +1,25 @@
 ---
 title: ""
+format: 
+  html:
+    theme: darkly
+    include-in-header:
+      - text: |
+          <style>
+          button { padding: 10px 20px; background-color: #2c2c2c; color: white; border: none; cursor: pointer; border-radius: 8%;}
+          button:hover { background-color: #8a8a8a; }
+          </style>
 ---
-A website to showcase some stuff ¯\\\_(ツ)\_/¯
+A website to showcase some stuff ¯\\\_(ツ)\_/¯  
+  
+Recent grad looking for work in the Atlanta or NoVA area.  
+
+```{=html}
+    <button onclick="
+        (function() {
+            const s1 = 'c2VjbHVzaXZpdHk='; 
+            const s2 = 'QHByb3Rvbi5tZQ=='; 
+            const targ = atob(s1) + atob(s2);
+            window.location.href = 'mailto:' + targ;
+        })();">Contact (mailto)</button>
+```

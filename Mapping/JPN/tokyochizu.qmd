@@ -1,0 +1,22 @@
+---
+title: "Various datasets over Tokyo"
+---
+Some maps I made for an assignment previously.  
+
+Data is from ~late 2024, and are either from [Tokyo Open Data Portal](https://portal.data.metro.tokyo.lg.jp/) or ekidata.jp  
+
+----------  
+  
+[Zoning Choropleth](https://tokyochizu.github.io/zoning.html)    
+My favourite map, showing the structure in the "gradient" of permissible zoning in Tokyo. ([Japans Federalized Zoning PDF](https://www.mlit.go.jp/common/001050453.pdf#page=5))   
+
+----------  
+
+[Disaster Risk Map](https://tokyochizu.github.io/map1.html)  
+Map showing disaster risk assessment scores throughout Tokyo  
+
+----------  
+  
+[Train Stations](https://tokyochizu.github.io/trainstations.html)  
+Train Station locations  
+

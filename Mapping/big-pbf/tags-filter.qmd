@@ -1,0 +1,61 @@
+---
+title: Tags-filtering a large pbf
+execute: 
+    eval: false
+jupyter: python3
+---
+
+Something I wish I had known earlier is osmium's tags-filter command. The data, once filtered by tags, is much smaller and easier to handle.  
+It should also be possible to do with pyosmium, if you wanted to skip the command line.  
+Look at the man pages for the tags-filter command w/ `osmium help tags-filter` for more examples.  
+The example before was to find (road) bridges that intersected/crossed rivers.  
+
+`osmium tags-filter place-date.osm.pbf -o bridges.osm.pbf w/bridges=yes` 1m8s  
+`osmium tags-filter place-date.osm.pbf -o rivers.osm.pbf w/waterway=river` 51s  
+rest < 30s  
+total time of ~2m30s  
+A lot better than 5 hours w/ more flexibility to iterate and improve data.  
+(With the second iteration I improved the data by attaching bridge sections that were separate, and preserved river tag data)  
+
+```{python}
+import geopandas as gpd
+import pandas as pd
+import shapely as shp
+pd.set_option('display.max_columns', None)
+
+bridges = gpd.read_file("bridges.osm.pbf", layer="lines")
+rivers = gpd.read_file("rivers.osm.pbf", layer="lines")
+
+bridges = bridges[bridges.railway.isna()]
+
+roads = ["motorway","trunk","primary","secondary","tertiary","unclassified","residential","service"]
+# link_roads = ["motorway_link","trunk_link","primary_link","secondary_link","tertiary_link"]
+# bridges = bridges[bridges["highway"].isin(roads + link_roads)]
+bridges = bridges[bridges["highway"].isin(roads)]
+
+intersects = bridges.sjoin(linklessbridges, how="left", predicate="touches")
+intersects = intersects[intersects.osm_id_left!=intersects.osm_id_right]
+intersects = intersects[~intersects.osm_id_right.isna()]
+intersects = intersects.drop_duplicates(subset=["geometry"])
+intersects = intersects.merge(bridges[["osm_id", "geometry"]], how="left", left_on="osm_id_right", right_on="osm_id")
+intersects["combinedgeom"] = intersects.apply(lambda row: shp.ops.linemerge(shp.geometry.MultiLineString([row.geometry_x, row.geometry_y])), axis=1)
+
+newbridges = bridges.merge(intersects[["osm_id_left", "combinedgeom"]], how="left", left_on="osm_id", right_on="osm_id_left")
+mask = newbridges["combinedgeom"].notna()
+newbridges.loc[mask, "geometry"] = newbridges.loc[mask, "combinedgeom"]
+newbridges = newbridges.drop_duplicates(subset="geometry")
+
+waterbridgepoints = gpd.overlay(newbridges, rivers, keep_geom_type=False)
+waterbridgepoints = waterbridgepoints.drop_duplicates(subset="geometry")
+waterbridgepoints = waterbridgepoints.drop_duplicates(subset="osm_id_1")
+
+waterbridges = waterbridgepoints.rename_geometry("point_geom")
+waterbridges = waterbridges.merge(newbridges[["osm_id", "geometry"]], left_on="osm_id_1", right_on="osm_id", how="left")
+waterbridges = waterbridges.set_geometry("geometry")
+```
+
+```{python}
+waterbridges = waterbridges.drop(["combinedgeom", "osm_id_left", "point_geom"],axis=1)
+waterbridges.to_file("waterbridges.gpkg")
+```
+

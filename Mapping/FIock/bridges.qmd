@@ -1,0 +1,56 @@
+---
+title: "Bridges"
+format:
+    html:
+        code-fold: true
+jupyter: python3
+---
+Looking through ALPR data, I noticed how some ALPR cameras were not positioned in the ***typical areas***. Rather, they were installed near the intersection of roads and rivers. These bridges represent chokepoints in our road network that are harder to avoid (bridges are not often constructed). This [wikipedia page](https://en.wikipedia.org/wiki/List_of_crossings_of_the_Lower_Mississippi_River) lists all the Mississippi river crossings from the Ohio river to the Gulf of Mexico. Excluding ferries there are only 18 crossings over an area of ~800km / ~500miles. Meaning it would take a trivial number of ALPRs to observe all of the interstate traffic. Mississippi aside, the same story is playing out on a smaller scale along other rivers as well.  
+
+::: {.column-margin}
+What are ***Typical areas***?:  
+In vicinity of off ramps of large roads  
+`nwr[highway=primary_link]({{bbox}});`  
+`nwr[highway=secondary_link]({{bbox}});`  
+`nwr[highway=motorway_link]({{bbox}});`  
+  
+Hospitals  
+`nwr[amenity=hospital]({{bbox}});`  
+`nwr[healthcare=hospital]({{bbox}});`  
+  
+Parks  
+`nwr[leisure=park]({{bbox}});`  
+  
+Shopping Malls  
+`nwr[shop=mall]({{bbox}});`  
+  
+Sports Pitch   
+`nwr[leisure=pitch]({{bbox}});`  
+  
+Warehouses  
+Police Departments / Correctional Facility  
+Lowes/Home Depot  
+Higher density housing (HOA areas/new builds)  
+:::
+
+The following cameras were detected within 100 meters of a bridge that crossed over a river.  
+
+::: {.panel-tabset}
+## Map
+```{python}
+import pandas as pd
+import geopandas as gpd
+import folium
+import itables
+from datetime import datetime
+bridgegdf = gpd.read_file("../../../osmetc/bridges.gpkg")
+bridgegdf.explore(style_kwds={"opacity":0.8,"weight":6})
+```
+## Table
+```{python}
+itables.show(pd.DataFrame(bridgegdf.drop(["geometry"], axis=1)), maxBytes=200000, allow_html=True)
+```  
+:::
+
+Started with 2,142 datapoints on 2026-05-05.
+Last updated: `{python} datetime.today().strftime("%Y-%m-%d")`
