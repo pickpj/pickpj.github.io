@@ -7,6 +7,8 @@ jupyter: python3
 ---
 The following cameras lacked direction data in either "direction" or "camera:direction" tags. Not all datapoints are necessarily wrong, but could likely be improved.  
 
+:::{.column-page-right}  
+
 ::: {.panel-tabset}
 ## Map
 ```{python}
@@ -15,14 +17,40 @@ import geopandas as gpd
 import folium
 import itables
 from datetime import datetime
+from folium.plugins import MarkerCluster
+
+m = folium.Map([37, -100], zoom_start=4)
+
 nodirgdf = gpd.read_file("../../../osmbadcams/nodirection.gpkg")
-nodirgdf.explore(style_kwds={"opacity":0.8,"weight":6})
+nodirgdf = nodirgdf.rename({"STUSPS":"State", "NAME":"State Full","osmid":"ALPR ID"},axis=1)
+marker_cluster = MarkerCluster(disableClusteringAtZoom=10).add_to(m)
+
+for idx, row in nodirgdf.iterrows():
+    popup_html = f"<style> th\
+                {{border:1px solid black;\}}</style>\
+                <table><tr>\
+                    <th>State: </th>\
+                    <th>{row['State Full']}</th>\
+                </tr><tr>\
+                    <th>ALPR ID: </th>\
+                    <th>{row['ALPR ID']}</th>\
+                </tr><tr>\
+                    <th text-align='center' colspan='2'>{row['url']}</th>\
+                </tr></table>"
+    folium.Circle(
+        location=[row.geometry.y, row.geometry.x], 
+        popup=popup_html, fill=True, radius=30, weight=9,color="#9E2F02",opacity=0.8,fillOpacity=0.5
+    ).add_to(marker_cluster)
+
+m
 ```
 ## Table
 ```{python}
-itables.show(pd.DataFrame(nodirgdf.drop(["geometry","camindex"], axis=1)),  maxBytes=200000, allow_html=True)
+itables.show(pd.DataFrame(nodirgdf.drop(["geometry","camindex"], axis=1)[["State Full", "State", "ALPR ID", "url"]]),  maxBytes=200000, allow_html=True)
 ```
-:::
+:::  
+
+:::  
 
 Started with 1,125 datapoints on 2026-05-05  
 Last updated: `{python} datetime.today().strftime("%Y-%m-%d")`

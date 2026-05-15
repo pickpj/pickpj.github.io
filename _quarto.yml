@@ -14,6 +14,8 @@ website:
             contents:
             - section: "FIock"
               contents:
+              - href: Mapping/FIock/bigbrouter.qmd
+                text: Big B-router
               - href: Mapping/FIock/bridges.qmd
                 text: Bridges
               - href: Mapping/FIock/diff.qmd
@@ -40,19 +42,19 @@ website:
                 contents:
                   - href: MLDL/fastai.qmd
                     text: Image Classification
-                  # - href: MLDL/.qmd
-                  #   text: 
           - section: "Keyboard"
             contents:
               - href: Other/evmorse.qmd
                 text: ev-morse 
               - href: Other/keycodes.qmd
                 text: keycode list
-          - section: "Other"
-            contents:
-              - href: Other/reusing.qmd
-                text: ♻️ Reusing Electronics
+          # - section: "Other"
+          #   contents:
+          #     - href: Other/reusing.qmd
+          #       text: ♻️ Reusing Electronics
 format:
     html:
-        theme: darkly
+        title-prefix: pickpj
+        lightbox: true
+        theme: morph-dark.scss
         toc: true

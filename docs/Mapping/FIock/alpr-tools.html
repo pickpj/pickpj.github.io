@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>ALPR tools</title>
+<title>ALPR tools – pickpj</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -40,6 +40,9 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap-7174822462e2b99b0159ccfb018f1074.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -195,7 +198,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Mapping</li><li class="breadcrumb-item"><a href="../../Mapping/FIock/bridges.html">FIock</a></li><li class="breadcrumb-item"><a href="../../Mapping/FIock/alpr-tools.html">ALPR Tools</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Mapping</li><li class="breadcrumb-item"><a href="../../Mapping/FIock/bigbrouter.html">FIock</a></li><li class="breadcrumb-item"><a href="../../Mapping/FIock/alpr-tools.html">ALPR Tools</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -225,6 +228,12 @@ ul.task-list li input[type="checkbox"] {
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Mapping/FIock/bigbrouter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Big B-router</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Mapping/FIock/bridges.html" class="sidebar-item-text sidebar-link">
@@ -344,23 +353,6 @@ ul.task-list li input[type="checkbox"] {
 </li>
       </ul>
   </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
- <span class="menu-text">Other</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../Other/reusing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">♻️ Reusing Electronics</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
     </ul>
     </div>
 </nav>
@@ -372,7 +364,7 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#big-b-router" id="toc-big-b-router" class="nav-link active" data-scroll-target="#big-b-router">★★★★★ Big B-router</a></li>
-  <li><a href="#osmiumupdate.py-wip" id="toc-osmiumupdate.py-wip" class="nav-link" data-scroll-target="#osmiumupdate.py-wip">★★★ osmiumupdate.py WiP</a></li>
+  <li><a href="#osmiumupdate.py" id="toc-osmiumupdate.py" class="nav-link" data-scroll-target="#osmiumupdate.py">★★★ osmiumupdate.py</a></li>
   <li><a href="#pbf-prep" id="toc-pbf-prep" class="nav-link" data-scroll-target="#pbf-prep">★★ PBF-Prep</a></li>
   <li><a href="#map-marker" id="toc-map-marker" class="nav-link" data-scroll-target="#map-marker">★★ Map-Marker</a></li>
   <li><a href="#other-ways-to-help" id="toc-other-ways-to-help" class="nav-link" data-scroll-target="#other-ways-to-help">Other ways to help</a></li>
@@ -382,7 +374,7 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Mapping</li><li class="breadcrumb-item"><a href="../../Mapping/FIock/bridges.html">FIock</a></li><li class="breadcrumb-item"><a href="../../Mapping/FIock/alpr-tools.html">ALPR Tools</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Mapping</li><li class="breadcrumb-item"><a href="../../Mapping/FIock/bigbrouter.html">FIock</a></li><li class="breadcrumb-item"><a href="../../Mapping/FIock/alpr-tools.html">ALPR Tools</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">ALPR tools</h1>
 </div>
@@ -401,7 +393,7 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><img src="./extra-alpr-tools/doorstep2.png" class="img-fluid"></p>
+<p><a href="./extra-alpr-tools/doorstep.jpeg" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="./extra-alpr-tools/doorstep.jpeg" class="img-fluid"></a></p>
 
 <!-- <p style="font-size:35px;transform:scaleX(1.5);">THIS IS <span class="redacted">NOT</span> NORMAL</p> -->
 <div class="no-row-height column-margin column-container"><div class="">
@@ -431,7 +423,7 @@ ul.task-list li input[type="checkbox"] {
 </div>
 
 <div class="no-row-height column-margin column-container"><div class="">
-<p><img src="./extra-alpr-tools/flockbirb.png" class="img-fluid"></p>
+<p><a href="./extra-alpr-tools/flockbirb.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="./extra-alpr-tools/flockbirb.png" class="img-fluid"></a></p>
 </div></div><hr>
 <div class="justify">
 <p style="font-size:35px">THE <span class="redacted">GOVERNMENT BIRDS</span>
@@ -449,23 +441,23 @@ REQUIRE A PLACE TO RECHARGE
 I made some tools you might find useful to counter the surveillance state.</p>
 <p>★’s demarcate usefulness (my opinion ; scale of 5)</p>
 <section id="big-b-router" class="level3">
-<h3 class="anchored" data-anchor-id="big-b-router"><a href="https://github.com/pickpj/Big-B-Router">★★★★★ Big B-router</a></h3>
+<h3 class="anchored" data-anchor-id="big-b-router">★★★★★ <a href="https://github.com/pickpj/Big-B-Router">Big B-router</a></h3>
 <p>Maybe you don’t love Big Brother, but maybe you can love Big B-router. Follow the jupyter notebook to edit a pbf file to remove/edit road geometries that are in the sightline of ALPR’s. Then with OsmAndMapCreator we convert the pbf file into an obf file. Upload the OBF file into OsmAnd (on a phone) for an offline map that can navigate around the ALPR’s found in OpenStreetMap data. (Works with AndroidAuto/Carplay in the paid version)<br>
 This has been really helpful not only to avoid ALPRs, but is the main way I use to identify ALPRs that aren’t recorded in OSM data. (It’s also interesting to go off the beaten path sometimes)</p>
 <hr>
 </section>
-<section id="osmiumupdate.py-wip" class="level3">
-<h3 class="anchored" data-anchor-id="osmiumupdate.py-wip">★★★ <a href="">osmiumupdate.py</a> WiP</h3>
-<p>I didn’t see many options for automating map updates (didn’t really look hard). So this is a simple python script to download and apply change files. Downloads from geofabrik, uses wget &amp; osmium, and sends notifications on linux through <code>echo text &gt; /dev/pts/0</code>.</p>
+<section id="osmiumupdate.py" class="level3">
+<h3 class="anchored" data-anchor-id="osmiumupdate.py">★★★ <a href="https://github.com/pickpj/gis-extra/blob/main/osmiumupdate/osmiumupdate.py">osmiumupdate.py</a></h3>
+<p>A simple python script to download and apply change files. Downloads from geofabrik, uses wget &amp; osmium, and sends notifications on linux through <code>echo text &gt; /dev/pts/0</code>. The first stop in automating map updates.</p>
 <hr>
 </section>
 <section id="pbf-prep" class="level3 page-columns page-full">
-<h3 class="anchored" data-anchor-id="pbf-prep"><a href="https://github.com/pickpj/Big-B-Router/blob/main/pbf-prep.ipynb">★★ PBF-Prep</a></h3>
+<h3 class="anchored" data-anchor-id="pbf-prep">★★ <a href="https://github.com/pickpj/Big-B-Router/blob/main/pbf-prep.ipynb">PBF-Prep</a></h3>
 <p>Select a bounding box on the map and other stuff to prep data for use in the Big B-router ipynb. Useful as a starting point for other data projects using osm data.</p>
 <hr>
 
 <div class="no-row-height column-margin column-container"><div class="">
-<p><img src="./extra-alpr-tools/donotwatchthisdrive.png" class="img-fluid"></p>
+<p><a href="./extra-alpr-tools/donotwatchthisdrive.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="./extra-alpr-tools/donotwatchthisdrive.png" class="img-fluid"></a></p>
 </div><div class="">
 <!-- ```{=html}
 <div  class="container">
@@ -477,7 +469,7 @@ This has been really helpful not only to avoid ALPRs, but is the main way I use 
 </div></div>
 </section>
 <section id="map-marker" class="level3">
-<h3 class="anchored" data-anchor-id="map-marker">★★ Map-Marker</h3>
+<h3 class="anchored" data-anchor-id="map-marker">★★ <a href="https://github.com/pickpj/gis-extra/tree/main/map-marking">Map-Marker</a></h3>
 <p>An interactive map tool to create/edit geodataframes. The shapes are paired with editable metadata. The intention was so one can systematically go through streetview imagery and not end up redoing areas. Or for collecting/identifying areas with out-dated imagery to review/survey later. Fairly niche. Running iD editor locally might be a better option.</p>
 <hr>
 </section>
@@ -925,6 +917,38 @@ This has been really helpful not only to avoid ALPRs, but is the main way I use 
       });
   }
 </script>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 

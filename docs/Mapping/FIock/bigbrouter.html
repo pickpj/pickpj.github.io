@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.33">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Detailed Guide for Big B-router – pickpj</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-bc185b5c5bdbcb35c2eb49d8a876ef70.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-75dd22bf909c3df663be93f145846527.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<script src="../../site_libs/quarto-contrib/videojs/video.min.js"></script>
+<link href="../../site_libs/quarto-contrib/videojs/video-js.css" rel="stylesheet">
+<script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">pickpj</span>
+    </a>
+  </div>
+        <div class="quarto-navbar-tools tools-end">
+    <a href="https://www.github.com/pickpj" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+</div>
+          <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Mapping</li><li class="breadcrumb-item"><a href="../../Mapping/FIock/bigbrouter.html">FIock</a></li><li class="breadcrumb-item"><a href="../../Mapping/FIock/bigbrouter.html">Big B-router</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Mapping</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">FIock</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Mapping/FIock/bigbrouter.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Big B-router</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Mapping/FIock/bridges.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bridges</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Mapping/FIock/diff.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">BC - No Road Overlap</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Mapping/FIock/directionless.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">BC - No Direction Tag</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Mapping/FIock/alpr-tools.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ALPR Tools</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Working w/ big maps</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Mapping/big-pbf/pbf-splitter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chunking a large pbf (incorrectly)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Mapping/big-pbf/tags-filter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tags-filtering a large pbf</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+ <span class="menu-text">Japan</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Mapping/JPN/tokyochizu.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Various maps</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">ML/DL</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
+ <span class="menu-text">Image</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../MLDL/fastai.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Image Classification</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text">Keyboard</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Other/evmorse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ev-morse</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Other/keycodes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">keycode list</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Mapping</li><li class="breadcrumb-item"><a href="../../Mapping/FIock/bigbrouter.html">FIock</a></li><li class="breadcrumb-item"><a href="../../Mapping/FIock/bigbrouter.html">Big B-router</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Detailed Guide for Big B-router</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>A (step by step) guide to <a href="https://github.com/pickpj/Big-B-Router">Big B-router</a></p>
+<hr>
+<p><a href="extra-bigbrouter/nav-example.jpeg" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="extra-bigbrouter/nav-example.jpeg" class="img-fluid"></a></p>
+<hr>
+<p>Prereqs:<br>
+1. Conda to manage python environment, I used <a href="https://aur.archlinux.org/packages/miniconda3">miniconda3, AUR link</a><br>
+2. Some IDE to run python notebooks (using said conda env), I used vscodium with jupyter and jupyter notebook renderer extensions<br>
+3. Java to run osmandmapcreator.jar<br>
+4?. Osmium tool should work through conda, if not you may have to manually run the commands in pbf-prep , <a href="https://aur.archlinux.org/packages/osmium-tool">AUR link</a>, <a href="https://anaconda.org/channels/conda-forge/packages/osmium-tool/overview">conda-forge</a></p>
+<hr>
+<p>We start by creating the python environment, under the name <code>gis-py312</code></p>
+<p><code>conda create -n gis-py312 -c conda-forge geopandas folium pyrosm pyosmium notebook ipyleaflet osmium-tool</code></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Full package list:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<pre>  _openmp_mutex      conda-forge/linux-64::_openmp_mutex-4.5-20_gnu  
+  _python_abi3_supp~ conda-forge/noarch::_python_abi3_support-1.0-hd8ed1ab_2  
+  anyio              conda-forge/noarch::anyio-4.13.0-pyhcf101f3_0  
+  argon2-cffi        conda-forge/noarch::argon2-cffi-25.1.0-pyhd8ed1ab_0  
+  argon2-cffi-bindi~ conda-forge/linux-64::argon2-cffi-bindings-25.1.0-py312h4c3975b_2   
+  arrow              conda-forge/noarch::arrow-1.4.0-pyhcf101f3_0   
+  asttokens          conda-forge/noarch::asttokens-3.0.1-pyhd8ed1ab_0   
+  async-lru          conda-forge/noarch::async-lru-2.3.0-pyhcf101f3_0   
+  attrs              conda-forge/noarch::attrs-26.1.0-pyhcf101f3_0   
+  babel              conda-forge/noarch::babel-2.18.0-pyhcf101f3_1   
+  backports.zstd     conda-forge/linux-64::backports.zstd-1.4.0-py312h90b7ffd_0   
+  beautifulsoup4     conda-forge/noarch::beautifulsoup4-4.14.3-pyha770c72_0   
+  bleach             conda-forge/noarch::bleach-6.3.0-pyhcf101f3_1   
+  bleach-with-css    conda-forge/noarch::bleach-with-css-6.3.0-hbca2aae_1   
+  blosc              conda-forge/linux-64::blosc-1.21.6-he440d0b_1   
+  branca             conda-forge/noarch::branca-0.8.2-pyhd8ed1ab_0   
+  brotli             conda-forge/linux-64::brotli-1.2.0-hed03a55_1   
+  brotli-bin         conda-forge/linux-64::brotli-bin-1.2.0-hb03c661_1   
+  brotli-python      conda-forge/linux-64::brotli-python-1.2.0-py312hdb49522_1   
+  bzip2              conda-forge/linux-64::bzip2-1.0.8-hda65f42_9   
+  c-ares             conda-forge/linux-64::c-ares-1.34.6-hb03c661_0   
+  ca-certificates    conda-forge/noarch::ca-certificates-2026.4.22-hbd8a1cb_0   
+  cached-property    conda-forge/noarch::cached-property-1.5.2-hd8ed1ab_1   
+  cached_property    conda-forge/noarch::cached_property-1.5.2-pyha770c72_1   
+  certifi            conda-forge/noarch::certifi-2026.4.22-pyhd8ed1ab_0   
+  cffi               conda-forge/linux-64::cffi-2.0.0-py312h460c074_1   
+  charset-normalizer conda-forge/noarch::charset-normalizer-3.4.7-pyhd8ed1ab_0   
+  comm               conda-forge/noarch::comm-0.2.3-pyhe01879c_0   
+  contourpy          conda-forge/linux-64::contourpy-1.3.3-py312h0a2e395_4   
+  cpython            conda-forge/noarch::cpython-3.12.13-py312hd8ed1ab_0   
+  cycler             conda-forge/noarch::cycler-0.12.1-pyhcf101f3_2   
+  cykhash            conda-forge/linux-64::cykhash-2.0.1-py312h1289d80_3   
+  cython             conda-forge/linux-64::cython-3.2.4-py312h68e6be4_0   
+  debugpy            conda-forge/linux-64::debugpy-1.8.20-py312h8285ef7_0   
+  decorator          conda-forge/noarch::decorator-5.2.1-pyhd8ed1ab_0   
+  defusedxml         conda-forge/noarch::defusedxml-0.7.1-pyhd8ed1ab_0   
+  exceptiongroup     conda-forge/noarch::exceptiongroup-1.3.1-pyhd8ed1ab_0   
+  executing          conda-forge/noarch::executing-2.2.1-pyhd8ed1ab_0   
+  folium             conda-forge/noarch::folium-0.20.0-pyhd8ed1ab_0   
+  fonttools          conda-forge/linux-64::fonttools-4.62.1-py312h8a5da7c_0   
+  fqdn               conda-forge/noarch::fqdn-1.5.1-pyhd8ed1ab_1   
+  freetype           conda-forge/linux-64::freetype-2.14.3-ha770c72_0   
+  freexl             conda-forge/linux-64::freexl-2.0.0-h9dce30a_2   
+  geopandas          conda-forge/noarch::geopandas-1.1.3-pyhd8ed1ab_0   
+  geopandas-base     conda-forge/noarch::geopandas-base-1.1.3-pyha770c72_0   
+  geos               conda-forge/linux-64::geos-3.14.1-h480dda7_0   
+  giflib             conda-forge/linux-64::giflib-5.2.2-hd590300_0   
+  h11                conda-forge/noarch::h11-0.16.0-pyhcf101f3_1   
+  h2                 conda-forge/noarch::h2-4.3.0-pyhcf101f3_0   
+  hpack              conda-forge/noarch::hpack-4.1.0-pyhd8ed1ab_0   
+  httpcore           conda-forge/noarch::httpcore-1.0.9-pyh29332c3_0   
+  httpx              conda-forge/noarch::httpx-0.28.1-pyhd8ed1ab_0   
+  hyperframe         conda-forge/noarch::hyperframe-6.1.0-pyhd8ed1ab_0   
+  icu                conda-forge/linux-64::icu-78.3-h33c6efd_0   
+  idna               conda-forge/noarch::idna-3.13-pyhcf101f3_0   
+  importlib-metadata conda-forge/noarch::importlib-metadata-8.8.0-pyhcf101f3_0   
+  importlib_resourc~ conda-forge/noarch::importlib_resources-7.1.0-pyhd8ed1ab_0   
+  ipykernel          conda-forge/noarch::ipykernel-7.2.0-pyha191276_1   
+  ipyleaflet         conda-forge/noarch::ipyleaflet-0.20.0-pyhd8ed1ab_0   
+  ipython            conda-forge/noarch::ipython-9.13.0-pyh53cf698_0   
+  ipython_pygments_~ conda-forge/noarch::ipython_pygments_lexers-1.1.1-pyhd8ed1ab_0   
+  ipywidgets         conda-forge/noarch::ipywidgets-8.1.8-pyhd8ed1ab_0   
+  isoduration        conda-forge/noarch::isoduration-20.11.0-pyhd8ed1ab_1   
+  jedi               conda-forge/noarch::jedi-0.19.2-pyhd8ed1ab_1   
+  jinja2             conda-forge/noarch::jinja2-3.1.6-pyhcf101f3_1   
+  joblib             conda-forge/noarch::joblib-1.5.3-pyhd8ed1ab_0   
+  json-c             conda-forge/linux-64::json-c-0.18-h6688a6e_0   
+  json5              conda-forge/noarch::json5-0.14.0-pyhd8ed1ab_0   
+  jsonpointer        conda-forge/noarch::jsonpointer-3.1.1-pyhcf101f3_0   
+  jsonschema         conda-forge/noarch::jsonschema-4.26.0-pyhcf101f3_0   
+  jsonschema-specif~ conda-forge/noarch::jsonschema-specifications-2025.9.1-pyhcf101f3_0   
+  jsonschema-with-f~ conda-forge/noarch::jsonschema-with-format-nongpl-4.26.0-hcf101f3_0   
+  jupyter-lsp        conda-forge/noarch::jupyter-lsp-2.3.1-pyhcf101f3_0   
+  jupyter_client     conda-forge/noarch::jupyter_client-8.8.0-pyhcf101f3_0   
+  jupyter_core       conda-forge/noarch::jupyter_core-5.9.1-pyhc90fa1f_0   
+  jupyter_events     conda-forge/noarch::jupyter_events-0.12.1-pyhcf101f3_0   
+  jupyter_leaflet    conda-forge/noarch::jupyter_leaflet-0.20.0-pyhd8ed1ab_0   
+  jupyter_server     conda-forge/noarch::jupyter_server-2.18.2-pyhcf101f3_0   
+  jupyter_server_te~ conda-forge/noarch::jupyter_server_terminals-0.5.4-pyhcf101f3_0   
+  jupyterlab         conda-forge/noarch::jupyterlab-4.5.7-pyhd8ed1ab_0   
+  jupyterlab_pygmen~ conda-forge/noarch::jupyterlab_pygments-0.3.0-pyhd8ed1ab_2   
+  jupyterlab_server  conda-forge/noarch::jupyterlab_server-2.28.0-pyhcf101f3_0   
+  jupyterlab_widgets conda-forge/noarch::jupyterlab_widgets-3.0.16-pyhcf101f3_1   
+  keyutils           conda-forge/linux-64::keyutils-1.6.3-hb9d3cd8_0   
+  kiwisolver         conda-forge/linux-64::kiwisolver-1.5.0-py312h0a2e395_0   
+  krb5               conda-forge/linux-64::krb5-1.22.2-ha1258a1_0   
+  lark               conda-forge/noarch::lark-1.3.1-pyhd8ed1ab_0   
+  lcms2              conda-forge/linux-64::lcms2-2.19.1-h0c24ade_0   
+  ld_impl_linux-64   conda-forge/linux-64::ld_impl_linux-64-2.45.1-default_hbd61a6d_102   
+  lerc               conda-forge/linux-64::lerc-4.1.0-hdb68285_0   
+  libarchive         conda-forge/linux-64::libarchive-3.8.7-gpl_hc2c16d8_100   
+  libblas            conda-forge/linux-64::libblas-3.11.0-6_h4a7cf45_openblas   
+  libbrotlicommon    conda-forge/linux-64::libbrotlicommon-1.2.0-hb03c661_1   
+  libbrotlidec       conda-forge/linux-64::libbrotlidec-1.2.0-hb03c661_1   
+  libbrotlienc       conda-forge/linux-64::libbrotlienc-1.2.0-hb03c661_1   
+  libcblas           conda-forge/linux-64::libcblas-3.11.0-6_h0358290_openblas   
+  libcurl            conda-forge/linux-64::libcurl-8.20.0-hcf29cc6_0   
+  libdeflate         conda-forge/linux-64::libdeflate-1.25-h17f619e_0   
+  libedit            conda-forge/linux-64::libedit-3.1.20250104-pl5321h7949ede_0   
+  libev              conda-forge/linux-64::libev-4.33-hd590300_2   
+  libexpat           conda-forge/linux-64::libexpat-2.8.0-hecca717_0   
+  libffi             conda-forge/linux-64::libffi-3.5.2-h3435931_0   
+  libfreetype        conda-forge/linux-64::libfreetype-2.14.3-ha770c72_0   
+  libfreetype6       conda-forge/linux-64::libfreetype6-2.14.3-h73754d4_0   
+  libgcc             conda-forge/linux-64::libgcc-15.2.0-he0feb66_19   
+  libgcc-ng          conda-forge/linux-64::libgcc-ng-15.2.0-h69a702a_19   
+  libgdal-core       conda-forge/linux-64::libgdal-core-3.13.0-h08c5dba_0   
+  libgfortran        conda-forge/linux-64::libgfortran-15.2.0-h69a702a_19   
+  libgfortran5       conda-forge/linux-64::libgfortran5-15.2.0-h68bc16d_19   
+  libgomp            conda-forge/linux-64::libgomp-15.2.0-he0feb66_19   
+  libhwy             conda-forge/linux-64::libhwy-1.4.0-h10be129_0   
+  libiconv           conda-forge/linux-64::libiconv-1.18-h3b78370_2   
+  libjpeg-turbo      conda-forge/linux-64::libjpeg-turbo-3.1.4.1-hb03c661_0   
+  libjxl             conda-forge/linux-64::libjxl-0.11.2-h174a0a3_1   
+  libkml             conda-forge/linux-64::libkml-1.3.0-haa4a5bd_1023   
+  liblapack          conda-forge/linux-64::liblapack-3.11.0-6_h47877c9_openblas   
+  liblzma            conda-forge/linux-64::liblzma-5.8.3-hb03c661_0   
+  libnghttp2         conda-forge/linux-64::libnghttp2-1.68.1-h877daf1_0   
+  libnsl             conda-forge/linux-64::libnsl-2.0.1-hb9d3cd8_1   
+  libopenblas        conda-forge/linux-64::libopenblas-0.3.32-pthreads_h94d23a6_0   
+  libpng             conda-forge/linux-64::libpng-1.6.58-h421ea60_0   
+  librttopo          conda-forge/linux-64::librttopo-1.1.0-h46dd2a8_20   
+  libsodium          conda-forge/linux-64::libsodium-1.0.21-h280c20c_3   
+  libspatialite      conda-forge/linux-64::libspatialite-5.1.0-gpl_hab3fe16_120   
+  libsqlite          conda-forge/linux-64::libsqlite-3.53.1-h0c1763c_0   
+  libssh2            conda-forge/linux-64::libssh2-1.11.1-hcf80075_0   
+  libstdcxx          conda-forge/linux-64::libstdcxx-15.2.0-h934c35e_19   
+  libstdcxx-ng       conda-forge/linux-64::libstdcxx-ng-15.2.0-hdf11a46_19   
+  libtiff            conda-forge/linux-64::libtiff-4.7.1-h9d88235_1   
+  libuuid            conda-forge/linux-64::libuuid-2.42-h5347b49_0   
+  libwebp-base       conda-forge/linux-64::libwebp-base-1.6.0-hd42ef1d_0   
+  libxcb             conda-forge/linux-64::libxcb-1.17.0-h8a09558_0   
+  libxcrypt          conda-forge/linux-64::libxcrypt-4.4.36-hd590300_1   
+  libxml2            conda-forge/linux-64::libxml2-2.15.3-h49c6c72_0   
+  libxml2-16         conda-forge/linux-64::libxml2-16-2.15.3-hca6bf5a_0   
+  libxml2-devel      conda-forge/linux-64::libxml2-devel-2.15.3-h49c6c72_0   
+  libzlib            conda-forge/linux-64::libzlib-1.3.2-h25fd6f3_2   
+  lz4-c              conda-forge/linux-64::lz4-c-1.10.0-h5888daf_1   
+  lzo                conda-forge/linux-64::lzo-2.10-h280c20c_1002   
+  mapclassify        conda-forge/noarch::mapclassify-2.10.0-pyhd8ed1ab_1   
+  markupsafe         conda-forge/linux-64::markupsafe-3.0.3-py312h8a5da7c_1   
+  matplotlib-base    conda-forge/linux-64::matplotlib-base-3.10.9-py312he3d6523_0   
+  matplotlib-inline  conda-forge/noarch::matplotlib-inline-0.2.2-pyhd8ed1ab_0   
+  minizip            conda-forge/linux-64::minizip-4.2.1-hb71707f_0   
+  mistune            conda-forge/noarch::mistune-3.2.1-pyhcf101f3_0   
+  munkres            conda-forge/noarch::munkres-1.1.4-pyhd8ed1ab_1   
+  muparser           conda-forge/linux-64::muparser-2.3.5-h5888daf_0   
+  nbclient           conda-forge/noarch::nbclient-0.10.4-pyhd8ed1ab_0   
+  nbconvert-core     conda-forge/noarch::nbconvert-core-7.17.1-pyhcf101f3_0   
+  nbformat           conda-forge/noarch::nbformat-5.10.4-pyhd8ed1ab_1   
+  ncurses            conda-forge/linux-64::ncurses-6.6-hdb14827_0   
+  nest-asyncio       conda-forge/noarch::nest-asyncio-1.6.0-pyhd8ed1ab_1   
+  networkx           conda-forge/noarch::networkx-3.6.1-pyhcf101f3_0   
+  notebook           conda-forge/noarch::notebook-7.5.6-pyhcf101f3_1   
+  notebook-shim      conda-forge/noarch::notebook-shim-0.2.4-pyhd8ed1ab_1   
+  numpy              conda-forge/linux-64::numpy-2.4.3-py312h33ff503_0   
+  openjpeg           conda-forge/linux-64::openjpeg-2.5.4-h55fea9a_0   
+  openssl            conda-forge/linux-64::openssl-3.6.2-h35e630c_0   
+  overrides          conda-forge/noarch::overrides-7.7.0-pyhd8ed1ab_1   
+  packaging          conda-forge/noarch::packaging-26.2-pyhc364b38_0   
+  pandas             conda-forge/linux-64::pandas-3.0.2-py312h8ecdadd_0   
+  pandocfilters      conda-forge/noarch::pandocfilters-1.5.0-pyhd8ed1ab_0   
+  parso              conda-forge/noarch::parso-0.8.7-pyhcf101f3_0   
+  pcre2              conda-forge/linux-64::pcre2-10.47-haa7fec5_0   
+  pexpect            conda-forge/noarch::pexpect-4.9.0-pyhd8ed1ab_1   
+  pillow             conda-forge/linux-64::pillow-12.2.0-py312h50c33e8_0   
+  platformdirs       conda-forge/noarch::platformdirs-4.9.6-pyhcf101f3_0   
+  proj               conda-forge/linux-64::proj-9.8.1-he0df7b0_0   
+  prometheus_client  conda-forge/noarch::prometheus_client-0.25.0-pyhd8ed1ab_0   
+  prompt-toolkit     conda-forge/noarch::prompt-toolkit-3.0.52-pyha770c72_0   
+  psutil             conda-forge/linux-64::psutil-7.2.2-py312h5253ce2_0   
+  pthread-stubs      conda-forge/linux-64::pthread-stubs-0.4-hb9d3cd8_1002   
+  ptyprocess         conda-forge/noarch::ptyprocess-0.7.0-pyhd8ed1ab_1   
+  pure_eval          conda-forge/noarch::pure_eval-0.2.3-pyhd8ed1ab_1   
+  pycparser          conda-forge/noarch::pycparser-2.22-pyh29332c3_1   
+  pygments           conda-forge/noarch::pygments-2.20.0-pyhd8ed1ab_0   
+  pyogrio            conda-forge/linux-64::pyogrio-0.12.1-py312hdb6ebaa_1   
+  pyosmium           conda-forge/linux-64::pyosmium-4.3.1-py312hb5eef74_0   
+  pyparsing          conda-forge/noarch::pyparsing-3.3.2-pyhcf101f3_0   
+  pyproj             conda-forge/linux-64::pyproj-3.7.2-py312hbc8341d_4   
+  pyrobuf            conda-forge/linux-64::pyrobuf-0.9.3-py312h1289d80_8   
+  pyrosm             conda-forge/linux-64::pyrosm-0.6.2-py312h30efb56_1   
+  pysocks            conda-forge/noarch::pysocks-1.7.1-pyha55dd90_7   
+  python             conda-forge/linux-64::python-3.12.13-hd63d673_0_cpython   
+  python-dateutil    conda-forge/noarch::python-dateutil-2.9.0.post0-pyhe01879c_2   
+  python-fastjsonsc~ conda-forge/noarch::python-fastjsonschema-2.21.2-pyhe01879c_0   
+  python-gil         conda-forge/noarch::python-gil-3.12.13-hd8ed1ab_0   
+  python-json-logger conda-forge/noarch::python-json-logger-3.2.1-pyh332efcf_0   
+  python-rapidjson   conda-forge/linux-64::python-rapidjson-1.23-py312h1289d80_1   
+  python-tzdata      conda-forge/noarch::python-tzdata-2026.2-pyhd8ed1ab_0   
+  python_abi         conda-forge/noarch::python_abi-3.12-8_cp312   
+  pyyaml             conda-forge/linux-64::pyyaml-6.0.3-py312h8a5da7c_1   
+  pyzmq              conda-forge/linux-64::pyzmq-27.1.0-py312hda471dd_2   
+  qhull              conda-forge/linux-64::qhull-2020.2-h434a139_5   
+  readline           conda-forge/linux-64::readline-8.3-h853b02a_0   
+  referencing        conda-forge/noarch::referencing-0.37.0-pyhcf101f3_0   
+  requests           conda-forge/noarch::requests-2.33.1-pyhcf101f3_1   
+  rfc3339-validator  conda-forge/noarch::rfc3339-validator-0.1.4-pyhd8ed1ab_1   
+  rfc3986-validator  conda-forge/noarch::rfc3986-validator-0.1.1-pyh9f0ad1d_0   
+  rfc3987-syntax     conda-forge/noarch::rfc3987-syntax-1.1.0-pyhe01879c_1   
+  rpds-py            conda-forge/linux-64::rpds-py-0.30.0-py312h868fb18_0   
+  scikit-learn       conda-forge/linux-64::scikit-learn-1.8.0-np2py312h3226591_1   
+  scipy              conda-forge/linux-64::scipy-1.17.1-py312h54fa4ab_0   
+  send2trash         conda-forge/noarch::send2trash-2.1.0-pyha191276_1   
+  setuptools         conda-forge/noarch::setuptools-82.0.1-pyh332efcf_0   
+  shapely            conda-forge/linux-64::shapely-2.1.2-py312h383787d_2   
+  six                conda-forge/noarch::six-1.17.0-pyhe01879c_1   
+  snappy             conda-forge/linux-64::snappy-1.2.2-h03e3b7b_1   
+  sniffio            conda-forge/noarch::sniffio-1.3.1-pyhd8ed1ab_2   
+  soupsieve          conda-forge/noarch::soupsieve-2.8.3-pyhd8ed1ab_0   
+  sqlite             conda-forge/linux-64::sqlite-3.53.1-hbc0de68_0   
+  stack_data         conda-forge/noarch::stack_data-0.6.3-pyhd8ed1ab_1   
+  terminado          conda-forge/noarch::terminado-0.18.1-pyhc90fa1f_1   
+  threadpoolctl      conda-forge/noarch::threadpoolctl-3.6.0-pyhecae5ae_0   
+  tinycss2           conda-forge/noarch::tinycss2-1.4.0-pyhd8ed1ab_0   
+  tk                 conda-forge/linux-64::tk-8.6.13-noxft_h366c992_103   
+  tomli              conda-forge/noarch::tomli-2.4.1-pyhcf101f3_0   
+  tornado            conda-forge/linux-64::tornado-6.5.5-py312h4c3975b_0   
+  traitlets          conda-forge/noarch::traitlets-5.15.0-pyhcf101f3_0   
+  traittypes         conda-forge/noarch::traittypes-0.2.3-pyh332efcf_0   
+  typing-extensions  conda-forge/noarch::typing-extensions-4.15.0-h396c80c_0   
+  typing_extensions  conda-forge/noarch::typing_extensions-4.15.0-pyhcf101f3_0   
+  typing_utils       conda-forge/noarch::typing_utils-0.1.0-pyhd8ed1ab_1   
+  tzdata             conda-forge/noarch::tzdata-2025c-hc9c84f9_1   
+  unicodedata2       conda-forge/linux-64::unicodedata2-17.0.1-py312h4c3975b_0   
+  uri-template       conda-forge/noarch::uri-template-1.3.0-pyhd8ed1ab_1   
+  uriparser          conda-forge/linux-64::uriparser-0.9.8-hac33072_0   
+  urllib3            conda-forge/noarch::urllib3-2.7.0-pyhd8ed1ab_0   
+  wcwidth            conda-forge/noarch::wcwidth-0.7.0-pyhd8ed1ab_0   
+  webcolors          conda-forge/noarch::webcolors-25.10.0-pyhd8ed1ab_0   
+  webencodings       conda-forge/noarch::webencodings-0.5.1-pyhd8ed1ab_3   
+  websocket-client   conda-forge/noarch::websocket-client-1.9.0-pyhd8ed1ab_0   
+  widgetsnbextension conda-forge/noarch::widgetsnbextension-4.0.15-pyhd8ed1ab_0   
+  xerces-c           conda-forge/linux-64::xerces-c-3.3.0-hd9031aa_1   
+  xorg-libxau        conda-forge/linux-64::xorg-libxau-1.0.12-hb03c661_1   
+  xorg-libxdmcp      conda-forge/linux-64::xorg-libxdmcp-1.1.5-hb03c661_1   
+  xyzservices        conda-forge/noarch::xyzservices-2026.3.0-pyhd8ed1ab_0   
+  yaml               conda-forge/linux-64::yaml-0.2.5-h280c20c_3   
+  zeromq             conda-forge/linux-64::zeromq-4.3.5-h41580af_10   
+  zipp               conda-forge/noarch::zipp-3.23.1-pyhcf101f3_0   
+  zlib               conda-forge/linux-64::zlib-1.3.2-h25fd6f3_2   
+  zlib-ng            conda-forge/linux-64::zlib-ng-2.3.3-hceb46e0_1   
+  zstd               conda-forge/linux-64::zstd-1.5.7-hb78ec9c_6   
+</pre>
+</div>
+</div>
+</div>
+<p>Clone or unzip the files from <a href="https://github.com/pickpj/Big-B-Router">github</a></p>
+<p><a href="extra-bigbrouter/gh.jpeg" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="extra-bigbrouter/gh.jpeg" class="img-fluid"></a></p>
+<p>Download the osm.pbf file for your state through <a href="https://download.geofabrik.de/north-america/us.html">geofabrik.de</a></p>
+<p><a href="extra-bigbrouter/geofabrik.jpeg" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="extra-bigbrouter/geofabrik.jpeg" class="img-fluid"></a></p>
+<p>Open the python notebook <code>pbf-prep.ipynb</code>, and set the kernel to the one we created <code>gis-py312</code></p>
+<p><a href="extra-bigbrouter/pbfprep1.jpeg" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="extra-bigbrouter/pbfprep1.jpeg" class="img-fluid"></a></p>
+<p>Run the first cell</p>
+<p><a href="extra-bigbrouter/pbfprep2.jpeg" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="extra-bigbrouter/pbfprep2.jpeg" class="img-fluid"></a></p>
+<p>Select a bounding box around the area of interest</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Why:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>The map file expands a lot when loaded into memory. (Reducing is, practically, a necessity for large states like Texas or California)<br>
+1a. Most of the memory usage comes from the road data and not the ALPRs<br>
+1b. The road data represented 30% of the total file size for the Atlanta area in the example below.<br>
+1c. For a 38MB road file, loading in the road data increased ram usage of vscodium from ~1.5GB to ~4.5GB<br>
+</li>
+<li>Converting from pbf to obf is slower for large files.<br>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<p><a href="extra-bigbrouter/pbfprep3.jpeg" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="extra-bigbrouter/pbfprep3.jpeg" class="img-fluid"></a></p>
+<p>Adjust <code>startingfile</code> to point to the file you downloaded from geofabrike.de<br>
+rename <code>outputfile</code> if you want<br>
+and run the cell</p>
+<p><a href="extra-bigbrouter/pbfprep4.jpeg" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="extra-bigbrouter/pbfprep4.jpeg" class="img-fluid"></a></p>
+<p>Open the python notebook <code>big-b-router.ipynb</code><br>
+Run the first cell to import libraries and define functions<br>
+Edit the filenames to match what was created with pbf-prep.ipynb<br>
+Run the second cell to load in the ALPR data</p>
+<p><a href="extra-bigbrouter/bigbrouter1.jpeg" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="extra-bigbrouter/bigbrouter1.jpeg" class="img-fluid"></a></p>
+<p>Run the third cell to create the projection of the ALPRs</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Projection variables:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<pre>\‾‾‾|‾‾‾/  
+|\  |  /|  
+| \_|_/ |    _|_ is the angle  
+|__\|/__|    __ __ is the base width (m)  
+  
+|                                 /
+| in the middle is the direction /  is the vis range (m)
+</pre>
+</div>
+</div>
+</div>
+<p>Run the fourth cell to load in the road data<br>
+This uses quite a bit of ram. A 38MB road file would increase ram by about 4GB<br>
+Run the fifth cell to determine which ID’s to drop/edit</p>
+<p>Adjust the output filename, if desired<br>
+Run the last cell to generate the new pbf file</p>
+<p><a href="extra-bigbrouter/bigbrouter2.jpeg" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img src="extra-bigbrouter/bigbrouter2.jpeg" class="img-fluid"></a></p>
+<p>Now we transition to <a href="https://wiki.openstreetmap.org/wiki/OsmAndMapCreator">osmandmapcreator</a>. <a href="https://download.osmand.net/latest-night-build/OsmAndMapCreator-main.zip">dl link</a><br>
+Download, unzip, and navigate to the folder containing <code>OsmAndMapCreator.jar</code><br>
+Run <code>java -jar -Xms1G -Xmx6G OsmAndMapCreator.jar</code><br>
+The -Xmx6G sets the maximum RAM amount to 6GB (it will use more RAM than needed if you set this too high)<br>
+6GB should be enough for most use cases</p>
+<p><a href="extra-bigbrouter/osmandmapcreator1.jpeg" class="lightbox" data-gallery="quarto-lightbox-gallery-10"><img src="extra-bigbrouter/osmandmapcreator1.jpeg" class="img-fluid"></a></p>
+<p><a href="extra-bigbrouter/osmandmapcreator2.jpeg" class="lightbox" data-gallery="quarto-lightbox-gallery-11"><img src="extra-bigbrouter/osmandmapcreator2.jpeg" class="img-fluid"></a></p>
+<p>The file will be output to the “specified working directory”<br>
+Which is likely <code>~/osmand/</code><br>
+Select the output file from big-b-router.ipynb and wait for it to process (takes a while)</p>
+<p>Once complete move/copy the .obf file to your phone</p>
+<p>Within the osmand app import the obf file and you now have offline anti-ALPR routing.</p>
+<div class="quarto-video"><video id="video_shortcode_videojs_video1" class="video-js vjs-default-skin vjs-fluid" controls="" preload="auto" data-setup="{}" title=""><source src="extra-bigbrouter/import.mp4"></video></div>
+<hr>
+<p>Benefits of using Osmand:<br>
+- cross platform (ios &amp; android)<br>
+- android auto/carplay (in the paid version)<br>
+- course correction/re-routing<br>
+- turn-by-turn directions<br>
+- deep ui customization<br>
+- routing customization<br>
+- plugins<br>
+- privacy respecting (downloadable from F-droid)<br>
+- open source!</p>
+<p>Downsides of Osmand:<br>
+- lack of traffic data (not compatible with privacy respecting)<br>
+- too many customization options is intimidating</p>
+<hr>
+<p>Check out the BC (Bad Cams) articles to see how to OSM data can be improved.</p>
+
+
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<script>videojs(video_shortcode_videojs_video1);</script>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+
+
+</body></html>

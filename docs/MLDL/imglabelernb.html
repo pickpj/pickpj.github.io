@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>img-labeler-nb preview</title>
+<title>img-labeler-nb preview – pickpj</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -74,7 +74,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-bc185b5c5bdbcb35c2eb49d8a876ef70.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-81deff4171a1a4d07633e3b3330f8c25.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-75dd22bf909c3df663be93f145846527.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -151,13 +154,13 @@ Be sure to run each cell.</p>
 <p><strong>1️⃣. First create a list of the Categories to separate into.</strong><br>
 <span style="font-size:0.8em;">It may be helpful to include a “Trash” grouping for images that are outside of scope.<br>
 The key variable takes a string of keys. This sets key bindings for the keys to categories respectively.</span></p>
-<div id="1da75c51" class="cell" data-execution_count="1">
+<div id="dc9a70f4" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>categories <span class="op">=</span> [<span class="st">"Interior"</span>, <span class="st">"Exterior"</span>, <span class="st">"Trash"</span>]</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>key <span class="op">=</span> <span class="st">"123"</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># key = "asd" </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>2️⃣. Select the input and output folders</strong></p>
-<div id="8af129a0" class="cell" data-execution_count="2">
+<div id="3df3d6e6" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ipywidgets <span class="im">as</span> widgets</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="bu">input</span> <span class="op">=</span> widgets.Dropdown(options<span class="op">=</span>[x <span class="cf">for</span> x <span class="kw">in</span> os.listdir() <span class="cf">if</span> <span class="st">"."</span> <span class="kw">not</span> <span class="kw">in</span> x], <span class="co"># folders with "." are excluded</span></span>
@@ -166,14 +169,14 @@ The key variable takes a string of keys. This sets key bindings for the keys to 
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>                        description<span class="op">=</span><span class="st">"Out Folder:"</span>,)</span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>display(widgets.VBox([<span class="bu">input</span>, output]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><img src="extra-imglabelernb/folder-sel.png" class="img-fluid"></p>
+<p><a href="extra-imglabelernb/folder-sel.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="extra-imglabelernb/folder-sel.png" class="img-fluid"></a></p>
 <p><strong>3️⃣. Prepare output folders (creates folders for categories that are not present)</strong></p>
-<div id="7a9fbf16" class="cell" data-execution_count="3">
+<div id="e6fa3ec3" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> fold <span class="kw">in</span> [x <span class="cf">for</span> x <span class="kw">in</span> categories <span class="cf">if</span> x <span class="kw">not</span> <span class="kw">in</span> [x <span class="cf">for</span> x <span class="kw">in</span> os.listdir(output.value) <span class="cf">if</span> <span class="st">"."</span> <span class="kw">not</span> <span class="kw">in</span> x]]:</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    os.mkdir(output.value <span class="op">+</span> <span class="st">"/"</span> <span class="op">+</span> fold)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>4️⃣. Sort</strong></p>
-<div id="08d0ca8e" class="cell" data-execution_count="4">
+<div id="ff107808" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> nextpic():</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">global</span> imgpos</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    imgpos<span class="op">+=</span><span class="dv">1</span></span>
@@ -218,9 +221,9 @@ The key variable takes a string of keys. This sets key bindings for the keys to 
 <span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>display(widgets.HBox(butlist), txtkey, imgframe, oopsbutton)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><img src="extra-imglabelernb/labeler.png" class="img-fluid"></p>
+<p><a href="extra-imglabelernb/labeler.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="extra-imglabelernb/labeler.png" class="img-fluid"></a></p>
 <p><strong>📂Example of loading in the now sorted data (fastai datablock)</strong></p>
-<div id="b86827c9" class="cell" data-execution_count="5">
+<div id="a4d47ecc" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> fastai.data.<span class="bu">all</span> <span class="im">import</span> <span class="op">*</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> fastai.vision.<span class="bu">all</span> <span class="im">import</span> <span class="op">*</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>fp <span class="op">=</span> Path(<span class="st">"./categories"</span>)</span>
@@ -231,7 +234,7 @@ The key variable takes a string of keys. This sets key bindings for the keys to 
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>        item_tfms<span class="op">=</span>[Resize(<span class="dv">256</span>, method<span class="op">=</span><span class="st">"squish"</span>)]</span>
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>).dataloaders(fp).show_batch(max_n<span class="op">=</span><span class="dv">9</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><img src="extra-imglabelernb/fast-batch.png" class="img-fluid"></p>
+<p><a href="extra-imglabelernb/fast-batch.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="extra-imglabelernb/fast-batch.png" class="img-fluid"></a></p>
 
 
 </section>
@@ -637,6 +640,38 @@ The key variable takes a string of keys. This sets key bindings for the keys to 
   });
   </script>
 </div> <!-- /content -->
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 

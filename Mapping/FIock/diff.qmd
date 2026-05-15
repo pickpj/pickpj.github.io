@@ -5,7 +5,9 @@ format:
         code-fold: true
 jupyter: python3
 ---
-The following cameras were detected to not intersect with a road. Likely due to incorrect distance from the road or tagged with an incorrect direction.  
+The following cameras were detected to not intersect with a road. Likely due to incorrect distance from the road or tagged with an incorrect direction. Some ALPRs along straight stretches of road, which have a large distance between nodes show up incorrectly.   
+
+:::{.column-page-right}  
 
 ::: {.panel-tabset}
 ## Map
@@ -16,13 +18,18 @@ import folium
 import itables
 from datetime import datetime
 noxgdf = gpd.read_file("../../../osmbadcams/nointersect.gpkg")
-noxgdf.explore(style_kwds={"opacity":0.8,"weight":6})
+noxgdf = noxgdf.rename({"STUSPS":"State", "NAME":"State Full", "osmid":"ID", "url":"URL"}, axis=1)
+
+noxgdf.explore(popup=True, style_kwds={"weight":9,"color":"#9E2F02","opacity":0.8,"fillOpacity":0.5})
+
 ```
 ## Table
 ```{python}
 itables.show(pd.DataFrame(noxgdf.drop(["geometry"], axis=1)),  maxBytes=200000, allow_html=True)
 ```  
-:::
+:::  
 
-Started with 3,608 datapoints on 2026-05-05 , which represented around 3.5% of all the ALPR data at the time.  
+:::  
+
+Started with 3,206 datapoints on 2026-05-15 , which represented around 3.3% of all the ALPR data at the time.  
 Last updated: `{python} datetime.today().strftime("%Y-%m-%d")`

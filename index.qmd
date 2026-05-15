@@ -2,7 +2,8 @@
 title: ""
 format: 
   html:
-    theme: darkly
+    pagetitle: Homepage
+    toc: False
     include-in-header:
       - text: |
           <style>
@@ -10,10 +11,26 @@ format:
           button:hover { background-color: #8a8a8a; }
           </style>
 ---
-A website to showcase some stuff ¯\\\_(ツ)\_/¯  
-  
+
 Recent grad looking for work in the Atlanta or NoVA area.  
 
+## Projects:  
+### [Big-B-Router ![](https://img.shields.io/github/stars/pickpj/Big-B-Router?color=232323&logo=github&labelColor=232323)](https://github.com/pickpj/Big-B-Router/)  
+Editing a PBF file to avoid ALPR cameras. The specific file type enables support with other map applications (Osmand). Which means support for niceties such as cross platform support (ios/google-play/f-droid/carplay/android auto), turn-by-turn routing/rerouting, and rich customizability, all whilst avoiding ALPRs.  
+  
+---  
+### [ev-morse ![](https://img.shields.io/github/stars/pickpj/ev-morse?color=232323&logo=github&labelColor=232323)](https://github.com/pickpj/ev-morse)  
+Reading linux event files for advanced macro activation based on morse pattern key presses. Works independent of the windowing system (wayland/x11) and is device specific. Pattern based activation enables multiple macros to be activated by the same key. Ev-morse can also handle repeating activations with longer key presses (like a fast forward button).     
+
+## Recent Articles:  
+[Bigbrouter](./Mapping/FIock/bigbrouter.qmd)  
+Step by step guide to using Big-B-Router  
+[Bad Cams - No Road Overlap](./Mapping/FIock/diff.qmd)  
+Identifying flawed OpenStreetMap data for the whole of the US.  
+[Bridges](./Mapping/FIock/bridges.qmd)  
+Identifying bridges/rivers to be ALPR surveillence chokepoints/checkpoints  
+
+## Contact:  
 ```{=html}
     <button onclick="
         (function() {
@@ -21,5 +38,5 @@ Recent grad looking for work in the Atlanta or NoVA area.
             const s2 = 'QHByb3Rvbi5tZQ=='; 
             const targ = atob(s1) + atob(s2);
             window.location.href = 'mailto:' + targ;
-        })();">Contact (mailto)</button>
+        })();">Mailto</button>
 ```
