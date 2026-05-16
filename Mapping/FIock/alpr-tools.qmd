@@ -248,5 +248,5 @@ An interactive map tool to create/edit geodataframes. The shapes are paired with
 * Identify and contribute more ALPRs  
 * Correct inaccuracies in OSM data (bad direction/position/tags, sometimes duplication)  
     * Look at the BC (Bad Cams) articles covering/listing the inaccuracies I identified programmatically.  
-* Support the tooling/data that made this possible  
+* Support the tooling/data that makes this possible  
 

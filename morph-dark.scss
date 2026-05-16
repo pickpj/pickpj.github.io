@@ -712,9 +712,9 @@ $navbar-color: #013025;
 .code-fold summary {
   color: $gray-700;
 }
-// .code-fold div {
-//   background-color: #444b40;
-// }
+.content code {
+  color: $yellow;
+}
 .card {
   box-shadow: inset 2px 2px 6px rgba(shade-color($body-bg, 50%), .2), inset -3px -2px 4px rgba($white, .2);
 

@@ -74,7 +74,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-bc185b5c5bdbcb35c2eb49d8a876ef70.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-75dd22bf909c3df663be93f145846527.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-3f42b19a120f635eb8b7e53d0d07a1d4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
 <script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
@@ -154,13 +154,13 @@ Be sure to run each cell.</p>
 <p><strong>1️⃣. First create a list of the Categories to separate into.</strong><br>
 <span style="font-size:0.8em;">It may be helpful to include a “Trash” grouping for images that are outside of scope.<br>
 The key variable takes a string of keys. This sets key bindings for the keys to categories respectively.</span></p>
-<div id="dc9a70f4" class="cell" data-execution_count="1">
+<div id="ab4ba4af" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>categories <span class="op">=</span> [<span class="st">"Interior"</span>, <span class="st">"Exterior"</span>, <span class="st">"Trash"</span>]</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>key <span class="op">=</span> <span class="st">"123"</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># key = "asd" </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>2️⃣. Select the input and output folders</strong></p>
-<div id="3df3d6e6" class="cell" data-execution_count="2">
+<div id="ed0071c9" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ipywidgets <span class="im">as</span> widgets</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="bu">input</span> <span class="op">=</span> widgets.Dropdown(options<span class="op">=</span>[x <span class="cf">for</span> x <span class="kw">in</span> os.listdir() <span class="cf">if</span> <span class="st">"."</span> <span class="kw">not</span> <span class="kw">in</span> x], <span class="co"># folders with "." are excluded</span></span>
@@ -171,12 +171,12 @@ The key variable takes a string of keys. This sets key bindings for the keys to 
 </div>
 <p><a href="extra-imglabelernb/folder-sel.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="extra-imglabelernb/folder-sel.png" class="img-fluid"></a></p>
 <p><strong>3️⃣. Prepare output folders (creates folders for categories that are not present)</strong></p>
-<div id="e6fa3ec3" class="cell" data-execution_count="3">
+<div id="17ccd39b" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> fold <span class="kw">in</span> [x <span class="cf">for</span> x <span class="kw">in</span> categories <span class="cf">if</span> x <span class="kw">not</span> <span class="kw">in</span> [x <span class="cf">for</span> x <span class="kw">in</span> os.listdir(output.value) <span class="cf">if</span> <span class="st">"."</span> <span class="kw">not</span> <span class="kw">in</span> x]]:</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    os.mkdir(output.value <span class="op">+</span> <span class="st">"/"</span> <span class="op">+</span> fold)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>4️⃣. Sort</strong></p>
-<div id="ff107808" class="cell" data-execution_count="4">
+<div id="1e1eecc8" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> nextpic():</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">global</span> imgpos</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    imgpos<span class="op">+=</span><span class="dv">1</span></span>
@@ -223,7 +223,7 @@ The key variable takes a string of keys. This sets key bindings for the keys to 
 </div>
 <p><a href="extra-imglabelernb/labeler.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="extra-imglabelernb/labeler.png" class="img-fluid"></a></p>
 <p><strong>📂Example of loading in the now sorted data (fastai datablock)</strong></p>
-<div id="a4d47ecc" class="cell" data-execution_count="5">
+<div id="15d23063" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> fastai.data.<span class="bu">all</span> <span class="im">import</span> <span class="op">*</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> fastai.vision.<span class="bu">all</span> <span class="im">import</span> <span class="op">*</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>fp <span class="op">=</span> Path(<span class="st">"./categories"</span>)</span>
