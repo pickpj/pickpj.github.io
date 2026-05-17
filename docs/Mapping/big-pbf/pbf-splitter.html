@@ -337,7 +337,7 @@ In this case I used US state boundaries from the census bureau: https://www.cens
 ./states/ contains the shp file for the state boundaries<br>
 ./processed-slices/ contains the data we wanted to extract from the slice<br>
 ./processed-states/ contains the dataset, by the regional boundaries</p>
-<div id="f8a8787f" class="cell" data-execution_count="1">
+<div id="e43fe276" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> folium</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -369,7 +369,7 @@ In this case I used US state boundaries from the census bureau: https://www.cens
 </div>
 <p>The above is the imported libraries and parameters. The region boundaries file is used to find the bounds of the pbf file, in this case the US-South region from geofabrik.<br>
 “unwantedfeatures” is specific to the data I am extracting.</p>
-<div id="0b262311" class="cell" data-execution_count="2">
+<div id="68d0e412" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>sizelimit <span class="op">=</span> <span class="dv">105000000</span> <span class="co">#105MB</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> splitter(filenum, start, end) <span class="op">-&gt;</span> <span class="bu">int</span>:</span>
@@ -389,7 +389,7 @@ In this case I used US state boundaries from the census bureau: https://www.cens
 <p>A 100~110x multiplier is about right for estimating the memory usage for the driving network<br>
 real world:<br>
 100MB -&gt; ~11.5GB</p>
-<div id="8e58d86d" class="cell" data-execution_count="3">
+<div id="8488e6c1" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>warnings.filterwarnings(<span class="st">'ignore'</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>wd <span class="op">=</span> os.fsencode(<span class="st">"./slices/"</span>)</span>
@@ -422,11 +422,11 @@ real world:<br>
 <p>The above cycles through the data loading in the sections and extracting the data. It is application specific, and also painfully slow.<br>
 Had to switch from “get_data_from_custom_criteria” to “get_network” for the bridge data due to an error preventing the data from being loaded into memory (No such error with waterways). Using “get_network” it is loading in more data and is noticeably slower (something like 2x slower), but it worked so ¯\_(ツ)_/¯ . Total run time of 197 min to process the 53 slices of the original 3.7 GB file.<br>
 All thats left is to save the finished gdf, or combine the processed slices if there were errors during processing. The data can also be easily split into respective region boundaries.</p>
-<div id="ed5dfef6" class="cell" data-execution_count="4">
+<div id="5edbc0cd" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>waterbridges.drop_duplicates(inplace<span class="op">=</span><span class="va">True</span>, ignore_index<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>waterbridges.to_file(<span class="st">"./waterbridges.gpkg"</span>, driver<span class="op">=</span><span class="st">"GPKG"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="9741b414" class="cell" data-execution_count="5">
+<div id="c3a31483" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> st <span class="kw">in</span> southstates:</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    gpd.overlay(waterbridges,southshp[southshp.STUSPS<span class="op">==</span>st]).drop(<span class="st">"NAME"</span>, axis<span class="op">=</span><span class="dv">1</span>).to_file(<span class="ss">f"./processed-states/</span><span class="sc">{</span>st<span class="sc">}</span><span class="ss">.gpkg"</span>, driver<span class="op">=</span><span class="st">"GPKG"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>

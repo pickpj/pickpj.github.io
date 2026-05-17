@@ -323,7 +323,7 @@ rest &lt; 30s<br>
 total time of ~2m30s<br>
 A lot better than 5 hours w/ more flexibility to iterate and improve data.<br>
 (With the second iteration I improved the data by attaching bridge sections that were separate, and preserved river tag data)</p>
-<div id="5a87d3d9" class="cell" data-execution_count="1">
+<div id="4495b2b1" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> shapely <span class="im">as</span> shp</span>
@@ -359,7 +359,7 @@ A lot better than 5 hours w/ more flexibility to iterate and improve data.<br>
 <span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>waterbridges <span class="op">=</span> waterbridges.merge(newbridges[[<span class="st">"osm_id"</span>, <span class="st">"geometry"</span>]], left_on<span class="op">=</span><span class="st">"osm_id_1"</span>, right_on<span class="op">=</span><span class="st">"osm_id"</span>, how<span class="op">=</span><span class="st">"left"</span>)</span>
 <span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>waterbridges <span class="op">=</span> waterbridges.set_geometry(<span class="st">"geometry"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="d74dbaec" class="cell" data-execution_count="2">
+<div id="95845b48" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>waterbridges <span class="op">=</span> waterbridges.drop([<span class="st">"combinedgeom"</span>, <span class="st">"osm_id_left"</span>, <span class="st">"point_geom"</span>],axis<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>waterbridges.to_file(<span class="st">"waterbridges.gpkg"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
