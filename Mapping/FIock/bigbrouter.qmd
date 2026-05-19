@@ -1,11 +1,11 @@
 ---
-title: Detailed Guide for Big B-router 
+title: Editing PBF files for ALPR avoidance
 format: 
   html:
     code-fold: true
 ---
 
-A (step by step) guide to [Big B-router](https://github.com/pickpj/Big-B-Router)  
+A (step by step) guide to running the [Big B-router](https://github.com/pickpj/Big-B-Router) ipynb.  
 
 ---    
   

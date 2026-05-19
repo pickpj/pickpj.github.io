@@ -12,7 +12,7 @@ format:
           </style>
 ---
 
-Recent grad looking for work in the Atlanta or NoVA area.  
+Hi, I'm a recent grad looking for work in the Atlanta or NoVA area.  
 
 ## Projects:  
 ### [Big-B-Router ![](https://img.shields.io/github/stars/pickpj/Big-B-Router?color=232323&logo=github&labelColor=232323)](https://github.com/pickpj/Big-B-Router/)  
@@ -28,13 +28,13 @@ Step by step guide to using Big-B-Router
 [Bad Cams - No Road Overlap](./Mapping/FIock/diff.qmd)  
 Identifying flawed OpenStreetMap data for the whole of the US.  
 [Bridges](./Mapping/FIock/bridges.qmd)  
-Identifying bridges/rivers to be ALPR surveillence chokepoints/checkpoints  
+Identifying bridges/rivers to be ALPR surveillence chokepoints  
 
 ## Contact:  
 ```{=html}
     <button onclick="
         (function() {
-            const s1 = 'c2VjbHVzaXZpdHk='; 
+            const s1 = 'cGlja2xlcGo='; 
             const s2 = 'QHByb3Rvbi5tZQ=='; 
             const targ = atob(s1) + atob(s2);
             window.location.href = 'mailto:' + targ;

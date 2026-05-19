@@ -5,10 +5,13 @@ format:
         code-fold: true
 jupyter: python3
 ---
-Going through ALPR data, I noticed how some ALPR cameras were not positioned in ***typical areas*** or near the intersection of roads. Rather, these  were installed at the intersection of roads and rivers. These bridges represent chokepoints in the road network that are unavoidable. This [wikipedia page](https://en.wikipedia.org/wiki/List_of_crossings_of_the_Lower_Mississippi_River) lists all the Mississippi river crossings from the Ohio river to the Gulf of Mexico. Notably, there are only 18 crossings over an area of ~800km / ~500miles (excluding ferries). Thus, observing all interstate traffic requires a trivial number of cameras. The same vulnerability exists on smaller rivers as well. There is also the aspect that rivers tend to delineate the municipal boundaries.  
+Going through ALPR data, I noticed how some ALPR cameras were not positioned in ***typical areas*** or near the intersection of roads. Rather, these  were installed at the intersection of roads and rivers. These bridges represent chokepoints in the road network that are unavoidable. For example, South of the Ohio river there are only 18 crossings (excluding ferries) along the Mississippi river [wikipedia page](https://en.wikipedia.org/wiki/List_of_crossings_of_the_Lower_Mississippi_River). That is an area of ~800km / ~500miles. Thus, to observe all interstate traffic would use a trivial number of cameras. The same vulnerability exists on smaller rivers as well.  
+There is also the aspect that rivers tend to delineate the municipal boundaries. Municipalities/states will tend to place ALPRs around their perimeter. Although not a deliberate effort to monitor these "chokepoints", the end result is the same.  
   
 Example:  
 ![](extra-bridges/chattahoochee.jpeg)  
+
+Most of the ALPRs in the example above are on one side of the river. Thus, the county on the left is likely putting ALPRs all around the perimeter of the county.   
 
 -----  
 
