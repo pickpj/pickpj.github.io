@@ -5,7 +5,7 @@ format:
     code-fold: true
 ---
 
-A (step by step) guide to running the [Big B-router](https://github.com/pickpj/Big-B-Router) ipynb.  
+A (step by step) guide to running the [Big B-router](https://github.com/pickpj/Big-B-Router) ipynb, for offline ALPR avoidance in the [Osmand](https://osmand.net/) mobile app.  
 
 ---    
   
