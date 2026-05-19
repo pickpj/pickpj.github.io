@@ -5,7 +5,7 @@ format:
     code-fold: true
 ---
 
-A (step by step) guide to running the [Big B-router](https://github.com/pickpj/Big-B-Router) ipynb, for offline ALPR avoidance in the [Osmand](https://osmand.net/) mobile app.  
+A (step by step) guide to running the [Big B-router](https://github.com/pickpj/Big-B-Router) ipynb. For offline ALPR avoidance in the [Osmand](https://osmand.net/) mobile app.  
 
 ---    
   
@@ -295,11 +295,8 @@ Select a bounding box around the area of interest
 
 ::: {.callout-note collapse="true"}  
 ## Why:  
-1. The map file expands a lot when loaded into memory. (Reducing is, practically, a necessity for large states like Texas or California)  
-1a. Most of the memory usage comes from the road data and not the ALPRs  
-1b. The road data represented 30% of the total file size for the Atlanta area in the example below.  
-1c. For a 38MB road file, loading in the road data increased ram usage of vscodium from ~1.5GB to ~4.5GB   
-2. Converting from pbf to obf is slower for large files.  
+1. ~~The map file expands a lot when loaded into memory.~~ No longer the case.  
+2. Converting from pbf to obf is slower for larger files.  
 :::  
 
 ![](extra-bigbrouter/pbfprep3.jpeg)  
