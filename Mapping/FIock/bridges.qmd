@@ -97,8 +97,7 @@ itables.show(pd.DataFrame(bridgegdf.drop(["geometry"], axis=1)), maxBytes=200000
 :::  
 
 :::
-Started with 1,502 datapoints on 2026-05-05.  
-Last updated: `{python} datetime.today().strftime("%Y-%m-%d")`  
+ 
 
 ::: {.callout-note}  
 ## Road name is missing?  

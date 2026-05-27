@@ -5,7 +5,7 @@ format:
         code-fold: true
 jupyter: python3
 ---
-The following cameras lacked direction data in either "direction" or "camera:direction" tags. Not all datapoints are necessarily wrong, but could likely be improved.  
+The following cameras lacked direction data in either "direction" or "camera:direction" tags. Not all datapoints are necessarily wrong, but could likely be improved. Cameras that were marked with cardinal directions are not interpreted as having a direction.    
 
 :::{.column-page-right}  
 
@@ -52,5 +52,5 @@ itables.show(pd.DataFrame(nodirgdf.drop(["geometry","camindex"], axis=1)[["State
 
 :::  
 
-Started with 1,125 datapoints on 2026-05-05  
+Started with 1,736 datapoints on 2026-05-25  
 Last updated: `{python} datetime.today().strftime("%Y-%m-%d")`

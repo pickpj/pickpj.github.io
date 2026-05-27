@@ -1,0 +1,67 @@
+---
+title: "Bad Cams - Similar ALPRs"
+format:
+    html:
+        code-fold: true
+jupyter: python3
+---
+The following cameras had a similar direction as its closest peer camera (within <30m). Likely indicating a duplication of efforts.    
+
+:::{.column-page-right}  
+
+::: {.panel-tabset}
+## Map
+```{python}
+import pandas as pd
+import geopandas as gpd
+import folium
+import itables
+from datetime import datetime
+from folium.plugins import MarkerCluster
+
+m = folium.Map([37, -100], zoom_start=4)
+
+similarcamsgdf = gpd.read_file("../../../osmbadcams/noanglediff.gpkg")
+similarcamsgdf = similarcamsgdf.rename({"STUSPS":"State", "NAME":"State Full"},axis=1)
+
+filterinvalid = similarcamsgdf.apply(lambda x: (x.geometry.is_valid) and (not x.geometry.is_empty), axis=1)
+
+marker_cluster = MarkerCluster(disableClusteringAtZoom=10).add_to(m)
+for idx, row in similarcamsgdf[filterinvalid].reset_index().iterrows():
+    popup_html = f"<style> th\
+                {{border:1px solid black;\}}</style>\
+                <table><tr>\
+                    <th>State: </th>\
+                    <th>{row['State Full']}</th>\
+                </tr><tr>\
+                    <th>ALPR 1 ID: </th>\
+                    <th>{row['cam1id']}</th>\
+                </tr><tr>\
+                    <th>ALPR 1 Direction: </th>\
+                    <th>{row['cam1direction']}</th>\
+                </tr><tr>\
+                    <th>ALPR 2 ID: </th>\
+                    <th>{row['cam2id']}</th>\
+                </tr><tr>\
+                    <th>ALPR 2 Direction: </th>\
+                    <th>{row['cam2direction']}</th>\
+                </tr><tr>\
+                    <th text-align='center' colspan='2'>{row['url']}</th>\
+                </tr></table>"
+    folium.Circle(
+        location=[row.geometry.centroid.y, row.geometry.centroid.x], 
+        popup=popup_html, fill=True, radius=30, weight=9,color="#9E2F02",opacity=0.8,fillOpacity=0.5
+    ).add_to(marker_cluster)
+
+m
+```
+## Table
+```{python}
+itables.show(pd.DataFrame(similarcamsgdf.drop(["geometry"], axis=1)),  maxBytes=250000, allow_html=True)
+```
+:::  
+
+:::  
+
+Started with 2,588 datapoints on 2026-05-25  
+Last updated: `{python} datetime.today().strftime("%Y-%m-%d")`

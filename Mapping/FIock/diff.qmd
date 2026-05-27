@@ -31,5 +31,5 @@ itables.show(pd.DataFrame(noxgdf.drop(["geometry"], axis=1)),  maxBytes=200000, 
 
 :::  
 
-Started with 3,206 datapoints on 2026-05-15 , which represented around 3.3% of all the ALPR data at the time.  
+Started with 3,470 datapoints on 2026-05-25 , which represented around 3.5% of all the ALPR data at the time.  
 Last updated: `{python} datetime.today().strftime("%Y-%m-%d")`

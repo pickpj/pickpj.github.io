@@ -330,7 +330,7 @@ Run the third cell to create the projection of the ALPRs
 :::
 
 Run the fourth cell to load in the road data  
-This uses quite a bit of ram. A 38MB road file would increase ram by about 4GB  
+This uses a bit of ram. Probably around 3~4GB  
 Run the fifth cell to determine which ID's to drop/edit  
 
 Adjust the output filename, if desired  

@@ -22,10 +22,10 @@ website:
                 text: BC - No Road Overlap
               - href: Mapping/FIock/directionless.qmd
                 text: BC - No Direction Tag
-              # - href: Mapping/FIock/.qmd
-              #   text: ALPR Stats
-              - href: Mapping/FIock/alpr-tools.qmd
-                text: ALPR Tools
+              - href: Mapping/FIock/similar.qmd
+                text: BC - Similar ALPRs
+              # - href: Mapping/FIock/alpr-tools.qmd
+              #   text: ALPR Tools
             - section: "Working w/ big maps"
               contents:
               - href: Mapping/big-pbf/pbf-splitter.qmd
