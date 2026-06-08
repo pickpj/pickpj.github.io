@@ -5,7 +5,7 @@ format:
         code-fold: true
 jupyter: python3
 ---
-The following cameras were detected to not intersect with a road. Likely due to incorrect distance from the road or tagged with an incorrect direction. Some ALPRs along straight stretches of road, which have a large distance between nodes show up incorrectly.   
+The following cameras were detected to not intersect with a road. Likely due to incorrect distance from the road or tagged with an incorrect direction. There are also cameras along trails that are misclassified as ALPRs. These cameras might be better served by a "facial tracking" value in surveillance:type, but there doesn't seem to be a general concensus around what value to use. Some ALPRs along straight stretches of road, which have a large distance between nodes show up incorrectly.   
 
 :::{.column-page-right}  
 
@@ -31,5 +31,5 @@ itables.show(pd.DataFrame(noxgdf.drop(["geometry"], axis=1)),  maxBytes=200000, 
 
 :::  
 
-Started with 3,470 datapoints on 2026-05-25 , which represented around 3.5% of all the ALPR data at the time.  
+Started with 4,387 datapoints on 2026-05-31, which represented over 4% of all the ALPR data at the time.  
 Last updated: `{python} datetime.today().strftime("%Y-%m-%d")`

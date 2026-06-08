@@ -1,0 +1,47 @@
+---
+title: "Difficult to Migrate X11 Macros"
+---  
+
+With support for X11 seeming to dwindle I have to figure out how to migrate my macros over. This isn't straight forward as many tools like xdotool, xsel, autokey, wmctrl, xrandr, and ahk-x11 can't easily be replaced. So the following is my planning on how to smoothen a transition to Wayland.   
+The ¯\\\_(ツ)_/¯ does not indicate that it is not possible, but rather that I could not find a reasonable solution.  
+  
+---  
+  
+**X11:** `xdotool windowminimize $(xdotool getactivewindow)` Minimizes active window.  
+**Wayland (KDE):** `kdotool windowminimize $(kdotool getactivewindow)`  
+^Wish this was transferable and not just kde :(  
+  
+---  
+  
+**X11:** autokey python script to set [music player, note-taking tool, IDE, Okular, LLM tool] as the active window, minimize if active, open if not open.  
+**Wayland:** ¯\\\_(ツ)_/¯ Probably kde only solution  
+  
+---  
+  
+**X11:** autokey text expansion  
+**Wayland:** waybinder  
+  
+---  
+  
+**X11:** `xsel` I pipe xsel to TTS cli tools. Enables an easy TTS macro that is agnostic of the TTS tool.  
+**Wayland:** wl-paste -> cache -> copy -> wl-paste | TTS -> wl-copy cache -> rm cache  
+  
+---  
+  
+**X11:**  
+  Set up new "fake" display  
+    `cvt 1920 1080` put output here vvvvvvv   
+    `xrandr --newmode "1920x1080_60.00"  173.00  1920 2048 2248 2576  1080 1083 1088 1120 -hsync +vsync`  
+    `xrandr --addmode DP-1 1920x1080_60.00`  
+  Activate display  
+    `xrandr --output DP-1 --mode 1920x1080_60.00 --right-of eDP-1`  
+  Deactivate display  
+    `xrandr --output DP-1 --off`  
+Why? Limited I/O on laptop, but the GPU can support more displays. ∴ More displays in VR/remote env.  
+**Wayland:** ¯\\\_(ツ)_/¯  [Maybe?](https://wayland-book.com/wayland-display/creation.html) But also not straight forward
+  
+---  
+  
+  
+
+

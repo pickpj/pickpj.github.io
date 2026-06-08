@@ -40,18 +40,22 @@ website:
             contents:
               - section: "Image"
                 contents:
-                  - href: MLDL/fastai.qmd
-                    text: Image Classification
-          - section: "Keyboard"
+                - href: MLDL/fastai.qmd
+                  text: Image Classification
+          - section: "Linux"
             contents:
-              - href: Other/evmorse.qmd
-                text: ev-morse 
-              - href: Other/keycodes.qmd
-                text: keycode list
+              - section: "Keyboard"
+                contents:
+                - href: Linux/keyboard/evmorse.qmd
+                  text: ev-morse 
+                - href: Linux/keyboard/keycodes.qmd
+                  text: keycode list
+              - href: Linux/x11/macro-migration.qmd
+                text: x11->wayland macros
           # - section: "Other"
           #   contents:
-          #     - href: Other/reusing.qmd
-          #       text: ♻️ Reusing Electronics
+          #   - href: Other/reusing.qmd
+          #     text: ♻️ Reusing Electronics
 format:
     html:
         title-prefix: pickpj

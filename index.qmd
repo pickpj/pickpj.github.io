@@ -23,12 +23,12 @@ Editing a PBF file to avoid ALPR cameras. The specific file type enables support
 Reading linux event files for advanced macro activation based on morse pattern key presses. Works independent of the windowing system (wayland/x11) and is device specific. Pattern based activation enables multiple macros to be activated by the same key. Ev-morse can also handle repeating activations with longer key presses (like a fast forward button).     
 
 ## Recent Articles:  
+[Bad Cams - Similar Cams](./Mapping/FIock/similar.qmd)  
+Identifying duplicated data in OpenStreetMap data  
 [Bigbrouter](./Mapping/FIock/bigbrouter.qmd)  
 Step by step guide to using Big-B-Router  
 [Bad Cams - No Road Overlap](./Mapping/FIock/diff.qmd)  
 Identifying flawed OpenStreetMap data for the whole of the US.  
-[Bridges](./Mapping/FIock/bridges.qmd)  
-Identifying bridges/rivers to be ALPR surveillence chokepoints  
 
 ## Contact:  
 ```{=html}
