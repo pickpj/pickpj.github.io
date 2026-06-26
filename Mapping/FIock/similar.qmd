@@ -63,5 +63,5 @@ itables.show(pd.DataFrame(similarcamsgdf.drop(["geometry"], axis=1)),  maxBytes=
 
 :::  
 
-Started with 2,588 datapoints on 2026-05-25  
+Started with 2,637 datapoints on 2026-06-01  
 Last updated: `{python} datetime.today().strftime("%Y-%m-%d")`
