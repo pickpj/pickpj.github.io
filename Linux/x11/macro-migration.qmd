@@ -1,10 +1,12 @@
 ---
-title: "Difficult to Migrate X11 Macros"
+title: "Difficulties migrating to Wayland from X11 "
 ---  
 
-With support for X11 seeming to dwindle I have to figure out how to migrate my macros over. This isn't straight forward as many tools like xdotool, xsel, autokey, wmctrl, xrandr, and ahk-x11 can't easily be replaced. So the following is my planning on how to smoothen a transition to Wayland.   
+With support for X11 seeming to dwindle I have to figure out how to: migrate my macros over and make sure other tools are working properly. This isn't straight forward as many tools like xdotool, xsel, autokey, wmctrl, xrandr, and ahk-x11 can't easily be replaced. So the following is my planning on how to smoothen a transition to Wayland.   
 The ¯\\\_(ツ)_/¯ does not indicate that it is not possible, but rather that I could not find a reasonable solution.  
-  
+
+## Macros
+
 ---  
   
 **X11:** `xdotool windowminimize $(xdotool getactivewindow)` Minimizes active window.  
@@ -42,6 +44,6 @@ Why? Limited I/O on laptop, but the GPU can support more displays. ∴ More disp
   
 ---  
   
-  
+## Other
 
-
+Have to redo the Japanese IME, but not too difficult. (would be difficult if you couldn't search in your main language though)  https://github.com/tirsasaki/Install-and-Use-Japanese-Keyboard-On-Cachyos  

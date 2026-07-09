@@ -12,6 +12,10 @@ website:
         contents:
           - section: "Mapping"
             contents:
+            - section: "Custom Routing"
+              contents:
+              - href: Mapping/custom-routing-maps/comaps.qmd
+                text: Comaps
             - section: "FIock"
               contents:
               - href: Mapping/FIock/bigbrouter.qmd
@@ -24,12 +28,10 @@ website:
                 text: BC - No Direction Tag
               - href: Mapping/FIock/similar.qmd
                 text: BC - Similar ALPRs
-              # - href: Mapping/FIock/alpr-tools.qmd
-              #   text: ALPR Tools
             - section: "Working w/ big maps"
               contents:
               - href: Mapping/big-pbf/pbf-splitter.qmd
-                text: Chunking a large pbf (incorrectly)
+                text: Splitting a big pbf (wrong)
               - href: Mapping/big-pbf/tags-filter.qmd
                 text: Tags-filtering a large pbf
             - section: "Japan"
