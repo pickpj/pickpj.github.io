@@ -40,6 +40,9 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap-03e559fdc32a7ac2e3405b2da5986277.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -71,7 +74,7 @@ ul.task-list li input[type="checkbox"] {
 
 </head>
 
-<body class="nav-sidebar docked nav-fixed quarto-light">
+<body class="nav-sidebar docked nav-fixed slimcontent quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -301,7 +304,7 @@ ul.task-list li input[type="checkbox"] {
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Mapping</li><li class="breadcrumb-item"><a href="../../Mapping/custom-routing-maps/comaps.html">Custom Routing</a></li><li class="breadcrumb-item"><a href="../../Mapping/custom-routing-maps/comaps.html">Comaps</a></li></ol></nav>
 <div class="quarto-title">
@@ -323,10 +326,18 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p>Editing and making custom (pbf file) maps that work with apps like osmand or comaps enables one to piggyback off the routing and more polished UI of these apps for any custom purpose. I initially figured out how to do this when trying to get ALPR avoidance routing. And the end result is remarkably polished.</p>
-<p>These steps assume that you already have a custom pbf file (ex: <a href="https://github.com/pickpj/Big-B-Router/tree/comaps">big-b-router</a>).</p>
-<p>Tradeoffs of Comaps mwm (An educated guess from my usage):</p>
-<ul>
-<li>It doesn’t seem like there is a way to do weighting like is possible with Osmand’s routing.xml.<br>
+<p>These steps assume that you already have a custom pbf file (ex: <a href="https://github.com/pickpj/Big-B-Router/tree/comaps">big-b-router</a>). If you plan to make a custom pbf file I would recommend experimenting with osmandmapcreator first (#5 in the tradeoffs below).</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="./comaps.jpeg" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Custom map w/ road sections removed for ALPR avoidance (big-b-router)"><img src="./comaps.jpeg" class="img-fluid figure-img" alt="Custom map w/ road sections removed for ALPR avoidance (big-b-router)"></a></p>
+<figcaption>Custom map w/ road sections removed for ALPR avoidance (<a href="https://github.com/pickpj/Big-B-Router/tree/comaps">big-b-router</a>)</figcaption>
+</figure>
+</div>
+</div></div><p>Tradeoffs of Comaps mwm (An educated guess from my usage):</p>
+<ol type="1">
+<li>It doesn’t seem like there is a way to do custom weighting, like with Osmand’s routing.xml.<br>
 </li>
 <li>Doesn’t block or penalize paths that are gated.<br>
 </li>
@@ -334,12 +345,20 @@ ul.task-list li input[type="checkbox"] {
 </li>
 <li>A toggleable feature would have to be encoded in the way? Like “toll=yes” for avoiding tolls.<br>
 </li>
-<li>The conversion tool is more prone to failing/erroring (w/ custom objects) than osmandmapcreator</li>
-</ul>
+<li>The conversion tool is more prone to failing/erroring (w/ custom objects) than osmandmapcreator<br>
+</li>
+<li>Osmand routing is better at penalizing turns
+<ul>
+<li>ie. comaps routing might take several turns to get on and off a small road around an “obstruction” on a main road. The more optimal route would be with an earlier turn that might be “longer” or spend more time on a “slower road”, but eliminates the time-consuming turns (particularly left turns).</li>
+</ul></li>
+</ol>
 <p>The process for converting and importing a custom pbf map into comaps is more “involved” (ie. complicated) than osmand. The advantage of comaps is android auto support without having to pay for the higher tier version of Osmand. But having been through it, I’ve documented the pitfalls to avoid.</p>
-<section id="proper-installation-building-with-the-correct-protobuf-version" class="level3">
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p><a href="./comaps2.jpeg" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="./comaps2.jpeg" class="img-fluid"></a></p>
+</div></div><section id="proper-installation-building-with-the-correct-protobuf-version" class="level3">
 <h3 class="anchored" data-anchor-id="proper-installation-building-with-the-correct-protobuf-version">1. Proper installation (building with the correct protobuf version)</h3>
-<p>After cloning the comaps repo, you will probably want nest the comaps directory in another folder as “build_omim” will create directories at the same level. Follow the <a href="https://codeberg.org/comaps/comaps/src/branch/main/docs/INSTALL.md">installmd</a>, particularly ensure you have the correct protobuf version prior to running “build_omim”, outlined in <a href="https://codeberg.org/comaps/comaps/src/branch/release/2026.06.05/tools/python/maps_generator/README.md">mapgen readme</a> (this could likely change with later updates but was the case ~2026-06). Or if you ran build_omim incorrectly you can use the “-c” option, you can check other options with “-h”.</p>
+<p>After cloning the <a href="https://codeberg.org/comaps/comaps">comaps repo</a>, you will probably want to nest the comaps directory in another folder as “build_omim” will create directories at the same level. Follow the <a href="https://codeberg.org/comaps/comaps/src/branch/main/docs/INSTALL.md">installmd</a>, particularly ensure you have the correct protobuf version prior to running “build_omim”, outlined in <a href="https://codeberg.org/comaps/comaps/src/branch/release/2026.06.05/tools/python/maps_generator/README.md">mapgen readme</a> (this could likely change with later updates but was the case ~2026-06). Or if you ran build_omim incorrectly you can use the “-c” option, you can check other options with “-h”.</p>
 </section>
 <section id="map_generator.ini" class="level3">
 <h3 class="anchored" data-anchor-id="map_generator.ini">2. map_generator.ini</h3>
@@ -765,6 +784,38 @@ Move the existing World.mwm and WorldCoasts.mwm to the same directory.</p>
   });
   </script>
 </div> <!-- /content -->
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 

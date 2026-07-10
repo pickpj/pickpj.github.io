@@ -126,12 +126,9 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Mapping/custom-routing-maps/comaps.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Comaps Custom Maps</span></a>
+ <span class="menu-text">Comaps</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
- <span class="menu-text">Comaps</span>
-  </li>
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
@@ -290,8 +287,16 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#download-osmandmapcreator" id="toc-download-osmandmapcreator" class="nav-link active" data-scroll-target="#download-osmandmapcreator">1. Download osmandmapcreator</a></li>
+  <li><a href="#run-the-gui-with-java" id="toc-run-the-gui-with-java" class="nav-link" data-scroll-target="#run-the-gui-with-java">2. Run the gui with java</a></li>
+  <li><a href="#transfer-the-files-from-the-working-directory" id="toc-transfer-the-files-from-the-working-directory" class="nav-link" data-scroll-target="#transfer-the-files-from-the-working-directory">3. Transfer the files from the “working directory”</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -316,8 +321,21 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p>Editing and making custom maps that work with apps like osmand or comaps enables one to piggyback off the routing and more polished UI of these apps for any custom purpose. I initially figured out how to do this when trying to get ALPR avoidance routing. And the end result is remarkably polished.</p>
+<p>This assumes that you already have a custom pbf file (ex: <a href="https://github.com/pickpj/Big-B-Router">big-b-router</a>)</p>
+<p>Compared to comaps, the process is very straightforward/easy.</p>
+<section id="download-osmandmapcreator" class="level3">
+<h3 class="anchored" data-anchor-id="download-osmandmapcreator">1. Download <a href="https://wiki.openstreetmap.org/wiki/OsmAndMapCreator">osmandmapcreator</a></h3>
+</section>
+<section id="run-the-gui-with-java" class="level3">
+<h3 class="anchored" data-anchor-id="run-the-gui-with-java">2. Run the gui with java</h3>
+<p>Straightforward if you have java installed already, just assign some RAM with the command in the wikipage <code>java -jar -Xms1G -Xmx6G OsmAndMapCreator.jar</code>.</p>
+</section>
+<section id="transfer-the-files-from-the-working-directory" class="level3">
+<h3 class="anchored" data-anchor-id="transfer-the-files-from-the-working-directory">3. Transfer the files from the “working directory”</h3>
+<p>Upon completion the GUI will typically tell you where the file is saved. The working directory can be found in File &gt; Specify Working Directory. For POSIX systems (linux/mac) this will likely be ~/osmand .</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

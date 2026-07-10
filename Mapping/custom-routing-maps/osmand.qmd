@@ -3,3 +3,14 @@ title: Osmand Custom Maps
 ---
 Editing and making custom maps that work with apps like osmand or comaps enables one to piggyback off the routing and more polished UI of these apps for any custom purpose. I initially figured out how to do this when trying to get ALPR avoidance routing. And the end result is remarkably polished.  
   
+This assumes that you already have a custom pbf file (ex: [big-b-router](https://github.com/pickpj/Big-B-Router))  
+
+Compared to comaps, the process is very straightforward/easy.  
+
+### 1. Download [osmandmapcreator](https://wiki.openstreetmap.org/wiki/OsmAndMapCreator)  
+### 2. Run the gui with java  
+Straightforward if you have java installed already, just assign some RAM with the command in the wikipage `java -jar -Xms1G -Xmx6G OsmAndMapCreator.jar`.  
+
+### 3. Transfer the files from the "working directory"  
+Upon completion the GUI will typically tell you where the file is saved. The working directory can be found in File > Specify Working Directory. For POSIX systems (linux/mac) this will likely be ~/osmand .  
+
