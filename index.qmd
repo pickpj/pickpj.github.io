@@ -16,13 +16,15 @@ Hi, I'm a recent grad looking for work in the Atlanta or NoVA area.
 
 ## Projects:  
 ### [Big-B-Router ![](https://img.shields.io/github/stars/pickpj/Big-B-Router?color=232323&logo=github&labelColor=232323)](https://github.com/pickpj/Big-B-Router/)  
-Editing a PBF file to avoid ALPR cameras. The specific file type enables support with other map applications (Osmand). Which means support for niceties such as cross platform support (ios/google-play/f-droid/carplay/android auto), turn-by-turn routing/rerouting, and rich customizability, all whilst avoiding ALPRs.  
+Editing a PBF file to avoid ALPR cameras. The specific file type enables support with other map applications (Osmand or Comaps). Which means support for niceties such as cross platform support (ios/google-play/f-droid/carplay/android auto), turn-by-turn routing/rerouting, and rich customizability, all whilst avoiding ALPRs.  
   
 ---  
 ### [ev-morse ![](https://img.shields.io/github/stars/pickpj/ev-morse?color=232323&logo=github&labelColor=232323)](https://github.com/pickpj/ev-morse)  
 Reading linux event files for advanced macro activation based on morse pattern key presses. Works independent of the windowing system (wayland/x11) and is device specific. Pattern based activation enables multiple macros to be activated by the same key. Ev-morse can also handle repeating activations with longer key presses (like a fast forward button).     
 
 ## Recent Articles:  
+[Custom Routing in Comaps](./Mapping/custom-routing-maps/comaps.qmd)  
+Process/details for converting pbf to mwm for Comaps  
 [x11->wayland migration](./Linux/x11/macro-migration.qmd)  
 Documenting how I plan to migrate some macros that depend on x11 features.  
 [Bad Cams - Similar Cams](./Mapping/FIock/similar.qmd)  

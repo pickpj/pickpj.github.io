@@ -16,6 +16,8 @@ website:
               contents:
               - href: Mapping/custom-routing-maps/comaps.qmd
                 text: Comaps
+              - href: Mapping/custom-routing-maps/osmand.qmd
+                text: Osmand
             - section: "FIock"
               contents:
               - href: Mapping/FIock/bigbrouter.qmd
