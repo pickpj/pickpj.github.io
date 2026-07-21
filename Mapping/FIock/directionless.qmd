@@ -46,7 +46,7 @@ m
 ```
 ## Table
 ```{python}
-itables.show(pd.DataFrame(nodirgdf.drop(["geometry","camindex"], axis=1)[["State Full", "State", "ALPR ID", "url"]]),  maxBytes=200000, allow_html=True)
+itables.show(pd.DataFrame(nodirgdf.drop(["geometry","camindex"], axis=1)[["State Full", "State", "ALPR ID", "url"]]),  maxBytes=300000, allow_html=True)
 ```
 :::  
 

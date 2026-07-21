@@ -30,6 +30,8 @@ website:
                 text: BC - No Direction Tag
               - href: Mapping/FIock/similar.qmd
                 text: BC - Similar ALPRs
+              - href: Mapping/FIock/binghamton.qmd
+                text: BC - Binghamton, NY
             - section: "Working w/ big maps"
               contents:
               - href: Mapping/big-pbf/pbf-splitter.qmd

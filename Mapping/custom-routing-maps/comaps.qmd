@@ -36,7 +36,7 @@ The converter may complain if the pbf file is not sorted, use osmium sort.
 If you're editing and creating fake id's for ways/nodes make sure they're not consecutive as the converter will try to attach them (with comical results).  
 
 ### 4. Map generator parameters  
-I used and would recommend parameters: --skip="Coastline" --without_countries="World*"  
+I used and would recommend parameters: `--skip="Coastline" --without_countries="World*"`  
 
 ### 5. Map File Path  
 In the app settings set the map save location to Android/data/app.comaps/files.  

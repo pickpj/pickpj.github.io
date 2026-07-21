@@ -1,0 +1,13 @@
+---
+title: "Bad Cams - Binghamton"
+format:
+    html:
+        code-fold: true
+jupyter: python3
+---
+
+While experimenting with pydeck and 3d visualizations, I found a clear outlier in the ALPR data. Binghamton, NY. I guess someone took creative liberties with documenting ALPRs.  
+
+![](extra-binghamton/binghamton.jpg)  
+
+![](extra-binghamton/wtf.jpg)  

@@ -57,7 +57,7 @@ m
 ```
 ## Table
 ```{python}
-itables.show(pd.DataFrame(similarcamsgdf.drop(["geometry"], axis=1)),  maxBytes=250000, allow_html=True)
+itables.show(pd.DataFrame(similarcamsgdf.drop(["geometry"], axis=1)),  maxBytes=300000, allow_html=True)
 ```
 :::  
 
