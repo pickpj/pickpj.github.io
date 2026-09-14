@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.33">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Osmand Custom Maps – pickpj</title>
+<title>Census data regression? – pickpj</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -23,23 +26,26 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../">
-<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-bc185b5c5bdbcb35c2eb49d8a876ef70.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-03e559fdc32a7ac2e3405b2da5986277.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-7175ec11462a3fda766c9967d4174700.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -71,14 +77,14 @@ ul.task-list li input[type="checkbox"] {
 
 </head>
 
-<body class="nav-sidebar docked nav-fixed quarto-light">
+<body class="nav-sidebar docked nav-fixed slimcontent quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../../index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">pickpj</span>
     </a>
   </div>
@@ -93,7 +99,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Mapping</li><li class="breadcrumb-item"><a href="../../Mapping/custom-routing-maps/comaps.html">Custom Routing</a></li><li class="breadcrumb-item"><a href="../../Mapping/custom-routing-maps/osmand.html">Osmand</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Census/censuslangdata.html">Census</a></li><li class="breadcrumb-item"><a href="../Census/censuslangdata.html">Language Data Regression</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -108,39 +114,39 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Mapping</span></a>
+ <span class="menu-text">Census</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Custom Routing</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Mapping/custom-routing-maps/comaps.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Comaps</span></a>
+  <a href="../Census/censuslangdata.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Language Data Regression</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Mapping/custom-routing-maps/osmand.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Osmand</span></a>
+  <a href="../Census/jpacsdata.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Japanese Speaker Analysis</span></a>
   </div>
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Mapping</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
- <span class="menu-text">FIock</span></a>
+ <span class="menu-text">Custom Routing</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -148,38 +154,14 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Mapping/FIock/bigbrouter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Big B-router</span></a>
+  <a href="../Mapping/custom-routing-maps/comaps.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Comaps</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Mapping/FIock/bridges.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Bridges</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../Mapping/FIock/diff.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">BC - No Road Overlap</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../Mapping/FIock/directionless.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">BC - No Direction Tag</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../Mapping/FIock/similar.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">BC - Similar ALPRs</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../Mapping/FIock/binghamton.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">BC - Binghamton, NY</span></a>
+  <a href="../Mapping/custom-routing-maps/osmand.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Osmand</span></a>
   </div>
 </li>
       </ul>
@@ -187,7 +169,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
- <span class="menu-text">Working w/ big maps</span></a>
+ <span class="menu-text">ALPR</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -195,14 +177,38 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Mapping/big-pbf/pbf-splitter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Splitting a big pbf (wrong)</span></a>
+  <a href="../Mapping/ALPR/bigbrouter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Big B-router</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Mapping/big-pbf/tags-filter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Tags-filtering a large pbf</span></a>
+  <a href="../Mapping/ALPR/bridges.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bridges</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Mapping/ALPR/diff.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">BC - No Road Overlap</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Mapping/ALPR/directionless.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">BC - No Direction Tag</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Mapping/ALPR/similar.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">BC - Similar ALPRs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Mapping/ALPR/binghamton.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">BC - Binghamton, NY</span></a>
   </div>
 </li>
       </ul>
@@ -210,7 +216,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
- <span class="menu-text">Japan</span></a>
+ <span class="menu-text">Working w/ big maps</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -218,7 +224,30 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Mapping/JPN/tokyochizu.html" class="sidebar-item-text sidebar-link">
+  <a href="../Mapping/big-pbf/pbf-splitter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Splitting a big pbf (wrong)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Mapping/big-pbf/tags-filter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tags-filtering a large pbf</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
+ <span class="menu-text">Japan</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Mapping/JPN/tokyochizu.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Various maps</span></a>
   </div>
 </li>
@@ -228,25 +257,25 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
  <span class="menu-text">ML/DL</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false">
  <span class="menu-text">Image</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../MLDL/fastai.html" class="sidebar-item-text sidebar-link">
+  <a href="../MLDL/fastai.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Image Classification</span></a>
   </div>
 </li>
@@ -256,31 +285,31 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true">
  <span class="menu-text">Linux</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="false">
  <span class="menu-text">Keyboard</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Linux/keyboard/evmorse.html" class="sidebar-item-text sidebar-link">
+  <a href="../Linux/keyboard/evmorse.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">ev-morse</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Linux/keyboard/keycodes.html" class="sidebar-item-text sidebar-link">
+  <a href="../Linux/keyboard/keycodes.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">keycode list</span></a>
   </div>
 </li>
@@ -288,7 +317,7 @@ ul.task-list li input[type="checkbox"] {
   </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Linux/x11/macro-migration.html" class="sidebar-item-text sidebar-link">
+  <a href="../Linux/x11/macro-migration.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">x11-&gt;wayland macros</span></a>
   </div>
 </li>
@@ -304,18 +333,17 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#download-osmandmapcreator" id="toc-download-osmandmapcreator" class="nav-link active" data-scroll-target="#download-osmandmapcreator">1. Download osmandmapcreator</a></li>
-  <li><a href="#run-the-gui-with-java" id="toc-run-the-gui-with-java" class="nav-link" data-scroll-target="#run-the-gui-with-java">2. Run the gui with java</a></li>
-  <li><a href="#transfer-the-files-from-the-working-directory" id="toc-transfer-the-files-from-the-working-directory" class="nav-link" data-scroll-target="#transfer-the-files-from-the-working-directory">3. Transfer the files from the “working directory”</a></li>
+  <li><a href="#the-changes" id="toc-the-changes" class="nav-link active" data-scroll-target="#the-changes">The Changes</a></li>
+  <li><a href="#the-actual-data" id="toc-the-actual-data" class="nav-link" data-scroll-target="#the-actual-data">The Actual Data</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Mapping</li><li class="breadcrumb-item"><a href="../../Mapping/custom-routing-maps/comaps.html">Custom Routing</a></li><li class="breadcrumb-item"><a href="../../Mapping/custom-routing-maps/osmand.html">Osmand</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Census/censuslangdata.html">Census</a></li><li class="breadcrumb-item"><a href="../Census/censuslangdata.html">Language Data Regression</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Osmand Custom Maps</h1>
+<h1 class="title">Census data regression?</h1>
 </div>
 
 
@@ -332,19 +360,104 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Editing and making custom maps that work with apps like osmand or comaps enables one to piggyback off the routing and more polished UI of these apps for any custom purpose. I initially figured out how to do this when trying to get ALPR avoidance routing. And the end result is remarkably polished.</p>
-<p>This assumes that you already have a custom pbf file (ex: <a href="https://github.com/pickpj/Big-B-Router">big-b-router</a>)</p>
-<p>Compared to comaps, the process is very straightforward/easy.</p>
-<section id="download-osmandmapcreator" class="level3">
-<h3 class="anchored" data-anchor-id="download-osmandmapcreator">1. Download <a href="https://wiki.openstreetmap.org/wiki/OsmAndMapCreator">osmandmapcreator</a></h3>
+<p>I was going through <a href="https://probablyhelpful.com/languages/Japanese.html">this website</a>, enjoying the ACS data. However, the data was over a decade old, so I sought out the updated data.<br>
+I ended up finding out that the dataset had regressed <strong>a lot</strong> in its latest release.<br>
+<a href="https://www.census.gov/topics/population/language-use/data.html" class="uri">https://www.census.gov/topics/population/language-use/data.html</a><br>
+The dataset is not particularly useful for any regional or state level analysis.<br>
+The data may have <strong>some</strong> utility for those languages not captured in the <a href="https://www.census.gov/topics/population/language-use/about.html">designated 42 languages</a></p>
+<hr>
+<p>So if you’re interested in Language Use Data the correct place to get such data is not through <code>Census.gov / Topics / Population / Data</code><br>
+Instead you have to manually retrieve the data through <a href="https://data.census.gov/" class="uri">https://data.census.gov/</a>. Albeit it has to be one of the designated 42 languages.<br>
+Within the ACS data the table I went with was <code>B16001</code>.</p>
+<section id="the-changes" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="the-changes">The Changes</h3>
+<p><a href="extra-censuslang/regression.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="extra-censuslang/regression.jpg" class="img-fluid"></a></p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>Language Caps over 10k:</p>
+<table class="table-striped table-sm small caption-top table">
+<thead>
+<tr class="header">
+<th>State</th>
+<th>15th Language Group Size</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>California</td>
+<td>133,200</td>
+</tr>
+<tr class="even">
+<td>New York</td>
+<td>62,460</td>
+</tr>
+<tr class="odd">
+<td>Texas</td>
+<td>37,580</td>
+</tr>
+<tr class="even">
+<td>New Jersey</td>
+<td>36,050</td>
+</tr>
+<tr class="odd">
+<td>Illinois</td>
+<td>25,270</td>
+</tr>
+<tr class="even">
+<td>Florida</td>
+<td>21,970</td>
+</tr>
+<tr class="odd">
+<td>Massachusetts</td>
+<td>20,570</td>
+</tr>
+<tr class="even">
+<td>Pennsylvania</td>
+<td>18,280</td>
+</tr>
+<tr class="odd">
+<td>Washington</td>
+<td>16,860</td>
+</tr>
+<tr class="even">
+<td>Virginia</td>
+<td>15,870</td>
+</tr>
+<tr class="odd">
+<td>Maryland</td>
+<td>14,450</td>
+</tr>
+<tr class="even">
+<td>Georgia</td>
+<td>14,410</td>
+</tr>
+<tr class="odd">
+<td>Michigan</td>
+<td>14,250</td>
+</tr>
+<tr class="even">
+<td>Ohio</td>
+<td>10,110</td>
+</tr>
+<tr class="odd">
+<td>North Carolina</td>
+<td>9,975</td>
+</tr>
+</tbody>
+</table>
+</div></div><p>Not only is there a loss of the county level data &amp; CBSA (Core Based Statistical Areas; ie Metro Areas). But the remaining State data is limited to the top 15 languages with speakers.</p>
+<p>Fifteen may sound like a lot, but for larger states it can end up erasing fairly large groups of speakers. This issue particularly impacts states with more diverse speakers like New York.</p>
+<p>This restriction creates a “language cap”, below which a language group is not counted.</p>
+<p>The only languages to have full 50 state coverage are Spanish and Chinese!</p>
 </section>
-<section id="run-the-gui-with-java" class="level3">
-<h3 class="anchored" data-anchor-id="run-the-gui-with-java">2. Run the gui with java</h3>
-<p>Straightforward if you have java installed already, just assign some RAM with the command in the wikipage <code>java -jar -Xms1G -Xmx6G OsmAndMapCreator.jar</code>.</p>
-</section>
-<section id="transfer-the-files-from-the-working-directory" class="level3">
-<h3 class="anchored" data-anchor-id="transfer-the-files-from-the-working-directory">3. Transfer the files from the “working directory”</h3>
-<p>Upon completion the GUI will typically tell you where the file is saved. The working directory can be found in File &gt; Specify Working Directory. For POSIX systems (linux/mac) this will likely be ~/osmand .</p>
+<section id="the-actual-data" class="level3">
+<h3 class="anchored" data-anchor-id="the-actual-data">The Actual Data</h3>
+<p>As stated at the start it’s necessary to find and filter through the data from<br>
+<a href="https://data.census.gov/" class="uri">https://data.census.gov/</a></p>
+<p>The table I went for was <code>B16001</code>. Selecting the recent 5-year ACS dataset, then transposing and restricting to the language of interest.</p>
+<p>The ACS question:<br>
+<a href="./extra-censuslang/language_q14.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="./extra-censuslang/language_q14.png" class="img-fluid" width="300"></a></p>
+<p>full questionnare: <a href="https://www.census.gov/programs-surveys/acs/about/forms-and-instructions.html" class="uri">https://www.census.gov/programs-surveys/acs/about/forms-and-instructions.html</a></p>
 
 
 </section>
@@ -401,13 +514,14 @@ ul.task-list li input[type="checkbox"] {
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
@@ -750,6 +864,38 @@ ul.task-list li input[type="checkbox"] {
   });
   </script>
 </div> <!-- /content -->
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 

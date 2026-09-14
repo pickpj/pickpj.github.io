@@ -1,0 +1,1342 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>ACS Japanese Speaker Data (Under Construction) – pickpj</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-7175ec11462a3fda766c9967d4174700.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed slimcontent quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">pickpj</span>
+    </a>
+  </div>
+        <div class="quarto-navbar-tools tools-end">
+    <a href="https://www.github.com/pickpj" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+</div>
+          <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Census/censuslangdata.html">Census</a></li><li class="breadcrumb-item"><a href="../Census/jpacsdata.html">Japanese Speaker Analysis</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Census</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Census/censuslangdata.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Language Data Regression</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Census/jpacsdata.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Japanese Speaker Analysis</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Mapping</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Custom Routing</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Mapping/custom-routing-maps/comaps.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Comaps</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Mapping/custom-routing-maps/osmand.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Osmand</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+ <span class="menu-text">ALPR</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Mapping/ALPR/bigbrouter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Big B-router</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Mapping/ALPR/bridges.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bridges</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Mapping/ALPR/diff.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">BC - No Road Overlap</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Mapping/ALPR/directionless.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">BC - No Direction Tag</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Mapping/ALPR/similar.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">BC - Similar ALPRs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Mapping/ALPR/binghamton.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">BC - Binghamton, NY</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">Working w/ big maps</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Mapping/big-pbf/pbf-splitter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Splitting a big pbf (wrong)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Mapping/big-pbf/tags-filter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tags-filtering a large pbf</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
+ <span class="menu-text">Japan</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Mapping/JPN/tokyochizu.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Various maps</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text">ML/DL</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false">
+ <span class="menu-text">Image</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../MLDL/fastai.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Image Classification</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true">
+ <span class="menu-text">Linux</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="false">
+ <span class="menu-text">Keyboard</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Linux/keyboard/evmorse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ev-morse</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Linux/keyboard/keycodes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">keycode list</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Linux/x11/macro-migration.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">x11-&gt;wayland macros</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#why" id="toc-why" class="nav-link active" data-scroll-target="#why">Why</a></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
+  <li><a href="#observations" id="toc-observations" class="nav-link" data-scroll-target="#observations">Observations</a></li>
+  <li><a href="#visualizations-見える化" id="toc-visualizations-見える化" class="nav-link" data-scroll-target="#visualizations-見える化">Visualizations 見える化</a></li>
+  <li><a href="#other-stats" id="toc-other-stats" class="nav-link" data-scroll-target="#other-stats">Other Stats</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Census/censuslangdata.html">Census</a></li><li class="breadcrumb-item"><a href="../Census/jpacsdata.html">Japanese Speaker Analysis</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">ACS Japanese Speaker Data (Under Construction)</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>I needed some language data, so I ended up making something similar to this site: <a href="https://probablyhelpful.com/languages/Japanese.html" class="uri">https://probablyhelpful.com/languages/Japanese.html</a>. Except with newer data, more visualizations, searchable tables, and some helpful statistics.</p>
+<section id="why" class="level3">
+<h3 class="anchored" data-anchor-id="why">Why</h3>
+<p>There are a number of factors unique to Japanese that create upward wage pressure for bilingual speakers (me).<br>
+From the demand side:</p>
+<ol type="1">
+<li>Japan is and has been the country with the most direct investment in the US. <a href="https://www.jetro.go.jp/usa/japan-us-investment-report/">src1</a>, <a href="https://apps.bea.gov/iTable/?ReqID=2&amp;step=1">src2</a><br>
+</li>
+<li>Japan is the fourth largest economy (investment target) <a href="https://en.wikipedia.org/wiki/List_of_countries_by_GDP_%28nominal%29">src3</a>, fifth when adjusting for PPP <a href="https://en.wikipedia.org/wiki/List_of_countries_by_GDP_(PPP)">src4</a></li>
+</ol>
+<p>On the supply side:</p>
+<ol type="1">
+<li>Japan ranks poorly in the “English Proficiency Index”. <a href="https://en.wikipedia.org/wiki/EF_English_Proficiency_Index">src5</a><br>
+</li>
+<li>Japanese is among the hardest language to learn for English speakers (along with Arabic, Chinese, Korean). <a href="https://blog.rosettastone.com/the-complete-list-of-language-difficulty-rankings/">src6</a><br>
+</li>
+<li>Japan has a small emigrant population relative to its population size. <a href="https://en.wikipedia.org/wiki/List_of_sovereign_states_by_immigrant_and_emigrant_population#Emigrant_population">src7 (Source available through wayback machine)</a><br>
+</li>
+<li>Regional concentrations/disparities within the US (the purpose of this analysis). <a href="../Census/jpacsdata.html#map">src8=myself+ACS data</a></li>
+</ol>
+<p>Together, these factors make Japanese a uniquely valuable language in the US. China/Chinese is similar in some respects, but lacks, basically any, direct investments into the US. For reference, in 2025 Austria had more direct investment into the US than China.</p>
+<p>As an aside, I wish the BLS would release language specific data on Interpreters and Translators. Rather than the general translator bucket. (How am I supposed to interpret the wage data!)<br>
+There is also the complication of specializations that require language ability as an addition, but are not a “translator” role. With the right data I imagine they could create an average % wage premium that a language adds.<br>
+An <a href="https://www.econstor.eu/bitstream/10419/182280/1/GLO-DP-0251.pdf">example</a> wherein they identified the wage premium a foreign language skill provided (in Poland).</p>
+</section>
+<section id="data" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="data">Data</h3>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>The ACS question:<br>
+<a href="./extra-censuslang/language_q14.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="./extra-censuslang/language_q14.png" class="img-fluid"></a></p>
+</div></div><p>The data originates from <a href="https://data.census.gov/" class="uri">https://data.census.gov/</a>.</p>
+<p>U.S. Census Bureau. “Language Spoken at Home by Ability to Speak English for the Population 5 Years and Over.” American Community Survey, ACS 5-Year Estimates Detailed Tables, Table B16001.</p>
+<p>full questionnare: <a href="https://www.census.gov/programs-surveys/acs/about/forms-and-instructions.html" class="uri">https://www.census.gov/programs-surveys/acs/about/forms-and-instructions.html</a></p>
+</section>
+<section id="observations" class="level3">
+<h3 class="anchored" data-anchor-id="observations">Observations</h3>
+<p>Alaska, Utah, Nevada stood out as locations not traditionally associated with a Japanese diaspora, but had <strong>relatively</strong> high populations of Japanese speakers.</p>
+</section>
+<section id="visualizations-見える化" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="visualizations-見える化">Visualizations 見える化</h3>
+<div class="column-page-right">
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Table Nominal</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Table 2</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href="">Table Regional</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false" href="">Map</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div id="52de0262" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> folium</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> itables</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geoplot</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>jpmap <span class="op">=</span> gpd.read_file(<span class="st">"../../census/jpmap.gpkg"</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># jpmap = jpmap.rename({"STUSPS":"State", "NAME":"State Full", "osmid":"ID", "url":"URL"}, axis=1)</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>itables.show(pd.DataFrame(jpmap[jpmap.columns[:<span class="dv">13</span>]]), maxBytes<span class="op">=</span><span class="dv">200000</span>, style<span class="op">=</span><span class="st">"width:100%"</span>, </span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>                                    buttons<span class="op">=</span>[<span class="st">"pageLength"</span>, {<span class="st">"extend"</span>: <span class="st">"colvisGroup"</span>,<span class="st">"text"</span>: <span class="st">"Hide Errors"</span>,<span class="st">"hide"</span>: [<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">6</span>,<span class="dv">8</span>,<span class="dv">10</span>]},</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>                                                            {<span class="st">"extend"</span>: <span class="st">"colvisGroup"</span>,<span class="st">"text"</span>: <span class="st">"Show all"</span>,<span class="st">"show"</span>: <span class="st">"*"</span>}],</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>                                    columnDefs<span class="op">=</span>[{<span class="st">"className"</span>:<span class="st">"dt-left"</span>, <span class="st">"targets"</span>:[<span class="dv">0</span>]}, </span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>                                                {<span class="st">"targets"</span>:[<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">6</span>,<span class="dv">8</span>,<span class="dv">10</span>], <span class="st">"visible"</span>:<span class="va">False</span>}],</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>                                    columnControl<span class="op">=</span>[<span class="st">"order"</span>],</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>                                    ordering<span class="op">=</span>{<span class="st">"indicators"</span>: <span class="va">False</span>, <span class="st">"handler"</span>: <span class="va">False</span>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<!--| quarto-html-table-processing: none -->
+<table id="itables_60180e3e_b3f8_45d5_a088_2473c1c03c91" hidden="hidden">
+  <tbody>
+    <tr>
+      <td style="vertical-align:middle; text-align:left"><a href="https://itables.org/"><svg class="main-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="64" viewbox="0 0 500 400" style="font-family: 'Droid Sans', sans-serif;">
+    <g style="fill:var(--itables-logo-paper,#d9d7fc)">
+        <path d="M100,400H500V357H100Z"></path>
+        <path d="M100,300H400V257H100Z"></path>
+        <path d="M0,200H400V157H0Z"></path>
+        <path d="M100,100H500V57H100Z"></path>
+        <path d="M100,350H500V307H100Z"></path>
+        <path d="M100,250H400V207H100Z"></path>
+        <path d="M0,150H400V107H0Z"></path>
+        <path d="M100,50H500V7H100Z"></path>
+    </g>
+    <g style="fill:var(--itables-logo-ink,#1a1366);stroke:var(--itables-logo-ink,#1a1366);">
+   <rect x="100" y="7" width="400" height="43">
+    <animate attributename="width" values="0;400;0" dur="5s" repeatcount="indefinite"></animate>
+      <animate attributename="x" values="100;100;500" dur="5s" repeatcount="indefinite"></animate>
+  </rect>
+        <rect x="0" y="107" width="400" height="43">
+    <animate attributename="width" values="0;400;0" dur="3.5s" repeatcount="indefinite"></animate>
+    <animate attributename="x" values="0;0;400" dur="3.5s" repeatcount="indefinite"></animate>
+  </rect>
+        <rect x="100" y="207" width="300" height="43">
+    <animate attributename="width" values="0;300;0" dur="3s" repeatcount="indefinite"></animate>
+    <animate attributename="x" values="100;100;400" dur="3s" repeatcount="indefinite"></animate>
+  </rect>
+        <rect x="100" y="307" width="400" height="43">
+    <animate attributename="width" values="0;400;0" dur="4s" repeatcount="indefinite"></animate>
+      <animate attributename="x" values="100;100;500" dur="4s" repeatcount="indefinite"></animate>
+  </rect>
+        <g style="fill:transparent;stroke-width:8; stroke-linejoin:round" rx="5">
+            <g transform="translate(45 50) rotate(-45)">
+                <circle r="33" cx="0" cy="0"></circle>
+                <rect x="-8" y="32" width="16" height="30"></rect>
+            </g>
+
+            <g transform="translate(450 152)">
+                <polyline points="-15,-20 -35,-20 -35,40 25,40 25,20"></polyline>
+                <rect x="-15" y="-40" width="60" height="60"></rect>
+            </g>
+
+            <g transform="translate(50 352)">
+                <polygon points="-35,-5 0,-40 35,-5"></polygon>
+                <polygon points="-35,10 0,45 35,10"></polygon>
+            </g>
+
+            <g transform="translate(75 250)">
+                <polyline points="-30,30 -60,0 -30,-30"></polyline>
+                <polyline points="0,30 -30,0 0,-30"></polyline>
+            </g>
+
+            <g transform="translate(425 250) rotate(180)">
+                <polyline points="-30,30 -60,0 -30,-30"></polyline>
+                <polyline points="0,30 -30,0 0,-30"></polyline>
+            </g>
+        </g>
+    </g>
+</svg>
+</a>
+        Loading ITables v2.9.1 from the internet...
+        (need <a href="https://itables.org/troubleshooting.html">help</a>?)
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div id="itables_60180e3e_b3f8_45d5_a088_2473c1c03c91_fallback"><table style="border-collapse:collapse"><thead>    <tr style="text-align: right;">
+      <th style="border:1px solid #ddd;padding:8px"><sup><noscript><span title="JavaScript not allowed. Please trust this notebook to get interactive tables.">🔒</span></noscript><a href="https://itables.org/fallbacks/static_preview.html" title="ITables v2.9.1 static preview">ⓘ</a></sup>state</th>
+      <th style="border:1px solid #ddd;padding:8px">total</th>
+      <th style="border:1px solid #ddd;padding:8px">etotal</th>
+      <th style="border:1px solid #ddd;padding:8px">eng</th>
+      <th style="border:1px solid #ddd;padding:8px">eeng</th>
+      <th style="border:1px solid #ddd;padding:8px">jpn</th>
+      <th style="border:1px solid #ddd;padding:8px">ejpn</th>
+      <th style="border:1px solid #ddd;padding:8px">bilingual</th>
+      <th style="border:1px solid #ddd;padding:8px">ebilingual</th>
+      <th style="border:1px solid #ddd;padding:8px">jpnbad</th>
+      <th style="border:1px solid #ddd;padding:8px">ejpnbad</th>
+      <th style="border:1px solid #ddd;padding:8px">percentjpn</th>
+      <th style="border:1px solid #ddd;padding:8px">percentbilingual</th>
+    </tr></thead><tbody>
+<tr><td style="border:1px solid #ddd;padding:8px">alabama</td><td style="border:1px solid #ddd;padding:8px">4793030</td><td style="border:1px solid #ddd;padding:8px">601</td><td style="border:1px solid #ddd;padding:8px">4503218</td><td style="border:1px solid #ddd;padding:8px">5359</td><td style="border:1px solid #ddd;padding:8px">2528</td><td style="border:1px solid #ddd;padding:8px">541</td><td style="border:1px solid #ddd;padding:8px">1228</td><td style="border:1px solid #ddd;padding:8px">414</td><td style="border:1px solid #ddd;padding:8px">1300</td><td style="border:1px solid #ddd;padding:8px">327</td><td style="border:1px solid #ddd;padding:8px">0.052743</td><td style="border:1px solid #ddd;padding:8px">0.025621</td></tr>
+<tr><td style="border:1px solid #ddd;padding:8px">alaska</td><td style="border:1px solid #ddd;padding:8px">689070</td><td style="border:1px solid #ddd;padding:8px">169</td><td style="border:1px solid #ddd;padding:8px">585162</td><td style="border:1px solid #ddd;padding:8px">2727</td><td style="border:1px solid #ddd;padding:8px">1494</td><td style="border:1px solid #ddd;padding:8px">390</td><td style="border:1px solid #ddd;padding:8px">1033</td><td style="border:1px solid #ddd;padding:8px">281</td><td style="border:1px solid #ddd;padding:8px">461</td><td style="border:1px solid #ddd;padding:8px">254</td><td style="border:1px solid #ddd;padding:8px">0.216814</td><td style="border:1px solid #ddd;padding:8px">0.149912</td></tr>
+<tr><td style="border:1px solid #ddd;padding:8px">arizona</td><td style="border:1px solid #ddd;padding:8px">6981320</td><td style="border:1px solid #ddd;padding:8px">285</td><td style="border:1px solid #ddd;padding:8px">5184054</td><td style="border:1px solid #ddd;padding:8px">11544</td><td style="border:1px solid #ddd;padding:8px">7952</td><td style="border:1px solid #ddd;padding:8px">907</td><td style="border:1px solid #ddd;padding:8px">5119</td><td style="border:1px solid #ddd;padding:8px">706</td><td style="border:1px solid #ddd;padding:8px">2833</td><td style="border:1px solid #ddd;padding:8px">511</td><td style="border:1px solid #ddd;padding:8px">0.113904</td><td style="border:1px solid #ddd;padding:8px">0.073324</td></tr>
+<tr><td style="border:1px solid #ddd;padding:8px">arkansas</td><td style="border:1px solid #ddd;padding:8px">2869111</td><td style="border:1px solid #ddd;padding:8px">548</td><td style="border:1px solid #ddd;padding:8px">2630451</td><td style="border:1px solid #ddd;padding:8px">4441</td><td style="border:1px solid #ddd;padding:8px">935</td><td style="border:1px solid #ddd;padding:8px">266</td><td style="border:1px solid #ddd;padding:8px">495</td><td style="border:1px solid #ddd;padding:8px">195</td><td style="border:1px solid #ddd;padding:8px">440</td><td style="border:1px solid #ddd;padding:8px">218</td><td style="border:1px solid #ddd;padding:8px">0.032588</td><td style="border:1px solid #ddd;padding:8px">0.017253</td></tr>
+<tr><td style="border:1px solid #ddd;padding:8px">california</td><td style="border:1px solid #ddd;padding:8px">37121454</td><td style="border:1px solid #ddd;padding:8px">487</td><td style="border:1px solid #ddd;padding:8px">20642638</td><td style="border:1px solid #ddd;padding:8px">54450</td><td style="border:1px solid #ddd;padding:8px">133419</td><td style="border:1px solid #ddd;padding:8px">4594</td><td style="border:1px solid #ddd;padding:8px">78900</td><td style="border:1px solid #ddd;padding:8px">3190</td><td style="border:1px solid #ddd;padding:8px">54519</td><td style="border:1px solid #ddd;padding:8px">2222</td><td style="border:1px solid #ddd;padding:8px">0.359412</td><td style="border:1px solid #ddd;padding:8px">0.212546</td></tr>
+<tr><td style="border:1px solid #ddd;padding:8px">colorado</td><td style="border:1px solid #ddd;padding:8px">5549558</td><td style="border:1px solid #ddd;padding:8px">577</td><td style="border:1px solid #ddd;padding:8px">4650283</td><td style="border:1px solid #ddd;padding:8px">9223</td><td style="border:1px solid #ddd;padding:8px">5893</td><td style="border:1px solid #ddd;padding:8px">658</td><td style="border:1px solid #ddd;padding:8px">4494</td><td style="border:1px solid #ddd;padding:8px">563</td><td style="border:1px solid #ddd;padding:8px">1399</td><td style="border:1px solid #ddd;padding:8px">266</td><td style="border:1px solid #ddd;padding:8px">0.106189</td><td style="border:1px solid #ddd;padding:8px">0.080979</td></tr>
+<tr><td style="border:1px solid #ddd;padding:8px">connecticut</td><td style="border:1px solid #ddd;padding:8px">3442817</td><td style="border:1px solid #ddd;padding:8px">90</td><td style="border:1px solid #ddd;padding:8px">2638366</td><td style="border:1px solid #ddd;padding:8px">6723</td><td style="border:1px solid #ddd;padding:8px">3281</td><td style="border:1px solid #ddd;padding:8px">640</td><td style="border:1px solid #ddd;padding:8px">2322</td><td style="border:1px solid #ddd;padding:8px">504</td><td style="border:1px solid #ddd;padding:8px">959</td><td style="border:1px solid #ddd;padding:8px">329</td><td style="border:1px solid #ddd;padding:8px">0.095300</td><td style="border:1px solid #ddd;padding:8px">0.067445</td></tr>
+<tr><td style="border:1px solid #ddd;padding:8px">delaware</td><td style="border:1px solid #ddd;padding:8px">966580</td><td style="border:1px solid #ddd;padding:8px">46</td><td style="border:1px solid #ddd;padding:8px">820336</td><td style="border:1px solid #ddd;padding:8px">3432</td><td style="border:1px solid #ddd;padding:8px">805</td><td style="border:1px solid #ddd;padding:8px">272</td><td style="border:1px solid #ddd;padding:8px">603</td><td style="border:1px solid #ddd;padding:8px">229</td><td style="border:1px solid #ddd;padding:8px">202</td><td style="border:1px solid #ddd;padding:8px">102</td><td style="border:1px solid #ddd;padding:8px">0.083283</td><td style="border:1px solid #ddd;padding:8px">0.062385</td></tr>
+<tr><td style="border:1px solid #ddd;padding:8px">district of columbia</td><td style="border:1px solid #ddd;padding:8px">640841</td><td style="border:1px solid #ddd;padding:8px">66</td><td style="border:1px solid #ddd;padding:8px">518478</td><td style="border:1px solid #ddd;padding:8px">3204</td><td style="border:1px solid #ddd;padding:8px">1054</td><td style="border:1px solid #ddd;padding:8px">285</td><td style="border:1px solid #ddd;padding:8px">692</td><td style="border:1px solid #ddd;padding:8px">244</td><td style="border:1px solid #ddd;padding:8px">362</td><td style="border:1px solid #ddd;padding:8px">145</td><td style="border:1px solid #ddd;padding:8px">0.164471</td><td style="border:1px solid #ddd;padding:8px">0.107983</td></tr>
+<tr><td style="border:1px solid #ddd;padding:8px">florida</td><td style="border:1px solid #ddd;padding:8px">21289728</td><td style="border:1px solid #ddd;padding:8px">707</td><td style="border:1px solid #ddd;padding:8px">14769458</td><td style="border:1px solid #ddd;padding:8px">25976</td><td style="border:1px solid #ddd;padding:8px">12222</td><td style="border:1px solid #ddd;padding:8px">1183</td><td style="border:1px solid #ddd;padding:8px">8153</td><td style="border:1px solid #ddd;padding:8px">993</td><td style="border:1px solid #ddd;padding:8px">4069</td><td style="border:1px solid #ddd;padding:8px">647</td><td style="border:1px solid #ddd;padding:8px">0.057408</td><td style="border:1px solid #ddd;padding:8px">0.038295</td></tr>
+</tbody><tfoot><tr><td colspan="13" style="border:none;padding:8px;text-align:center">(41 more rows not shown)</td></tr></tfoot></table></div><script>document.getElementById("itables_60180e3e_b3f8_45d5_a088_2473c1c03c91")?.removeAttribute("hidden");document.getElementById("itables_60180e3e_b3f8_45d5_a088_2473c1c03c91_fallback")?.setAttribute("hidden", "hidden");</script>
+<link href="https://www.unpkg.com/dt_for_itables@2.5.8/dt_bundle.css" rel="stylesheet">
+<script type="module">
+    import { ITable, jQuery as $ } from 'https://www.unpkg.com/dt_for_itables@2.5.8/dt_bundle.js';
+
+    document.querySelectorAll("#itables_60180e3e_b3f8_45d5_a088_2473c1c03c91:not(.dataTable)").forEach(table => {
+        if (!(table instanceof HTMLTableElement))
+            return;
+
+        let dt_args = {
+          "buttons": ["pageLength", {"extend": "colvisGroup", "hide": [2, 4, 6, 8, 10], "text": "Hide Errors"}, {"extend": "colvisGroup", "show": "*", "text": "Show all"}],
+          "classes": ["display", "nowrap", "compact"],
+          "columnControl": ["order"],
+          "columnDefs": [{"render": "function (data, type, row, meta) { return type === 'sort' || type === 'type' ? data[1] : data[0]; }", "targets": [11, 12]}, {"className": "dt-left", "targets": [0]}, {"targets": [2, 4, 6, 8, 10], "visible": false}],
+          "data_json": "[[\"alabama\", 4793030, 601, 4503218, 5359, 2528, 541, 1228, 414, 1300, 327, [\"0.052743\", 0.052743254267133735], [\"0.025621\", 0.025620536487357685]], [\"alaska\", 689070, 169, 585162, 2727, 1494, 390, 1033, 281, 461, 254, [\"0.216814\", 0.21681396665070313], [\"0.149912\", 0.14991220050212606]], [\"arizona\", 6981320, 285, 5184054, 11544, 7952, 907, 5119, 706, 2833, 511, [\"0.113904\", 0.1139039608555402], [\"0.073324\", 0.07332424240688007]], [\"arkansas\", 2869111, 548, 2630451, 4441, 935, 266, 495, 195, 440, 218, [\"0.032588\", 0.03258849169655688], [\"0.017253\", 0.01725273089817717]], [\"california\", 37121454, 487, 20642638, 54450, 133419, 4594, 78900, 3190, 54519, 2222, [\"0.359412\", 0.3594121070796419], [\"0.212546\", 0.212545553846032]], [\"colorado\", 5549558, 577, 4650283, 9223, 5893, 658, 4494, 563, 1399, 266, [\"0.106189\", 0.10618863700496509], [\"0.080979\", 0.08097942214497082]], [\"connecticut\", 3442817, 90, 2638366, 6723, 3281, 640, 2322, 504, 959, 329, [\"0.095300\", 0.09529986635943763], [\"0.067445\", 0.06744476979171417]], [\"delaware\", 966580, 46, 820336, 3432, 805, 272, 603, 229, 202, 102, [\"0.083283\", 0.08328332885017277], [\"0.062385\", 0.062384903474104574]], [\"district of columbia\", 640841, 66, 518478, 3204, 1054, 285, 692, 244, 362, 145, [\"0.164471\", 0.16447137433466336], [\"0.107983\", 0.10798310345311864]], [\"florida\", 21289728, 707, 14769458, 25976, 12222, 1183, 8153, 993, 4069, 647, [\"0.057408\", 0.05740796688431153], [\"0.038295\", 0.03829546342724529]], [\"georgia\", 10304177, 868, 8711633, 14220, 10715, 1368, 6760, 1036, 3955, 845, [\"0.103987\", 0.1039869559694093], [\"0.065604\", 0.06560446312209117]], [\"hawaii\", 1365077, 136, 1028267, 5089, 36889, 1589, 20552, 1135, 16337, 1037, [\"2.702338\", 2.7023384028886284], [\"1.505556\", 1.505556096835563]], [\"idaho\", 1820514, 345, 1620797, 3859, 1777, 333, 1500, 312, 277, 121, [\"0.097610\", 0.09760979591478011], [\"0.082394\", 0.08239431281495226]], [\"illinois\", 12003587, 511, 9117218, 15822, 12943, 1072, 8061, 848, 4882, 702, [\"0.107826\", 0.1078261023142499], [\"0.067155\", 0.06715492627328815]], [\"indiana\", 6441838, 749, 5777667, 7625, 5663, 819, 3015, 596, 2648, 481, [\"0.087910\", 0.08790969285474115], [\"0.046803\", 0.04680341231803718]], [\"iowa\", 3022668, 721, 2746525, 5059, 1189, 281, 782, 232, 407, 149, [\"0.039336\", 0.03933610968852683], [\"0.025871\", 0.025871184000359947]], [\"kansas\", 2770418, 478, 2435156, 5262, 2064, 427, 1568, 365, 496, 155, [\"0.074501\", 0.07450139293059747], [\"0.056598\", 0.05659795742014382]], [\"kentucky\", 4268599, 714, 3977055, 5597, 4458, 580, 2110, 374, 2348, 469, [\"0.104437\", 0.10443707642718372], [\"0.049431\", 0.049430738282045236]], [\"louisiana\", 4326919, 579, 3960051, 5660, 1783, 478, 1275, 341, 508, 232, [\"0.041207\", 0.041207149937403494], [\"0.029467\", 0.029466694430840976]], [\"maine\", 1325830, 291, 1245787, 2731, 672, 273, 510, 214, 162, 103, [\"0.050685\", 0.05068523113823039], [\"0.038466\", 0.03846647006026414]], [\"maryland\", 5849633, 323, 4617626, 11119, 8540, 1029, 5280, 743, 3260, 558, [\"0.145992\", 0.14599206480133028], [\"0.090262\", 0.09026207285140794]], [\"massachusetts\", 6694960, 221, 5015860, 11806, 8608, 887, 6136, 726, 2472, 419, [\"0.128574\", 0.12857433054118322], [\"0.091651\", 0.09165103301588061]], [\"michigan\", 9536435, 385, 8544027, 9324, 12847, 1084, 6804, 717, 6043, 732, [\"0.134715\", 0.1347149118092872], [\"0.071347\", 0.07134741651361332]], [\"minnesota\", 5405770, 454, 4733246, 7852, 4437, 644, 3003, 519, 1434, 355, [\"0.082079\", 0.08207896377389345], [\"0.055552\", 0.05555175303425784]], [\"mississippi\", 2771334, 666, 2652499, 2684, 1100, 330, 600, 175, 500, 284, [\"0.039692\", 0.03969207609043154], [\"0.021650\", 0.021650223322053568]], [\"missouri\", 5835003, 720, 5443399, 6568, 3869, 683, 2381, 521, 1488, 339, [\"0.066307\", 0.06630673540356363], [\"0.040805\", 0.040805463167713885]], [\"montana\", 1058934, 280, 1014553, 2063, 218, 82, 134, 71, 84, 46, [\"0.020587\", 0.020586741005577308], [\"0.012654\", 0.012654235297006235]], [\"nebraska\", 1853332, 343, 1616628, 3788, 1204, 288, 866, 247, 338, 121, [\"0.064964\", 0.0649640755137234], [\"0.046727\", 0.04672665232133261]], [\"nevada\", 3009889, 281, 2123304, 6763, 6673, 1012, 4206, 746, 2467, 532, [\"0.221703\", 0.22170252790053055], [\"0.139739\", 0.13973937244861853]], [\"new hampshire\", 1332089, 254, 1226265, 3560, 794, 262, 660, 237, 134, 72, [\"0.059606\", 0.05960562695135235], [\"0.049546\", 0.049546239027572485]], [\"new jersey\", 8816621, 326, 5894484, 15878, 13099, 1302, 7771, 1209, 5328, 693, [\"0.148572\", 0.14857165800820973], [\"0.088140\", 0.08814034310877149]], [\"new mexico\", 2009638, 621, 1379762, 7498, 1275, 310, 969, 267, 306, 113, [\"0.063444\", 0.0634442621009356], [\"0.048218\", 0.04821763919671105]], [\"new york\", 18772412, 478, 12975172, 23810, 34092, 2236, 19452, 1681, 14640, 1248, [\"0.181607\", 0.18160692403299053], [\"0.103620\", 0.10362014215328323]], [\"north carolina\", 10127421, 751, 8764888, 10970, 8337, 1075, 5224, 747, 3113, 586, [\"0.082321\", 0.08232105686136677], [\"0.051583\", 0.05158272772505458]], [\"north dakota\", 735169, 423, 685798, 1946, 288, 184, 60, 35, 228, 185, [\"0.039175\", 0.03917466596115995], [\"0.008161\", 0.008161388741908323]], [\"ohio\", 11140750, 661, 10247600, 10792, 10876, 1096, 5341, 703, 5535, 819, [\"0.097624\", 0.0976235890761394], [\"0.047941\", 0.0479411170702152]], [\"oklahoma\", 3782477, 435, 3347348, 4098, 2015, 383, 1419, 335, 596, 167, [\"0.053272\", 0.05327196966432314], [\"0.037515\", 0.03751509923259282]], [\"oregon\", 4046536, 483, 3430249, 7832, 11238, 1084, 8352, 857, 2886, 494, [\"0.277719\", 0.27771901695672546], [\"0.206399\", 0.20639875686265982]], [\"pennsylvania\", 12340793, 357, 10811584, 12342, 6418, 628, 4109, 448, 2309, 370, [\"0.052006\", 0.05200638240994724], [\"0.033296\", 0.03329607748869947]], [\"rhode island\", 1048547, 152, 806534, 4820, 762, 229, 585, 192, 177, 103, [\"0.072672\", 0.07267199276713394], [\"0.055791\", 0.05579149051020126]], [\"south carolina\", 5006696, 386, 4587856, 6821, 3332, 619, 2126, 449, 1206, 394, [\"0.066551\", 0.06655087506810879], [\"0.042463\", 0.0424631333717885]], [\"south dakota\", 850347, 512, 789886, 2564, 325, 149, 227, 112, 98, 79, [\"0.038220\", 0.038219691490650284], [\"0.026695\", 0.02669498451808497]], [\"tennessee\", 6655459, 872, 6081056, 8001, 4345, 721, 2505, 511, 1840, 441, [\"0.065285\", 0.0652847534632848], [\"0.037638\", 0.03763827558700309]], [\"texas\", 28253216, 1224, 18339379, 38254, 23095, 2069, 14183, 1568, 8912, 1095, [\"0.081743\", 0.08174290671900855], [\"0.050200\", 0.05019959497708155]], [\"utah\", 3156873, 342, 2653804, 5138, 5718, 752, 4419, 623, 1299, 285, [\"0.181129\", 0.18112860415987592], [\"0.139980\", 0.13998029062303108]], [\"vermont\", 619410, 192, 585275, 1310, 437, 159, 328, 132, 109, 65, [\"0.070551\", 0.0705510082174973], [\"0.052954\", 0.05295361715180575]], [\"virginia\", 8215710, 916, 6782809, 11099, 9965, 926, 6768, 662, 3197, 507, [\"0.121292\", 0.12129201249800686], [\"0.082379\", 0.08237875971766287]], [\"washington\", 7383546, 378, 5800400, 13176, 26918, 1845, 18365, 1519, 8553, 889, [\"0.364567\", 0.36456737724665084], [\"0.248729\", 0.24872872736216448]], [\"west virginia\", 1690312, 423, 1647311, 1757, 807, 221, 507, 170, 300, 135, [\"0.047743\", 0.0477426652594314], [\"0.029994\", 0.029994462560758012]], [\"wisconsin\", 5598986, 365, 5092474, 6252, 2768, 509, 1846, 343, 922, 332, [\"0.049438\", 0.04943752315151351], [\"0.032970\", 0.032970255685583066]], [\"wyoming\", 551114, 393, 513363, 1710, 269, 208, 228, 196, 41, 28, [\"0.048810\", 0.048810228010901555], [\"0.041371\", 0.041370750879128455]]]",
+          "keys_to_be_evaluated": [["columnDefs", 0, "render"]],
+          "layout": {"bottomEnd": "paging", "bottomStart": "info", "topEnd": "search", "topStart": "buttons"},
+          "order": [],
+          "ordering": {"handler": false, "indicators": false},
+          "style": {"width": "100%"},
+          "table_html": "<table><thead>\n    <tr style=\"text-align: right;\">\n      \n      <th>state</th>\n      <th>total</th>\n      <th>etotal</th>\n      <th>eng</th>\n      <th>eeng</th>\n      <th>jpn</th>\n      <th>ejpn</th>\n      <th>bilingual</th>\n      <th>ebilingual</th>\n      <th>jpnbad</th>\n      <th>ejpnbad</th>\n      <th>percentjpn</th>\n      <th>percentbilingual</th>\n    </tr>\n  </thead></table>",
+          "text_in_header_can_be_selected": true
+        };
+        new ITable(table, dt_args);
+    });
+</script>
+</div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div id="0b86e5c8" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>itables.show(pd.DataFrame(jpmap.loc[:,[<span class="st">"total"</span>,<span class="st">"eng"</span>,<span class="st">"jpn"</span>,<span class="st">"bilingual"</span>,<span class="st">"jpnbad"</span>,<span class="st">"region"</span>]]), maxBytes<span class="op">=</span><span class="dv">200000</span>, </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>                                    style<span class="op">=</span><span class="st">"width:100%"</span>, buttons<span class="op">=</span>[<span class="st">"pageLength"</span>],</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>                                    columnDefs<span class="op">=</span>[{<span class="st">"className"</span>:<span class="st">"dt-left"</span>, <span class="st">"targets"</span>:[<span class="dv">0</span>]}],</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>                                    columnControl<span class="op">=</span>[<span class="st">"order"</span>],</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>                                    ordering<span class="op">=</span>{<span class="st">"indicators"</span>: <span class="va">False</span>, <span class="st">"handler"</span>: <span class="va">False</span>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<!--| quarto-html-table-processing: none -->
+<table id="itables_f6bb13c1_f778_4717_a79e_5df29c55d91e" hidden="hidden">
+  <tbody>
+    <tr>
+      <td style="vertical-align:middle; text-align:left"><a href="https://itables.org/"><svg class="main-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="64" viewbox="0 0 500 400" style="font-family: 'Droid Sans', sans-serif;">
+    <g style="fill:var(--itables-logo-paper,#d9d7fc)">
+        <path d="M100,400H500V357H100Z"></path>
+        <path d="M100,300H400V257H100Z"></path>
+        <path d="M0,200H400V157H0Z"></path>
+        <path d="M100,100H500V57H100Z"></path>
+        <path d="M100,350H500V307H100Z"></path>
+        <path d="M100,250H400V207H100Z"></path>
+        <path d="M0,150H400V107H0Z"></path>
+        <path d="M100,50H500V7H100Z"></path>
+    </g>
+    <g style="fill:var(--itables-logo-ink,#1a1366);stroke:var(--itables-logo-ink,#1a1366);">
+   <rect x="100" y="7" width="400" height="43">
+    <animate attributename="width" values="0;400;0" dur="5s" repeatcount="indefinite"></animate>
+      <animate attributename="x" values="100;100;500" dur="5s" repeatcount="indefinite"></animate>
+  </rect>
+        <rect x="0" y="107" width="400" height="43">
+    <animate attributename="width" values="0;400;0" dur="3.5s" repeatcount="indefinite"></animate>
+    <animate attributename="x" values="0;0;400" dur="3.5s" repeatcount="indefinite"></animate>
+  </rect>
+        <rect x="100" y="207" width="300" height="43">
+    <animate attributename="width" values="0;300;0" dur="3s" repeatcount="indefinite"></animate>
+    <animate attributename="x" values="100;100;400" dur="3s" repeatcount="indefinite"></animate>
+  </rect>
+        <rect x="100" y="307" width="400" height="43">
+    <animate attributename="width" values="0;400;0" dur="4s" repeatcount="indefinite"></animate>
+      <animate attributename="x" values="100;100;500" dur="4s" repeatcount="indefinite"></animate>
+  </rect>
+        <g style="fill:transparent;stroke-width:8; stroke-linejoin:round" rx="5">
+            <g transform="translate(45 50) rotate(-45)">
+                <circle r="33" cx="0" cy="0"></circle>
+                <rect x="-8" y="32" width="16" height="30"></rect>
+            </g>
+
+            <g transform="translate(450 152)">
+                <polyline points="-15,-20 -35,-20 -35,40 25,40 25,20"></polyline>
+                <rect x="-15" y="-40" width="60" height="60"></rect>
+            </g>
+
+            <g transform="translate(50 352)">
+                <polygon points="-35,-5 0,-40 35,-5"></polygon>
+                <polygon points="-35,10 0,45 35,10"></polygon>
+            </g>
+
+            <g transform="translate(75 250)">
+                <polyline points="-30,30 -60,0 -30,-30"></polyline>
+                <polyline points="0,30 -30,0 0,-30"></polyline>
+            </g>
+
+            <g transform="translate(425 250) rotate(180)">
+                <polyline points="-30,30 -60,0 -30,-30"></polyline>
+                <polyline points="0,30 -30,0 0,-30"></polyline>
+            </g>
+        </g>
+    </g>
+</svg>
+</a>
+        Loading ITables v2.9.1 from the internet...
+        (need <a href="https://itables.org/troubleshooting.html">help</a>?)
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div id="itables_f6bb13c1_f778_4717_a79e_5df29c55d91e_fallback"><table style="border-collapse:collapse"><thead>    <tr style="text-align: right;">
+      <th style="border:1px solid #ddd;padding:8px"><sup><noscript><span title="JavaScript not allowed. Please trust this notebook to get interactive tables.">🔒</span></noscript><a href="https://itables.org/fallbacks/static_preview.html" title="ITables v2.9.1 static preview">ⓘ</a></sup>total</th>
+      <th style="border:1px solid #ddd;padding:8px">eng</th>
+      <th style="border:1px solid #ddd;padding:8px">jpn</th>
+      <th style="border:1px solid #ddd;padding:8px">bilingual</th>
+      <th style="border:1px solid #ddd;padding:8px">jpnbad</th>
+      <th style="border:1px solid #ddd;padding:8px">region</th>
+    </tr></thead><tbody>
+<tr><td style="border:1px solid #ddd;padding:8px">4793030</td><td style="border:1px solid #ddd;padding:8px">4503218</td><td style="border:1px solid #ddd;padding:8px">2528</td><td style="border:1px solid #ddd;padding:8px">1228</td><td style="border:1px solid #ddd;padding:8px">1300</td><td style="border:1px solid #ddd;padding:8px">south</td></tr>
+<tr><td style="border:1px solid #ddd;padding:8px">689070</td><td style="border:1px solid #ddd;padding:8px">585162</td><td style="border:1px solid #ddd;padding:8px">1494</td><td style="border:1px solid #ddd;padding:8px">1033</td><td style="border:1px solid #ddd;padding:8px">461</td><td style="border:1px solid #ddd;padding:8px">west</td></tr>
+<tr><td style="border:1px solid #ddd;padding:8px">6981320</td><td style="border:1px solid #ddd;padding:8px">5184054</td><td style="border:1px solid #ddd;padding:8px">7952</td><td style="border:1px solid #ddd;padding:8px">5119</td><td style="border:1px solid #ddd;padding:8px">2833</td><td style="border:1px solid #ddd;padding:8px">west</td></tr>
+<tr><td style="border:1px solid #ddd;padding:8px">2869111</td><td style="border:1px solid #ddd;padding:8px">2630451</td><td style="border:1px solid #ddd;padding:8px">935</td><td style="border:1px solid #ddd;padding:8px">495</td><td style="border:1px solid #ddd;padding:8px">440</td><td style="border:1px solid #ddd;padding:8px">south</td></tr>
+<tr><td style="border:1px solid #ddd;padding:8px">37121454</td><td style="border:1px solid #ddd;padding:8px">20642638</td><td style="border:1px solid #ddd;padding:8px">133419</td><td style="border:1px solid #ddd;padding:8px">78900</td><td style="border:1px solid #ddd;padding:8px">54519</td><td style="border:1px solid #ddd;padding:8px">west</td></tr>
+<tr><td style="border:1px solid #ddd;padding:8px">5549558</td><td style="border:1px solid #ddd;padding:8px">4650283</td><td style="border:1px solid #ddd;padding:8px">5893</td><td style="border:1px solid #ddd;padding:8px">4494</td><td style="border:1px solid #ddd;padding:8px">1399</td><td style="border:1px solid #ddd;padding:8px">west</td></tr>
+<tr><td style="border:1px solid #ddd;padding:8px">3442817</td><td style="border:1px solid #ddd;padding:8px">2638366</td><td style="border:1px solid #ddd;padding:8px">3281</td><td style="border:1px solid #ddd;padding:8px">2322</td><td style="border:1px solid #ddd;padding:8px">959</td><td style="border:1px solid #ddd;padding:8px">northeast</td></tr>
+<tr><td style="border:1px solid #ddd;padding:8px">966580</td><td style="border:1px solid #ddd;padding:8px">820336</td><td style="border:1px solid #ddd;padding:8px">805</td><td style="border:1px solid #ddd;padding:8px">603</td><td style="border:1px solid #ddd;padding:8px">202</td><td style="border:1px solid #ddd;padding:8px">south</td></tr>
+<tr><td style="border:1px solid #ddd;padding:8px">640841</td><td style="border:1px solid #ddd;padding:8px">518478</td><td style="border:1px solid #ddd;padding:8px">1054</td><td style="border:1px solid #ddd;padding:8px">692</td><td style="border:1px solid #ddd;padding:8px">362</td><td style="border:1px solid #ddd;padding:8px">south</td></tr>
+<tr><td style="border:1px solid #ddd;padding:8px">21289728</td><td style="border:1px solid #ddd;padding:8px">14769458</td><td style="border:1px solid #ddd;padding:8px">12222</td><td style="border:1px solid #ddd;padding:8px">8153</td><td style="border:1px solid #ddd;padding:8px">4069</td><td style="border:1px solid #ddd;padding:8px">south</td></tr>
+</tbody><tfoot><tr><td colspan="6" style="border:none;padding:8px;text-align:center">(41 more rows not shown)</td></tr></tfoot></table></div><script>document.getElementById("itables_f6bb13c1_f778_4717_a79e_5df29c55d91e")?.removeAttribute("hidden");document.getElementById("itables_f6bb13c1_f778_4717_a79e_5df29c55d91e_fallback")?.setAttribute("hidden", "hidden");</script>
+<link href="https://www.unpkg.com/dt_for_itables@2.5.8/dt_bundle.css" rel="stylesheet">
+<script type="module">
+    import { ITable, jQuery as $ } from 'https://www.unpkg.com/dt_for_itables@2.5.8/dt_bundle.js';
+
+    document.querySelectorAll("#itables_f6bb13c1_f778_4717_a79e_5df29c55d91e:not(.dataTable)").forEach(table => {
+        if (!(table instanceof HTMLTableElement))
+            return;
+
+        let dt_args = {
+          "buttons": ["pageLength"],
+          "classes": ["display", "nowrap", "compact"],
+          "columnControl": ["order"],
+          "columnDefs": [{"className": "dt-left", "targets": [0]}],
+          "data_json": "[[4793030, 4503218, 2528, 1228, 1300, \"south\"], [689070, 585162, 1494, 1033, 461, \"west\"], [6981320, 5184054, 7952, 5119, 2833, \"west\"], [2869111, 2630451, 935, 495, 440, \"south\"], [37121454, 20642638, 133419, 78900, 54519, \"west\"], [5549558, 4650283, 5893, 4494, 1399, \"west\"], [3442817, 2638366, 3281, 2322, 959, \"northeast\"], [966580, 820336, 805, 603, 202, \"south\"], [640841, 518478, 1054, 692, 362, \"south\"], [21289728, 14769458, 12222, 8153, 4069, \"south\"], [10304177, 8711633, 10715, 6760, 3955, \"south\"], [1365077, 1028267, 36889, 20552, 16337, \"west\"], [1820514, 1620797, 1777, 1500, 277, \"west\"], [12003587, 9117218, 12943, 8061, 4882, \"midwest\"], [6441838, 5777667, 5663, 3015, 2648, \"midwest\"], [3022668, 2746525, 1189, 782, 407, \"midwest\"], [2770418, 2435156, 2064, 1568, 496, \"midwest\"], [4268599, 3977055, 4458, 2110, 2348, \"south\"], [4326919, 3960051, 1783, 1275, 508, \"south\"], [1325830, 1245787, 672, 510, 162, \"northeast\"], [5849633, 4617626, 8540, 5280, 3260, \"south\"], [6694960, 5015860, 8608, 6136, 2472, \"northeast\"], [9536435, 8544027, 12847, 6804, 6043, \"midwest\"], [5405770, 4733246, 4437, 3003, 1434, \"midwest\"], [2771334, 2652499, 1100, 600, 500, \"south\"], [5835003, 5443399, 3869, 2381, 1488, \"midwest\"], [1058934, 1014553, 218, 134, 84, \"west\"], [1853332, 1616628, 1204, 866, 338, \"midwest\"], [3009889, 2123304, 6673, 4206, 2467, \"west\"], [1332089, 1226265, 794, 660, 134, \"northeast\"], [8816621, 5894484, 13099, 7771, 5328, \"northeast\"], [2009638, 1379762, 1275, 969, 306, \"west\"], [18772412, 12975172, 34092, 19452, 14640, \"northeast\"], [10127421, 8764888, 8337, 5224, 3113, \"south\"], [735169, 685798, 288, 60, 228, \"midwest\"], [11140750, 10247600, 10876, 5341, 5535, \"midwest\"], [3782477, 3347348, 2015, 1419, 596, \"south\"], [4046536, 3430249, 11238, 8352, 2886, \"west\"], [12340793, 10811584, 6418, 4109, 2309, \"northeast\"], [1048547, 806534, 762, 585, 177, \"northeast\"], [5006696, 4587856, 3332, 2126, 1206, \"south\"], [850347, 789886, 325, 227, 98, \"midwest\"], [6655459, 6081056, 4345, 2505, 1840, \"south\"], [28253216, 18339379, 23095, 14183, 8912, \"south\"], [3156873, 2653804, 5718, 4419, 1299, \"west\"], [619410, 585275, 437, 328, 109, \"northeast\"], [8215710, 6782809, 9965, 6768, 3197, \"south\"], [7383546, 5800400, 26918, 18365, 8553, \"west\"], [1690312, 1647311, 807, 507, 300, \"south\"], [5598986, 5092474, 2768, 1846, 922, \"midwest\"], [551114, 513363, 269, 228, 41, \"west\"]]",
+          "layout": {"bottomEnd": "paging", "bottomStart": "info", "topEnd": "search", "topStart": "buttons"},
+          "order": [],
+          "ordering": {"handler": false, "indicators": false},
+          "style": {"width": "100%"},
+          "table_html": "<table><thead>\n    <tr style=\"text-align: right;\">\n      \n      <th>total</th>\n      <th>eng</th>\n      <th>jpn</th>\n      <th>bilingual</th>\n      <th>jpnbad</th>\n      <th>region</th>\n    </tr>\n  </thead></table>",
+          "text_in_header_can_be_selected": true
+        };
+        new ITable(table, dt_args);
+    });
+</script>
+</div>
+</div>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<div id="a5cba47a" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>regionallang <span class="op">=</span> jpmap.loc[:,[<span class="st">"total"</span>,<span class="st">"eng"</span>,<span class="st">"jpn"</span>,<span class="st">"bilingual"</span>,<span class="st">"jpnbad"</span>,<span class="st">"region"</span>]].groupby([<span class="st">"region"</span>], as_index<span class="op">=</span><span class="va">False</span>).<span class="bu">sum</span>()</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>regionallang[<span class="st">"percentjpn"</span>] <span class="op">=</span> (regionallang.jpn <span class="op">*</span> <span class="dv">100</span>) <span class="op">/</span> regionallang.total</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>regionallang[<span class="st">"percentbilingual"</span>] <span class="op">=</span> (regionallang.bilingual <span class="op">*</span> <span class="dv">100</span>) <span class="op">/</span> regionallang.total</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>itables.show(regionallang, maxBytes<span class="op">=</span><span class="dv">200000</span>, style<span class="op">=</span><span class="st">"width:100%"</span>,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>                                    columnDefs<span class="op">=</span>[{<span class="st">"className"</span>:<span class="st">"dt-left"</span>, <span class="st">"targets"</span>:[<span class="dv">0</span>]}],</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>                                    columnControl<span class="op">=</span>[<span class="st">"order"</span>],</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>                                    ordering<span class="op">=</span>{<span class="st">"indicators"</span>: <span class="va">False</span>, <span class="st">"handler"</span>: <span class="va">False</span>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<!--| quarto-html-table-processing: none -->
+<table id="itables_56de2311_13ee_47c0_b3d9_4779734b1304" hidden="hidden">
+  <tbody>
+    <tr>
+      <td style="vertical-align:middle; text-align:left"><a href="https://itables.org/"><svg class="main-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="64" viewbox="0 0 500 400" style="font-family: 'Droid Sans', sans-serif;">
+    <g style="fill:var(--itables-logo-paper,#d9d7fc)">
+        <path d="M100,400H500V357H100Z"></path>
+        <path d="M100,300H400V257H100Z"></path>
+        <path d="M0,200H400V157H0Z"></path>
+        <path d="M100,100H500V57H100Z"></path>
+        <path d="M100,350H500V307H100Z"></path>
+        <path d="M100,250H400V207H100Z"></path>
+        <path d="M0,150H400V107H0Z"></path>
+        <path d="M100,50H500V7H100Z"></path>
+    </g>
+    <g style="fill:var(--itables-logo-ink,#1a1366);stroke:var(--itables-logo-ink,#1a1366);">
+   <rect x="100" y="7" width="400" height="43">
+    <animate attributename="width" values="0;400;0" dur="5s" repeatcount="indefinite"></animate>
+      <animate attributename="x" values="100;100;500" dur="5s" repeatcount="indefinite"></animate>
+  </rect>
+        <rect x="0" y="107" width="400" height="43">
+    <animate attributename="width" values="0;400;0" dur="3.5s" repeatcount="indefinite"></animate>
+    <animate attributename="x" values="0;0;400" dur="3.5s" repeatcount="indefinite"></animate>
+  </rect>
+        <rect x="100" y="207" width="300" height="43">
+    <animate attributename="width" values="0;300;0" dur="3s" repeatcount="indefinite"></animate>
+    <animate attributename="x" values="100;100;400" dur="3s" repeatcount="indefinite"></animate>
+  </rect>
+        <rect x="100" y="307" width="400" height="43">
+    <animate attributename="width" values="0;400;0" dur="4s" repeatcount="indefinite"></animate>
+      <animate attributename="x" values="100;100;500" dur="4s" repeatcount="indefinite"></animate>
+  </rect>
+        <g style="fill:transparent;stroke-width:8; stroke-linejoin:round" rx="5">
+            <g transform="translate(45 50) rotate(-45)">
+                <circle r="33" cx="0" cy="0"></circle>
+                <rect x="-8" y="32" width="16" height="30"></rect>
+            </g>
+
+            <g transform="translate(450 152)">
+                <polyline points="-15,-20 -35,-20 -35,40 25,40 25,20"></polyline>
+                <rect x="-15" y="-40" width="60" height="60"></rect>
+            </g>
+
+            <g transform="translate(50 352)">
+                <polygon points="-35,-5 0,-40 35,-5"></polygon>
+                <polygon points="-35,10 0,45 35,10"></polygon>
+            </g>
+
+            <g transform="translate(75 250)">
+                <polyline points="-30,30 -60,0 -30,-30"></polyline>
+                <polyline points="0,30 -30,0 0,-30"></polyline>
+            </g>
+
+            <g transform="translate(425 250) rotate(180)">
+                <polyline points="-30,30 -60,0 -30,-30"></polyline>
+                <polyline points="0,30 -30,0 0,-30"></polyline>
+            </g>
+        </g>
+    </g>
+</svg>
+</a>
+        Loading ITables v2.9.1 from the internet...
+        (need <a href="https://itables.org/troubleshooting.html">help</a>?)
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div id="itables_56de2311_13ee_47c0_b3d9_4779734b1304_fallback"><table style="border-collapse:collapse"><thead>    <tr style="text-align: right;">
+      <th style="border:1px solid #ddd;padding:8px"><sup><noscript><span title="JavaScript not allowed. Please trust this notebook to get interactive tables.">🔒</span></noscript><a href="https://itables.org/fallbacks/static_preview.html" title="ITables v2.9.1 static preview">ⓘ</a></sup>region</th>
+      <th style="border:1px solid #ddd;padding:8px">total</th>
+      <th style="border:1px solid #ddd;padding:8px">eng</th>
+      <th style="border:1px solid #ddd;padding:8px">jpn</th>
+      <th style="border:1px solid #ddd;padding:8px">bilingual</th>
+      <th style="border:1px solid #ddd;padding:8px">jpnbad</th>
+      <th style="border:1px solid #ddd;padding:8px">percentjpn</th>
+      <th style="border:1px solid #ddd;padding:8px">percentbilingual</th>
+    </tr></thead><tbody>
+<tr><td style="border:1px solid #ddd;padding:8px">midwest</td><td style="border:1px solid #ddd;padding:8px">65194303</td><td style="border:1px solid #ddd;padding:8px">57229624</td><td style="border:1px solid #ddd;padding:8px">58473</td><td style="border:1px solid #ddd;padding:8px">33954</td><td style="border:1px solid #ddd;padding:8px">24519</td><td style="border:1px solid #ddd;padding:8px">0.089690</td><td style="border:1px solid #ddd;padding:8px">0.052081</td></tr>
+<tr><td style="border:1px solid #ddd;padding:8px">northeast</td><td style="border:1px solid #ddd;padding:8px">54393479</td><td style="border:1px solid #ddd;padding:8px">41199327</td><td style="border:1px solid #ddd;padding:8px">68163</td><td style="border:1px solid #ddd;padding:8px">41873</td><td style="border:1px solid #ddd;padding:8px">26290</td><td style="border:1px solid #ddd;padding:8px">0.125315</td><td style="border:1px solid #ddd;padding:8px">0.076982</td></tr>
+<tr><td style="border:1px solid #ddd;padding:8px">south</td><td style="border:1px solid #ddd;padding:8px">121811243</td><td style="border:1px solid #ddd;padding:8px">96711452</td><td style="border:1px solid #ddd;padding:8px">96036</td><td style="border:1px solid #ddd;padding:8px">59928</td><td style="border:1px solid #ddd;padding:8px">36108</td><td style="border:1px solid #ddd;padding:8px">0.078840</td><td style="border:1px solid #ddd;padding:8px">0.049197</td></tr>
+<tr><td style="border:1px solid #ddd;padding:8px">west</td><td style="border:1px solid #ddd;padding:8px">74743523</td><td style="border:1px solid #ddd;padding:8px">50626636</td><td style="border:1px solid #ddd;padding:8px">239733</td><td style="border:1px solid #ddd;padding:8px">148271</td><td style="border:1px solid #ddd;padding:8px">91462</td><td style="border:1px solid #ddd;padding:8px">0.320741</td><td style="border:1px solid #ddd;padding:8px">0.198373</td></tr>
+</tbody></table></div><script>document.getElementById("itables_56de2311_13ee_47c0_b3d9_4779734b1304")?.removeAttribute("hidden");document.getElementById("itables_56de2311_13ee_47c0_b3d9_4779734b1304_fallback")?.setAttribute("hidden", "hidden");</script>
+<link href="https://www.unpkg.com/dt_for_itables@2.5.8/dt_bundle.css" rel="stylesheet">
+<script type="module">
+    import { ITable, jQuery as $ } from 'https://www.unpkg.com/dt_for_itables@2.5.8/dt_bundle.js';
+
+    document.querySelectorAll("#itables_56de2311_13ee_47c0_b3d9_4779734b1304:not(.dataTable)").forEach(table => {
+        if (!(table instanceof HTMLTableElement))
+            return;
+
+        let dt_args = {
+          "classes": ["display", "nowrap", "compact"],
+          "columnControl": ["order"],
+          "columnDefs": [{"render": "function (data, type, row, meta) { return type === 'sort' || type === 'type' ? data[1] : data[0]; }", "targets": [6, 7]}, {"className": "dt-left", "targets": [0]}],
+          "data_json": "[[\"midwest\", 65194303, 57229624, 58473, 33954, 24519, [\"0.089690\", 0.08969035223829297], [\"0.052081\", 0.05208123783453901]], [\"northeast\", 54393479, 41199327, 68163, 41873, 26290, [\"0.125315\", 0.12531465398637215], [\"0.076982\", 0.07698165436338426]], [\"south\", 121811243, 96711452, 96036, 59928, 36108, [\"0.078840\", 0.07884001315051026], [\"0.049197\", 0.04919742917326605]], [\"west\", 74743523, 50626636, 239733, 148271, 91462, [\"0.320741\", 0.32074083529619013], [\"0.198373\", 0.19837304163465777]]]",
+          "keys_to_be_evaluated": [["columnDefs", 0, "render"]],
+          "layout": {"bottomEnd": null, "bottomStart": null, "topEnd": null, "topStart": null},
+          "order": [],
+          "ordering": {"handler": false, "indicators": false},
+          "style": {"width": "100%"},
+          "table_html": "<table><thead>\n    <tr style=\"text-align: right;\">\n      \n      <th>region</th>\n      <th>total</th>\n      <th>eng</th>\n      <th>jpn</th>\n      <th>bilingual</th>\n      <th>jpnbad</th>\n      <th>percentjpn</th>\n      <th>percentbilingual</th>\n    </tr>\n  </thead></table>",
+          "text_in_header_can_be_selected": true
+        };
+        new ITable(table, dt_args);
+    });
+</script>
+</div>
+</div>
+</div>
+<div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
+<div id="72b2e427" class="cell" data-execution_count="4">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># m = folium.Map([37, -100], zoom_start=4)</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># marker_cluster = MarkerCluster(disableClusteringAtZoom=10).add_to(m)</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># for idx, row in nodirgdf.iterrows():</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">#     popup_html = f"&lt;style&gt; th\</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">#                 {{border:1px solid black;\}}&lt;/style&gt;\</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">#                 &lt;table&gt;&lt;tr&gt;\</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">#                     &lt;th&gt;State: &lt;/th&gt;\</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">#                     &lt;th&gt;{row['State Full']}&lt;/th&gt;\</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co">#                 &lt;/tr&gt;&lt;tr&gt;\</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co">#                     &lt;th&gt;ALPR ID: &lt;/th&gt;\</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co">#                     &lt;th&gt;{row['ALPR ID']}&lt;/th&gt;\</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co">#                 &lt;/tr&gt;&lt;tr&gt;\</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co">#                     &lt;th text-align='center' colspan='2'&gt;{row['url']}&lt;/th&gt;\</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="co">#                 &lt;/tr&gt;&lt;/table&gt;"</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="co">#     folium.Circle(</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="co">#         location=[row.geometry.y, row.geometry.x], </span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="co">#         popup=popup_html, fill=True, radius=30, weight=9,color="#9E2F02",opacity=0.8,fillOpacity=0.5</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="co">#     ).add_to(marker_cluster)</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="co"># m</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="other-stats" class="level3 column-page-right">
+<h3 class="anchored" data-anchor-id="other-stats">Other Stats</h3>
+<table class="caption-top table">
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">203,771,037 / 316,142,548 = 64.5%<br>
+</td>
+<td style="text-align: left;">of the general populace is working age (18 to 64)</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">8,030,466 / 11,320,253 = 70.9%<br>
+</td>
+<td style="text-align: left;">among those who Speak Asian and Pacific Island language</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">4,734,803 / 8,030,466 = 59.0%<br>
+</td>
+<td style="text-align: left;">speak english “very well” among <strong>working age</strong> API lang speakers</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4,734,803 / 11,320,253 = 41.8%<br>
+</td>
+<td style="text-align: left;">working age speak english “very well” among <strong>all</strong> API lang speakers</td>
+</tr>
+<tr class="odd">
+<td colspan="2" style="text-align: right;"> 2024 ACS 5-Year Estimates, Table B16004</td>
+</tr>
+</tbody>
+</table>
+</section>
+
+
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+
+
+</body></html>

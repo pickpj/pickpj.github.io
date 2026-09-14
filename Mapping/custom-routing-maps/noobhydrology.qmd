@@ -1,0 +1,11 @@
+---
+title: Noob hydrology
+---
+Goal: 
+Simulate how a flood might affect the road network. 
+Use PBF editing methods to create a "flooded" map; where the road network is broken at the identified points. 
+Inputs: DEM 10m tif, OpenStreetMap PBF
+- Used DDM Hydrologic in QGIS to generate flowpaths and cachements. (HEAVY ram usage) 
+
+Flooding is simulated by breaking roads that intersect with high enough strahler flowpaths. There are settings to exclude certain built up infrastructure such as bridges/highways. The map is created, then converted to obf via osmandmapcreator. This finished map can be used to simulate alternative pathing in a "flooded" environment. 
+

@@ -369,6 +369,7 @@ Benefits of using Osmand:
  - android auto/carplay (in the paid version)  
  - course correction/re-routing  
  - turn-by-turn directions  
+ - works fully offline  
  - deep ui customization  
  - routing customization  
  - plugins  

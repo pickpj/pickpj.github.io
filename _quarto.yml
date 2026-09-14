@@ -10,6 +10,12 @@ website:
     sidebar:
         style: "docked"
         contents:
+          - section: "Census"
+            contents:
+            - href: Census/censuslangdata.qmd
+              text: Language Data Regression
+            - href: Census/jpacsdata.qmd
+              text: Japanese Speaker Analysis
           - section: "Mapping"
             contents:
             - section: "Custom Routing"
@@ -18,19 +24,19 @@ website:
                 text: Comaps
               - href: Mapping/custom-routing-maps/osmand.qmd
                 text: Osmand
-            - section: "FIock"
+            - section: "ALPR"
               contents:
-              - href: Mapping/FIock/bigbrouter.qmd
+              - href: Mapping/ALPR/bigbrouter.qmd
                 text: Big B-router
-              - href: Mapping/FIock/bridges.qmd
+              - href: Mapping/ALPR/bridges.qmd
                 text: Bridges
-              - href: Mapping/FIock/diff.qmd
+              - href: Mapping/ALPR/diff.qmd
                 text: BC - No Road Overlap
-              - href: Mapping/FIock/directionless.qmd
+              - href: Mapping/ALPR/directionless.qmd
                 text: BC - No Direction Tag
-              - href: Mapping/FIock/similar.qmd
+              - href: Mapping/ALPR/similar.qmd
                 text: BC - Similar ALPRs
-              - href: Mapping/FIock/binghamton.qmd
+              - href: Mapping/ALPR/binghamton.qmd
                 text: BC - Binghamton, NY
             - section: "Working w/ big maps"
               contents:

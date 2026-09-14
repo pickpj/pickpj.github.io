@@ -23,17 +23,21 @@ Editing a PBF file to avoid ALPR cameras. The specific file type enables support
 Reading linux event files for advanced macro activation based on morse pattern key presses. Works independent of the windowing system (wayland/x11) and is device specific. Pattern based activation enables multiple macros to be activated by the same key. Ev-morse can also handle repeating activations with longer key presses (like a fast forward button).     
 
 ## Recent Articles:  
-[Bad Cams - Binghamton, NY](./Mapping/FIock/binghamton.qmd)  
+[Language Data Regression](./Census/censuslangdata.qmd)  
+A change (for the worse) in how the census reports language data.  
+[Japanese Speaker Analysis](./Census/jpacsdata.qmd)  
+Analyzing ACS data and why bilingual Japanese speakers command a wage premium.
+[Bad Cams - Binghamton, NY](./Mapping/ALPR/binghamton.qmd)  
 Large outlier in ALPR data  
 [Custom Routing in Comaps](./Mapping/custom-routing-maps/comaps.qmd)  
 Process/details for converting pbf to mwm for Comaps  
 [x11->wayland migration](./Linux/x11/macro-migration.qmd)  
 Documenting how I plan to migrate some macros that depend on x11 features.  
-[Bad Cams - Similar Cams](./Mapping/FIock/similar.qmd)  
+[Bad Cams - Similar Cams](./Mapping/ALPR/similar.qmd)  
 Identifying duplicated data in OpenStreetMap data  
-[Bigbrouter](./Mapping/FIock/bigbrouter.qmd)  
+[Bigbrouter](./Mapping/ALPR/bigbrouter.qmd)  
 Step by step guide to using Big-B-Router  
-[Bad Cams - No Road Overlap](./Mapping/FIock/diff.qmd)  
+[Bad Cams - No Road Overlap](./Mapping/ALPR/diff.qmd)  
 Identifying flawed OpenStreetMap data for the whole of the US.  
 
 ## Contact:  

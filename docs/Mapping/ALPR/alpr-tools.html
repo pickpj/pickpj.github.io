@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.33">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Various datasets over Tokyo – pickpj</title>
+<title>ALPR tools – pickpj</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -36,10 +39,13 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-bc185b5c5bdbcb35c2eb49d8a876ef70.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-03e559fdc32a7ac2e3405b2da5986277.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-49e070d196c5adfa8426f845b3a50b6a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -67,11 +73,113 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<style>
+@font-face {
+  font-family: "OCR A Std";
+  src: url("./extra-alpr-tools/OCRAStd.otf") format("opentype"),
+}
+@font-face {
+  font-family: "freecamv2";
+  src: url("./extra-alpr-tools/freecamv2.ttf") format("truetype"),
+}
+.redacted {
+  background: #111;
+  color: transparent;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: background 0.6s, color 0.1s;
+  padding: 0 2px;
+  text-align: justify !important;
+  font-family: freecamv2, monospace;
+}
+.redacted:hover, .redacted.revealed {
+  background: #ebebeb;
+  color: #ebebeb;
+}
+.wrapper{
+  width: 45%;
+  font-size:35px;
+  text-align: center;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  }
+.justify {
+  text-align: justify !important
+}
+.fake-span{
+  width:100%;
+  display:inline-block;
+  margin:-10px;
+  font-size:1px;
+}
+.glitch {
+  font-size: 2rem;
+  font-family: "OCR A Std", monospace;
+  animation: flicker 2.4s infinite;
+}
+@keyframes flicker {
+  0%, 65% { opacity: 1; }
+  66%, 100% { opacity: 0.15; }
+}
+.container .HAL {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  display: block;
+  background-color: #000;
+  margin: 0 20px;
+  border-radius: 50%;
+  top:377px;
+  left:211px;
+}
+.container .HAL::before {
+  position: absolute;
+  content: "";
+  top: 50%;
+  left: 17px;
+  transform: translate(-50%, -50%);
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  background-image: radial-gradient(#b97700 5%, #bb1300 15%, #bb1300 30%, #8a0000 40%, black 90%);
+  box-sizing: border-box;
+}
+.container .eyes {
+  position: relative;
+  width: 58px;
+  height: 58px;
+  display: block;
+  background-color: #bebebe;
+  margin: 0 20px;
+  border-radius: 50%;
+  left:50px;
+}
+.container .eyes::before {
+  position: absolute;
+  content: "";
+  top: 50%;
+  left: 17px;
+  transform: translate(-50%, -50%);
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  background-color: #000;
+  box-sizing: border-box;
+}
+.oval {
+  position: relative;
+  width: 60px;
+  height: 70px;
+  background: #fa9a4a;
+  border-radius: 50%;
+}
+</style>
 
 
 </head>
 
-<body class="nav-sidebar docked nav-fixed quarto-light">
+<body class="nav-sidebar docked nav-fixed slimcontent quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -93,7 +201,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Mapping</li><li class="breadcrumb-item"><a href="../../Mapping/JPN/tokyochizu.html">Japan</a></li><li class="breadcrumb-item"><a href="../../Mapping/JPN/tokyochizu.html">Various maps</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">ALPR tools</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -108,21 +216,44 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Mapping</span></a>
+ <span class="menu-text">Census</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item sidebar-item-section">
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Census/censuslangdata.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Language Data Regression</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Census/jpacsdata.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Japanese Speaker Analysis</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
- <span class="menu-text">Custom Routing</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Mapping</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Custom Routing</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Mapping/custom-routing-maps/comaps.html" class="sidebar-item-text sidebar-link">
@@ -139,46 +270,46 @@ ul.task-list li input[type="checkbox"] {
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
- <span class="menu-text">FIock</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+ <span class="menu-text">ALPR</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Mapping/FIock/bigbrouter.html" class="sidebar-item-text sidebar-link">
+  <a href="../../Mapping/ALPR/bigbrouter.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Big B-router</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Mapping/FIock/bridges.html" class="sidebar-item-text sidebar-link">
+  <a href="../../Mapping/ALPR/bridges.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Bridges</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Mapping/FIock/diff.html" class="sidebar-item-text sidebar-link">
+  <a href="../../Mapping/ALPR/diff.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">BC - No Road Overlap</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Mapping/FIock/directionless.html" class="sidebar-item-text sidebar-link">
+  <a href="../../Mapping/ALPR/directionless.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">BC - No Direction Tag</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Mapping/FIock/similar.html" class="sidebar-item-text sidebar-link">
+  <a href="../../Mapping/ALPR/similar.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">BC - Similar ALPRs</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Mapping/FIock/binghamton.html" class="sidebar-item-text sidebar-link">
+  <a href="../../Mapping/ALPR/binghamton.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">BC - Binghamton, NY</span></a>
   </div>
 </li>
@@ -186,13 +317,13 @@ ul.task-list li input[type="checkbox"] {
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
  <span class="menu-text">Working w/ big maps</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Mapping/big-pbf/pbf-splitter.html" class="sidebar-item-text sidebar-link">
@@ -209,16 +340,16 @@ ul.task-list li input[type="checkbox"] {
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
  <span class="menu-text">Japan</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 show">  
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Mapping/JPN/tokyochizu.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../Mapping/JPN/tokyochizu.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Various maps</span></a>
   </div>
 </li>
@@ -228,22 +359,22 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
  <span class="menu-text">ML/DL</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false">
  <span class="menu-text">Image</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../MLDL/fastai.html" class="sidebar-item-text sidebar-link">
@@ -256,22 +387,22 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true">
  <span class="menu-text">Linux</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="false">
  <span class="menu-text">Keyboard</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Linux/keyboard/evmorse.html" class="sidebar-item-text sidebar-link">
@@ -299,15 +430,25 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#big-b-router" id="toc-big-b-router" class="nav-link active" data-scroll-target="#big-b-router">★★★★★ Big B-router</a></li>
+  <li><a href="#osmiumupdate.py" id="toc-osmiumupdate.py" class="nav-link" data-scroll-target="#osmiumupdate.py">★★★ osmiumupdate.py</a></li>
+  <li><a href="#pbf-prep" id="toc-pbf-prep" class="nav-link" data-scroll-target="#pbf-prep">★★ PBF-Prep</a></li>
+  <li><a href="#map-marker" id="toc-map-marker" class="nav-link" data-scroll-target="#map-marker">★★ Map-Marker</a></li>
+  <li><a href="#other-ways-to-help" id="toc-other-ways-to-help" class="nav-link" data-scroll-target="#other-ways-to-help">Other ways to help</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Mapping</li><li class="breadcrumb-item"><a href="../../Mapping/JPN/tokyochizu.html">Japan</a></li><li class="breadcrumb-item"><a href="../../Mapping/JPN/tokyochizu.html">Various maps</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Various datasets over Tokyo</h1>
+<h1 class="title">ALPR tools</h1>
 </div>
 
 
@@ -324,19 +465,106 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Some maps I made for an assignment previously.</p>
-<p>Data is from ~late 2024, and are either from <a href="https://portal.data.metro.tokyo.lg.jp/">Tokyo Open Data Portal</a> or ekidata.jp</p>
+<p><a href="./extra-alpr-tools/doorstep.jpeg" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="./extra-alpr-tools/doorstep.jpeg" class="img-fluid"></a></p>
+
+<!-- <p style="font-size:35px;transform:scaleX(1.5);">THIS IS <span class="redacted">NOT</span> NORMAL</p> -->
+<div class="no-row-height column-margin column-container"><div class="">
+<div class="justify">
+<div style="font-size:35px;color:#bebebe;margin:0 !important">
+  DO NOT WORRY CITIZEN THIS IS FOR YOUR<span class="fake-span"></span><div style="position: relative; font-size: 2rem; font-family: monospace; text-align:center; background-color:#000000"><span id="swaptext" class="glitch"></span></div>
+</div>
+</div>
+</div></div><div style="width:70%;" class="wrapper">
+  <div>T</div>
+  <div>H</div>
+  <div>I</div>
+  <div>S</div>
+  <div>&nbsp; </div>
+  <div>I</div>
+  <div>S</div>
+  <div> </div>
+<div style="font-size:35px;display:flex;" class="redacted">NOT</div> <br>
+</div>
+<div class="wrapper">
+  <div>N</div>
+  <div>O</div>
+  <div>R</div>
+  <div>M</div>
+  <div>A</div>
+  <div>L</div>
+</div>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p><a href="./extra-alpr-tools/flockbirb.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="./extra-alpr-tools/flockbirb.png" class="img-fluid"></a></p>
+</div></div><hr>
+<div class="justify">
+<p style="font-size:35px">THE <span class="redacted">GOVERNMENT BIRDS</span>
+REQUIRE A PLACE TO RECHARGE
+<span class="fake-span"></span>  
+</p>  
+</div>
 <hr>
-<p><a href="https://tokyochizu.github.io/zoning.html">Zoning Choropleth</a><br>
-My favourite map, showing the structure in the “gradient” of permissible zoning in Tokyo. (<a href="https://www.mlit.go.jp/common/001050453.pdf#page=5">Japans Federalized Zoning PDF</a>)</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<div class="container">
+  <div class="HAL"></div>
+  <img src="./extra-alpr-tools/eyecanseeyou.png"></div>
+</div></div><p>Jokes aside.<br>
+I made some tools you might find useful to counter the surveillance state.</p>
+<p>★’s demarcate usefulness (my opinion ; scale of 5)</p>
+<section id="big-b-router" class="level3">
+<h3 class="anchored" data-anchor-id="big-b-router">★★★★★ <a href="https://github.com/pickpj/Big-B-Router">Big B-router</a></h3>
+<p>Maybe you don’t love Big Brother, but maybe you can love Big B-router. Follow the jupyter notebook to edit a pbf file to remove/edit road geometries that are in the sightline of ALPR’s. Then with OsmAndMapCreator we convert the pbf file into an obf file. Upload the OBF file into OsmAnd (on a phone) for an offline map that can navigate around the ALPR’s found in OpenStreetMap data. (Works with AndroidAuto/Carplay in the paid version)<br>
+This has been really helpful not only to avoid ALPRs, but is the main way I use to identify ALPRs that aren’t recorded in OSM data. (It’s also interesting to go off the beaten path sometimes)</p>
 <hr>
-<p><a href="https://tokyochizu.github.io/map1.html">Disaster Risk Map</a><br>
-Map showing disaster risk assessment scores throughout Tokyo</p>
+</section>
+<section id="osmiumupdate.py" class="level3">
+<h3 class="anchored" data-anchor-id="osmiumupdate.py">★★★ <a href="https://github.com/pickpj/gis-extra/blob/main/osmiumupdate/osmiumupdate.py">osmiumupdate.py</a></h3>
+<p>A simple python script to download and apply change files. Downloads from geofabrik, uses wget &amp; osmium, and sends notifications on linux through <code>echo text &gt; /dev/pts/0</code>. The first stop in automating map updates.</p>
 <hr>
-<p><a href="https://tokyochizu.github.io/trainstations.html">Train Stations</a><br>
-Train Station locations</p>
+</section>
+<section id="pbf-prep" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="pbf-prep">★★ <a href="https://github.com/pickpj/Big-B-Router/blob/main/pbf-prep.ipynb">PBF-Prep</a></h3>
+<p>Select a bounding box on the map and other stuff to prep data for use in the Big B-router ipynb. Useful as a starting point for other data projects using osm data.</p>
+<hr>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p><a href="./extra-alpr-tools/donotwatchthisdrive.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="./extra-alpr-tools/donotwatchthisdrive.png" class="img-fluid"></a></p>
+</div><div class="">
+<!-- ```{=html}
+<div  class="container">
+  <div style="top:48px;" class="eyes"></div>
+  <div style="top:-10px;left:100px;" class="eyes"></div>
+  <div style="top:-25px;left:94px;" class="oval"></div>
+</div>
+``` -->
+</div></div>
+</section>
+<section id="map-marker" class="level3">
+<h3 class="anchored" data-anchor-id="map-marker">★★ <a href="https://github.com/pickpj/gis-extra/tree/main/map-marking">Map-Marker</a></h3>
+<p>An interactive map tool to create/edit geodataframes. The shapes are paired with editable metadata. The intention was so one can systematically go through streetview imagery and not end up redoing areas. Or for collecting/identifying areas with out-dated imagery to review/survey later. Fairly niche. Running iD editor locally might be a better option.</p>
+<hr>
+</section>
+<section id="other-ways-to-help" class="level3">
+<h3 class="anchored" data-anchor-id="other-ways-to-help">Other ways to help</h3>
+<ul>
+<li>Share the OBF file (from Big B-Router) w/ the less technically inclined
+<ul>
+<li>These files also need to be updated/redistributed as mapdata improves<br>
+</li>
+</ul></li>
+<li>Identify and contribute more ALPRs<br>
+</li>
+<li>Correct inaccuracies in OSM data (bad direction/position/tags, sometimes duplication)
+<ul>
+<li>Look at the BC (Bad Cams) articles covering/listing the inaccuracies I identified programmatically.<br>
+</li>
+</ul></li>
+<li>Support the tooling/data that makes this possible</li>
+</ul>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -390,13 +618,14 @@ Train Station locations</p>
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
@@ -739,6 +968,60 @@ Train Station locations</p>
   });
   </script>
 </div> <!-- /content -->
+<script>
+  const el = document.getElementById("swaptext");
+  const values = ["PROTECTION", "PROTECTION", "SURVEILLANCE", "SAFETY", "SAFETY", "MONITORING", "SECURITY", "SECURITY", "COMPLIANCE", "SAFETY", "SAFETY", "CONFORMITY"];
+  let i = 0;
+  setInterval(() => {
+    i = (i + 1) % values.length;
+    el.textContent = values[i];
+  }, 796);
+</script>
+<script>
+  document.querySelector("body").addEventListener("mousemove", whatareyoudoing);
+  function whatareyoudoing() {
+    const eye = document.querySelectorAll(".HAL, .eyes");
+    eye.forEach(function (eye) {
+      let x = eye.getBoundingClientRect().left + eye.clientWidth / 2;
+      let y = eye.getBoundingClientRect().top + eye.clientHeight / 2;
+      let radian = Math.atan2(event.clientX - x, event.clientY - y);
+      let rotate = radian * (180 / Math.PI) * -1 + 270;
+      eye.style.transform = "rotate(" + rotate + "deg)";
+      });
+  }
+</script>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 

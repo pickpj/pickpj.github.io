@@ -1,0 +1,144 @@
+---
+title: ACS Japanese Speaker Data (Under Construction)
+format:
+    html:
+        code-fold: true
+jupyter: python3
+---
+I needed some language data, so I ended up making something similar to this site: <https://probablyhelpful.com/languages/Japanese.html>.  Except with newer data, more visualizations, searchable tables, and some helpful statistics.  
+
+### Why  
+There are a number of factors unique to Japanese that create upward wage pressure for bilingual speakers (me).  
+From the demand side:  
+
+1. Japan is and has been the country with the most direct investment in the US. [src1](https://www.jetro.go.jp/usa/japan-us-investment-report/), [src2](https://apps.bea.gov/iTable/?ReqID=2&step=1)  
+2. Japan is the fourth largest economy (investment target) [src3](https://en.wikipedia.org/wiki/List_of_countries_by_GDP_%28nominal%29), fifth when adjusting for PPP [src4](https://en.wikipedia.org/wiki/List_of_countries_by_GDP_(PPP))  
+
+On the supply side:  
+
+1. Japan ranks poorly in the "English Proficiency Index". [src5](https://en.wikipedia.org/wiki/EF_English_Proficiency_Index)  
+2. Japanese is among the hardest language to learn for English speakers (along with Arabic, Chinese, Korean). [src6](https://blog.rosettastone.com/the-complete-list-of-language-difficulty-rankings/)  
+3. Japan has a small emigrant population relative to its population size. [src7 (Source available through wayback machine)](https://en.wikipedia.org/wiki/List_of_sovereign_states_by_immigrant_and_emigrant_population#Emigrant_population)  
+4. Regional concentrations/disparities within the US (the purpose of this analysis). [src8=myself+ACS data](./jpacsdata.qmd#map)  
+
+Together, these factors make Japanese a uniquely valuable language in the US. China/Chinese is similar in some respects, but lacks, basically any, direct investments into the US. For reference, in 2025 Austria had more direct investment into the US than China.   
+
+As an aside, I wish the BLS would release language specific data on Interpreters and Translators. Rather than the general translator bucket. (How am I supposed to interpret the wage data!)  
+There is also the complication of specializations that require language ability as an addition, but are not a "translator" role. With the right data I imagine they could create an average % wage premium that a language adds.  
+An [example](https://www.econstor.eu/bitstream/10419/182280/1/GLO-DP-0251.pdf) wherein they identified the wage premium a foreign language skill provided (in Poland).  
+
+### Data  
+
+:::{.column-margin}  
+The ACS question:  
+![](./extra-censuslang/language_q14.png){.lightbox}  
+:::  
+
+The data originates from <https://data.census.gov/>.  
+
+U.S. Census Bureau. "Language Spoken at Home by Ability to Speak English for the Population 5 Years and Over." American Community Survey, ACS 5-Year Estimates Detailed Tables, Table B16001.  
+
+full questionnare: <https://www.census.gov/programs-surveys/acs/about/forms-and-instructions.html>
+
+### Observations  
+Alaska, Utah, Nevada stood out as locations not traditionally associated with a Japanese diaspora, but had **relatively** high populations of Japanese speakers.  
+
+### Visualizations 見える化
+:::{.column-page-right}  
+
+::: {.panel-tabset}  
+
+## Table Nominal
+```{python}
+import pandas as pd
+import geopandas as gpd
+import folium
+import itables
+import geoplot
+
+jpmap = gpd.read_file("../../census/jpmap.gpkg")
+# jpmap = jpmap.rename({"STUSPS":"State", "NAME":"State Full", "osmid":"ID", "url":"URL"}, axis=1)
+
+itables.show(pd.DataFrame(jpmap[jpmap.columns[:13]]), maxBytes=200000, style="width:100%", 
+                                    buttons=["pageLength", {"extend": "colvisGroup","text": "Hide Errors","hide": [2,4,6,8,10]},
+                                                            {"extend": "colvisGroup","text": "Show all","show": "*"}],
+                                    columnDefs=[{"className":"dt-left", "targets":[0]}, 
+                                                {"targets":[2,4,6,8,10], "visible":False}],
+                                    columnControl=["order"],
+                                    ordering={"indicators": False, "handler": False})
+```
+## Table 2  
+```{python}
+itables.show(pd.DataFrame(jpmap.loc[:,["total","eng","jpn","bilingual","jpnbad","region"]]), maxBytes=200000, 
+                                    style="width:100%", buttons=["pageLength"],
+                                    columnDefs=[{"className":"dt-left", "targets":[0]}],
+                                    columnControl=["order"],
+                                    ordering={"indicators": False, "handler": False})
+```  
+## Table Regional  
+```{python}
+regionallang = jpmap.loc[:,["total","eng","jpn","bilingual","jpnbad","region"]].groupby(["region"], as_index=False).sum()
+regionallang["percentjpn"] = (regionallang.jpn * 100) / regionallang.total
+regionallang["percentbilingual"] = (regionallang.bilingual * 100) / regionallang.total
+itables.show(regionallang, maxBytes=200000, style="width:100%",
+                                    columnDefs=[{"className":"dt-left", "targets":[0]}],
+                                    columnControl=["order"],
+                                    ordering={"indicators": False, "handler": False})
+```  
+
+
+## Map
+```{python}
+
+# m = folium.Map([37, -100], zoom_start=4)
+
+# marker_cluster = MarkerCluster(disableClusteringAtZoom=10).add_to(m)
+
+# for idx, row in nodirgdf.iterrows():
+#     popup_html = f"<style> th\
+#                 {{border:1px solid black;\}}</style>\
+#                 <table><tr>\
+#                     <th>State: </th>\
+#                     <th>{row['State Full']}</th>\
+#                 </tr><tr>\
+#                     <th>ALPR ID: </th>\
+#                     <th>{row['ALPR ID']}</th>\
+#                 </tr><tr>\
+#                     <th text-align='center' colspan='2'>{row['url']}</th>\
+#                 </tr></table>"
+#     folium.Circle(
+#         location=[row.geometry.y, row.geometry.x], 
+#         popup=popup_html, fill=True, radius=30, weight=9,color="#9E2F02",opacity=0.8,fillOpacity=0.5
+#     ).add_to(marker_cluster)
+
+# m
+```
+
+
+:::  
+
+:::  
+
+
+:::{.column-page-right}  
+
+### Other Stats
+
+
+
+::: {.list-table aligns="r,l"}
+- - 
+  -
+- - 203,771,037 / 316,142,548 = 64.5%     
+  - of the general populace is working age (18 to 64)
+- - 8,030,466 / 11,320,253 = 70.9%        
+  - among those who Speak Asian and Pacific Island language
+- - 4,734,803 / 8,030,466 = 59.0%         
+  - speak english "very well" among **working age** API lang speakers
+- - 4,734,803 / 11,320,253 = 41.8%         
+  - working age speak english "very well" among **all** API lang speakers 
+- - []{colspan=2} 2024 ACS 5-Year Estimates, Table B16004
+
+:::  
+
+:::
