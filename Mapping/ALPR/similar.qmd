@@ -29,7 +29,7 @@ filterinvalid = similarcamsgdf.apply(lambda x: (x.geometry.is_valid) and (not x.
 marker_cluster = MarkerCluster(disableClusteringAtZoom=10).add_to(m)
 for idx, row in similarcamsgdf[filterinvalid].reset_index().iterrows():
     popup_html = f"<style> th\
-                {{border:1px solid black;\}}</style>\
+                {{border:1px solid black;}}</style>\
                 <table><tr>\
                     <th>State: </th>\
                     <th>{row['State Full']}</th>\
@@ -57,7 +57,7 @@ m
 ```
 ## Table
 ```{python}
-itables.show(pd.DataFrame(similarcamsgdf.drop(["geometry"], axis=1)),  maxBytes=300000, allow_html=True)
+itables.show(pd.DataFrame(similarcamsgdf.drop(["geometry"], axis=1)), maxBytes=600000,  style="width:100%", allow_html=True)
 ```
 :::  
 

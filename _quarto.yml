@@ -74,3 +74,5 @@ format:
         lightbox: true
         theme: morph-dark.scss
         toc: true
+        include-in-header:
+          - text: <script>document.documentElement.classList.add('dark')</script>

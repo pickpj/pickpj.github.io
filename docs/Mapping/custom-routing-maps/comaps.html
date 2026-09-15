@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Difficulties migrating to Wayland from X11 – pickpj</title>
+<title>Comaps Custom Routing – pickpj</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -43,6 +43,9 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap-7175ec11462a3fda766c9967d4174700.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -75,7 +78,7 @@ ul.task-list li input[type="checkbox"] {
 
 </head>
 
-<body class="nav-sidebar docked nav-fixed quarto-light">
+<body class="nav-sidebar docked nav-fixed slimcontent quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -97,7 +100,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Linux</li><li class="breadcrumb-item"><a href="../../Linux/x11/macro-migration.html">x11-&gt;wayland macros</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Mapping</li><li class="breadcrumb-item"><a href="../../Mapping/custom-routing-maps/comaps.html">Custom Routing</a></li><li class="breadcrumb-item"><a href="../../Mapping/custom-routing-maps/comaps.html">Comaps</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -143,16 +146,16 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
  <span class="menu-text">Custom Routing</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Mapping/custom-routing-maps/comaps.html" class="sidebar-item-text sidebar-link">
+  <a href="../../Mapping/custom-routing-maps/comaps.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Comaps</span></a>
   </div>
 </li>
@@ -315,7 +318,7 @@ ul.task-list li input[type="checkbox"] {
   </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Linux/x11/macro-migration.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../Linux/x11/macro-migration.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">x11-&gt;wayland macros</span></a>
   </div>
 </li>
@@ -331,17 +334,20 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#macros" id="toc-macros" class="nav-link active" data-scroll-target="#macros">Macros</a></li>
-  <li><a href="#other" id="toc-other" class="nav-link" data-scroll-target="#other">Other</a></li>
+  <li><a href="#proper-installation-building-with-the-correct-protobuf-version" id="toc-proper-installation-building-with-the-correct-protobuf-version" class="nav-link active" data-scroll-target="#proper-installation-building-with-the-correct-protobuf-version">1. Proper installation (building with the correct protobuf version)</a></li>
+  <li><a href="#map_generator.ini" id="toc-map_generator.ini" class="nav-link" data-scroll-target="#map_generator.ini">2. map_generator.ini</a></li>
+  <li><a href="#edited-pbf-properties" id="toc-edited-pbf-properties" class="nav-link" data-scroll-target="#edited-pbf-properties">3. Edited PBF Properties</a></li>
+  <li><a href="#map-generator-parameters" id="toc-map-generator-parameters" class="nav-link" data-scroll-target="#map-generator-parameters">4. Map generator parameters</a></li>
+  <li><a href="#map-file-path" id="toc-map-file-path" class="nav-link" data-scroll-target="#map-file-path">5. Map File Path</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Linux</li><li class="breadcrumb-item"><a href="../../Linux/x11/macro-migration.html">x11-&gt;wayland macros</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Mapping</li><li class="breadcrumb-item"><a href="../../Mapping/custom-routing-maps/comaps.html">Custom Routing</a></li><li class="breadcrumb-item"><a href="../../Mapping/custom-routing-maps/comaps.html">Comaps</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Difficulties migrating to Wayland from X11</h1>
+<h1 class="title">Comaps Custom Routing</h1>
 </div>
 
 
@@ -358,40 +364,60 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>With support for X11 seeming to dwindle I have to figure out how to: migrate my macros over and make sure other tools are working properly. This isn’t straight forward as many tools like xdotool, xsel, autokey, wmctrl, xrandr, and ahk-x11 can’t easily be replaced. So the following is my planning on how to smoothen a transition to Wayland.<br>
-The ¯\_(ツ)_/¯ does not indicate that it is not possible, but rather that I could not find a reasonable solution.</p>
-<section id="macros" class="level2">
-<h2 class="anchored" data-anchor-id="macros">Macros</h2>
-<hr>
-<p><strong>X11:</strong> <code>xdotool windowminimize $(xdotool getactivewindow)</code> Minimizes active window.<br>
-<strong>Wayland (KDE):</strong> <code>kdotool windowminimize $(kdotool getactivewindow)</code><br>
-^Wish this was transferable and not just kde :(</p>
-<hr>
-<p><strong>X11:</strong> autokey python script to set [music player, note-taking tool, IDE, Okular, LLM tool] as the active window, minimize if active, open if not open.<br>
-<strong>Wayland:</strong> ¯\_(ツ)_/¯ Probably kde only solution</p>
-<hr>
-<p><strong>X11:</strong> autokey text expansion<br>
-<strong>Wayland:</strong> waybinder</p>
-<hr>
-<p><strong>X11:</strong> <code>xsel</code> I pipe xsel to TTS cli tools. Enables an easy TTS macro that is agnostic of the TTS tool.<br>
-<strong>Wayland:</strong> wl-paste -&gt; cache -&gt; copy -&gt; wl-paste | TTS -&gt; wl-copy cache -&gt; rm cache</p>
-<hr>
-<p><strong>X11:</strong><br>
-Set up new “fake” display<br>
-<code>cvt 1920 1080</code> put output here vvvvvvv<br>
-<code>xrandr --newmode "1920x1080_60.00"  173.00  1920 2048 2248 2576  1080 1083 1088 1120 -hsync +vsync</code><br>
-<code>xrandr --addmode DP-1 1920x1080_60.00</code><br>
-Activate display<br>
-<code>xrandr --output DP-1 --mode 1920x1080_60.00 --right-of eDP-1</code><br>
-Deactivate display<br>
-<code>xrandr --output DP-1 --off</code><br>
-Why? Limited I/O on laptop, but the GPU can support more displays. ∴ More displays in VR/remote env.<br>
-<strong>Wayland:</strong> ¯\_(ツ)_/¯ <a href="https://wayland-book.com/wayland-display/creation.html">Maybe?</a> But also not straight forward</p>
-<hr>
+<p>Editing and making custom (pbf file) maps that work with apps like osmand or comaps enables one to piggyback off the routing and more polished UI of these apps for any custom purpose. I initially figured out how to do this when trying to get ALPR avoidance routing. And the end result is remarkably polished.</p>
+<p>These steps assume that you already have a custom pbf file (ex: <a href="https://github.com/pickpj/Big-B-Router/tree/comaps">big-b-router</a>). If you plan to make a custom pbf file I would recommend experimenting with osmandmapcreator first (#5 in the tradeoffs below).</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="./comaps.jpeg" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Custom map w/ road sections removed for ALPR avoidance (big-b-router)"><img src="./comaps.jpeg" class="img-fluid figure-img" alt="Custom map w/ road sections removed for ALPR avoidance (big-b-router)"></a></p>
+<figcaption>Custom map w/ road sections removed for ALPR avoidance (<a href="https://github.com/pickpj/Big-B-Router/tree/comaps">big-b-router</a>)</figcaption>
+</figure>
+</div>
+</div></div><p>Tradeoffs of Comaps mwm (An educated guess from my usage):</p>
+<ol type="1">
+<li>It doesn’t seem like there is a way to do custom weighting, like with Osmand’s routing.xml.<br>
+</li>
+<li>Doesn’t block or penalize paths that are gated.<br>
+</li>
+<li>Seems to largely ignore information that is stored in nodes, outside of visualization.<br>
+</li>
+<li>A toggleable feature would have to be encoded in the way? Like “toll=yes” for avoiding tolls.<br>
+</li>
+<li>The conversion tool is more prone to failing/erroring (w/ custom objects) than osmandmapcreator<br>
+</li>
+<li>Osmand routing is better at penalizing turns
+<ul>
+<li>ie. comaps routing might take several turns to get on and off a small road around an “obstruction” on a main road. The more optimal route would be with an earlier turn that might be “longer” or spend more time on a “slower road”, but eliminates the time-consuming turns (particularly left turns).</li>
+</ul></li>
+</ol>
+<p>The process for converting and importing a custom pbf map into comaps is more “involved” (ie. complicated) than osmand. The advantage of comaps is android auto support without having to pay for the higher tier version of Osmand. But having been through it, I’ve documented the pitfalls to avoid.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p><a href="./comaps2.jpeg" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="./comaps2.jpeg" class="img-fluid"></a></p>
+</div></div><section id="proper-installation-building-with-the-correct-protobuf-version" class="level3">
+<h3 class="anchored" data-anchor-id="proper-installation-building-with-the-correct-protobuf-version">1. Proper installation (building with the correct protobuf version)</h3>
+<p>After cloning the <a href="https://codeberg.org/comaps/comaps">comaps repo</a>, you will probably want to nest the comaps directory in another folder as “build_omim” will create directories at the same level. Follow the <a href="https://codeberg.org/comaps/comaps/src/branch/main/docs/INSTALL.md">installmd</a>, particularly ensure you have the correct protobuf version prior to running “build_omim”, outlined in <a href="https://codeberg.org/comaps/comaps/src/branch/release/2026.06.05/tools/python/maps_generator/README.md">mapgen readme</a> (this could likely change with later updates but was the case ~2026-06). Or if you ran build_omim incorrectly you can use the “-c” option, you can check other options with “-h”.</p>
 </section>
-<section id="other" class="level2">
-<h2 class="anchored" data-anchor-id="other">Other</h2>
-<p>Have to redo the Japanese IME, but not too difficult. (would be difficult if you couldn’t search in your main language though) https://github.com/tirsasaki/Install-and-Use-Japanese-Keyboard-On-Cachyos</p>
+<section id="map_generator.ini" class="level3">
+<h3 class="anchored" data-anchor-id="map_generator.ini">2. map_generator.ini</h3>
+<p>If you’re using a local file, like I do, you will need to create an md5sum (md5sum mapfile.osm.pbf &gt; mapfile.osm.pbf.md5) on top of setting the filepath. Make sure omim_path is correct.</p>
+</section>
+<section id="edited-pbf-properties" class="level3">
+<h3 class="anchored" data-anchor-id="edited-pbf-properties">3. Edited PBF Properties</h3>
+<p>The converter may complain if the pbf file is not sorted, use osmium sort.<br>
+If you’re editing and creating fake id’s for ways/nodes make sure they’re not consecutive as the converter will try to attach them (with comical results).</p>
+</section>
+<section id="map-generator-parameters" class="level3">
+<h3 class="anchored" data-anchor-id="map-generator-parameters">4. Map generator parameters</h3>
+<p>I used and would recommend parameters: <code>--skip="Coastline" --without_countries="World*"</code></p>
+</section>
+<section id="map-file-path" class="level3">
+<h3 class="anchored" data-anchor-id="map-file-path">5. Map File Path</h3>
+<p>In the app settings set the map save location to Android/data/app.comaps/files.<br>
+In the about&amp;help of the app there is a date for the openstreetmap data. Create/use a directory with this date.<br>
+Save the generated mwm files from the maps_build directory into the directory.<br>
+Move the existing World.mwm and WorldCoasts.mwm to the same directory.</p>
 
 
 </section>
@@ -798,6 +824,38 @@ Why? Limited I/O on laptop, but the GPU can support more displays. ∴ More disp
   });
   </script>
 </div> <!-- /content -->
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 

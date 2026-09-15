@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Difficulties migrating to Wayland from X11 – pickpj</title>
+<title>Various datasets over Tokyo – pickpj</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -97,7 +97,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Linux</li><li class="breadcrumb-item"><a href="../../Linux/x11/macro-migration.html">x11-&gt;wayland macros</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Mapping</li><li class="breadcrumb-item"><a href="../../Mapping/JPN/tokyochizu.html">Japan</a></li><li class="breadcrumb-item"><a href="../../Mapping/JPN/tokyochizu.html">Various maps</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -236,16 +236,16 @@ ul.task-list li input[type="checkbox"] {
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
  <span class="menu-text">Japan</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Mapping/JPN/tokyochizu.html" class="sidebar-item-text sidebar-link">
+  <a href="../../Mapping/JPN/tokyochizu.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Various maps</span></a>
   </div>
 </li>
@@ -315,7 +315,7 @@ ul.task-list li input[type="checkbox"] {
   </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Linux/x11/macro-migration.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../Linux/x11/macro-migration.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">x11-&gt;wayland macros</span></a>
   </div>
 </li>
@@ -326,22 +326,15 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#macros" id="toc-macros" class="nav-link active" data-scroll-target="#macros">Macros</a></li>
-  <li><a href="#other" id="toc-other" class="nav-link" data-scroll-target="#other">Other</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Linux</li><li class="breadcrumb-item"><a href="../../Linux/x11/macro-migration.html">x11-&gt;wayland macros</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Mapping</li><li class="breadcrumb-item"><a href="../../Mapping/JPN/tokyochizu.html">Japan</a></li><li class="breadcrumb-item"><a href="../../Mapping/JPN/tokyochizu.html">Various maps</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Difficulties migrating to Wayland from X11</h1>
+<h1 class="title">Various datasets over Tokyo</h1>
 </div>
 
 
@@ -358,43 +351,19 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>With support for X11 seeming to dwindle I have to figure out how to: migrate my macros over and make sure other tools are working properly. This isn’t straight forward as many tools like xdotool, xsel, autokey, wmctrl, xrandr, and ahk-x11 can’t easily be replaced. So the following is my planning on how to smoothen a transition to Wayland.<br>
-The ¯\_(ツ)_/¯ does not indicate that it is not possible, but rather that I could not find a reasonable solution.</p>
-<section id="macros" class="level2">
-<h2 class="anchored" data-anchor-id="macros">Macros</h2>
+<p>Some maps I made for an assignment previously.</p>
+<p>Data is from ~late 2024, and are either from <a href="https://portal.data.metro.tokyo.lg.jp/">Tokyo Open Data Portal</a> or ekidata.jp</p>
 <hr>
-<p><strong>X11:</strong> <code>xdotool windowminimize $(xdotool getactivewindow)</code> Minimizes active window.<br>
-<strong>Wayland (KDE):</strong> <code>kdotool windowminimize $(kdotool getactivewindow)</code><br>
-^Wish this was transferable and not just kde :(</p>
+<p><a href="https://tokyochizu.github.io/zoning.html">Zoning Choropleth</a><br>
+My favourite map, showing the structure in the “gradient” of permissible zoning in Tokyo. (<a href="https://www.mlit.go.jp/common/001050453.pdf#page=5">Japans Federalized Zoning PDF</a>)</p>
 <hr>
-<p><strong>X11:</strong> autokey python script to set [music player, note-taking tool, IDE, Okular, LLM tool] as the active window, minimize if active, open if not open.<br>
-<strong>Wayland:</strong> ¯\_(ツ)_/¯ Probably kde only solution</p>
+<p><a href="https://tokyochizu.github.io/map1.html">Disaster Risk Map</a><br>
+Map showing disaster risk assessment scores throughout Tokyo</p>
 <hr>
-<p><strong>X11:</strong> autokey text expansion<br>
-<strong>Wayland:</strong> waybinder</p>
-<hr>
-<p><strong>X11:</strong> <code>xsel</code> I pipe xsel to TTS cli tools. Enables an easy TTS macro that is agnostic of the TTS tool.<br>
-<strong>Wayland:</strong> wl-paste -&gt; cache -&gt; copy -&gt; wl-paste | TTS -&gt; wl-copy cache -&gt; rm cache</p>
-<hr>
-<p><strong>X11:</strong><br>
-Set up new “fake” display<br>
-<code>cvt 1920 1080</code> put output here vvvvvvv<br>
-<code>xrandr --newmode "1920x1080_60.00"  173.00  1920 2048 2248 2576  1080 1083 1088 1120 -hsync +vsync</code><br>
-<code>xrandr --addmode DP-1 1920x1080_60.00</code><br>
-Activate display<br>
-<code>xrandr --output DP-1 --mode 1920x1080_60.00 --right-of eDP-1</code><br>
-Deactivate display<br>
-<code>xrandr --output DP-1 --off</code><br>
-Why? Limited I/O on laptop, but the GPU can support more displays. ∴ More displays in VR/remote env.<br>
-<strong>Wayland:</strong> ¯\_(ツ)_/¯ <a href="https://wayland-book.com/wayland-display/creation.html">Maybe?</a> But also not straight forward</p>
-<hr>
-</section>
-<section id="other" class="level2">
-<h2 class="anchored" data-anchor-id="other">Other</h2>
-<p>Have to redo the Japanese IME, but not too difficult. (would be difficult if you couldn’t search in your main language though) https://github.com/tirsasaki/Install-and-Use-Japanese-Keyboard-On-Cachyos</p>
+<p><a href="https://tokyochizu.github.io/trainstations.html">Train Stations</a><br>
+Train Station locations</p>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
