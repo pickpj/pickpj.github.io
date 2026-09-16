@@ -7,6 +7,10 @@ This assumes that you already have a custom pbf file (ex: [big-b-router](https:/
 
 Compared to comaps, the process is very straightforward/easy.  
 
+::: {.column-margin}
+![](./extra-apps/osmand.jpeg)  
+:::  
+
 ### 1. Download [osmandmapcreator](https://wiki.openstreetmap.org/wiki/OsmAndMapCreator)  
 ### 2. Run the gui with java  
 Straightforward if you have java installed already, just assign some RAM with the command in the wikipage `java -jar -Xms1G -Xmx6G OsmAndMapCreator.jar`.  

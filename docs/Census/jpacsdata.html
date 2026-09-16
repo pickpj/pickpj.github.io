@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>ACS Japanese Speaker Data (Under Construction) – pickpj</title>
+<title>ACS Japanese Speaker Data – pickpj</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -375,7 +375,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#why" id="toc-why" class="nav-link active" data-scroll-target="#why">Why</a></li>
   <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
   <li><a href="#observations" id="toc-observations" class="nav-link" data-scroll-target="#observations">Observations</a></li>
-  <li><a href="#visualizations-見える化" id="toc-visualizations-見える化" class="nav-link" data-scroll-target="#visualizations-見える化">Visualizations 見える化</a></li>
+  <li><a href="#tables-visuals-表見える化" id="toc-tables-visuals-表見える化" class="nav-link" data-scroll-target="#tables-visuals-表見える化">Tables &amp; Visuals 表・見える化</a></li>
   <li><a href="#other-stats" id="toc-other-stats" class="nav-link" data-scroll-target="#other-stats">Other Stats</a></li>
   </ul>
 </nav>
@@ -385,7 +385,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Census/censuslangdata.html">Census</a></li><li class="breadcrumb-item"><a href="../Census/jpacsdata.html">Japanese Speaker Analysis</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">ACS Japanese Speaker Data (Under Construction)</h1>
+<h1 class="title">ACS Japanese Speaker Data</h1>
 </div>
 
 
@@ -420,7 +420,7 @@ From the demand side:</p>
 </li>
 <li>Japan has a small emigrant population relative to its population size. <a href="https://en.wikipedia.org/wiki/List_of_sovereign_states_by_immigrant_and_emigrant_population#Emigrant_population">src7 (Source available through wayback machine)</a><br>
 </li>
-<li>Regional concentrations/disparities within the US (the purpose of this analysis). <a href="../Census/jpacsdata.html#map">src8=myself+ACS data</a></li>
+<li>Regional concentrations/disparities within the US (the purpose of this analysis). <a href="../Census/jpacsdata.html#tables-visuals-表見える化">src8=myself+ACS data</a></li>
 </ol>
 <p>Together, these factors make Japanese a uniquely valuable language in the US. China/Chinese is similar in some respects, but lacks, basically any, direct investments into the US. For reference, in 2025 Austria had more direct investment into the US than China.</p>
 <p>As an aside, I wish the BLS would release language specific data on Interpreters and Translators. Rather than the general translator bucket. (How am I supposed to interpret the wage data!)<br>
@@ -436,19 +436,38 @@ An <a href="https://www.econstor.eu/bitstream/10419/182280/1/GLO-DP-0251.pdf">ex
 </div></div><p>The data originates from <a href="https://data.census.gov/" class="uri">https://data.census.gov/</a>.</p>
 <p>U.S. Census Bureau. “Language Spoken at Home by Ability to Speak English for the Population 5 Years and Over.” American Community Survey, ACS 5-Year Estimates Detailed Tables, Table B16001.</p>
 <p>full questionnare: <a href="https://www.census.gov/programs-surveys/acs/about/forms-and-instructions.html" class="uri">https://www.census.gov/programs-surveys/acs/about/forms-and-instructions.html</a></p>
+<p>Potential issues with the data to be concious of:</p>
+<ul>
+<li>The errors are based on a 90% confidence interval.<br>
+</li>
+<li>ACS data is not a census and may have non-sampling error.<br>
+</li>
+<li>Data is for all age groups when one might only be interested in those of working age (18-64) my best estimate puts it at ~60%.
+<ul>
+<li>This 60% figure can also invite scrutiny. Explained further below.<br>
+</li>
+</ul></li>
+<li>The bilingual statistic is based on those who responded as speaking english “very well”, excluding those who selected as speaking “well” or below.<br>
+</li>
+<li>Individuals who know the language may interpret “speak language <strong><em>at home</em></strong>” more strictly and not respond with the language spoken. ie. A language learner w/o someone to speak w/ at home.<br>
+</li>
+<li>Speaking at home is used as a proxy to fluency, but such fluency may be considered insufficient by other standards. (尊敬語 or reading/writing skills come to mind)</li>
+</ul>
 </section>
 <section id="observations" class="level3">
 <h3 class="anchored" data-anchor-id="observations">Observations</h3>
-<p>Alaska, Utah, Nevada stood out as locations not traditionally associated with a Japanese diaspora, but had <strong>relatively</strong> high populations of Japanese speakers.</p>
+<p>Alaska, Utah, Nevada stood out as locations not traditionally associated with a Japanese diaspora, but had <strong>relatively</strong> high populations of Japanese speakers.<br>
+Racially/ethnically Hawaii has a much higher Japanese population, but when it comes to language speakers Hawaii is on par with New York. (Lower if you include New Jersey due to proximity)<br>
+Florida and Texas have a low proportion of Japanese speakers, but make up for it by sheer size.</p>
 </section>
-<section id="visualizations-見える化" class="level3 page-columns page-full">
-<h3 class="anchored" data-anchor-id="visualizations-見える化">Visualizations 見える化</h3>
+<section id="tables-visuals-表見える化" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="tables-visuals-表見える化">Tables &amp; Visuals 表・見える化</h3>
 <div class="column-page-right">
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Table Nominal</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Table 2</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href="">Table Regional</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false" href="">Map</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Nominal / Proportional</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Map</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href="">Regional</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false" href="">Metro Areas</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<div id="6086fc4a" class="cell" data-execution_count="1">
+<div id="7016c2ff" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -458,19 +477,26 @@ An <a href="https://www.econstor.eu/bitstream/10419/182280/1/GLO-DP-0251.pdf">ex
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geoplot</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>jpmap <span class="op">=</span> gpd.read_file(<span class="st">"../../census/jpmap.gpkg"</span>)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># jpmap = jpmap.rename({"STUSPS":"State", "NAME":"State Full", "osmid":"ID", "url":"URL"}, axis=1)</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>itables.show(pd.DataFrame(jpmap[jpmap.columns[:<span class="dv">13</span>]]), maxBytes<span class="op">=</span><span class="dv">200000</span>, style<span class="op">=</span><span class="st">"width:100%"</span>, </span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>                                    buttons<span class="op">=</span>[<span class="st">"pageLength"</span>, {<span class="st">"extend"</span>: <span class="st">"colvisGroup"</span>,<span class="st">"text"</span>: <span class="st">"Hide Errors"</span>,<span class="st">"hide"</span>: [<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">6</span>,<span class="dv">8</span>,<span class="dv">10</span>]},</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>                                                            {<span class="st">"extend"</span>: <span class="st">"colvisGroup"</span>,<span class="st">"text"</span>: <span class="st">"Show all"</span>,<span class="st">"show"</span>: <span class="st">"*"</span>}],</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>                                    columnDefs<span class="op">=</span>[{<span class="st">"className"</span>:<span class="st">"dt-left"</span>, <span class="st">"targets"</span>:[<span class="dv">0</span>]}, </span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>                                                {<span class="st">"targets"</span>:[<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">6</span>,<span class="dv">8</span>,<span class="dv">10</span>], <span class="st">"visible"</span>:<span class="va">False</span>}],</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>                                    columnControl<span class="op">=</span>[<span class="st">"order"</span>],</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>                                    ordering<span class="op">=</span>{<span class="st">"indicators"</span>: <span class="va">False</span>, <span class="st">"handler"</span>: <span class="va">False</span>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>itables.show(pd.DataFrame(jpmap.loc[:,[<span class="st">"state"</span>,<span class="st">"population"</span>,<span class="st">"epopulation"</span>,<span class="st">"eng"</span>,<span class="st">"eeng"</span>,<span class="st">"jpn"</span>,<span class="st">"ejpn"</span>,<span class="st">"nomjpnrank"</span>,<span class="st">"bilingual"</span>,<span class="st">"ebilingual"</span>,</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>                            <span class="st">"nombilingualrank"</span>,<span class="st">"jpnloweng"</span>,<span class="st">"ejpnloweng"</span>]]), </span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>                            maxBytes<span class="op">=</span><span class="dv">200000</span>, style<span class="op">=</span><span class="st">"width:100%"</span>, </span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>                            buttons<span class="op">=</span>[<span class="st">"pageLength"</span>, {<span class="st">"extend"</span>: <span class="st">"colvisGroup"</span>,<span class="st">"text"</span>: <span class="st">"Hide Errors"</span>,<span class="st">"hide"</span>: [<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">6</span>,<span class="dv">9</span>,<span class="dv">12</span>]},</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>                                                    {<span class="st">"extend"</span>: <span class="st">"colvisGroup"</span>,<span class="st">"text"</span>: <span class="st">"Show all"</span>,<span class="st">"show"</span>: <span class="st">"*"</span>}],</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>                            columnDefs<span class="op">=</span>[{<span class="st">"className"</span>:<span class="st">"dt-left"</span>, <span class="st">"targets"</span>:[<span class="dv">0</span>]}, </span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>                                        {<span class="st">"targets"</span>:[<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">6</span>,<span class="dv">9</span>,<span class="dv">12</span>], <span class="st">"visible"</span>:<span class="va">False</span>}],</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>                            columnControl<span class="op">=</span>[<span class="st">"order"</span>],</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>                            ordering<span class="op">=</span>{<span class="st">"indicators"</span>: <span class="va">False</span>, <span class="st">"handler"</span>: <span class="va">False</span>})</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>itables.show(pd.DataFrame(jpmap.loc[:,[<span class="st">"state"</span>,<span class="st">"population"</span>,<span class="st">"jpn"</span>,<span class="st">"percentjpn"</span>,<span class="st">"jpnrank"</span>,<span class="st">"percentbilingual"</span>,<span class="st">"bilingualrank"</span>]]), </span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>                            maxBytes<span class="op">=</span><span class="dv">200000</span>, style<span class="op">=</span><span class="st">"width:100%"</span>, buttons<span class="op">=</span>[<span class="st">"pageLength"</span>],</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>                            columnDefs<span class="op">=</span>[{<span class="st">"className"</span>:<span class="st">"dt-left"</span>, <span class="st">"targets"</span>:[<span class="dv">0</span>]}],</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>                            columnControl<span class="op">=</span>[<span class="st">"order"</span>],</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>                            ordering<span class="op">=</span>{<span class="st">"indicators"</span>: <span class="va">False</span>, <span class="st">"handler"</span>: <span class="va">False</span>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <!--| quarto-html-table-processing: none -->
-<table id="itables_b70adfae_a751_4eb5_8e10_19bf30ee4b0f" hidden="hidden">
+<table id="itables_4985e8b8_fb42_44d8_bf5d_5be0748078b5" hidden="hidden">
   <tbody>
     <tr>
       <td style="vertical-align:middle; text-align:left"><a href="https://itables.org/"><svg class="main-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="64" viewbox="0 0 500 400" style="font-family: 'Droid Sans', sans-serif;">
@@ -536,52 +562,165 @@ An <a href="https://www.econstor.eu/bitstream/10419/182280/1/GLO-DP-0251.pdf">ex
     </tr>
   </tbody>
 </table>
-<div id="itables_b70adfae_a751_4eb5_8e10_19bf30ee4b0f_fallback"><table style="border-collapse:collapse"><thead>    <tr style="text-align: right;">
+<div id="itables_4985e8b8_fb42_44d8_bf5d_5be0748078b5_fallback"><table style="border-collapse:collapse"><thead>    <tr style="text-align: right;">
       <th style="border:1px solid #ddd;padding:8px"><sup><noscript><span title="JavaScript not allowed. Please trust this notebook to get interactive tables.">🔒</span></noscript><a href="https://itables.org/fallbacks/static_preview.html" title="ITables v2.9.1 static preview">ⓘ</a></sup>state</th>
-      <th style="border:1px solid #ddd;padding:8px">total</th>
-      <th style="border:1px solid #ddd;padding:8px">etotal</th>
+      <th style="border:1px solid #ddd;padding:8px">population</th>
+      <th style="border:1px solid #ddd;padding:8px">epopulation</th>
       <th style="border:1px solid #ddd;padding:8px">eng</th>
       <th style="border:1px solid #ddd;padding:8px">eeng</th>
       <th style="border:1px solid #ddd;padding:8px">jpn</th>
       <th style="border:1px solid #ddd;padding:8px">ejpn</th>
+      <th style="border:1px solid #ddd;padding:8px">nomjpnrank</th>
       <th style="border:1px solid #ddd;padding:8px">bilingual</th>
       <th style="border:1px solid #ddd;padding:8px">ebilingual</th>
-      <th style="border:1px solid #ddd;padding:8px">jpnbad</th>
-      <th style="border:1px solid #ddd;padding:8px">ejpnbad</th>
-      <th style="border:1px solid #ddd;padding:8px">percentjpn</th>
-      <th style="border:1px solid #ddd;padding:8px">percentbilingual</th>
+      <th style="border:1px solid #ddd;padding:8px">nombilingualrank</th>
+      <th style="border:1px solid #ddd;padding:8px">jpnloweng</th>
+      <th style="border:1px solid #ddd;padding:8px">ejpnloweng</th>
     </tr></thead><tbody>
-<tr><td style="border:1px solid #ddd;padding:8px">alabama</td><td style="border:1px solid #ddd;padding:8px">4793030</td><td style="border:1px solid #ddd;padding:8px">601</td><td style="border:1px solid #ddd;padding:8px">4503218</td><td style="border:1px solid #ddd;padding:8px">5359</td><td style="border:1px solid #ddd;padding:8px">2528</td><td style="border:1px solid #ddd;padding:8px">541</td><td style="border:1px solid #ddd;padding:8px">1228</td><td style="border:1px solid #ddd;padding:8px">414</td><td style="border:1px solid #ddd;padding:8px">1300</td><td style="border:1px solid #ddd;padding:8px">327</td><td style="border:1px solid #ddd;padding:8px">0.052743</td><td style="border:1px solid #ddd;padding:8px">0.025621</td></tr>
-<tr><td style="border:1px solid #ddd;padding:8px">alaska</td><td style="border:1px solid #ddd;padding:8px">689070</td><td style="border:1px solid #ddd;padding:8px">169</td><td style="border:1px solid #ddd;padding:8px">585162</td><td style="border:1px solid #ddd;padding:8px">2727</td><td style="border:1px solid #ddd;padding:8px">1494</td><td style="border:1px solid #ddd;padding:8px">390</td><td style="border:1px solid #ddd;padding:8px">1033</td><td style="border:1px solid #ddd;padding:8px">281</td><td style="border:1px solid #ddd;padding:8px">461</td><td style="border:1px solid #ddd;padding:8px">254</td><td style="border:1px solid #ddd;padding:8px">0.216814</td><td style="border:1px solid #ddd;padding:8px">0.149912</td></tr>
-<tr><td style="border:1px solid #ddd;padding:8px">arizona</td><td style="border:1px solid #ddd;padding:8px">6981320</td><td style="border:1px solid #ddd;padding:8px">285</td><td style="border:1px solid #ddd;padding:8px">5184054</td><td style="border:1px solid #ddd;padding:8px">11544</td><td style="border:1px solid #ddd;padding:8px">7952</td><td style="border:1px solid #ddd;padding:8px">907</td><td style="border:1px solid #ddd;padding:8px">5119</td><td style="border:1px solid #ddd;padding:8px">706</td><td style="border:1px solid #ddd;padding:8px">2833</td><td style="border:1px solid #ddd;padding:8px">511</td><td style="border:1px solid #ddd;padding:8px">0.113904</td><td style="border:1px solid #ddd;padding:8px">0.073324</td></tr>
-<tr><td style="border:1px solid #ddd;padding:8px">arkansas</td><td style="border:1px solid #ddd;padding:8px">2869111</td><td style="border:1px solid #ddd;padding:8px">548</td><td style="border:1px solid #ddd;padding:8px">2630451</td><td style="border:1px solid #ddd;padding:8px">4441</td><td style="border:1px solid #ddd;padding:8px">935</td><td style="border:1px solid #ddd;padding:8px">266</td><td style="border:1px solid #ddd;padding:8px">495</td><td style="border:1px solid #ddd;padding:8px">195</td><td style="border:1px solid #ddd;padding:8px">440</td><td style="border:1px solid #ddd;padding:8px">218</td><td style="border:1px solid #ddd;padding:8px">0.032588</td><td style="border:1px solid #ddd;padding:8px">0.017253</td></tr>
-<tr><td style="border:1px solid #ddd;padding:8px">california</td><td style="border:1px solid #ddd;padding:8px">37121454</td><td style="border:1px solid #ddd;padding:8px">487</td><td style="border:1px solid #ddd;padding:8px">20642638</td><td style="border:1px solid #ddd;padding:8px">54450</td><td style="border:1px solid #ddd;padding:8px">133419</td><td style="border:1px solid #ddd;padding:8px">4594</td><td style="border:1px solid #ddd;padding:8px">78900</td><td style="border:1px solid #ddd;padding:8px">3190</td><td style="border:1px solid #ddd;padding:8px">54519</td><td style="border:1px solid #ddd;padding:8px">2222</td><td style="border:1px solid #ddd;padding:8px">0.359412</td><td style="border:1px solid #ddd;padding:8px">0.212546</td></tr>
-<tr><td style="border:1px solid #ddd;padding:8px">colorado</td><td style="border:1px solid #ddd;padding:8px">5549558</td><td style="border:1px solid #ddd;padding:8px">577</td><td style="border:1px solid #ddd;padding:8px">4650283</td><td style="border:1px solid #ddd;padding:8px">9223</td><td style="border:1px solid #ddd;padding:8px">5893</td><td style="border:1px solid #ddd;padding:8px">658</td><td style="border:1px solid #ddd;padding:8px">4494</td><td style="border:1px solid #ddd;padding:8px">563</td><td style="border:1px solid #ddd;padding:8px">1399</td><td style="border:1px solid #ddd;padding:8px">266</td><td style="border:1px solid #ddd;padding:8px">0.106189</td><td style="border:1px solid #ddd;padding:8px">0.080979</td></tr>
-<tr><td style="border:1px solid #ddd;padding:8px">connecticut</td><td style="border:1px solid #ddd;padding:8px">3442817</td><td style="border:1px solid #ddd;padding:8px">90</td><td style="border:1px solid #ddd;padding:8px">2638366</td><td style="border:1px solid #ddd;padding:8px">6723</td><td style="border:1px solid #ddd;padding:8px">3281</td><td style="border:1px solid #ddd;padding:8px">640</td><td style="border:1px solid #ddd;padding:8px">2322</td><td style="border:1px solid #ddd;padding:8px">504</td><td style="border:1px solid #ddd;padding:8px">959</td><td style="border:1px solid #ddd;padding:8px">329</td><td style="border:1px solid #ddd;padding:8px">0.095300</td><td style="border:1px solid #ddd;padding:8px">0.067445</td></tr>
-<tr><td style="border:1px solid #ddd;padding:8px">delaware</td><td style="border:1px solid #ddd;padding:8px">966580</td><td style="border:1px solid #ddd;padding:8px">46</td><td style="border:1px solid #ddd;padding:8px">820336</td><td style="border:1px solid #ddd;padding:8px">3432</td><td style="border:1px solid #ddd;padding:8px">805</td><td style="border:1px solid #ddd;padding:8px">272</td><td style="border:1px solid #ddd;padding:8px">603</td><td style="border:1px solid #ddd;padding:8px">229</td><td style="border:1px solid #ddd;padding:8px">202</td><td style="border:1px solid #ddd;padding:8px">102</td><td style="border:1px solid #ddd;padding:8px">0.083283</td><td style="border:1px solid #ddd;padding:8px">0.062385</td></tr>
-<tr><td style="border:1px solid #ddd;padding:8px">district of columbia</td><td style="border:1px solid #ddd;padding:8px">640841</td><td style="border:1px solid #ddd;padding:8px">66</td><td style="border:1px solid #ddd;padding:8px">518478</td><td style="border:1px solid #ddd;padding:8px">3204</td><td style="border:1px solid #ddd;padding:8px">1054</td><td style="border:1px solid #ddd;padding:8px">285</td><td style="border:1px solid #ddd;padding:8px">692</td><td style="border:1px solid #ddd;padding:8px">244</td><td style="border:1px solid #ddd;padding:8px">362</td><td style="border:1px solid #ddd;padding:8px">145</td><td style="border:1px solid #ddd;padding:8px">0.164471</td><td style="border:1px solid #ddd;padding:8px">0.107983</td></tr>
-<tr><td style="border:1px solid #ddd;padding:8px">florida</td><td style="border:1px solid #ddd;padding:8px">21289728</td><td style="border:1px solid #ddd;padding:8px">707</td><td style="border:1px solid #ddd;padding:8px">14769458</td><td style="border:1px solid #ddd;padding:8px">25976</td><td style="border:1px solid #ddd;padding:8px">12222</td><td style="border:1px solid #ddd;padding:8px">1183</td><td style="border:1px solid #ddd;padding:8px">8153</td><td style="border:1px solid #ddd;padding:8px">993</td><td style="border:1px solid #ddd;padding:8px">4069</td><td style="border:1px solid #ddd;padding:8px">647</td><td style="border:1px solid #ddd;padding:8px">0.057408</td><td style="border:1px solid #ddd;padding:8px">0.038295</td></tr>
-</tbody><tfoot><tr><td colspan="13" style="border:none;padding:8px;text-align:center">(41 more rows not shown)</td></tr></tfoot></table></div><script>document.getElementById("itables_b70adfae_a751_4eb5_8e10_19bf30ee4b0f")?.removeAttribute("hidden");document.getElementById("itables_b70adfae_a751_4eb5_8e10_19bf30ee4b0f_fallback")?.setAttribute("hidden", "hidden");</script>
+<tr><td style="border:1px solid #ddd;padding:8px">alabama</td><td style="border:1px solid #ddd;padding:8px">4793030</td><td style="border:1px solid #ddd;padding:8px">601</td><td style="border:1px solid #ddd;padding:8px">4503218</td><td style="border:1px solid #ddd;padding:8px">5359</td><td style="border:1px solid #ddd;padding:8px">2528</td><td style="border:1px solid #ddd;padding:8px">541</td><td style="border:1px solid #ddd;padding:8px">30</td><td style="border:1px solid #ddd;padding:8px">1228</td><td style="border:1px solid #ddd;padding:8px">414</td><td style="border:1px solid #ddd;padding:8px">34</td><td style="border:1px solid #ddd;padding:8px">1300</td><td style="border:1px solid #ddd;padding:8px">327</td></tr>
+<tr><td style="border:1px solid #ddd;padding:8px">alaska</td><td style="border:1px solid #ddd;padding:8px">689070</td><td style="border:1px solid #ddd;padding:8px">169</td><td style="border:1px solid #ddd;padding:8px">585162</td><td style="border:1px solid #ddd;padding:8px">2727</td><td style="border:1px solid #ddd;padding:8px">1494</td><td style="border:1px solid #ddd;padding:8px">390</td><td style="border:1px solid #ddd;padding:8px">35</td><td style="border:1px solid #ddd;padding:8px">1033</td><td style="border:1px solid #ddd;padding:8px">281</td><td style="border:1px solid #ddd;padding:8px">35</td><td style="border:1px solid #ddd;padding:8px">461</td><td style="border:1px solid #ddd;padding:8px">254</td></tr>
+<tr><td style="border:1px solid #ddd;padding:8px">arizona</td><td style="border:1px solid #ddd;padding:8px">6981320</td><td style="border:1px solid #ddd;padding:8px">285</td><td style="border:1px solid #ddd;padding:8px">5184054</td><td style="border:1px solid #ddd;padding:8px">11544</td><td style="border:1px solid #ddd;padding:8px">7952</td><td style="border:1px solid #ddd;padding:8px">907</td><td style="border:1px solid #ddd;padding:8px">17</td><td style="border:1px solid #ddd;padding:8px">5119</td><td style="border:1px solid #ddd;padding:8px">706</td><td style="border:1px solid #ddd;padding:8px">17</td><td style="border:1px solid #ddd;padding:8px">2833</td><td style="border:1px solid #ddd;padding:8px">511</td></tr>
+<tr><td style="border:1px solid #ddd;padding:8px">arkansas</td><td style="border:1px solid #ddd;padding:8px">2869111</td><td style="border:1px solid #ddd;padding:8px">548</td><td style="border:1px solid #ddd;padding:8px">2630451</td><td style="border:1px solid #ddd;padding:8px">4441</td><td style="border:1px solid #ddd;padding:8px">935</td><td style="border:1px solid #ddd;padding:8px">266</td><td style="border:1px solid #ddd;padding:8px">41</td><td style="border:1px solid #ddd;padding:8px">495</td><td style="border:1px solid #ddd;padding:8px">195</td><td style="border:1px solid #ddd;padding:8px">46</td><td style="border:1px solid #ddd;padding:8px">440</td><td style="border:1px solid #ddd;padding:8px">218</td></tr>
+<tr><td style="border:1px solid #ddd;padding:8px">california</td><td style="border:1px solid #ddd;padding:8px">37121454</td><td style="border:1px solid #ddd;padding:8px">487</td><td style="border:1px solid #ddd;padding:8px">20642638</td><td style="border:1px solid #ddd;padding:8px">54450</td><td style="border:1px solid #ddd;padding:8px">133419</td><td style="border:1px solid #ddd;padding:8px">4594</td><td style="border:1px solid #ddd;padding:8px">1</td><td style="border:1px solid #ddd;padding:8px">78900</td><td style="border:1px solid #ddd;padding:8px">3190</td><td style="border:1px solid #ddd;padding:8px">1</td><td style="border:1px solid #ddd;padding:8px">54519</td><td style="border:1px solid #ddd;padding:8px">2222</td></tr>
+<tr><td style="border:1px solid #ddd;padding:8px">colorado</td><td style="border:1px solid #ddd;padding:8px">5549558</td><td style="border:1px solid #ddd;padding:8px">577</td><td style="border:1px solid #ddd;padding:8px">4650283</td><td style="border:1px solid #ddd;padding:8px">9223</td><td style="border:1px solid #ddd;padding:8px">5893</td><td style="border:1px solid #ddd;padding:8px">658</td><td style="border:1px solid #ddd;padding:8px">20</td><td style="border:1px solid #ddd;padding:8px">4494</td><td style="border:1px solid #ddd;padding:8px">563</td><td style="border:1px solid #ddd;padding:8px">18</td><td style="border:1px solid #ddd;padding:8px">1399</td><td style="border:1px solid #ddd;padding:8px">266</td></tr>
+<tr><td style="border:1px solid #ddd;padding:8px">connecticut</td><td style="border:1px solid #ddd;padding:8px">3442817</td><td style="border:1px solid #ddd;padding:8px">90</td><td style="border:1px solid #ddd;padding:8px">2638366</td><td style="border:1px solid #ddd;padding:8px">6723</td><td style="border:1px solid #ddd;padding:8px">3281</td><td style="border:1px solid #ddd;padding:8px">640</td><td style="border:1px solid #ddd;padding:8px">28</td><td style="border:1px solid #ddd;padding:8px">2322</td><td style="border:1px solid #ddd;padding:8px">504</td><td style="border:1px solid #ddd;padding:8px">26</td><td style="border:1px solid #ddd;padding:8px">959</td><td style="border:1px solid #ddd;padding:8px">329</td></tr>
+<tr><td style="border:1px solid #ddd;padding:8px">delaware</td><td style="border:1px solid #ddd;padding:8px">966580</td><td style="border:1px solid #ddd;padding:8px">46</td><td style="border:1px solid #ddd;padding:8px">820336</td><td style="border:1px solid #ddd;padding:8px">3432</td><td style="border:1px solid #ddd;padding:8px">805</td><td style="border:1px solid #ddd;padding:8px">272</td><td style="border:1px solid #ddd;padding:8px">43</td><td style="border:1px solid #ddd;padding:8px">603</td><td style="border:1px solid #ddd;padding:8px">229</td><td style="border:1px solid #ddd;padding:8px">41</td><td style="border:1px solid #ddd;padding:8px">202</td><td style="border:1px solid #ddd;padding:8px">102</td></tr>
+<tr><td style="border:1px solid #ddd;padding:8px">district of columbia</td><td style="border:1px solid #ddd;padding:8px">640841</td><td style="border:1px solid #ddd;padding:8px">66</td><td style="border:1px solid #ddd;padding:8px">518478</td><td style="border:1px solid #ddd;padding:8px">3204</td><td style="border:1px solid #ddd;padding:8px">1054</td><td style="border:1px solid #ddd;padding:8px">285</td><td style="border:1px solid #ddd;padding:8px">40</td><td style="border:1px solid #ddd;padding:8px">692</td><td style="border:1px solid #ddd;padding:8px">244</td><td style="border:1px solid #ddd;padding:8px">39</td><td style="border:1px solid #ddd;padding:8px">362</td><td style="border:1px solid #ddd;padding:8px">145</td></tr>
+<tr><td style="border:1px solid #ddd;padding:8px">florida</td><td style="border:1px solid #ddd;padding:8px">21289728</td><td style="border:1px solid #ddd;padding:8px">707</td><td style="border:1px solid #ddd;padding:8px">14769458</td><td style="border:1px solid #ddd;padding:8px">25976</td><td style="border:1px solid #ddd;padding:8px">12222</td><td style="border:1px solid #ddd;padding:8px">1183</td><td style="border:1px solid #ddd;padding:8px">9</td><td style="border:1px solid #ddd;padding:8px">8153</td><td style="border:1px solid #ddd;padding:8px">993</td><td style="border:1px solid #ddd;padding:8px">7</td><td style="border:1px solid #ddd;padding:8px">4069</td><td style="border:1px solid #ddd;padding:8px">647</td></tr>
+</tbody><tfoot><tr><td colspan="13" style="border:none;padding:8px;text-align:center">(41 more rows not shown)</td></tr></tfoot></table></div><script>document.getElementById("itables_4985e8b8_fb42_44d8_bf5d_5be0748078b5")?.removeAttribute("hidden");document.getElementById("itables_4985e8b8_fb42_44d8_bf5d_5be0748078b5_fallback")?.setAttribute("hidden", "hidden");</script>
 <link href="https://www.unpkg.com/dt_for_itables@2.5.8/dt_bundle.css" rel="stylesheet">
 <script type="module">
     import { ITable, jQuery as $ } from 'https://www.unpkg.com/dt_for_itables@2.5.8/dt_bundle.js';
 
-    document.querySelectorAll("#itables_b70adfae_a751_4eb5_8e10_19bf30ee4b0f:not(.dataTable)").forEach(table => {
+    document.querySelectorAll("#itables_4985e8b8_fb42_44d8_bf5d_5be0748078b5:not(.dataTable)").forEach(table => {
         if (!(table instanceof HTMLTableElement))
             return;
 
         let dt_args = {
-          "buttons": ["pageLength", {"extend": "colvisGroup", "hide": [2, 4, 6, 8, 10], "text": "Hide Errors"}, {"extend": "colvisGroup", "show": "*", "text": "Show all"}],
+          "buttons": ["pageLength", {"extend": "colvisGroup", "hide": [2, 4, 6, 9, 12], "text": "Hide Errors"}, {"extend": "colvisGroup", "show": "*", "text": "Show all"}],
           "classes": ["display", "nowrap", "compact"],
           "columnControl": ["order"],
-          "columnDefs": [{"render": "function (data, type, row, meta) { return type === 'sort' || type === 'type' ? data[1] : data[0]; }", "targets": [11, 12]}, {"className": "dt-left", "targets": [0]}, {"targets": [2, 4, 6, 8, 10], "visible": false}],
-          "data_json": "[[\"alabama\", 4793030, 601, 4503218, 5359, 2528, 541, 1228, 414, 1300, 327, [\"0.052743\", 0.052743254267133735], [\"0.025621\", 0.025620536487357685]], [\"alaska\", 689070, 169, 585162, 2727, 1494, 390, 1033, 281, 461, 254, [\"0.216814\", 0.21681396665070313], [\"0.149912\", 0.14991220050212606]], [\"arizona\", 6981320, 285, 5184054, 11544, 7952, 907, 5119, 706, 2833, 511, [\"0.113904\", 0.1139039608555402], [\"0.073324\", 0.07332424240688007]], [\"arkansas\", 2869111, 548, 2630451, 4441, 935, 266, 495, 195, 440, 218, [\"0.032588\", 0.03258849169655688], [\"0.017253\", 0.01725273089817717]], [\"california\", 37121454, 487, 20642638, 54450, 133419, 4594, 78900, 3190, 54519, 2222, [\"0.359412\", 0.3594121070796419], [\"0.212546\", 0.212545553846032]], [\"colorado\", 5549558, 577, 4650283, 9223, 5893, 658, 4494, 563, 1399, 266, [\"0.106189\", 0.10618863700496509], [\"0.080979\", 0.08097942214497082]], [\"connecticut\", 3442817, 90, 2638366, 6723, 3281, 640, 2322, 504, 959, 329, [\"0.095300\", 0.09529986635943763], [\"0.067445\", 0.06744476979171417]], [\"delaware\", 966580, 46, 820336, 3432, 805, 272, 603, 229, 202, 102, [\"0.083283\", 0.08328332885017277], [\"0.062385\", 0.062384903474104574]], [\"district of columbia\", 640841, 66, 518478, 3204, 1054, 285, 692, 244, 362, 145, [\"0.164471\", 0.16447137433466336], [\"0.107983\", 0.10798310345311864]], [\"florida\", 21289728, 707, 14769458, 25976, 12222, 1183, 8153, 993, 4069, 647, [\"0.057408\", 0.05740796688431153], [\"0.038295\", 0.03829546342724529]], [\"georgia\", 10304177, 868, 8711633, 14220, 10715, 1368, 6760, 1036, 3955, 845, [\"0.103987\", 0.1039869559694093], [\"0.065604\", 0.06560446312209117]], [\"hawaii\", 1365077, 136, 1028267, 5089, 36889, 1589, 20552, 1135, 16337, 1037, [\"2.702338\", 2.7023384028886284], [\"1.505556\", 1.505556096835563]], [\"idaho\", 1820514, 345, 1620797, 3859, 1777, 333, 1500, 312, 277, 121, [\"0.097610\", 0.09760979591478011], [\"0.082394\", 0.08239431281495226]], [\"illinois\", 12003587, 511, 9117218, 15822, 12943, 1072, 8061, 848, 4882, 702, [\"0.107826\", 0.1078261023142499], [\"0.067155\", 0.06715492627328815]], [\"indiana\", 6441838, 749, 5777667, 7625, 5663, 819, 3015, 596, 2648, 481, [\"0.087910\", 0.08790969285474115], [\"0.046803\", 0.04680341231803718]], [\"iowa\", 3022668, 721, 2746525, 5059, 1189, 281, 782, 232, 407, 149, [\"0.039336\", 0.03933610968852683], [\"0.025871\", 0.025871184000359947]], [\"kansas\", 2770418, 478, 2435156, 5262, 2064, 427, 1568, 365, 496, 155, [\"0.074501\", 0.07450139293059747], [\"0.056598\", 0.05659795742014382]], [\"kentucky\", 4268599, 714, 3977055, 5597, 4458, 580, 2110, 374, 2348, 469, [\"0.104437\", 0.10443707642718372], [\"0.049431\", 0.049430738282045236]], [\"louisiana\", 4326919, 579, 3960051, 5660, 1783, 478, 1275, 341, 508, 232, [\"0.041207\", 0.041207149937403494], [\"0.029467\", 0.029466694430840976]], [\"maine\", 1325830, 291, 1245787, 2731, 672, 273, 510, 214, 162, 103, [\"0.050685\", 0.05068523113823039], [\"0.038466\", 0.03846647006026414]], [\"maryland\", 5849633, 323, 4617626, 11119, 8540, 1029, 5280, 743, 3260, 558, [\"0.145992\", 0.14599206480133028], [\"0.090262\", 0.09026207285140794]], [\"massachusetts\", 6694960, 221, 5015860, 11806, 8608, 887, 6136, 726, 2472, 419, [\"0.128574\", 0.12857433054118322], [\"0.091651\", 0.09165103301588061]], [\"michigan\", 9536435, 385, 8544027, 9324, 12847, 1084, 6804, 717, 6043, 732, [\"0.134715\", 0.1347149118092872], [\"0.071347\", 0.07134741651361332]], [\"minnesota\", 5405770, 454, 4733246, 7852, 4437, 644, 3003, 519, 1434, 355, [\"0.082079\", 0.08207896377389345], [\"0.055552\", 0.05555175303425784]], [\"mississippi\", 2771334, 666, 2652499, 2684, 1100, 330, 600, 175, 500, 284, [\"0.039692\", 0.03969207609043154], [\"0.021650\", 0.021650223322053568]], [\"missouri\", 5835003, 720, 5443399, 6568, 3869, 683, 2381, 521, 1488, 339, [\"0.066307\", 0.06630673540356363], [\"0.040805\", 0.040805463167713885]], [\"montana\", 1058934, 280, 1014553, 2063, 218, 82, 134, 71, 84, 46, [\"0.020587\", 0.020586741005577308], [\"0.012654\", 0.012654235297006235]], [\"nebraska\", 1853332, 343, 1616628, 3788, 1204, 288, 866, 247, 338, 121, [\"0.064964\", 0.0649640755137234], [\"0.046727\", 0.04672665232133261]], [\"nevada\", 3009889, 281, 2123304, 6763, 6673, 1012, 4206, 746, 2467, 532, [\"0.221703\", 0.22170252790053055], [\"0.139739\", 0.13973937244861853]], [\"new hampshire\", 1332089, 254, 1226265, 3560, 794, 262, 660, 237, 134, 72, [\"0.059606\", 0.05960562695135235], [\"0.049546\", 0.049546239027572485]], [\"new jersey\", 8816621, 326, 5894484, 15878, 13099, 1302, 7771, 1209, 5328, 693, [\"0.148572\", 0.14857165800820973], [\"0.088140\", 0.08814034310877149]], [\"new mexico\", 2009638, 621, 1379762, 7498, 1275, 310, 969, 267, 306, 113, [\"0.063444\", 0.0634442621009356], [\"0.048218\", 0.04821763919671105]], [\"new york\", 18772412, 478, 12975172, 23810, 34092, 2236, 19452, 1681, 14640, 1248, [\"0.181607\", 0.18160692403299053], [\"0.103620\", 0.10362014215328323]], [\"north carolina\", 10127421, 751, 8764888, 10970, 8337, 1075, 5224, 747, 3113, 586, [\"0.082321\", 0.08232105686136677], [\"0.051583\", 0.05158272772505458]], [\"north dakota\", 735169, 423, 685798, 1946, 288, 184, 60, 35, 228, 185, [\"0.039175\", 0.03917466596115995], [\"0.008161\", 0.008161388741908323]], [\"ohio\", 11140750, 661, 10247600, 10792, 10876, 1096, 5341, 703, 5535, 819, [\"0.097624\", 0.0976235890761394], [\"0.047941\", 0.0479411170702152]], [\"oklahoma\", 3782477, 435, 3347348, 4098, 2015, 383, 1419, 335, 596, 167, [\"0.053272\", 0.05327196966432314], [\"0.037515\", 0.03751509923259282]], [\"oregon\", 4046536, 483, 3430249, 7832, 11238, 1084, 8352, 857, 2886, 494, [\"0.277719\", 0.27771901695672546], [\"0.206399\", 0.20639875686265982]], [\"pennsylvania\", 12340793, 357, 10811584, 12342, 6418, 628, 4109, 448, 2309, 370, [\"0.052006\", 0.05200638240994724], [\"0.033296\", 0.03329607748869947]], [\"rhode island\", 1048547, 152, 806534, 4820, 762, 229, 585, 192, 177, 103, [\"0.072672\", 0.07267199276713394], [\"0.055791\", 0.05579149051020126]], [\"south carolina\", 5006696, 386, 4587856, 6821, 3332, 619, 2126, 449, 1206, 394, [\"0.066551\", 0.06655087506810879], [\"0.042463\", 0.0424631333717885]], [\"south dakota\", 850347, 512, 789886, 2564, 325, 149, 227, 112, 98, 79, [\"0.038220\", 0.038219691490650284], [\"0.026695\", 0.02669498451808497]], [\"tennessee\", 6655459, 872, 6081056, 8001, 4345, 721, 2505, 511, 1840, 441, [\"0.065285\", 0.0652847534632848], [\"0.037638\", 0.03763827558700309]], [\"texas\", 28253216, 1224, 18339379, 38254, 23095, 2069, 14183, 1568, 8912, 1095, [\"0.081743\", 0.08174290671900855], [\"0.050200\", 0.05019959497708155]], [\"utah\", 3156873, 342, 2653804, 5138, 5718, 752, 4419, 623, 1299, 285, [\"0.181129\", 0.18112860415987592], [\"0.139980\", 0.13998029062303108]], [\"vermont\", 619410, 192, 585275, 1310, 437, 159, 328, 132, 109, 65, [\"0.070551\", 0.0705510082174973], [\"0.052954\", 0.05295361715180575]], [\"virginia\", 8215710, 916, 6782809, 11099, 9965, 926, 6768, 662, 3197, 507, [\"0.121292\", 0.12129201249800686], [\"0.082379\", 0.08237875971766287]], [\"washington\", 7383546, 378, 5800400, 13176, 26918, 1845, 18365, 1519, 8553, 889, [\"0.364567\", 0.36456737724665084], [\"0.248729\", 0.24872872736216448]], [\"west virginia\", 1690312, 423, 1647311, 1757, 807, 221, 507, 170, 300, 135, [\"0.047743\", 0.0477426652594314], [\"0.029994\", 0.029994462560758012]], [\"wisconsin\", 5598986, 365, 5092474, 6252, 2768, 509, 1846, 343, 922, 332, [\"0.049438\", 0.04943752315151351], [\"0.032970\", 0.032970255685583066]], [\"wyoming\", 551114, 393, 513363, 1710, 269, 208, 228, 196, 41, 28, [\"0.048810\", 0.048810228010901555], [\"0.041371\", 0.041370750879128455]]]",
+          "columnDefs": [{"className": "dt-left", "targets": [0]}, {"targets": [2, 4, 6, 9, 12], "visible": false}],
+          "data_json": "[[\"alabama\", 4793030, 601, 4503218, 5359, 2528, 541, 30, 1228, 414, 34, 1300, 327], [\"alaska\", 689070, 169, 585162, 2727, 1494, 390, 35, 1033, 281, 35, 461, 254], [\"arizona\", 6981320, 285, 5184054, 11544, 7952, 907, 17, 5119, 706, 17, 2833, 511], [\"arkansas\", 2869111, 548, 2630451, 4441, 935, 266, 41, 495, 195, 46, 440, 218], [\"california\", 37121454, 487, 20642638, 54450, 133419, 4594, 1, 78900, 3190, 1, 54519, 2222], [\"colorado\", 5549558, 577, 4650283, 9223, 5893, 658, 20, 4494, 563, 18, 1399, 266], [\"connecticut\", 3442817, 90, 2638366, 6723, 3281, 640, 28, 2322, 504, 26, 959, 329], [\"delaware\", 966580, 46, 820336, 3432, 805, 272, 43, 603, 229, 41, 202, 102], [\"district of columbia\", 640841, 66, 518478, 3204, 1054, 285, 40, 692, 244, 39, 362, 145], [\"florida\", 21289728, 707, 14769458, 25976, 12222, 1183, 9, 8153, 993, 7, 4069, 647], [\"georgia\", 10304177, 868, 8711633, 14220, 10715, 1368, 12, 6760, 1036, 12, 3955, 845], [\"hawaii\", 1365077, 136, 1028267, 5089, 36889, 1589, 2, 20552, 1135, 2, 16337, 1037], [\"idaho\", 1820514, 345, 1620797, 3859, 1777, 333, 34, 1500, 312, 31, 277, 121], [\"illinois\", 12003587, 511, 9117218, 15822, 12943, 1072, 7, 8061, 848, 8, 4882, 702], [\"indiana\", 6441838, 749, 5777667, 7625, 5663, 819, 22, 3015, 596, 22, 2648, 481], [\"iowa\", 3022668, 721, 2746525, 5059, 1189, 281, 38, 782, 232, 38, 407, 149], [\"kansas\", 2770418, 478, 2435156, 5262, 2064, 427, 31, 1568, 365, 30, 496, 155], [\"kentucky\", 4268599, 714, 3977055, 5597, 4458, 580, 23, 2110, 374, 28, 2348, 469], [\"louisiana\", 4326919, 579, 3960051, 5660, 1783, 478, 33, 1275, 341, 33, 508, 232], [\"maine\", 1325830, 291, 1245787, 2731, 672, 273, 46, 510, 214, 44, 162, 103], [\"maryland\", 5849633, 323, 4617626, 11119, 8540, 1029, 15, 5280, 743, 15, 3260, 558], [\"massachusetts\", 6694960, 221, 5015860, 11806, 8608, 887, 14, 6136, 726, 13, 2472, 419], [\"michigan\", 9536435, 385, 8544027, 9324, 12847, 1084, 8, 6804, 717, 10, 6043, 732], [\"minnesota\", 5405770, 454, 4733246, 7852, 4437, 644, 24, 3003, 519, 23, 1434, 355], [\"mississippi\", 2771334, 666, 2652499, 2684, 1100, 330, 39, 600, 175, 42, 500, 284], [\"missouri\", 5835003, 720, 5443399, 6568, 3869, 683, 26, 2381, 521, 25, 1488, 339], [\"montana\", 1058934, 280, 1014553, 2063, 218, 82, 51, 134, 71, 50, 84, 46], [\"nebraska\", 1853332, 343, 1616628, 3788, 1204, 288, 37, 866, 247, 37, 338, 121], [\"nevada\", 3009889, 281, 2123304, 6763, 6673, 1012, 18, 4206, 746, 20, 2467, 532], [\"new hampshire\", 1332089, 254, 1226265, 3560, 794, 262, 44, 660, 237, 40, 134, 72], [\"new jersey\", 8816621, 326, 5894484, 15878, 13099, 1302, 6, 7771, 1209, 9, 5328, 693], [\"new mexico\", 2009638, 621, 1379762, 7498, 1275, 310, 36, 969, 267, 36, 306, 113], [\"new york\", 18772412, 478, 12975172, 23810, 34092, 2236, 3, 19452, 1681, 3, 14640, 1248], [\"north carolina\", 10127421, 751, 8764888, 10970, 8337, 1075, 16, 5224, 747, 16, 3113, 586], [\"north dakota\", 735169, 423, 685798, 1946, 288, 184, 49, 60, 35, 51, 228, 185], [\"ohio\", 11140750, 661, 10247600, 10792, 10876, 1096, 11, 5341, 703, 14, 5535, 819], [\"oklahoma\", 3782477, 435, 3347348, 4098, 2015, 383, 32, 1419, 335, 32, 596, 167], [\"oregon\", 4046536, 483, 3430249, 7832, 11238, 1084, 10, 8352, 857, 6, 2886, 494], [\"pennsylvania\", 12340793, 357, 10811584, 12342, 6418, 628, 19, 4109, 448, 21, 2309, 370], [\"rhode island\", 1048547, 152, 806534, 4820, 762, 229, 45, 585, 192, 43, 177, 103], [\"south carolina\", 5006696, 386, 4587856, 6821, 3332, 619, 27, 2126, 449, 27, 1206, 394], [\"south dakota\", 850347, 512, 789886, 2564, 325, 149, 48, 227, 112, 49, 98, 79], [\"tennessee\", 6655459, 872, 6081056, 8001, 4345, 721, 25, 2505, 511, 24, 1840, 441], [\"texas\", 28253216, 1224, 18339379, 38254, 23095, 2069, 5, 14183, 1568, 5, 8912, 1095], [\"utah\", 3156873, 342, 2653804, 5138, 5718, 752, 21, 4419, 623, 19, 1299, 285], [\"vermont\", 619410, 192, 585275, 1310, 437, 159, 47, 328, 132, 47, 109, 65], [\"virginia\", 8215710, 916, 6782809, 11099, 9965, 926, 13, 6768, 662, 11, 3197, 507], [\"washington\", 7383546, 378, 5800400, 13176, 26918, 1845, 4, 18365, 1519, 4, 8553, 889], [\"west virginia\", 1690312, 423, 1647311, 1757, 807, 221, 42, 507, 170, 45, 300, 135], [\"wisconsin\", 5598986, 365, 5092474, 6252, 2768, 509, 29, 1846, 343, 29, 922, 332], [\"wyoming\", 551114, 393, 513363, 1710, 269, 208, 50, 228, 196, 48, 41, 28]]",
+          "layout": {"bottomEnd": "paging", "bottomStart": "info", "topEnd": "search", "topStart": "buttons"},
+          "order": [],
+          "ordering": {"handler": false, "indicators": false},
+          "style": {"width": "100%"},
+          "table_html": "<table><thead>\n    <tr style=\"text-align: right;\">\n      \n      <th>state</th>\n      <th>population</th>\n      <th>epopulation</th>\n      <th>eng</th>\n      <th>eeng</th>\n      <th>jpn</th>\n      <th>ejpn</th>\n      <th>nomjpnrank</th>\n      <th>bilingual</th>\n      <th>ebilingual</th>\n      <th>nombilingualrank</th>\n      <th>jpnloweng</th>\n      <th>ejpnloweng</th>\n    </tr>\n  </thead></table>",
+          "text_in_header_can_be_selected": true
+        };
+        new ITable(table, dt_args);
+    });
+</script>
+</div>
+<div class="cell-output cell-output-display">
+<!--| quarto-html-table-processing: none -->
+<table id="itables_292db4ea_286c_4251_83ab_7106cc44cb28" hidden="hidden">
+  <tbody>
+    <tr>
+      <td style="vertical-align:middle; text-align:left"><a href="https://itables.org/"><svg class="main-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="64" viewbox="0 0 500 400" style="font-family: 'Droid Sans', sans-serif;">
+    <g style="fill:var(--itables-logo-paper,#d9d7fc)">
+        <path d="M100,400H500V357H100Z"></path>
+        <path d="M100,300H400V257H100Z"></path>
+        <path d="M0,200H400V157H0Z"></path>
+        <path d="M100,100H500V57H100Z"></path>
+        <path d="M100,350H500V307H100Z"></path>
+        <path d="M100,250H400V207H100Z"></path>
+        <path d="M0,150H400V107H0Z"></path>
+        <path d="M100,50H500V7H100Z"></path>
+    </g>
+    <g style="fill:var(--itables-logo-ink,#1a1366);stroke:var(--itables-logo-ink,#1a1366);">
+   <rect x="100" y="7" width="400" height="43">
+    <animate attributename="width" values="0;400;0" dur="5s" repeatcount="indefinite"></animate>
+      <animate attributename="x" values="100;100;500" dur="5s" repeatcount="indefinite"></animate>
+  </rect>
+        <rect x="0" y="107" width="400" height="43">
+    <animate attributename="width" values="0;400;0" dur="3.5s" repeatcount="indefinite"></animate>
+    <animate attributename="x" values="0;0;400" dur="3.5s" repeatcount="indefinite"></animate>
+  </rect>
+        <rect x="100" y="207" width="300" height="43">
+    <animate attributename="width" values="0;300;0" dur="3s" repeatcount="indefinite"></animate>
+    <animate attributename="x" values="100;100;400" dur="3s" repeatcount="indefinite"></animate>
+  </rect>
+        <rect x="100" y="307" width="400" height="43">
+    <animate attributename="width" values="0;400;0" dur="4s" repeatcount="indefinite"></animate>
+      <animate attributename="x" values="100;100;500" dur="4s" repeatcount="indefinite"></animate>
+  </rect>
+        <g style="fill:transparent;stroke-width:8; stroke-linejoin:round" rx="5">
+            <g transform="translate(45 50) rotate(-45)">
+                <circle r="33" cx="0" cy="0"></circle>
+                <rect x="-8" y="32" width="16" height="30"></rect>
+            </g>
+
+            <g transform="translate(450 152)">
+                <polyline points="-15,-20 -35,-20 -35,40 25,40 25,20"></polyline>
+                <rect x="-15" y="-40" width="60" height="60"></rect>
+            </g>
+
+            <g transform="translate(50 352)">
+                <polygon points="-35,-5 0,-40 35,-5"></polygon>
+                <polygon points="-35,10 0,45 35,10"></polygon>
+            </g>
+
+            <g transform="translate(75 250)">
+                <polyline points="-30,30 -60,0 -30,-30"></polyline>
+                <polyline points="0,30 -30,0 0,-30"></polyline>
+            </g>
+
+            <g transform="translate(425 250) rotate(180)">
+                <polyline points="-30,30 -60,0 -30,-30"></polyline>
+                <polyline points="0,30 -30,0 0,-30"></polyline>
+            </g>
+        </g>
+    </g>
+</svg>
+</a>
+        Loading ITables v2.9.1 from the internet...
+        (need <a href="https://itables.org/troubleshooting.html">help</a>?)
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div id="itables_292db4ea_286c_4251_83ab_7106cc44cb28_fallback"><table style="border-collapse:collapse"><thead>    <tr style="text-align: right;">
+      <th style="border:1px solid #ddd;padding:8px"><sup><noscript><span title="JavaScript not allowed. Please trust this notebook to get interactive tables.">🔒</span></noscript><a href="https://itables.org/fallbacks/static_preview.html" title="ITables v2.9.1 static preview">ⓘ</a></sup>state</th>
+      <th style="border:1px solid #ddd;padding:8px">population</th>
+      <th style="border:1px solid #ddd;padding:8px">jpn</th>
+      <th style="border:1px solid #ddd;padding:8px">percentjpn</th>
+      <th style="border:1px solid #ddd;padding:8px">jpnrank</th>
+      <th style="border:1px solid #ddd;padding:8px">percentbilingual</th>
+      <th style="border:1px solid #ddd;padding:8px">bilingualrank</th>
+    </tr></thead><tbody>
+<tr><td style="border:1px solid #ddd;padding:8px">alabama</td><td style="border:1px solid #ddd;padding:8px">4793030</td><td style="border:1px solid #ddd;padding:8px">2528</td><td style="border:1px solid #ddd;padding:8px">0.052743</td><td style="border:1px solid #ddd;padding:8px">39</td><td style="border:1px solid #ddd;padding:8px">0.025621</td><td style="border:1px solid #ddd;padding:8px">47</td></tr>
+<tr><td style="border:1px solid #ddd;padding:8px">alaska</td><td style="border:1px solid #ddd;padding:8px">689070</td><td style="border:1px solid #ddd;padding:8px">1494</td><td style="border:1px solid #ddd;padding:8px">0.216814</td><td style="border:1px solid #ddd;padding:8px">6</td><td style="border:1px solid #ddd;padding:8px">0.149912</td><td style="border:1px solid #ddd;padding:8px">5</td></tr>
+<tr><td style="border:1px solid #ddd;padding:8px">arizona</td><td style="border:1px solid #ddd;padding:8px">6981320</td><td style="border:1px solid #ddd;padding:8px">7952</td><td style="border:1px solid #ddd;padding:8px">0.113904</td><td style="border:1px solid #ddd;padding:8px">15</td><td style="border:1px solid #ddd;padding:8px">0.073324</td><td style="border:1px solid #ddd;padding:8px">16</td></tr>
+<tr><td style="border:1px solid #ddd;padding:8px">arkansas</td><td style="border:1px solid #ddd;padding:8px">2869111</td><td style="border:1px solid #ddd;padding:8px">935</td><td style="border:1px solid #ddd;padding:8px">0.032588</td><td style="border:1px solid #ddd;padding:8px">50</td><td style="border:1px solid #ddd;padding:8px">0.017253</td><td style="border:1px solid #ddd;padding:8px">49</td></tr>
+<tr><td style="border:1px solid #ddd;padding:8px">california</td><td style="border:1px solid #ddd;padding:8px">37121454</td><td style="border:1px solid #ddd;padding:8px">133419</td><td style="border:1px solid #ddd;padding:8px">0.359412</td><td style="border:1px solid #ddd;padding:8px">3</td><td style="border:1px solid #ddd;padding:8px">0.212546</td><td style="border:1px solid #ddd;padding:8px">3</td></tr>
+<tr><td style="border:1px solid #ddd;padding:8px">colorado</td><td style="border:1px solid #ddd;padding:8px">5549558</td><td style="border:1px solid #ddd;padding:8px">5893</td><td style="border:1px solid #ddd;padding:8px">0.106189</td><td style="border:1px solid #ddd;padding:8px">17</td><td style="border:1px solid #ddd;padding:8px">0.080979</td><td style="border:1px solid #ddd;padding:8px">15</td></tr>
+<tr><td style="border:1px solid #ddd;padding:8px">connecticut</td><td style="border:1px solid #ddd;padding:8px">3442817</td><td style="border:1px solid #ddd;padding:8px">3281</td><td style="border:1px solid #ddd;padding:8px">0.095300</td><td style="border:1px solid #ddd;padding:8px">22</td><td style="border:1px solid #ddd;padding:8px">0.067445</td><td style="border:1px solid #ddd;padding:8px">18</td></tr>
+<tr><td style="border:1px solid #ddd;padding:8px">delaware</td><td style="border:1px solid #ddd;padding:8px">966580</td><td style="border:1px solid #ddd;padding:8px">805</td><td style="border:1px solid #ddd;padding:8px">0.083283</td><td style="border:1px solid #ddd;padding:8px">24</td><td style="border:1px solid #ddd;padding:8px">0.062385</td><td style="border:1px solid #ddd;padding:8px">21</td></tr>
+<tr><td style="border:1px solid #ddd;padding:8px">district of columbia</td><td style="border:1px solid #ddd;padding:8px">640841</td><td style="border:1px solid #ddd;padding:8px">1054</td><td style="border:1px solid #ddd;padding:8px">0.164471</td><td style="border:1px solid #ddd;padding:8px">9</td><td style="border:1px solid #ddd;padding:8px">0.107983</td><td style="border:1px solid #ddd;padding:8px">8</td></tr>
+<tr><td style="border:1px solid #ddd;padding:8px">florida</td><td style="border:1px solid #ddd;padding:8px">21289728</td><td style="border:1px solid #ddd;padding:8px">12222</td><td style="border:1px solid #ddd;padding:8px">0.057408</td><td style="border:1px solid #ddd;padding:8px">37</td><td style="border:1px solid #ddd;padding:8px">0.038295</td><td style="border:1px solid #ddd;padding:8px">38</td></tr>
+</tbody><tfoot><tr><td colspan="7" style="border:none;padding:8px;text-align:center">(41 more rows not shown)</td></tr></tfoot></table></div><script>document.getElementById("itables_292db4ea_286c_4251_83ab_7106cc44cb28")?.removeAttribute("hidden");document.getElementById("itables_292db4ea_286c_4251_83ab_7106cc44cb28_fallback")?.setAttribute("hidden", "hidden");</script>
+<link href="https://www.unpkg.com/dt_for_itables@2.5.8/dt_bundle.css" rel="stylesheet">
+<script type="module">
+    import { ITable, jQuery as $ } from 'https://www.unpkg.com/dt_for_itables@2.5.8/dt_bundle.js';
+
+    document.querySelectorAll("#itables_292db4ea_286c_4251_83ab_7106cc44cb28:not(.dataTable)").forEach(table => {
+        if (!(table instanceof HTMLTableElement))
+            return;
+
+        let dt_args = {
+          "buttons": ["pageLength"],
+          "classes": ["display", "nowrap", "compact"],
+          "columnControl": ["order"],
+          "columnDefs": [{"render": "function (data, type, row, meta) { return type === 'sort' || type === 'type' ? data[1] : data[0]; }", "targets": [3, 5]}, {"className": "dt-left", "targets": [0]}],
+          "data_json": "[[\"alabama\", 4793030, 2528, [\"0.052743\", 0.052743254267133735], 39, [\"0.025621\", 0.025620536487357685], 47], [\"alaska\", 689070, 1494, [\"0.216814\", 0.21681396665070313], 6, [\"0.149912\", 0.14991220050212606], 5], [\"arizona\", 6981320, 7952, [\"0.113904\", 0.1139039608555402], 15, [\"0.073324\", 0.07332424240688007], 16], [\"arkansas\", 2869111, 935, [\"0.032588\", 0.03258849169655688], 50, [\"0.017253\", 0.01725273089817717], 49], [\"california\", 37121454, 133419, [\"0.359412\", 0.3594121070796419], 3, [\"0.212546\", 0.212545553846032], 3], [\"colorado\", 5549558, 5893, [\"0.106189\", 0.10618863700496509], 17, [\"0.080979\", 0.08097942214497082], 15], [\"connecticut\", 3442817, 3281, [\"0.095300\", 0.09529986635943763], 22, [\"0.067445\", 0.06744476979171417], 18], [\"delaware\", 966580, 805, [\"0.083283\", 0.08328332885017277], 24, [\"0.062385\", 0.062384903474104574], 21], [\"district of columbia\", 640841, 1054, [\"0.164471\", 0.16447137433466336], 9, [\"0.107983\", 0.10798310345311864], 8], [\"florida\", 21289728, 12222, [\"0.057408\", 0.05740796688431153], 37, [\"0.038295\", 0.03829546342724529], 38], [\"georgia\", 10304177, 10715, [\"0.103987\", 0.1039869559694093], 19, [\"0.065604\", 0.06560446312209117], 20], [\"hawaii\", 1365077, 36889, [\"2.702338\", 2.7023384028886284], 1, [\"1.505556\", 1.505556096835563], 1], [\"idaho\", 1820514, 1777, [\"0.097610\", 0.09760979591478011], 21, [\"0.082394\", 0.08239431281495226], 13], [\"illinois\", 12003587, 12943, [\"0.107826\", 0.1078261023142499], 16, [\"0.067155\", 0.06715492627328815], 19], [\"indiana\", 6441838, 5663, [\"0.087910\", 0.08790969285474115], 23, [\"0.046803\", 0.04680341231803718], 32], [\"iowa\", 3022668, 1189, [\"0.039336\", 0.03933610968852683], 47, [\"0.025871\", 0.025871184000359947], 46], [\"kansas\", 2770418, 2064, [\"0.074501\", 0.07450139293059747], 28, [\"0.056598\", 0.05659795742014382], 22], [\"kentucky\", 4268599, 4458, [\"0.104437\", 0.10443707642718372], 18, [\"0.049431\", 0.049430738282045236], 29], [\"louisiana\", 4326919, 1783, [\"0.041207\", 0.041207149937403494], 45, [\"0.029467\", 0.029466694430840976], 44], [\"maine\", 1325830, 672, [\"0.050685\", 0.05068523113823039], 41, [\"0.038466\", 0.03846647006026414], 37], [\"maryland\", 5849633, 8540, [\"0.145992\", 0.14599206480133028], 11, [\"0.090262\", 0.09026207285140794], 11], [\"massachusetts\", 6694960, 8608, [\"0.128574\", 0.12857433054118322], 13, [\"0.091651\", 0.09165103301588061], 10], [\"michigan\", 9536435, 12847, [\"0.134715\", 0.1347149118092872], 12, [\"0.071347\", 0.07134741651361332], 17], [\"minnesota\", 5405770, 4437, [\"0.082079\", 0.08207896377389345], 26, [\"0.055552\", 0.05555175303425784], 24], [\"mississippi\", 2771334, 1100, [\"0.039692\", 0.03969207609043154], 46, [\"0.021650\", 0.021650223322053568], 48], [\"missouri\", 5835003, 3869, [\"0.066307\", 0.06630673540356363], 32, [\"0.040805\", 0.040805463167713885], 36], [\"montana\", 1058934, 218, [\"0.020587\", 0.020586741005577308], 51, [\"0.012654\", 0.012654235297006235], 50], [\"nebraska\", 1853332, 1204, [\"0.064964\", 0.0649640755137234], 34, [\"0.046727\", 0.04672665232133261], 33], [\"nevada\", 3009889, 6673, [\"0.221703\", 0.22170252790053055], 5, [\"0.139739\", 0.13973937244861853], 7], [\"new hampshire\", 1332089, 794, [\"0.059606\", 0.05960562695135235], 36, [\"0.049546\", 0.049546239027572485], 28], [\"new jersey\", 8816621, 13099, [\"0.148572\", 0.14857165800820973], 10, [\"0.088140\", 0.08814034310877149], 12], [\"new mexico\", 2009638, 1275, [\"0.063444\", 0.0634442621009356], 35, [\"0.048218\", 0.04821763919671105], 30], [\"new york\", 18772412, 34092, [\"0.181607\", 0.18160692403299053], 7, [\"0.103620\", 0.10362014215328323], 9], [\"north carolina\", 10127421, 8337, [\"0.082321\", 0.08232105686136677], 25, [\"0.051583\", 0.05158272772505458], 26], [\"north dakota\", 735169, 288, [\"0.039175\", 0.03917466596115995], 48, [\"0.008161\", 0.008161388741908323], 51], [\"ohio\", 11140750, 10876, [\"0.097624\", 0.0976235890761394], 20, [\"0.047941\", 0.0479411170702152], 31], [\"oklahoma\", 3782477, 2015, [\"0.053272\", 0.05327196966432314], 38, [\"0.037515\", 0.03751509923259282], 40], [\"oregon\", 4046536, 11238, [\"0.277719\", 0.27771901695672546], 4, [\"0.206399\", 0.20639875686265982], 4], [\"pennsylvania\", 12340793, 6418, [\"0.052006\", 0.05200638240994724], 40, [\"0.033296\", 0.03329607748869947], 41], [\"rhode island\", 1048547, 762, [\"0.072672\", 0.07267199276713394], 29, [\"0.055791\", 0.05579149051020126], 23], [\"south carolina\", 5006696, 3332, [\"0.066551\", 0.06655087506810879], 31, [\"0.042463\", 0.0424631333717885], 34], [\"south dakota\", 850347, 325, [\"0.038220\", 0.038219691490650284], 49, [\"0.026695\", 0.02669498451808497], 45], [\"tennessee\", 6655459, 4345, [\"0.065285\", 0.0652847534632848], 33, [\"0.037638\", 0.03763827558700309], 39], [\"texas\", 28253216, 23095, [\"0.081743\", 0.08174290671900855], 27, [\"0.050200\", 0.05019959497708155], 27], [\"utah\", 3156873, 5718, [\"0.181129\", 0.18112860415987592], 8, [\"0.139980\", 0.13998029062303108], 6], [\"vermont\", 619410, 437, [\"0.070551\", 0.0705510082174973], 30, [\"0.052954\", 0.05295361715180575], 25], [\"virginia\", 8215710, 9965, [\"0.121292\", 0.12129201249800686], 14, [\"0.082379\", 0.08237875971766287], 14], [\"washington\", 7383546, 26918, [\"0.364567\", 0.36456737724665084], 2, [\"0.248729\", 0.24872872736216448], 2], [\"west virginia\", 1690312, 807, [\"0.047743\", 0.0477426652594314], 44, [\"0.029994\", 0.029994462560758012], 43], [\"wisconsin\", 5598986, 2768, [\"0.049438\", 0.04943752315151351], 42, [\"0.032970\", 0.032970255685583066], 42], [\"wyoming\", 551114, 269, [\"0.048810\", 0.048810228010901555], 43, [\"0.041371\", 0.041370750879128455], 35]]",
           "keys_to_be_evaluated": [["columnDefs", 0, "render"]],
           "layout": {"bottomEnd": "paging", "bottomStart": "info", "topEnd": "search", "topStart": "buttons"},
           "order": [],
           "ordering": {"handler": false, "indicators": false},
           "style": {"width": "100%"},
-          "table_html": "<table><thead>\n    <tr style=\"text-align: right;\">\n      \n      <th>state</th>\n      <th>total</th>\n      <th>etotal</th>\n      <th>eng</th>\n      <th>eeng</th>\n      <th>jpn</th>\n      <th>ejpn</th>\n      <th>bilingual</th>\n      <th>ebilingual</th>\n      <th>jpnbad</th>\n      <th>ejpnbad</th>\n      <th>percentjpn</th>\n      <th>percentbilingual</th>\n    </tr>\n  </thead></table>",
+          "table_html": "<table><thead>\n    <tr style=\"text-align: right;\">\n      \n      <th>state</th>\n      <th>population</th>\n      <th>jpn</th>\n      <th>percentjpn</th>\n      <th>jpnrank</th>\n      <th>percentbilingual</th>\n      <th>bilingualrank</th>\n    </tr>\n  </thead></table>",
           "text_in_header_can_be_selected": true
         };
         new ITable(table, dt_args);
@@ -591,144 +730,50 @@ An <a href="https://www.econstor.eu/bitstream/10419/182280/1/GLO-DP-0251.pdf">ex
 </div>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<div id="40371873" class="cell" data-execution_count="2">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>itables.show(pd.DataFrame(jpmap.loc[:,[<span class="st">"total"</span>,<span class="st">"eng"</span>,<span class="st">"jpn"</span>,<span class="st">"bilingual"</span>,<span class="st">"jpnbad"</span>,<span class="st">"region"</span>]]), maxBytes<span class="op">=</span><span class="dv">200000</span>, </span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>                                    style<span class="op">=</span><span class="st">"width:100%"</span>, buttons<span class="op">=</span>[<span class="st">"pageLength"</span>],</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>                                    columnDefs<span class="op">=</span>[{<span class="st">"className"</span>:<span class="st">"dt-left"</span>, <span class="st">"targets"</span>:[<span class="dv">0</span>]}],</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>                                    columnControl<span class="op">=</span>[<span class="st">"order"</span>],</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>                                    ordering<span class="op">=</span>{<span class="st">"indicators"</span>: <span class="va">False</span>, <span class="st">"handler"</span>: <span class="va">False</span>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-display">
-<!--| quarto-html-table-processing: none -->
-<table id="itables_e35887b4_aeb8_4089_a672_b294313afd74" hidden="hidden">
-  <tbody>
-    <tr>
-      <td style="vertical-align:middle; text-align:left"><a href="https://itables.org/"><svg class="main-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="64" viewbox="0 0 500 400" style="font-family: 'Droid Sans', sans-serif;">
-    <g style="fill:var(--itables-logo-paper,#d9d7fc)">
-        <path d="M100,400H500V357H100Z"></path>
-        <path d="M100,300H400V257H100Z"></path>
-        <path d="M0,200H400V157H0Z"></path>
-        <path d="M100,100H500V57H100Z"></path>
-        <path d="M100,350H500V307H100Z"></path>
-        <path d="M100,250H400V207H100Z"></path>
-        <path d="M0,150H400V107H0Z"></path>
-        <path d="M100,50H500V7H100Z"></path>
-    </g>
-    <g style="fill:var(--itables-logo-ink,#1a1366);stroke:var(--itables-logo-ink,#1a1366);">
-   <rect x="100" y="7" width="400" height="43">
-    <animate attributename="width" values="0;400;0" dur="5s" repeatcount="indefinite"></animate>
-      <animate attributename="x" values="100;100;500" dur="5s" repeatcount="indefinite"></animate>
-  </rect>
-        <rect x="0" y="107" width="400" height="43">
-    <animate attributename="width" values="0;400;0" dur="3.5s" repeatcount="indefinite"></animate>
-    <animate attributename="x" values="0;0;400" dur="3.5s" repeatcount="indefinite"></animate>
-  </rect>
-        <rect x="100" y="207" width="300" height="43">
-    <animate attributename="width" values="0;300;0" dur="3s" repeatcount="indefinite"></animate>
-    <animate attributename="x" values="100;100;400" dur="3s" repeatcount="indefinite"></animate>
-  </rect>
-        <rect x="100" y="307" width="400" height="43">
-    <animate attributename="width" values="0;400;0" dur="4s" repeatcount="indefinite"></animate>
-      <animate attributename="x" values="100;100;500" dur="4s" repeatcount="indefinite"></animate>
-  </rect>
-        <g style="fill:transparent;stroke-width:8; stroke-linejoin:round" rx="5">
-            <g transform="translate(45 50) rotate(-45)">
-                <circle r="33" cx="0" cy="0"></circle>
-                <rect x="-8" y="32" width="16" height="30"></rect>
-            </g>
-
-            <g transform="translate(450 152)">
-                <polyline points="-15,-20 -35,-20 -35,40 25,40 25,20"></polyline>
-                <rect x="-15" y="-40" width="60" height="60"></rect>
-            </g>
-
-            <g transform="translate(50 352)">
-                <polygon points="-35,-5 0,-40 35,-5"></polygon>
-                <polygon points="-35,10 0,45 35,10"></polygon>
-            </g>
-
-            <g transform="translate(75 250)">
-                <polyline points="-30,30 -60,0 -30,-30"></polyline>
-                <polyline points="0,30 -30,0 0,-30"></polyline>
-            </g>
-
-            <g transform="translate(425 250) rotate(180)">
-                <polyline points="-30,30 -60,0 -30,-30"></polyline>
-                <polyline points="0,30 -30,0 0,-30"></polyline>
-            </g>
-        </g>
-    </g>
-</svg>
-</a>
-        Loading ITables v2.9.1 from the internet...
-        (need <a href="https://itables.org/troubleshooting.html">help</a>?)
-      </td>
-    </tr>
-  </tbody>
-</table>
-<div id="itables_e35887b4_aeb8_4089_a672_b294313afd74_fallback"><table style="border-collapse:collapse"><thead>    <tr style="text-align: right;">
-      <th style="border:1px solid #ddd;padding:8px"><sup><noscript><span title="JavaScript not allowed. Please trust this notebook to get interactive tables.">🔒</span></noscript><a href="https://itables.org/fallbacks/static_preview.html" title="ITables v2.9.1 static preview">ⓘ</a></sup>total</th>
-      <th style="border:1px solid #ddd;padding:8px">eng</th>
-      <th style="border:1px solid #ddd;padding:8px">jpn</th>
-      <th style="border:1px solid #ddd;padding:8px">bilingual</th>
-      <th style="border:1px solid #ddd;padding:8px">jpnbad</th>
-      <th style="border:1px solid #ddd;padding:8px">region</th>
-    </tr></thead><tbody>
-<tr><td style="border:1px solid #ddd;padding:8px">4793030</td><td style="border:1px solid #ddd;padding:8px">4503218</td><td style="border:1px solid #ddd;padding:8px">2528</td><td style="border:1px solid #ddd;padding:8px">1228</td><td style="border:1px solid #ddd;padding:8px">1300</td><td style="border:1px solid #ddd;padding:8px">south</td></tr>
-<tr><td style="border:1px solid #ddd;padding:8px">689070</td><td style="border:1px solid #ddd;padding:8px">585162</td><td style="border:1px solid #ddd;padding:8px">1494</td><td style="border:1px solid #ddd;padding:8px">1033</td><td style="border:1px solid #ddd;padding:8px">461</td><td style="border:1px solid #ddd;padding:8px">west</td></tr>
-<tr><td style="border:1px solid #ddd;padding:8px">6981320</td><td style="border:1px solid #ddd;padding:8px">5184054</td><td style="border:1px solid #ddd;padding:8px">7952</td><td style="border:1px solid #ddd;padding:8px">5119</td><td style="border:1px solid #ddd;padding:8px">2833</td><td style="border:1px solid #ddd;padding:8px">west</td></tr>
-<tr><td style="border:1px solid #ddd;padding:8px">2869111</td><td style="border:1px solid #ddd;padding:8px">2630451</td><td style="border:1px solid #ddd;padding:8px">935</td><td style="border:1px solid #ddd;padding:8px">495</td><td style="border:1px solid #ddd;padding:8px">440</td><td style="border:1px solid #ddd;padding:8px">south</td></tr>
-<tr><td style="border:1px solid #ddd;padding:8px">37121454</td><td style="border:1px solid #ddd;padding:8px">20642638</td><td style="border:1px solid #ddd;padding:8px">133419</td><td style="border:1px solid #ddd;padding:8px">78900</td><td style="border:1px solid #ddd;padding:8px">54519</td><td style="border:1px solid #ddd;padding:8px">west</td></tr>
-<tr><td style="border:1px solid #ddd;padding:8px">5549558</td><td style="border:1px solid #ddd;padding:8px">4650283</td><td style="border:1px solid #ddd;padding:8px">5893</td><td style="border:1px solid #ddd;padding:8px">4494</td><td style="border:1px solid #ddd;padding:8px">1399</td><td style="border:1px solid #ddd;padding:8px">west</td></tr>
-<tr><td style="border:1px solid #ddd;padding:8px">3442817</td><td style="border:1px solid #ddd;padding:8px">2638366</td><td style="border:1px solid #ddd;padding:8px">3281</td><td style="border:1px solid #ddd;padding:8px">2322</td><td style="border:1px solid #ddd;padding:8px">959</td><td style="border:1px solid #ddd;padding:8px">northeast</td></tr>
-<tr><td style="border:1px solid #ddd;padding:8px">966580</td><td style="border:1px solid #ddd;padding:8px">820336</td><td style="border:1px solid #ddd;padding:8px">805</td><td style="border:1px solid #ddd;padding:8px">603</td><td style="border:1px solid #ddd;padding:8px">202</td><td style="border:1px solid #ddd;padding:8px">south</td></tr>
-<tr><td style="border:1px solid #ddd;padding:8px">640841</td><td style="border:1px solid #ddd;padding:8px">518478</td><td style="border:1px solid #ddd;padding:8px">1054</td><td style="border:1px solid #ddd;padding:8px">692</td><td style="border:1px solid #ddd;padding:8px">362</td><td style="border:1px solid #ddd;padding:8px">south</td></tr>
-<tr><td style="border:1px solid #ddd;padding:8px">21289728</td><td style="border:1px solid #ddd;padding:8px">14769458</td><td style="border:1px solid #ddd;padding:8px">12222</td><td style="border:1px solid #ddd;padding:8px">8153</td><td style="border:1px solid #ddd;padding:8px">4069</td><td style="border:1px solid #ddd;padding:8px">south</td></tr>
-</tbody><tfoot><tr><td colspan="6" style="border:none;padding:8px;text-align:center">(41 more rows not shown)</td></tr></tfoot></table></div><script>document.getElementById("itables_e35887b4_aeb8_4089_a672_b294313afd74")?.removeAttribute("hidden");document.getElementById("itables_e35887b4_aeb8_4089_a672_b294313afd74_fallback")?.setAttribute("hidden", "hidden");</script>
-<link href="https://www.unpkg.com/dt_for_itables@2.5.8/dt_bundle.css" rel="stylesheet">
-<script type="module">
-    import { ITable, jQuery as $ } from 'https://www.unpkg.com/dt_for_itables@2.5.8/dt_bundle.js';
-
-    document.querySelectorAll("#itables_e35887b4_aeb8_4089_a672_b294313afd74:not(.dataTable)").forEach(table => {
-        if (!(table instanceof HTMLTableElement))
-            return;
-
-        let dt_args = {
-          "buttons": ["pageLength"],
-          "classes": ["display", "nowrap", "compact"],
-          "columnControl": ["order"],
-          "columnDefs": [{"className": "dt-left", "targets": [0]}],
-          "data_json": "[[4793030, 4503218, 2528, 1228, 1300, \"south\"], [689070, 585162, 1494, 1033, 461, \"west\"], [6981320, 5184054, 7952, 5119, 2833, \"west\"], [2869111, 2630451, 935, 495, 440, \"south\"], [37121454, 20642638, 133419, 78900, 54519, \"west\"], [5549558, 4650283, 5893, 4494, 1399, \"west\"], [3442817, 2638366, 3281, 2322, 959, \"northeast\"], [966580, 820336, 805, 603, 202, \"south\"], [640841, 518478, 1054, 692, 362, \"south\"], [21289728, 14769458, 12222, 8153, 4069, \"south\"], [10304177, 8711633, 10715, 6760, 3955, \"south\"], [1365077, 1028267, 36889, 20552, 16337, \"west\"], [1820514, 1620797, 1777, 1500, 277, \"west\"], [12003587, 9117218, 12943, 8061, 4882, \"midwest\"], [6441838, 5777667, 5663, 3015, 2648, \"midwest\"], [3022668, 2746525, 1189, 782, 407, \"midwest\"], [2770418, 2435156, 2064, 1568, 496, \"midwest\"], [4268599, 3977055, 4458, 2110, 2348, \"south\"], [4326919, 3960051, 1783, 1275, 508, \"south\"], [1325830, 1245787, 672, 510, 162, \"northeast\"], [5849633, 4617626, 8540, 5280, 3260, \"south\"], [6694960, 5015860, 8608, 6136, 2472, \"northeast\"], [9536435, 8544027, 12847, 6804, 6043, \"midwest\"], [5405770, 4733246, 4437, 3003, 1434, \"midwest\"], [2771334, 2652499, 1100, 600, 500, \"south\"], [5835003, 5443399, 3869, 2381, 1488, \"midwest\"], [1058934, 1014553, 218, 134, 84, \"west\"], [1853332, 1616628, 1204, 866, 338, \"midwest\"], [3009889, 2123304, 6673, 4206, 2467, \"west\"], [1332089, 1226265, 794, 660, 134, \"northeast\"], [8816621, 5894484, 13099, 7771, 5328, \"northeast\"], [2009638, 1379762, 1275, 969, 306, \"west\"], [18772412, 12975172, 34092, 19452, 14640, \"northeast\"], [10127421, 8764888, 8337, 5224, 3113, \"south\"], [735169, 685798, 288, 60, 228, \"midwest\"], [11140750, 10247600, 10876, 5341, 5535, \"midwest\"], [3782477, 3347348, 2015, 1419, 596, \"south\"], [4046536, 3430249, 11238, 8352, 2886, \"west\"], [12340793, 10811584, 6418, 4109, 2309, \"northeast\"], [1048547, 806534, 762, 585, 177, \"northeast\"], [5006696, 4587856, 3332, 2126, 1206, \"south\"], [850347, 789886, 325, 227, 98, \"midwest\"], [6655459, 6081056, 4345, 2505, 1840, \"south\"], [28253216, 18339379, 23095, 14183, 8912, \"south\"], [3156873, 2653804, 5718, 4419, 1299, \"west\"], [619410, 585275, 437, 328, 109, \"northeast\"], [8215710, 6782809, 9965, 6768, 3197, \"south\"], [7383546, 5800400, 26918, 18365, 8553, \"west\"], [1690312, 1647311, 807, 507, 300, \"south\"], [5598986, 5092474, 2768, 1846, 922, \"midwest\"], [551114, 513363, 269, 228, 41, \"west\"]]",
-          "layout": {"bottomEnd": "paging", "bottomStart": "info", "topEnd": "search", "topStart": "buttons"},
-          "order": [],
-          "ordering": {"handler": false, "indicators": false},
-          "style": {"width": "100%"},
-          "table_html": "<table><thead>\n    <tr style=\"text-align: right;\">\n      \n      <th>total</th>\n      <th>eng</th>\n      <th>jpn</th>\n      <th>bilingual</th>\n      <th>jpnbad</th>\n      <th>region</th>\n    </tr>\n  </thead></table>",
-          "text_in_header_can_be_selected": true
-        };
-        new ITable(table, dt_args);
-    });
-</script>
+<div class="{html}">
+<style>
+  .under-construction {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background: #ffff00;
+    color: #000;
+    border: 4px dashed #ff0000;
+    padding: 8px;
+    margin: 10px 0;
+    font-weight: bold;
+    font-size: 15px;
+  }
+  .spin {
+    display: inline-block;
+    animation: spin 2s linear infinite;
+    font-size: 28px;
+  }
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+</style>
+<p><span class="under-construction"><span class="spin">🚧</span> UNDER CONSTRUCTION <span class="spin">🚧</span></span></p>
 </div>
-</div>
+<p>Borrowed from <a href="https://llm2human.pages.dev/" class="uri">https://llm2human.pages.dev/</a></p>
 </div>
 <div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
-<div id="3f78e170" class="cell" data-execution_count="3">
+<div id="d6f0f140" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>regionallang <span class="op">=</span> jpmap.loc[:,[<span class="st">"total"</span>,<span class="st">"eng"</span>,<span class="st">"jpn"</span>,<span class="st">"bilingual"</span>,<span class="st">"jpnbad"</span>,<span class="st">"region"</span>]].groupby([<span class="st">"region"</span>], as_index<span class="op">=</span><span class="va">False</span>).<span class="bu">sum</span>()</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>regionallang[<span class="st">"percentjpn"</span>] <span class="op">=</span> (regionallang.jpn <span class="op">*</span> <span class="dv">100</span>) <span class="op">/</span> regionallang.total</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>regionallang[<span class="st">"percentbilingual"</span>] <span class="op">=</span> (regionallang.bilingual <span class="op">*</span> <span class="dv">100</span>) <span class="op">/</span> regionallang.total</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>itables.show(regionallang, maxBytes<span class="op">=</span><span class="dv">200000</span>, style<span class="op">=</span><span class="st">"width:100%"</span>,</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>                                    columnDefs<span class="op">=</span>[{<span class="st">"className"</span>:<span class="st">"dt-left"</span>, <span class="st">"targets"</span>:[<span class="dv">0</span>]}],</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>                                    columnControl<span class="op">=</span>[<span class="st">"order"</span>],</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>                                    ordering<span class="op">=</span>{<span class="st">"indicators"</span>: <span class="va">False</span>, <span class="st">"handler"</span>: <span class="va">False</span>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>regionallang <span class="op">=</span> jpmap.loc[:,[<span class="st">"population"</span>,<span class="st">"eng"</span>,<span class="st">"jpn"</span>,<span class="st">"bilingual"</span>,<span class="st">"jpnloweng"</span>,<span class="st">"region"</span>]].groupby([<span class="st">"region"</span>], as_index<span class="op">=</span><span class="va">False</span>).<span class="bu">sum</span>()</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>regionallang[<span class="st">"percentjpn"</span>] <span class="op">=</span> (regionallang.jpn <span class="op">*</span> <span class="dv">100</span>) <span class="op">/</span> regionallang.population</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>regionallang[<span class="st">"percentbilingual"</span>] <span class="op">=</span> (regionallang.bilingual <span class="op">*</span> <span class="dv">100</span>) <span class="op">/</span> regionallang.population</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>itables.show(regionallang, maxBytes<span class="op">=</span><span class="dv">200000</span>, style<span class="op">=</span><span class="st">"width:100%"</span>,</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>                            columnDefs<span class="op">=</span>[{<span class="st">"className"</span>:<span class="st">"dt-left"</span>, <span class="st">"targets"</span>:[<span class="dv">0</span>]}],</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>                            columnControl<span class="op">=</span>[<span class="st">"order"</span>],</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>                            ordering<span class="op">=</span>{<span class="st">"indicators"</span>: <span class="va">False</span>, <span class="st">"handler"</span>: <span class="va">False</span>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <!--| quarto-html-table-processing: none -->
-<table id="itables_785de49a_3dd0_454f_85c5_faba9cff9fb1" hidden="hidden">
+<table id="itables_2b3be458_3eaf_4bf7_911f_6b62c2997af6" hidden="hidden">
   <tbody>
     <tr>
       <td style="vertical-align:middle; text-align:left"><a href="https://itables.org/"><svg class="main-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="64" viewbox="0 0 500 400" style="font-family: 'Droid Sans', sans-serif;">
@@ -794,13 +839,13 @@ An <a href="https://www.econstor.eu/bitstream/10419/182280/1/GLO-DP-0251.pdf">ex
     </tr>
   </tbody>
 </table>
-<div id="itables_785de49a_3dd0_454f_85c5_faba9cff9fb1_fallback"><table style="border-collapse:collapse"><thead>    <tr style="text-align: right;">
+<div id="itables_2b3be458_3eaf_4bf7_911f_6b62c2997af6_fallback"><table style="border-collapse:collapse"><thead>    <tr style="text-align: right;">
       <th style="border:1px solid #ddd;padding:8px"><sup><noscript><span title="JavaScript not allowed. Please trust this notebook to get interactive tables.">🔒</span></noscript><a href="https://itables.org/fallbacks/static_preview.html" title="ITables v2.9.1 static preview">ⓘ</a></sup>region</th>
-      <th style="border:1px solid #ddd;padding:8px">total</th>
+      <th style="border:1px solid #ddd;padding:8px">population</th>
       <th style="border:1px solid #ddd;padding:8px">eng</th>
       <th style="border:1px solid #ddd;padding:8px">jpn</th>
       <th style="border:1px solid #ddd;padding:8px">bilingual</th>
-      <th style="border:1px solid #ddd;padding:8px">jpnbad</th>
+      <th style="border:1px solid #ddd;padding:8px">jpnloweng</th>
       <th style="border:1px solid #ddd;padding:8px">percentjpn</th>
       <th style="border:1px solid #ddd;padding:8px">percentbilingual</th>
     </tr></thead><tbody>
@@ -808,12 +853,12 @@ An <a href="https://www.econstor.eu/bitstream/10419/182280/1/GLO-DP-0251.pdf">ex
 <tr><td style="border:1px solid #ddd;padding:8px">northeast</td><td style="border:1px solid #ddd;padding:8px">54393479</td><td style="border:1px solid #ddd;padding:8px">41199327</td><td style="border:1px solid #ddd;padding:8px">68163</td><td style="border:1px solid #ddd;padding:8px">41873</td><td style="border:1px solid #ddd;padding:8px">26290</td><td style="border:1px solid #ddd;padding:8px">0.125315</td><td style="border:1px solid #ddd;padding:8px">0.076982</td></tr>
 <tr><td style="border:1px solid #ddd;padding:8px">south</td><td style="border:1px solid #ddd;padding:8px">121811243</td><td style="border:1px solid #ddd;padding:8px">96711452</td><td style="border:1px solid #ddd;padding:8px">96036</td><td style="border:1px solid #ddd;padding:8px">59928</td><td style="border:1px solid #ddd;padding:8px">36108</td><td style="border:1px solid #ddd;padding:8px">0.078840</td><td style="border:1px solid #ddd;padding:8px">0.049197</td></tr>
 <tr><td style="border:1px solid #ddd;padding:8px">west</td><td style="border:1px solid #ddd;padding:8px">74743523</td><td style="border:1px solid #ddd;padding:8px">50626636</td><td style="border:1px solid #ddd;padding:8px">239733</td><td style="border:1px solid #ddd;padding:8px">148271</td><td style="border:1px solid #ddd;padding:8px">91462</td><td style="border:1px solid #ddd;padding:8px">0.320741</td><td style="border:1px solid #ddd;padding:8px">0.198373</td></tr>
-</tbody></table></div><script>document.getElementById("itables_785de49a_3dd0_454f_85c5_faba9cff9fb1")?.removeAttribute("hidden");document.getElementById("itables_785de49a_3dd0_454f_85c5_faba9cff9fb1_fallback")?.setAttribute("hidden", "hidden");</script>
+</tbody></table></div><script>document.getElementById("itables_2b3be458_3eaf_4bf7_911f_6b62c2997af6")?.removeAttribute("hidden");document.getElementById("itables_2b3be458_3eaf_4bf7_911f_6b62c2997af6_fallback")?.setAttribute("hidden", "hidden");</script>
 <link href="https://www.unpkg.com/dt_for_itables@2.5.8/dt_bundle.css" rel="stylesheet">
 <script type="module">
     import { ITable, jQuery as $ } from 'https://www.unpkg.com/dt_for_itables@2.5.8/dt_bundle.js';
 
-    document.querySelectorAll("#itables_785de49a_3dd0_454f_85c5_faba9cff9fb1:not(.dataTable)").forEach(table => {
+    document.querySelectorAll("#itables_2b3be458_3eaf_4bf7_911f_6b62c2997af6:not(.dataTable)").forEach(table => {
         if (!(table instanceof HTMLTableElement))
             return;
 
@@ -827,7 +872,7 @@ An <a href="https://www.econstor.eu/bitstream/10419/182280/1/GLO-DP-0251.pdf">ex
           "order": [],
           "ordering": {"handler": false, "indicators": false},
           "style": {"width": "100%"},
-          "table_html": "<table><thead>\n    <tr style=\"text-align: right;\">\n      \n      <th>region</th>\n      <th>total</th>\n      <th>eng</th>\n      <th>jpn</th>\n      <th>bilingual</th>\n      <th>jpnbad</th>\n      <th>percentjpn</th>\n      <th>percentbilingual</th>\n    </tr>\n  </thead></table>",
+          "table_html": "<table><thead>\n    <tr style=\"text-align: right;\">\n      \n      <th>region</th>\n      <th>population</th>\n      <th>eng</th>\n      <th>jpn</th>\n      <th>bilingual</th>\n      <th>jpnloweng</th>\n      <th>percentjpn</th>\n      <th>percentbilingual</th>\n    </tr>\n  </thead></table>",
           "text_in_header_can_be_selected": true
         };
         new ITable(table, dt_args);
@@ -837,33 +882,34 @@ An <a href="https://www.econstor.eu/bitstream/10419/182280/1/GLO-DP-0251.pdf">ex
 </div>
 </div>
 <div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
-<div id="26939276" class="cell" data-execution_count="4">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># m = folium.Map([37, -100], zoom_start=4)</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># marker_cluster = MarkerCluster(disableClusteringAtZoom=10).add_to(m)</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># for idx, row in nodirgdf.iterrows():</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">#     popup_html = f"&lt;style&gt; th\</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">#                 {{border:1px solid black;\}}&lt;/style&gt;\</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">#                 &lt;table&gt;&lt;tr&gt;\</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">#                     &lt;th&gt;State: &lt;/th&gt;\</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">#                     &lt;th&gt;{row['State Full']}&lt;/th&gt;\</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co">#                 &lt;/tr&gt;&lt;tr&gt;\</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co">#                     &lt;th&gt;ALPR ID: &lt;/th&gt;\</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co">#                     &lt;th&gt;{row['ALPR ID']}&lt;/th&gt;\</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co">#                 &lt;/tr&gt;&lt;tr&gt;\</span></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co">#                     &lt;th text-align='center' colspan='2'&gt;{row['url']}&lt;/th&gt;\</span></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="co">#                 &lt;/tr&gt;&lt;/table&gt;"</span></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="co">#     folium.Circle(</span></span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="co">#         location=[row.geometry.y, row.geometry.x], </span></span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="co">#         popup=popup_html, fill=True, radius=30, weight=9,color="#9E2F02",opacity=0.8,fillOpacity=0.5</span></span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="co">#     ).add_to(marker_cluster)</span></span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="co"># m</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
+<div class="{html}">
+<style>
+  .under-construction {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background: #ffff00;
+    color: #000;
+    border: 4px dashed #ff0000;
+    padding: 8px;
+    margin: 10px 0;
+    font-weight: bold;
+    font-size: 15px;
+  }
+  .spin {
+    display: inline-block;
+    animation: spin 2s linear infinite;
+    font-size: 28px;
+  }
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+</style>
+<p><span class="under-construction"><span class="spin">🚧</span> UNDER CONSTRUCTION <span class="spin">🚧</span></span></p>
 </div>
+<p>Borrowed from <a href="https://llm2human.pages.dev/" class="uri">https://llm2human.pages.dev/</a></p>
 </div>
 </div>
 </div>
@@ -871,33 +917,42 @@ An <a href="https://www.econstor.eu/bitstream/10419/182280/1/GLO-DP-0251.pdf">ex
 </section>
 <section id="other-stats" class="level3 column-page-right">
 <h3 class="anchored" data-anchor-id="other-stats">Other Stats</h3>
+<p>The data does not provide information on age (we might be interested in working age pop).<br>
+Below is my best estimate at a working age population correction factor.</p>
 <table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: right;">203,771,037 / 316,142,548 = 64.5%<br>
+</th>
+<th style="text-align: left;">of the general populace is working age (18 to 64)<br>
+</th>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: right;">203,771,037 / 316,142,548 = 64.5%<br>
+<td style="text-align: right;">330,000 * 67% ~= 220,000<br>
 </td>
-<td style="text-align: left;">of the general populace is working age (18 to 64)</td>
+<td style="text-align: left;">Working age JPN immigrants<br>
+</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">8,030,466 / 11,320,253 = 70.9%<br>
+<td style="text-align: right;">1,060,000 * 58% ~= 615,000<br>
 </td>
-<td style="text-align: left;">among those who Speak Asian and Pacific Island language</td>
+<td style="text-align: left;">Working age native born JPN-Americans<br>
+</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;">4,734,803 / 8,030,466 = 59.0%<br>
+<td style="text-align: right;">(220,000 + 615,000) / 1,390,000 * 58% ~= 60%<br>
 </td>
-<td style="text-align: left;">speak english “very well” among <strong>working age</strong> API lang speakers</td>
+<td style="text-align: left;">Estimate for working age population among JPN in the US.<br>
+</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">4,734,803 / 11,320,253 = 41.8%<br>
-</td>
-<td style="text-align: left;">working age speak english “very well” among <strong>all</strong> API lang speakers</td>
-</tr>
-<tr class="odd">
-<td colspan="2" style="text-align: right;"> 2024 ACS 5-Year Estimates, Table B16004</td>
+<td colspan="2" style="text-align: right;"> <a href="https://www.pewresearch.org/race-and-ethnicity/fact-sheet/asian-americans-japanese-in-the-u-s/">pew fact sheet using ~2021-2023 ACS data</a></td>
 </tr>
 </tbody>
 </table>
+<p>One issue with this estimate is the use of race/ethnicity instead of language ability. But the language ability/age dataset is grouped up into the larger group of API (Asia/Pacific Islander). This is problematic due to the sheer size and diversity of individuals coming from Asia (Japanese immigrants are but a small fraction of that).</p>
 </section>
 
 

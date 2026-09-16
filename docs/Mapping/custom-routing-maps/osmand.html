@@ -43,6 +43,9 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap-7175ec11462a3fda766c9967d4174700.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -75,7 +78,7 @@ ul.task-list li input[type="checkbox"] {
 
 </head>
 
-<body class="nav-sidebar docked nav-fixed quarto-light">
+<body class="nav-sidebar docked nav-fixed slimcontent quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -338,7 +341,7 @@ ul.task-list li input[type="checkbox"] {
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Mapping</li><li class="breadcrumb-item"><a href="../../Mapping/custom-routing-maps/comaps.html">Custom Routing</a></li><li class="breadcrumb-item"><a href="../../Mapping/custom-routing-maps/osmand.html">Osmand</a></li></ol></nav>
 <div class="quarto-title">
@@ -362,7 +365,10 @@ ul.task-list li input[type="checkbox"] {
 <p>Editing and making custom maps that work with apps like osmand or comaps enables one to piggyback off the routing and more polished UI of these apps for any custom purpose. I initially figured out how to do this when trying to get ALPR avoidance routing. And the end result is remarkably polished.</p>
 <p>This assumes that you already have a custom pbf file (ex: <a href="https://github.com/pickpj/Big-B-Router">big-b-router</a>)</p>
 <p>Compared to comaps, the process is very straightforward/easy.</p>
-<section id="download-osmandmapcreator" class="level3">
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p><a href="./extra-apps/osmand.jpeg" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="./extra-apps/osmand.jpeg" class="img-fluid"></a></p>
+</div></div><section id="download-osmandmapcreator" class="level3">
 <h3 class="anchored" data-anchor-id="download-osmandmapcreator">1. Download <a href="https://wiki.openstreetmap.org/wiki/OsmAndMapCreator">osmandmapcreator</a></h3>
 </section>
 <section id="run-the-gui-with-java" class="level3">
@@ -778,6 +784,38 @@ ul.task-list li input[type="checkbox"] {
   });
   </script>
 </div> <!-- /content -->
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 
