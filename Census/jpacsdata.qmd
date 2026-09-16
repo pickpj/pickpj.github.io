@@ -71,21 +71,16 @@ import geoplot
 
 jpmap = gpd.read_file("../../census/jpmap.gpkg")
 
-itables.show(pd.DataFrame(jpmap.loc[:,["state","population","epopulation","eng","eeng","jpn","ejpn","nomjpnrank","bilingual","ebilingual",
-                            "nombilingualrank","jpnloweng","ejpnloweng"]]), 
+itables.show(pd.DataFrame(jpmap.loc[:,["ST","state","population","epopulation","eng","eeng","jpn","ejpn","bilingual","ebilingual",
+                            "jpnloweng","ejpnloweng","pctjpn","pctbilingual","bilingualratio"]]), 
                             maxBytes=200000, style="width:100%", 
-                            buttons=["pageLength", {"extend": "colvisGroup","text": "Hide Errors","hide": [2,4,6,9,12]},
+                            buttons=["pageLength", {"extend": "colvisGroup","text": "Hide Errors","hide": [1,3,5,7,9,11]},
                                                     {"extend": "colvisGroup","text": "Show all","show": "*"}],
                             columnDefs=[{"className":"dt-left", "targets":[0]}, 
-                                        {"targets":[2,4,6,9,12], "visible":False}],
+                                        {"targets":[1,3,5,7,9,11], "visible":False}],
                             columnControl=["order"],
                             ordering={"indicators": False, "handler": False})
 
-itables.show(pd.DataFrame(jpmap.loc[:,["state","population","jpn","percentjpn","jpnrank","percentbilingual","bilingualrank"]]), 
-                            maxBytes=200000, style="width:100%", buttons=["pageLength"],
-                            columnDefs=[{"className":"dt-left", "targets":[0]}],
-                            columnControl=["order"],
-                            ordering={"indicators": False, "handler": False})
 ```  
 
 ## Map
@@ -122,8 +117,8 @@ Borrowed from <https://llm2human.pages.dev/>
 ## Regional  
 ```{python}
 regionallang = jpmap.loc[:,["population","eng","jpn","bilingual","jpnloweng","region"]].groupby(["region"], as_index=False).sum()
-regionallang["percentjpn"] = (regionallang.jpn * 100) / regionallang.population
-regionallang["percentbilingual"] = (regionallang.bilingual * 100) / regionallang.population
+regionallang["pctjpn"] = (regionallang.jpn * 100) / regionallang.population
+regionallang["pctbilingual"] = (regionallang.bilingual * 100) / regionallang.population
 itables.show(regionallang, maxBytes=200000, style="width:100%",
                             columnDefs=[{"className":"dt-left", "targets":[0]}],
                             columnControl=["order"],
@@ -131,35 +126,19 @@ itables.show(regionallang, maxBytes=200000, style="width:100%",
 ```  
 
 ## Metro Areas
+```{python}
+jpmetro = pd.read_csv("../../census/jpmetro.csv")
 
-:::{html}
-<style>
-  .under-construction {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    background: #ffff00;
-    color: #000;
-    border: 4px dashed #ff0000;
-    padding: 8px;
-    margin: 10px 0;
-    font-weight: bold;
-    font-size: 15px;
-  }
-  .spin {
-    display: inline-block;
-    animation: spin 2s linear infinite;
-    font-size: 28px;
-  }
-  @keyframes spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-  }
-</style>
-<span class="under-construction"><span class="spin">🚧</span> UNDER CONSTRUCTION <span class="spin">🚧</span></span>
-:::  
-Borrowed from <https://llm2human.pages.dev/>  
+itables.show(pd.DataFrame(jpmetro.loc[:,["metro-area","population","epopulation","eng","eeng","jpn","ejpn","bilingual","ebilingual","pctjpn","pctbilingual","bilingualratio"]]), 
+                            maxBytes=200000, style="width:100%", 
+                            buttons=["pageLength", {"extend": "colvisGroup","text": "Hide Errors","hide": [2,4,6,8]},
+                                                    {"extend": "colvisGroup","text": "Show all","show": "*"}],
+                            columnDefs=[{"className":"dt-left", "targets":[0]}, 
+                                        {"targets":[2,4,6,8], "visible":False}],
+                            columnControl=["order"],
+                            ordering={"indicators": False, "handler": False,},
+                            classes="display")
+```  
 
 :::  
 
