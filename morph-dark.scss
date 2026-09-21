@@ -233,6 +233,31 @@ $breadcrumb-active-color:           $red !default;
 
 $btn-close-color:            $headings-color !default;
 
+ol {
+  list-style: none;
+  counter-reset: item;
+}
+li {
+  counter-increment: item;
+  margin-bottom: 10px;
+}
+li::marker{
+  color: #c3a1fa;
+  font-size:22px;
+}
+section ol li:before{
+  color: #c3a1fa;
+  content: counter(item)". ";
+  text-align: left;
+  position: relative;
+  left: -10px;
+  font-size: 22px;
+}
+section ol li{
+  text-align: left;
+  position: relative;
+  left: -12px;
+}
 
 
 /*-- scss:rules --*/

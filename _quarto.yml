@@ -16,6 +16,9 @@ website:
               text: Language Data Regression
             - href: Census/jpacsdata.qmd
               text: Japanese Speaker Analysis
+            - href: Census/jpjpacsdata.qmd
+              text: 日本語話者分析(米国）
+          - text: "---"
           - section: "Mapping"
             contents:
             - section: "Custom Routing"
@@ -48,12 +51,14 @@ website:
               contents:
               - href: Mapping/JPN/tokyochizu.qmd
                 text: Various maps
+          - text: "---"
           - section: "ML/DL"
             contents:
               - section: "Image"
                 contents:
                 - href: MLDL/fastai.qmd
                   text: Image Classification
+          - text: "---"
           - section: "Linux"
             contents:
               - section: "Keyboard"
@@ -64,6 +69,10 @@ website:
                   text: keycode list
               - href: Linux/x11/macro-migration.qmd
                 text: x11->wayland macros
+          - text: "---"
+          - text: "---"
+          - text: "---"
+          - text: "<div>Article count: <span id='arti-count'>#</span></div>"
           # - section: "Other"
           #   contents:
           #   - href: Other/reusing.qmd
@@ -75,4 +84,6 @@ format:
         theme: morph-dark.scss
         toc: true
         include-in-header:
-          - text: <script>document.documentElement.classList.add('dark')</script>
+          - text: <script>document.documentElement.classList.add('dark');</script>
+        include-after-body:
+          - text: "<script>document.getElementById('arti-count').textContent = document.querySelector('.sidebar-menu-container')? [...document.querySelectorAll('.sidebar-menu-container .sidebar-item')].filter(el => el.classList.length === 1).length -1: 0;</script>"
