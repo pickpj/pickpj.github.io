@@ -84,6 +84,9 @@ format:
         theme: morph-dark.scss
         toc: true
         include-in-header:
-          - text: <script>document.documentElement.classList.add('dark');</script>
+          - text: |
+              <script data-goatcounter="https://pickpj.goatcounter.com/count"
+                async src="//gc.zgo.at/count.js"></script>
+              <script>document.documentElement.classList.add('dark')</script>
         include-after-body:
           - text: "<script>document.getElementById('arti-count').textContent = document.querySelector('.sidebar-menu-container')? [...document.querySelectorAll('.sidebar-menu-container .sidebar-item')].filter(el => el.classList.length === 1).length -1: 0;</script>"
