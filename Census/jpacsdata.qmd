@@ -3,6 +3,8 @@ title: ACS Japanese Speaker Data
 format:
     html:
         code-fold: true
+execute:
+    warning: false
 jupyter: python3
 ---
 
@@ -47,7 +49,7 @@ full questionnare: <https://www.census.gov/programs-surveys/acs/about/forms-and-
 Potential issues with the data to be concious of:  
 
 * The errors are based on a 90% confidence interval.  
-* ACS data is not a census and may have non-sampling error.  
+* ACS data is not a census and may suffer from non-sampling error.  
 * Data is for all age groups when one might only be interested in those of working age (18-64) my best estimate puts it at ~60%.  
   + This 60% figure can also invite scrutiny. Explained further below.  
 * The bilingual statistic is based on those who responded as speaking english "very well", excluding those who selected as speaking "well" or below.  
@@ -56,9 +58,12 @@ Potential issues with the data to be concious of:
 
 
 ### Observations  
-Hawaii has the highest proportion of Japanese, but due to size Hawaii is on par with New York. (Lower if you group it with New Jersey)  
+Hawaii has the highest proportion of Japanese, but due to size Hawaii actually has fewer bilingual speakers than the NYC metro area (20552 Bilingual speakers in Hawaii; 23268 Bilingual speakers in NY-NJ metro area).  
+
 Alaska, Utah, Nevada stood out as locations not traditionally associated with a Japanese diaspora, but had **relatively** high populations of Japanese speakers.  
+
 Florida and Texas have a low proportion of Japanese speakers, but make up for it by sheer size.  
+
 
 ### Tables & Visuals 表・見える化
 :::{.column-page-right}  
@@ -69,9 +74,13 @@ Florida and Texas have a low proportion of Japanese speakers, but make up for it
 ```{python}
 import pandas as pd
 import geopandas as gpd
+import numpy as np
 import folium
 import itables
 import geoplot
+import mapclassify as mc
+import geoplot.crs as gcrs
+import matplotlib
 
 jpmap = gpd.read_file("../../census/jpmap.gpkg")
 itables.options.css = """
@@ -94,34 +103,117 @@ itables.show(pd.DataFrame(jpmap.loc[:,["ST","state","population","epopulation","
 
 ## Map
 
-:::{html}
-<style>
-  .under-construction {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    background: #ffff00;
-    color: #000;
-    border: 4px dashed #ff0000;
-    padding: 8px;
-    margin: 10px 0;
-    font-weight: bold;
-    font-size: 15px;
-  }
-  .spin {
-    display: inline-block;
-    animation: spin 2s linear infinite;
-    font-size: 28px;
-  }
-  @keyframes spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-  }
-</style>
-<span class="under-construction"><span class="spin">🚧</span> UNDER CONSTRUCTION <span class="spin">🚧</span></span>
-:::   
-Borrowed from <https://llm2human.pages.dev/>  
+```{python}
+m = folium.Map(location=[35.3, -97.6], zoom_start=4)
+
+for idx, row in jpmap.iterrows():
+    popup_html = f"""
+    <style>
+        .leaflet-popup-content-wrapper,
+        .leaflet-popup-content {{
+            min-width: 300px !important;
+            max-width: 400px !important;
+        }}
+        table {{
+            table-layout: fixed;
+            width: 100%;
+            border-collapse: collapse;
+        }}
+        th, td {{
+            font-size:12px;
+            border: 1px solid black;
+            padding: 6px 8px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }}
+        th {{background-color: #f5f5f5; font-weight: bold;}}
+    </style>
+    <table>
+        <colgroup>
+            <col style="width: 65%">
+            <col style="width: 35%">
+        </colgroup>
+        <tr>
+            <th colspan="2" style="font-weight:bold;">{row['ST']} - {row['state'].title()}</th>
+        </tr>
+        <tr>
+            <th>Population</th>
+            <td>{row['population']:,}</td>
+        </tr>
+        <tr>
+            <th>Bilingual Rank (Nominal)</th>
+            <td>{row['nombilingualrank']} (x̄ = {row['bilingual']:,})</td>
+        </tr>
+        <tr>
+            <th>Bilingual Rank (Per Capita)</th>
+            <td>{row['bilingualrank']} ({row['pctbilingual']:.4f}%)</td>
+        </tr>
+        <tr>
+            <th>JPN Speaker Rank (Nominal)</th>
+            <td>{row['nomjpnrank']} (x̄ = {row['jpn']:,})</td>
+        </tr>
+        <tr>
+            <th>Bilingual Ratio</th>
+            <td>{row['bilingualratio']:.4f}</td>
+        </tr>
+    </table>
+    """
+    bins = mc.FisherJenks(jpmap["bilingual"], k=6).bins.astype(int)
+    cmap = matplotlib.colormaps.get_cmap("seismic")
+    gradient = np.linspace(0, 1, 6)
+    colors = [matplotlib.colors.to_hex(cmap(i)) for i in gradient]
+    fcolor = colors[np.digitize(row["bilingual"]*.99999,bins)]
+    folium.GeoJson(
+        row.geometry,
+        style_function=lambda x, fc=fcolor: {"fillColor": fc, "fillOpacity":"65%","color":"white"},
+        tooltip=f"{row.state.title()}",
+        popup=folium.Popup(popup_html)
+    ).add_to(m)
+
+legend_html = """
+<div style="position:fixed; bottom:40px; left:50px; width:240px; background:rgba(255,255,255,0.8); 
+            padding:12px 14px; border:2px solid #666; border-radius:6px; z-index:999; 
+            box-shadow: 2px 2px 6px rgba(0,0,0,0.2); color:black;text-align:center;">
+    <div style="font-weight:bold; font-size:15px; margin-bottom:5px;">
+        Bilingual Population</div>
+    <div style="height:14px; background:linear-gradient(to right,#00004c 0%,#0000db 20%,#9999ff 40%,#ff9999 60%,#e60000 80%,#800000 100%); 
+                border-radius:3px; margin-bottom:6px;"></div>
+    <div style="font-size:12px; text-align:center;">
+        Lower &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ⇒ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Higher</div></div>
+"""
+m.get_root().html.add_child(folium.Element(legend_html))
+m
+```  
+---  
+
+I wanted to try a cartogram, and I guess Florida ended up even further underwater.  
+```{python}
+dc48 = jpmap[~jpmap.state.isin(["alaska", "hawaii"])]
+scheme = mc.FisherJenks(dc48["bilingual"], k=6)
+nb = mc.FisherJenks(dc48["bilingual"], k=6).bins
+scheme.bins = np.round(nb, decimals=3)
+ax = geoplot.cartogram(
+    dc48, scale="bilingual", projection=gcrs.AlbersEqualArea(),
+    legend=True, legend_kwargs={'bbox_to_anchor': (0.22, 0.42)}, legend_var="hue",
+    hue="bilingual", scheme=scheme, cmap="seismic"
+)
+ax.set_title("Japanese Bilinguals (Nominal) of Contiguous States")
+geoplot.polyplot(dc48, facecolor="lightgray", edgecolor="white", ax=ax)
+```
+```{python}
+scheme = mc.FisherJenks(dc48["pctbilingual"], k=6)
+nb = mc.FisherJenks(dc48["pctbilingual"], k=6).bins
+scheme.bins = np.round(nb, decimals=3)
+ax = geoplot.cartogram(
+    dc48, scale="pctbilingual", projection=gcrs.AlbersEqualArea(),
+    legend=True, legend_kwargs={'bbox_to_anchor': (0.22, 0.42)}, legend_var="hue",
+    hue="pctbilingual", scheme=scheme, cmap="seismic"
+)
+ax.set_title("Japanese Bilinguals per Capita of Contiguous States (% of Pop.)")
+geoplot.polyplot(dc48, facecolor="lightgray", edgecolor="white", ax=ax)
+```
+
 
 ## Regional  
 ```{python}
@@ -168,7 +260,7 @@ Below is my best estimate at a working age population correction factor.
   - Working age JPN immigrants  
 - - 1,060,000 * 58% ~= 615,000  
   - Working age native born JPN-Americans  
-- - (220,000 + 615,000) / 1,390,000 * 58% ~= 60%  
+- - (220,000 + 615,000) / 1,390,000 ~= 60%  
   - Estimate for working age population among JPN in the US.  
 - - []{colspan=2} [pew fact sheet using ~2021-2023 ACS data](https://www.pewresearch.org/race-and-ethnicity/fact-sheet/asian-americans-japanese-in-the-u-s/)  
 
