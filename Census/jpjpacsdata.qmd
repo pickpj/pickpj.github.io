@@ -209,6 +209,9 @@ m
 ```  
 ---  
 Cartogram を試してみた.  
+
+アラスカとハワイを除いた日米バイリンガル人工(公称)  
+
 ```{python}
 dc48 = jpmap[~jpmap.state.isin(["alaska", "hawaii"])]
 scheme = mc.FisherJenks(dc48["bilingual"], k=6)
@@ -219,9 +222,10 @@ ax = geoplot.cartogram(
     legend=True, legend_kwargs={'bbox_to_anchor': (0.22, 0.42)}, legend_var="hue",
     hue="bilingual", scheme=scheme, cmap="seismic"
 )
-ax.set_title("アラスカとハワイを除いた日米バイリンガル人工(公称)")
+ax.set_title("")
 geoplot.polyplot(dc48, facecolor="lightgray", edgecolor="white", ax=ax)
-```
+```  
+アラスカとハワイを除いた日米バイリンガル人工(均等割り；％)
 ```{python}
 scheme = mc.FisherJenks(dc48["pctbilingual"], k=6)
 nb = mc.FisherJenks(dc48["pctbilingual"], k=6).bins
@@ -231,7 +235,7 @@ ax = geoplot.cartogram(
     legend=True, legend_kwargs={'bbox_to_anchor': (0.22, 0.42)}, legend_var="hue",
     hue="pctbilingual", scheme=scheme, cmap="seismic"
 )
-ax.set_title("アラスカとハワイを除いた日米バイリンガル人工(均等割り；％)")
+ax.set_title("")
 geoplot.polyplot(dc48, facecolor="lightgray", edgecolor="white", ax=ax)
 ```
 

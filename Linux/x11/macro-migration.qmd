@@ -1,5 +1,5 @@
 ---
-title: "Difficulties migrating to Wayland from X11 "
+title: "Difficulties migrating to Wayland from X11"
 ---  
 
 With support for X11 seeming to dwindle I have to figure out how to: migrate my macros over and make sure other tools are working properly. This isn't straight forward as many tools like xdotool, xsel, autokey, wmctrl, xrandr, and ahk-x11 can't easily be replaced. So the following is my planning on how to smoothen a transition to Wayland.   
@@ -43,7 +43,4 @@ Why? Limited I/O on laptop, but the GPU can support more displays. ∴ More disp
 **Wayland:** ¯\\\_(ツ)_/¯  [Maybe?](https://wayland-book.com/wayland-display/creation.html) But also not straight forward
   
 ---  
-  
-## Other
 
-Have to redo the Japanese IME, but not too difficult. (would be difficult if you couldn't search in your main language though)  https://github.com/tirsasaki/Install-and-Use-Japanese-Keyboard-On-Cachyos  

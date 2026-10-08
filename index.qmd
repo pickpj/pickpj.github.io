@@ -26,7 +26,7 @@ A modified version of big-b-router for adjustable weight, ALPR avoidance routing
   
 ---  
 ### [ev-morse ![](https://img.shields.io/github/stars/pickpj/ev-morse?color=232323&logo=github&labelColor=232323)](https://github.com/pickpj/ev-morse)  
-Reading linux event files for advanced macro activation based on morse pattern key presses. Works independent of the windowing system (wayland/x11) and is device specific. Pattern based activation enables multiple macros to be activated by the same key. Ev-morse can also handle repeating activations with longer key presses (like a fast forward button).     
+Reading linux event files for advanced macro activation based on morse pattern key presses. Works independent of the windowing system (wayland/x11) and is device specific. Pattern based activation enables multiple macros to be activated by the same key. Ev-morse can also handle repeating activations with longer key presses (similar to a fast forward button).     
 
 ## Recent Articles:  
 [Japanese Speaker Analysis](./Census/jpacsdata.qmd)  

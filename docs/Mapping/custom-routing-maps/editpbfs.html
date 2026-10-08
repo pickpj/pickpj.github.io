@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Bad Cams - Binghamton – pickpj</title>
+<title>Why edit PBF data? – pickpj</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -43,9 +43,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap-bf71e570982996a397e4608a812dc169.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
-<script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
-<link href="../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
-<link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -73,6 +70,10 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<meta name="mermaid-theme" content="dark">
+<script src="../../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 <script data-goatcounter="https://pickpj.goatcounter.com/count" async="" src="//gc.zgo.at/count.js"></script>
 <script>document.documentElement.classList.add('dark')</script>
 
@@ -101,7 +102,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Mapping</li><li class="breadcrumb-item"><a href="../../Mapping/ALPR/bigbrouter.html">ALPR</a></li><li class="breadcrumb-item"><a href="../../Mapping/ALPR/binghamton.html">BC - Binghamton, NY</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Mapping</li><li class="breadcrumb-item"><a href="../../Mapping/custom-routing-maps/editpbfs.html">Custom Routing</a></li><li class="breadcrumb-item"><a href="../../Mapping/custom-routing-maps/editpbfs.html">You Should Edit PBFs</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -154,16 +155,16 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
  <span class="menu-text">Custom Routing</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Mapping/custom-routing-maps/editpbfs.html" class="sidebar-item-text sidebar-link">
+  <a href="../../Mapping/custom-routing-maps/editpbfs.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">You Should Edit PBFs</span></a>
   </div>
 </li>
@@ -183,13 +184,13 @@ ul.task-list li input[type="checkbox"] {
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
  <span class="menu-text">ALPR</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 show">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Mapping/ALPR/bigbrouter.html" class="sidebar-item-text sidebar-link">
@@ -222,7 +223,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Mapping/ALPR/binghamton.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../Mapping/ALPR/binghamton.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">BC - Binghamton, NY</span></a>
   </div>
 </li>
@@ -374,9 +375,9 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Mapping</li><li class="breadcrumb-item"><a href="../../Mapping/ALPR/bigbrouter.html">ALPR</a></li><li class="breadcrumb-item"><a href="../../Mapping/ALPR/binghamton.html">BC - Binghamton, NY</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Mapping</li><li class="breadcrumb-item"><a href="../../Mapping/custom-routing-maps/editpbfs.html">Custom Routing</a></li><li class="breadcrumb-item"><a href="../../Mapping/custom-routing-maps/editpbfs.html">You Should Edit PBFs</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Bad Cams - Binghamton</h1>
+<h1 class="title">Why edit PBF data?</h1>
 </div>
 
 
@@ -393,9 +394,58 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>While experimenting with pydeck and 3d visualizations, I found a clear outlier in the ALPR data. Binghamton, NY. I guess someone took creative liberties with documenting ALPRs.</p>
-<p><a href="extra-binghamton/binghamton.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="extra-binghamton/binghamton.jpg" class="img-fluid"></a></p>
-<p><a href="extra-binghamton/wtf.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="extra-binghamton/wtf.jpg" class="img-fluid"></a></p>
+<p>The first flowchart represents my understanding of how others are approaching custom routing.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+OSM --&gt; Extract["Extract Data (to avoid)"] --&gt; Project[Create Projections] -.-&gt; Router
+Project -.-&gt; Query
+OSM[("OSM data (PBF)")] --&gt; B2["Change Format (ex: .obf, .mwm)"] --&gt; Router["Routing Server"]
+Router --&gt; Query[Navigation Query]
+Query --&gt; Router
+Query --&gt; App["Custom Mobile Mapping Application"]
+App --&gt;|Location data| Query
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>Issues:</p>
+<ul>
+<li>Responsible for creating or altering a mobile mapping application. (This is a lot of work! ; especially for cross-platform support)<br>
+</li>
+<li>Maintaining Routing Server, ties up resources (in these trying times)<br>
+</li>
+<li>Additional latency to end user</li>
+</ul>
+<hr>
+<p>The next flowchart represents the path I took to create custom routing.</p>
+<p>Editing the pbf data directly removes any interactions with the routing engine. Thus, we can take advantage of existing open source “full stack” navigation applications (Osmand, Comaps, Organic Maps).</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+    subgraph Edit PBF 
+        OSM[("OSM data (PBF)")] --&gt; Extract["Extract Data (to avoid)"] --&gt; Project[Create Projections] --&gt;|Strategic Edits| OSM
+    end
+    subgraph Then import and use 
+        OSM --&gt; B2["Change Format (ex: .obf, .mwm)"] --&gt; App("General Mobile Mapping Application (ex: Osmand, Comaps, Organic Maps)")
+    end
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>The only issue I have is with the burden of data updates being decentralized.<br>
+The secret sauce is the “strategic edits” to alter the data to implement custom routing. Getting this right took some trial and error.<br>
+Many applications utilize OSM data so it’s not just limited to those navigations apps. Although I haven’t tested, this method should work to adjust routing in SUMO, osmnx, A/B Street, or MATsim.</p>
 
 
 
@@ -802,38 +852,6 @@ ul.task-list li input[type="checkbox"] {
   </script>
 </div> <!-- /content -->
 <script>document.getElementById('arti-count').textContent = document.querySelector('.sidebar-menu-container')? [...document.querySelectorAll('.sidebar-menu-container .sidebar-item')].filter(el => el.classList.length === 1).length -1: 0;</script>
-<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
-(function() {
-  let previousOnload = window.onload;
-  window.onload = () => {
-    if (previousOnload) {
-      previousOnload();
-    }
-    lightboxQuarto.on('slide_before_load', (data) => {
-      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
-      const href = trigger.getAttribute('href');
-      if (href !== null) {
-        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
-        if (imgEl !== null) {
-          const srcAttr = imgEl.getAttribute("src");
-          if (srcAttr && srcAttr.startsWith("data:")) {
-            slideConfig.href = srcAttr;
-          }
-        }
-      } 
-    });
-  
-    lightboxQuarto.on('slide_after_load', (data) => {
-      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(slideNode);
-      }
-    });
-  
-  };
-  
-})();
-          </script>
 
 
 

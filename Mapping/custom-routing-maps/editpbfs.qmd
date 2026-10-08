@@ -1,0 +1,37 @@
+---
+title: Why edit PBF data?
+---
+The first flowchart represents my understanding of how others are approaching custom routing. 
+```{mermaid}
+flowchart LR
+OSM --> Extract["Extract Data (to avoid)"] --> Project[Create Projections] -.-> Router
+Project -.-> Query
+OSM[("OSM data (PBF)")] --> B2["Change Format (ex: .obf, .mwm)"] --> Router["Routing Server"]
+Router --> Query[Navigation Query]
+Query --> Router
+Query --> App["Custom Mobile Mapping Application"]
+App -->|Location data| Query
+```  
+Issues:  
+
+- Responsible for creating or altering a mobile mapping application. (This is a lot of work! ; especially for cross-platform support)  
+- Maintaining Routing Server, ties up resources (in these trying times)  
+- Additional latency to end user  
+
+---  
+
+The next flowchart represents the path I took to create custom routing.  
+
+Editing the pbf data directly removes any interactions with the routing engine. Thus, we can take advantage of existing open source "full stack" navigation applications (Osmand, Comaps, Organic Maps).   
+```{mermaid}
+flowchart TD
+    subgraph Edit PBF 
+        OSM[("OSM data (PBF)")] --> Extract["Extract Data (to avoid)"] --> Project[Create Projections] -->|Strategic Edits| OSM
+    end
+    subgraph Then import and use 
+        OSM --> B2["Change Format (ex: .obf, .mwm)"] --> App("General Mobile Mapping Application (ex: Osmand, Comaps, Organic Maps)")
+    end
+```  
+The only issue I have is with the burden of data updates being decentralized.  
+The secret sauce is the "strategic edits" to alter the data to implement custom routing. Getting this right took some trial and error.  
+Many applications utilize OSM data so it's not just limited to those navigations apps. Although I haven't tested, this method should work to adjust routing in SUMO, osmnx, A/B Street, or MATsim. 

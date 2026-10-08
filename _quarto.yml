@@ -23,6 +23,8 @@ website:
             contents:
             - section: "Custom Routing"
               contents:
+              - href: Mapping/custom-routing-maps/editpbfs.qmd
+                text: You Should Edit PBFs
               - href: Mapping/custom-routing-maps/comaps.qmd
                 text: Comaps
               - href: Mapping/custom-routing-maps/osmand.qmd
@@ -41,6 +43,10 @@ website:
                 text: BC - Similar ALPRs
               - href: Mapping/ALPR/binghamton.qmd
                 text: BC - Binghamton, NY
+            - section: "Hydrology"
+              contents:
+              - href: Mapping/hydrology/noobhydrology.qmd
+                text: I'm Noob
             - section: "Working w/ big maps"
               contents:
               - href: Mapping/big-pbf/pbf-splitter.qmd
@@ -83,6 +89,8 @@ format:
         lightbox: true
         theme: morph-dark.scss
         toc: true
+        mermaid:
+            theme: dark
         include-in-header:
           - text: |
               <script data-goatcounter="https://pickpj.goatcounter.com/count"
