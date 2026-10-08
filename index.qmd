@@ -29,20 +29,20 @@ A modified version of big-b-router for adjustable weight, ALPR avoidance routing
 Reading linux event files for advanced macro activation based on morse pattern key presses. Works independent of the windowing system (wayland/x11) and is device specific. Pattern based activation enables multiple macros to be activated by the same key. Ev-morse can also handle repeating activations with longer key presses (similar to a fast forward button).     
 
 ## Recent Articles:  
+[Editing PBFs for Custom Routing](./Mapping/custom-routing-maps/editpbfs.qmd)  
+Listing the advantages of PBF editing for custom routing.     
+[Flood Routing](./Mapping/hydrology/noobhydrology.qmd)  
+Ad hoc creation of a map file with simulated flood conditions.  
 [Japanese Speaker Analysis](./Census/jpacsdata.qmd)  
 Analyzing ACS data and why bilingual Japanese speakers command a wage premium.  
 [Language Data Regression](./Census/censuslangdata.qmd)  
 A change (for the worse) in how the census reports language data.  
 [Bad Cams - Binghamton, NY](./Mapping/ALPR/binghamton.qmd)  
-Large outlier in ALPR data  
-[Custom Routing in Comaps](./Mapping/custom-routing-maps/comaps.qmd)  
-Process/details for converting pbf to mwm for Comaps  
+Large outlier in ALPR data    
 [x11->wayland migration](./Linux/x11/macro-migration.qmd)  
 Documenting how I plan to migrate some macros that depend on x11 features.  
 [Bad Cams - Similar Cams](./Mapping/ALPR/similar.qmd)  
 Identifying duplicated data in OpenStreetMap data  
-[Bigbrouter](./Mapping/ALPR/bigbrouter.qmd)  
-Step by step guide to using Big-B-Router  
 [Bad Cams - No Road Overlap](./Mapping/ALPR/diff.qmd)  
 Identifying flawed OpenStreetMap data for the whole of the US.  
 

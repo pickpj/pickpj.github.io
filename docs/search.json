@@ -145,7 +145,7 @@
     "href": "index.html#recent-articles",
     "title": "",
     "section": "Recent Articles:",
-    "text": "Recent Articles:\nJapanese Speaker Analysis\nAnalyzing ACS data and why bilingual Japanese speakers command a wage premium.\nLanguage Data Regression\nA change (for the worse) in how the census reports language data.\nBad Cams - Binghamton, NY\nLarge outlier in ALPR data\nCustom Routing in Comaps\nProcess/details for converting pbf to mwm for Comaps\nx11-&gt;wayland migration\nDocumenting how I plan to migrate some macros that depend on x11 features.\nBad Cams - Similar Cams\nIdentifying duplicated data in OpenStreetMap data\nBigbrouter\nStep by step guide to using Big-B-Router\nBad Cams - No Road Overlap\nIdentifying flawed OpenStreetMap data for the whole of the US."
+    "text": "Recent Articles:\nEditing PBFs for Custom Routing\nListing the advantages of PBF editing for custom routing.\nFlood Routing\nAd hoc creation of a map file with simulated flood conditions.\nJapanese Speaker Analysis\nAnalyzing ACS data and why bilingual Japanese speakers command a wage premium.\nLanguage Data Regression\nA change (for the worse) in how the census reports language data.\nBad Cams - Binghamton, NY\nLarge outlier in ALPR data\nx11-&gt;wayland migration\nDocumenting how I plan to migrate some macros that depend on x11 features.\nBad Cams - Similar Cams\nIdentifying duplicated data in OpenStreetMap data\nBad Cams - No Road Overlap\nIdentifying flawed OpenStreetMap data for the whole of the US."
   },
   {
     "objectID": "index.html#contact",
