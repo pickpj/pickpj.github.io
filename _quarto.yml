@@ -19,6 +19,15 @@ website:
             - href: Census/jpjpacsdata.qmd
               text: 日本語話者分析(米国）
           - text: "---"
+          - section: "Japanese"
+            contents:
+            - section: "JLPT"
+              contents:
+              - href: JLPT/jlpt.qmd
+                text: JLPT data
+              - href: JLPT/hawaii.qmd
+                text: Hawaii
+          - text: "---"
           - section: "Mapping"
             contents:
             - section: "Custom Routing"

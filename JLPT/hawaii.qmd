@@ -1,0 +1,23 @@
+---
+title: Hawaii JLPT
+---
+Going through JLPT test data I found the number of N1,N2 test takers in Hawaii to be a lot lower than expected. I expected Hawaii's relatively high proportion (and nominal number) of Japanese speakers to somewhat carry over into the test data.  
+Specifically the number of N1,N2 test takers (2025) in Honolulu was [37,46], compared to New York's [83,77], and Newark's [81,82].  
+
+\*\* The comparison with NY-NJ is made due to the similar number of bilingual Eng-Jpn speakers at home [src](../Census/jpacsdata.qmd).
+
+---
+So here are my thoughts as to why this is the case:  
+
+* Less careers requiring credentials  
+    + NY area has more "professional services" (finance, legal, consulting, etc.). Which require formal certification.  
+    + Hawaii is heavier on tourism. Hiring for tourism may not formally require N1,N2?  
+        - One can be conversationally fluent, but the JLPT leans heavily on reading due to the examination format.  
+* Educational system  
+    + Northeast has a higher concentration of college/universities   
+        - N1, N2 testtakers are typically YA's  
+        - ie people may take the test away from "home" while attending uni  
+    + General school ranking/resources  
+* Test locations in NY-NJ are drawing from a larger population. Hawaii is an island! [voronoi diagram](jlpt.qmd#test-locations-usa)  
+
+IMO, the career motivations seems like the strongest factor in play.  
